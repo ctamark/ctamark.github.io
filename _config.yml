@@ -19,6 +19,8 @@ locale                   : "en-US"
 title                    : "프로그래밍 그리고 세금"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
+future                   : true
+
 name                     : "ctamark"
 description              : "app and tax"
 url                      : "https://ctamark.github.io"
