@@ -1,0 +1,88 @@
+<HTML>
+<head>
+
+<script type="text/javascript">
+
+ function getVersion() {
+		
+		window.mobileApp.setVersion("156");
+ }		
+ </script>
+ 
+<style>
+
+ #dday {
+
+ background-color: black;
+ color: white;
+ font-size: 1.2rem;
+
+ }
+</style>
+	
+<link rel="stylesheet" href="style.css">	
+    
+<TITLE>공무원 영어 기출(어휘,문법)</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<BODY leftMargin=5 topMargin=5 >
+	
+<div class = "notice" >
+22년 서울시9급 필기[6.18(토)]
+<span id="dday"></span>
+<script  language = "javascript">
+    function update_dday(){
+
+    var counter = document.getElementById("dday");
+    var today = new Date(); //현재 날짜 가져오기
+    // Date(year, month, day, hour, min, sec) // 2021년 7월 6일
+    // month는 0부터 시작
+    var dday = new Date(2022, 6-1, 18); //디데이
+    var gap = dday - today;
+
+    var totalSeconds = gap/1000;
+
+    const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+    //ceil 올림, floor 내림, round 반올림
+                  
+    var msg;
+    if (day >=0){
+
+    msg =  'D -' + day + '일';
+
+    }else {
+
+    msg =  '수고하셨어요';
+
+    }
+
+    counter.innerText = msg;
+    }
+    update_dday();
+    </script>	
+
+	
+<a class="kwdlink" href="./english_working" target=_self>작업중이거나 추가예정인 내용</a>(내용을 보려면 터치)		
+
+<span class="green">[ver:156]</span>			
+: 일부문제의 해설오류를 수정함
+: 일부 키워드를 수정.보완 
+	
+(ver:155)<span class="green">[공지.정오.오류]</span>		
+<b>[국7.2011.9번]</b>(해설오류)(아래 표현으로 교체)	
+<b>marry</b>
+/(vt)~와 결혼하다
+/(vi)결혼하다 	
+<b>be married</b> (to 사람)
+/ 결혼하다, ~와 결혼하다(to)...
+<b>get married</b> (to 사람)
+/결혼하다, ~와 결혼하다(to)...
+(be와 get은 뉘앙스가 조금 다름)
+(get은 결혼한 '행위.시점'에 좀더 초점이 있음)
+(be는 결혼한 '상태'에 좀더 초점이 있음)	
+
+</div>
+</BODY>
+</HTML>
