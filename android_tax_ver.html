@@ -1,0 +1,83 @@
+<html>
+<head>
+<script type="text/javascript">
+
+ function getVersion() {
+		
+		window.mobileApp.setVersion("1.31");
+ }
+		
+ </script>
+
+<link rel="stylesheet" href="style.css">	
+    
+    <style>
+ #dday  {
+
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+
+}
+    </style>	
+	
+<TITLE>업데이트 정보</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+</head>
+ <body topmargin=3>
+<div class="notice">	
+22년 서울시9급 필기[6.18(토)]
+<span id="dday"></span>
+<script  language = "javascript">
+    function update_dday(){
+
+    var counter = document.getElementById("dday");
+    var today = new Date(); //현재 날짜 가져오기
+    // Date(year, month, day, hour, min, sec) // 2021년 7월 6일
+    // month는 0부터 시작
+    var dday = new Date(2022, 6-1, 18); //디데이
+    var gap = dday - today;
+
+    var totalSeconds = gap/1000;
+
+    const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+    //ceil 올림, floor 내림, round 반올림
+                  
+    var msg;
+    if (day >=0){
+
+    msg =  'D -' + day + '일';
+
+    }else {
+
+    msg =  '수고하셨어요';
+
+    }
+
+    counter.innerText = msg;
+    }
+    update_dday();
+    </script>	
+
+개정세법은 시행령의 확정여부에 따라 달라질 수 있어요.
+(수험목적에 따라 일부 개정사항은 어플에 반영하지 않았어요)
+(정신건강을 위해 개정사항은 여러분의 책.강사를 참고하세요)	
+	
+<a href="./update_list_local_tax.html" target="_self"><span class="yellow">(지방세 관련) 어플에_추가된_사항_보기</span></a>			
+	
+(1.31)<span class="green">[공지.오류.정오]</span>	
+<b>[서7.18.18번]</b>(담배소비세)	
+ㄹ.납세의무자{수취인}
+(과세면제로 잘못 표시)	
+	
+========	
+<b>35(ver:1.30)</b>
+[지방세]
+: 서9.2018, 서7.2018을 추가함
+유저분들이 제보해주신 오류를 일부 수정	
+		 
+</div>
+</body> 
+</html>

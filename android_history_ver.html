@@ -1,0 +1,87 @@
+﻿<HTML>
+<head>
+
+
+<script type="text/javascript">
+
+ function getVersion() {
+		
+		window.mobileApp.setVersion("2.34");
+ }
+		
+ </script>
+	
+<link rel="stylesheet" href="style.css">
+	
+  <style>
+ #dday  {
+
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+
+}
+ </style>	
+    
+<TITLE> 공무원 한국사 기출 </TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<BODY leftMargin=5 topMargin=5 >	
+<div class = "notice" >	
+22년 서울시9급 필기[6.18(토)]
+<span id="dday"></span>
+<script  language = "javascript">
+    function update_dday(){
+
+    var counter = document.getElementById("dday");
+    var today = new Date(); //현재 날짜 가져오기
+    // Date(year, month, day, hour, min, sec) // 2021년 7월 6일
+    // month는 0부터 시작
+    var dday = new Date(2022, 6-1, 18); //디데이
+    var gap = dday - today;
+
+    var totalSeconds = gap/1000;
+
+    const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+    //ceil 올림, floor 내림, round 반올림
+                  
+    var msg;
+    if (day >=0){
+
+    msg =  'D -' + day + '일';
+
+    }else {
+
+    msg =  '수고하셨습니다';
+
+    }
+    counter.innerText = msg;
+    }
+    update_dday();
+    </script>
+
+	
+<b>android_history_ver:2.34</b>		
+유저분들이 제보해주신 오류들을 일부 수정함
+: 일부키워드를 수정.보완함	
+[주제별풀기]
+: 일부 문제를 추가
+	
+	
+(ver:2.33)<span class="green">[공지.정오.오류]</span>
+<b>[서9.19년.08번]</b>
+<b>선지②</b>거란[X]➔송나라 대장경을 바탕으로(아래추가)
+초조대장경
+: 제작(현종~선종)
+: 거란을 물리치기 위해 제작
+: 완성후 흥왕사에 보관(이후 대구 부인사로 옮겨짐)
+-------
+[발해]키워드
+_중정대{감찰기관..}(어사대로 잘못 표시된 해설있음}(_ _;)	
+	
+			
+</div>
+</BODY>
+
+</HTML>
