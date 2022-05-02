@@ -1,0 +1,75 @@
+<HTML>
+<head>
+    <style>
+#dday{
+  background-color: black;
+  color: white;	      
+  font-size: 1.5em;	
+}
+      </style>
+
+<link rel="stylesheet" href="style.css">
+
+<TITLE>국어기출(어휘.문법) 공지,정오표</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<BODY leftMargin=5 topMargin=2 >
+<div class = "notice" >	
+	
+22년 서울시9급 필기[6.18(토)]
+<span id="dday"></span><br>
+	
+<script  language = "javascript">
+function update_dday(){
+
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2021년 7월 6일
+// month는 0부터 시작
+var dday = new Date(2022, 6-1, 18); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  'D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨어요';
+
+    }
+
+   counter.innerText = msg;
+}
+update_dday();
+</script>		
+(ver:2.87)<span class="green">[정오.오류.공지]</span>
+객관식 문제 풀이를 두번 연속하는 경우 체크노트에 등록안되는 버그 발생
+-----	
+[국회8.16.12번]   
+확산(<span class="hj">擴散</span>)(넓힐 확/흩을 산)
+(넓힐 확에 잘못된 한자가 나옴) 
+----
+[서7.16년.11번]	
+떠나갔던 배가 돌아왔다(11개)
+떠나/가/았(ㅆ)/던(*)/배/가/돌/아/오/았/다
+(*)'더(과거직접경험)/ㄴ'으로 분석하는 견해도 있음		
+: 주된 해설을 '던'으로 변경 		
+		
+</div>
+</BODY>
+</HTML>
