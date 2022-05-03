@@ -6,7 +6,7 @@ main:
     url: /about/
   - title: "App"
     url: /app/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
+  - title: "Dev"
+    url: /dev/
   # - title: "Sitemap"
   #   url: /sitemap/
