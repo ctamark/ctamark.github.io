@@ -1,1 +1,22 @@
 
+
+
+[네이버 링크](http://www.naver.com)
+[네이버 링크](http://www.naver.com "여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.")
+[상대 경로 링크](../../)
+
+[Link1]: http://www.naver.com   
+문서내 아래처럼 링크를 선언하고 [Link1]로 참조하여 연결할 수도 있습니다.   
+
+<http://www.naver.com>    
+
+새창에서 열기
+[네이버 새창에서 링크](http://www.naver.com){:target="_blank"}
+
+
+
+![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg "구글 로고")
+![이미지 대체 텍스트](\assets\images_post\mydog_200_300.gif "설명문구")
+
+이미지에 링크
+[![이미지 대체 텍스트](https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg "구글 로고")](https://google.com)
