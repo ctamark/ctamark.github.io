@@ -8,7 +8,6 @@ tags: [App]
 ---
 ## 공무원 한국사
 <img src="/assets/img/icon_taxStudy.png" width="150" border=0> 
-
 <a href="https://play.google.com/store/apps/details?id=com.planb.jobhistorystudy" target=_blank>andriod</a> 
 
 <a href="https://itunes.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%95%9C%EA%B5%AD%EC%82%AC-%EA%B8%B0%EC%B6%9C-lite-2019-%EB%8C%80%EB%B9%84/id1294010197" target=_blank>iOS</a> 
@@ -29,10 +28,11 @@ tags: [App]
 ## 공무원 회계학 기출(+암산법)
 <img src="/assets/img/icon_account.png" width=150 border=0 >
 <a href="https://play.google.com/store/apps/details?id=com.planb.accountStudyCS" target=_blank>_androd</a>
+
 <a href="https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%9A%8C%EA%B3%84%ED%95%99-%EA%B8%B0%EC%B6%9C/id1500689584?l=ko&ls=1/" target=_blank>_iOS</a>
 
 ## 공무원 세법 기출
 <img src="/assets/img/icon_taxStudy.png" width=150 border=0 >
 <a href="https://play.google.com/store/apps/details?id=com.planb.taxStudy" target=_blank>_androd</span></a>
-<a href="https://apps.apple.com/kr/app/id1524740437" target=_blank>_iOS</a>
 
+<a href="https://apps.apple.com/kr/app/id1524740437" target=_blank>_iOS</a>
