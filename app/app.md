@@ -6,7 +6,7 @@ last_modified_at: 2018-07-01T12:04:24-04:00
 toc: true
 tags: [App]
 ---
-## 공무원 한국사
+# 공무원 한국사
 <img src="/assets/img/icon_historyStudy_256.png" width="150" border=0> 
 [android](http://play.google.com/store/apps/details?id=com.planb.jobhistorystudy){:target="_blank"}
 
