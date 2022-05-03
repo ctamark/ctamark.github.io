@@ -8,3 +8,7 @@ main:
     url: /dev/
   # - title: "Sitemap"
   #   url: /sitemap/
+  
+  docs:
+   - title: "mail"
+   - title: "----" 
