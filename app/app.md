@@ -3,7 +3,7 @@ permalink: /app/
 title: "App"
 excerpt: "app.md"
 last_modified_at: 2018-07-01T12:04:24-04:00
-toc: true
+layout: single
 tags: [App]
 ---
 # 공무원 한국사
