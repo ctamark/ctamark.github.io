@@ -17,3 +17,13 @@ dev 쓸 내용들
 
 ### 작업링크
 [addmob.com](http://www.admob.com){:target="_blank"}
+[developer.apple.com](https://developer.apple.com){:target="_blank"}
+[itunesconnect](https://appstoreconnect.apple.com){:target="_blank"}
+[apple 개발자 다운로드](https://developer.apple.com/download/more){:target="_blank"}
+[android play console](https://play.google.com/console/){:target="_blank"}
+		
+<a href="https://jsonlint.com/"><font color=black>jsonlint.com/</font></a><br>
+<a href="https://wepplication.github.io/tools/colorPicker/"><font color=black>colorPicker</font></a><br>
+	
+<a href="https://makeappicon.com/" target=_blank><font color=black> App Icon제작</font></a><br>
+<a href="https://admob.com//" target=_blank><font color=black> admob.com</a></font><br>
