@@ -16,7 +16,10 @@ dev 쓸 내용들
 [dev.txt_새창](./dev.txt){:target="_blank"}
 
 ### 작업링크
-[adfit.com](http://www.adfit.com){:target="_blank"}
+[adfit.github](http://adfit.github.io){:target="_blank"}
+
+[github](https://github.com/ctamark)
+
 [addmob.com](http://www.admob.com){:target="_blank"}
 [developer.apple.com](https://developer.apple.com){:target="_blank"}
 
