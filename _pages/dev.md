@@ -30,3 +30,5 @@ dev 쓸 내용들
 	
 <a href="https://makeappicon.com/" target=_blank><font color=black> App Icon제작</font></a><br>
 <a href="https://admob.com//" target=_blank><font color=black> admob.com</a></font><br>
+
+쏟아지는 일을 완벽하게 
