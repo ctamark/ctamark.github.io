@@ -15,12 +15,10 @@ dev 쓸 내용들
 
 [github](https://github.com/ctamark)
 
-### 작업링크1
+### 작업링크
+[adfit](https://adfit.github.io){:target="_blank"}
 
-[adfit](http://adfit.github.io){:target="_blank"}
-
-
-[addmob.com](http://www.admob.com){:target="_blank"}
+[addmob.com](https://www.admob.com){:target="_blank"}
 [developer.apple.com](https://developer.apple.com){:target="_blank"}
 
 [itunesconnect](https://appstoreconnect.apple.com){:target="_blank"}
@@ -32,7 +30,7 @@ dev 쓸 내용들
 <a href="https://jsonlint.com/"><font color=black>jsonlint.com/</font></a><br>
 <a href="https://wepplication.github.io/tools/colorPicker/"><font color=black>colorPicker</font></a><br>
 	
-<a href="https://makeappicon.com/" target=_blank><font color=black> App Icon제작</font></a><br>
-<a href="https://admob.com//" target=_blank><font color=black> admob.com</a></font><br>
+<a href="https://makeappicon.com/" target=_blank><font color=black> App Icon제작</font></a>
+<a href="https://admob.com//" target=_blank><font color=black> admob.com</a></font>
 
 쏟아지는 일을 완벽하게 
