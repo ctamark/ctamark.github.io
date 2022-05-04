@@ -1,7 +1,6 @@
 ---
 permalink: /dev/
 title: "Dev"
-excerpt: "dev.md"
 layout: single
 tags: [Dev]
 ---
