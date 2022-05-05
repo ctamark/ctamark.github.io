@@ -8,11 +8,12 @@ dev 쓸 내용들
 
 [네이버 링크](http://www.naver.com)
 [네이버 링크](http://www.naver.com "여기는 네이버 링크 입니다. 마우스 오버시 설명이 표시됩니다.")
-[상대 경로 링크](../../)
+[gtd](./gtd.md)
 
 [dev.txt_새창](./dev.txt){:target="_blank"}
 
 [github](https://github.com/ctamark)
+
 
 ### 작업링크
 [adfit](https://adfit.github.io){:target="_blank"}
