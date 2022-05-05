@@ -15,10 +15,12 @@ dev 쓸 내용들
 
 [dev.txt_새창](./dev.txt){:target="_blank"}
 
-[github/ctamark](https://github.com/ctamark)
+[github/ctamark](https://github.com/ctamark){:target="_blank"}
 
 
-### 작업링크
+### 작업링크  
+[법제처](https://law.go.kr){:target="_blank"}
+
 [adfit](https://adfit.github.io){:target="_blank"}
 
 [addmob.com](https://www.admob.com){:target="_blank"}
