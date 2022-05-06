@@ -17,10 +17,10 @@ tags: [App]
 ## 공무원 영어 기출(어휘,문법편+단어장)
 <img src="/assets/img/icon_studyEnglish_256.png" width=150 border=0>  
 <a href="https://play.google.com/store/apps/details?id=com.planb.englishStudy" target=_blank>androd</a>  
-[__notice](http://ctamark.github.io/android_history_ver.html){:target="_blank"}  
+[__notice](http://ctamark.github.io/android_english_ver.html){:target="_blank"}  
 
 <a href="https://itunes.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%EC%98%81%EC%96%B4-%EA%B8%B0%EC%B6%9C-%EC%96%B4%ED%9C%98-%EB%AC%B8%EB%B2%95/id1466474291?l=ko&ls=1&mt=8" target=_blank>iOS</a>  
-[__notice](http://ctamark.github.io/ios_history_ver.html){:target="_blank"}  
+[__notice](http://ctamark.github.io/ios_english_ver.html){:target="_blank"}  
 
 
 ## 공무원 국어 기출(규범과 어휘편+단어장)
