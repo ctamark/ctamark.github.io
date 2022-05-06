@@ -32,7 +32,7 @@ tags: [App]
 [__notice](http://ctamark.github.io/ios_korean_ver.html){:target="_blank"}  
 
 ## 공무원 회계학 기출(+암산법)
-<img src="/assets/img/icon_account.png" width=150 border=0 >
+<img src="/assets/img/icon_account.png" width=150 border=0 >  
 [android](https://play.google.com/store/apps/details?id=com.planb.accountStudyCS){:target="_blank"} | 
 [__notice](http://ctamark.github.io/android_account_ver.html){:target="_blank"}  
 
