@@ -25,18 +25,18 @@ tags: [App]
 
 ## 공무원 국어 기출(규범과 어휘편+단어장)
 <img src="/assets/img/icon_studyKorean_256.png" width=150 border=0>  
-[android](https://play.google.com/store/apps/details?id=com.planb.koreanStudy){:target="_blank"}  
+[android](https://play.google.com/store/apps/details?id=com.planb.koreanStudy){:target="_blank"} |
 [__notice](http://ctamark.github.io/android_korean_ver.html){:target="_blank"}  
 
-[ios](https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%EA%B5%AD%EC%96%B4-%EA%B8%B0%EC%B6%9C-%EB%AC%B8%EB%B2%95-%EA%B7%9C%EB%B2%94-%ED%95%9C%EC%9E%90%ED%8E%B8/id1469884912?l=ko&ls=1){:target="_blank"}  
+[ios](https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%EA%B5%AD%EC%96%B4-%EA%B8%B0%EC%B6%9C-%EB%AC%B8%EB%B2%95-%EA%B7%9C%EB%B2%94-%ED%95%9C%EC%9E%90%ED%8E%B8/id1469884912?l=ko&ls=1){:target="_blank"} |
 [__notice](http://ctamark.github.io/ios_korean_ver.html){:target="_blank"}  
 
 ## 공무원 회계학 기출(+암산법)
 <img src="/assets/img/icon_account.png" width=150 border=0 >
-[android](https://play.google.com/store/apps/details?id=com.planb.accountStudyCS){:target="_blank"}    
+[android](https://play.google.com/store/apps/details?id=com.planb.accountStudyCS){:target="_blank"} | 
 [__notice](http://ctamark.github.io/android_account_ver.html){:target="_blank"}  
 
-[ios](https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%9A%8C%EA%B3%84%ED%95%99-%EA%B8%B0%EC%B6%9C/id1500689584?l=ko&ls=1/){:target="_blank"}    
+[ios](https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%9A%8C%EA%B3%84%ED%95%99-%EA%B8%B0%EC%B6%9C/id1500689584?l=ko&ls=1/){:target="_blank"} | 
 [__notice](http://ctamark.github.io/android_account_ver.html){:target="_blank"}  
 
 
