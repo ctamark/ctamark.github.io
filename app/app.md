@@ -42,8 +42,8 @@ tags: [App]
 
 ## 공무원 세법 기출
 <img src="/assets/img/icon_taxStudy.png" width=150 border=0 >
-<a href="https://play.google.com/store/apps/details?id=com.planb.taxStudy" target=_blank>androd</span></a>  
+[android](https://play.google.com/store/apps/details?id=com.planb.taxStudy){:target="_blank"}    
 [__notice](http://ctamark.github.io/android_tax_ver.html){:target="_blank"}  
   
-<a href="https://apps.apple.com/kr/app/id1524740437" target=_blank>iOS</a>  
+[ios](https://apps.apple.com/kr/app/id1524740437){:target="_blank"}  
 [__notice](http://ctamark.github.io/ios_tax_ver.html){:target="_blank"}  
