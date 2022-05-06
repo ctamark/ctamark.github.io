@@ -105,8 +105,8 @@ analytics:
 # Site Author
 author:
   name             : "Lee Sangjin"
-  avatar           : "/assets/img/logo_dog.gif"
-  bio              : "I am an **amazing** person."
+  avatar           : # "/assets/img/logo_dog.gif"
+  bio              : "a person who want to live well, not subsist"
   location         : "Somewhere"
   email            :
   links:
