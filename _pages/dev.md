@@ -17,10 +17,11 @@ dev 쓸 내용들
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}
 
-'''
+```
 ls : 현재 파일.디렉토리 보기
 pwd: 현재 경로 표시
-'''
+
+```
 
 
 ### 작업링크  
