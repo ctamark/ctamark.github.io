@@ -25,6 +25,8 @@ pwd: 현재 경로 표시
 <code> ㅅㄴㄴㄴㄴ
 </code>
 
+[사이버고시센터](https://www.gosi.kr/){:target="_blank"}
+
 
 ### 작업링크  
 [법제처](https://law.go.kr){:target="_blank"}
