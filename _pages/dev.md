@@ -28,6 +28,8 @@ pwd: 현재 경로 표시
 [사이버고시센터](https://www.gosi.kr/){:target="_blank"}
 
 
+영화 픽셀 보기
+
 ### 작업링크  
 [법제처](https://law.go.kr){:target="_blank"}
 
