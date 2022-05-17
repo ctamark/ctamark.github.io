@@ -30,6 +30,10 @@ pwd: 현재 경로 표시
 
 영화 픽셀 보기
 
+화면갭쳐
+[win + shift + s] 
+
+
 ### 작업링크  
 [법제처](https://law.go.kr){:target="_blank"}
 
