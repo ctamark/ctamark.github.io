@@ -17,6 +17,11 @@ dev 쓸 내용들
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}
 
+| 단어 | 의미 |
+|:----|:----:|
+|ennoble(법9.21.독해)| /기품을 주다, 귀족에 봉하다..|   
+|strip  A of B(법9.21.독해)\n=(strip B from A) |  ..|   
+    
 ```
 ls : 현재 파일.디렉토리 보기
 pwd: 현재 경로 표시
