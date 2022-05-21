@@ -20,8 +20,7 @@ dev 쓸 내용들
 | 단어 | 의미 |
 |:----|:----:|
 |ennoble(법9.21.독해)| /기품을 주다, 귀족에 봉하다..|   
-|strip  A of B(법9.21.독해)<br>=(strip B from A) 
-|hljlj;j;j;j..|  - |
+|strip  A of B(법9.21.독해)<br>=(strip B from A) | - |
 |abstruse| 추상적인...|
     
 ```
