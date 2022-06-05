@@ -34,6 +34,16 @@ pwd: 현재 경로 표시
 [사이버고시센터](https://www.gosi.kr/){:target="_blank"}
 
 
+## interview   
+[_5min](./5min.txt){:target="_blank"}
+
+[blabla_note](./blabla_note.txt){:target="_blank"}   
+
+[situation](./situation.txt){:target="_blank"}   
+
+[experience](./experience.txt){:target="_blank"}   
+
+
 영화 픽셀 보기
 
 화면갭쳐
