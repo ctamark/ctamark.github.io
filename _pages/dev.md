@@ -43,6 +43,10 @@ pwd: 현재 경로 표시
 
 [experience](../interview/experience.txt){:target="_blank"}   
 
+[공직가치사례](../interview/interview-01.pdf){:target="_blank"}   
+
+
+
 
 영화 픽셀 보기
 
