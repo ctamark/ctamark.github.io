@@ -35,15 +35,15 @@ pwd: 현재 경로 표시
 
 
 ## interview   
-[_5min](../interview/5min.txt){:target="_blank"}
+[_5min](http://ctamark.github.io/interview/5min.txt){:target="_blank"}
 
-[blabla_note](../interview/blabla_note.txt){:target="_blank"}   
+[blabla_note](http://ctamark.github.io/interview/blabla_note.txt){:target="_blank"}   
 
-[situation](../interview/situation.txt){:target="_blank"}   
+[situation](http://ctamark.github.io/interview/situation.txt){:target="_blank"}   
 
-[experience](../interview/experience.txt){:target="_blank"}   
+[experience](http://ctamark.github.io/interview/experience.txt){:target="_blank"}   
 
-[공직가치사례](../interview/interview-01.pdf){:target="_blank"}   
+[공직가치사례](http://ctamark.github.io/interview/interview-01.pdf){:target="_blank"}   
 
 
 
