@@ -96,4 +96,12 @@ abstract class Shape { ... }
 // implements는 그냥 인터페이스 명만 사용해서 적어주는 형태로.
 class Rectangle : Shape(), Duplicatable, Disposable { ... }
 
+
+
+//ContextExt.kt
+//클래스이름.함수이름(...){...}
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
 </pre></code>
