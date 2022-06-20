@@ -8,6 +8,7 @@ title: "kotlin"
 : 변경 가능한 변수, 초기화는 런타임에 하겠다고 명시
 
 -----
+<code><pre>
 val key = getKey()
 
 when (key) {
@@ -23,4 +24,4 @@ when (key) {
         println("wrong key")
     }
 }
------
+</pre></code>
