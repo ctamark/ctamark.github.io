@@ -6,6 +6,6 @@ main:
     url: /app/
   - title: "Dev"
     url: /dev/
-  - title: "Tax"
+  - title: "세금"
     url: /tax/
  
