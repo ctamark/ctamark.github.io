@@ -9,6 +9,21 @@ title: "kotlin"
 
 -----
 <code><pre>
+
+
+## 코틀린 람다
+
+코드의 간결성을 위해 아래와 같은 규칙도 존재합니다.함수의 맨 마지막 인자가 람다라면 () 안에서 빼내서 밖에 람다를 표현할 수 있다.
+인자가 하나라면 그 인자는 람다식 내부에서 it으로 받을 수 있다.   
+인자가 하나이면서 그 인자가 람다타입 이라면 ()를 생략할 수 있다.   
+people.maxBy ({p: Person -> p.age})   
+people.maxBy () {p: Person -> p.age}   
+people.maxBy {p: Person -> p.age}   
+people.maxBy {it.age}   
+출처: https://tourspace.tistory.com/110 [투덜이의 리얼 블로그:티스토리]
+
+
+
 val key = getKey()
 
 when (key) {
