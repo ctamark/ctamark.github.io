@@ -83,6 +83,10 @@ class Rectangle: Shape() {
     }
 }
 
+interface Duplicatable {
+    fun duplicate(): Duplicatable
+}
+
 
 interface Disposable
 interface Duplicatable
