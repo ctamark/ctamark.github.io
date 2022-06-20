@@ -2,11 +2,11 @@
 permalink: /about/
 title: "About"
 excerpt: "about.md"
-last_modified_at: 2018-07-01T12:04:24-04:00
 layout: single
 tags: [About]
 ---
 
-nothing special.
+nothing special
+프로그래밍, ARCore, 그리고 세금에 대한 이야기
 
 
