@@ -53,4 +53,43 @@ class Rectangle : Shape() {
     }    
 }
 
+## 재정의 함수 등
+
+abstract class Shape {
+
+    // 재정의할 수 없는 함수
+    fun attachOther(other: Shape) {
+        //DO
+    }
+
+    // 재정의할 수 있는 함수
+    open fun print() {
+        //DO
+    }
+
+    // 반드시 재정의 해야하는 함수
+    abstract fun draw()
+}
+
+class Rectangle: Shape() {
+    
+    // 재정의 불가능 컴파일 에러
+    override fun attachOther(other: Shape) {
+        
+    }
+    
+    override fun draw() {
+        //TODO 반드시 구현
+    }
+}
+
+
+interface Disposable
+interface Duplicatable
+abstract class Shape { ... }
+
+// extends는 ()를 사용해서 생성자를 호출해 주는 형태로,
+// implements는 그냥 인터페이스 명만 사용해서 적어주는 형태로.
+class Rectangle : Shape(), Duplicatable, Disposable { ... }
+
 </pre></code>
