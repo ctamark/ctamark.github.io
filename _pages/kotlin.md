@@ -24,4 +24,13 @@ when (key) {
         println("wrong key")
     }
 }
+
+-------
+// 함수 이름은 add
+// Int형 a와 b라는 매개변수를 받고
+// Int형 반환값을 가지는 함수라는 의미입니다.
+fun add(a: Int, b: Int): Int {
+    return a+b
+}
+
 </pre></code>
