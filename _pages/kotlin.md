@@ -97,9 +97,9 @@ abstract class Shape { ... }
 class Rectangle : Shape(), Duplicatable, Disposable { ... }
 
 
-
+상속을 하지 않고도 그 클래스에 동작을 추가하는 것이 가능
 //ContextExt.kt
-//클래스이름.함수이름(...){...}
+//fun 클래스이름.함수이름(...){...}
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
