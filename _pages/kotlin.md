@@ -33,4 +33,24 @@ fun add(a: Int, b: Int): Int {
     return a+b
 }
 
+## 상속
+// Java Way
+class Super {}
+class Child extends Super {}
+
+// Kotlin Way...?
+class Super
+class Child : Super()
+
+// override
+open class Shape {
+    open fun draw() = Unit
+}
+
+class Rectangle : Shape() {
+    override fun draw() {
+        //DO
+    }    
+}
+
 </pre></code>
