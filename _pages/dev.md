@@ -18,6 +18,8 @@ dev 쓸 내용들
 
 [sceneKit_tutorial](https://hongssup.tistory.com/10)){:target="_blank"}  
 
+[sceneKit_tutorial](https://code.tutsplus.com/tutorials/an-introduction-to-scenekit-fundamentals--cms-23847){:target="_blank"}   
+
 ---
 [네이버 영어사전](https://en.dict.naver.com/#/main){:target="_blank"}   
 [네이버 국어사전](https://ko.dict.naver.com/#/main){:target="_blank"}
