@@ -6,15 +6,12 @@ tags: [Dev]
 ---
 dev 쓸 내용들
 
-
-
-
 [저작권관련-01](https://blog.naver.com/mangoboard/221157648641){:target="_blank"}   
 
-
 [arcore](https://developers.google.com/ar/develop/){:target="_blank"}   
-
-
+---
+[sprite](https://code.tutsplus.com/tutorials/spritekit-basics-sprites--cms-28816){:target="_blank"}
+---
 [네이버 영어사전](https://en.dict.naver.com/#/main){:target="_blank"}   
 [네이버 국어사전](https://ko.dict.naver.com/#/main){:target="_blank"}
 
