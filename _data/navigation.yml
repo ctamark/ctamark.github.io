@@ -8,4 +8,7 @@ main:
     url: /dev/
   - title: "세금"
     url: /tax/
+  - title: "english"
+    url: /english/
+    
  
