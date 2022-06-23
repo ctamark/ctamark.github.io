@@ -14,13 +14,15 @@ dev 쓸 내용들
 ---
 [sprite](https://code.tutsplus.com/tutorials/spritekit-basics-sprites--cms-28816){:target="_blank"}  
 
-[sceneKit_example](https://github.com/stevenjs/VR-iOS-Experiment)(:target="_blank"}   
+[sceneKit_example](https://github.com/stevenjs/VR-iOS-Experiment){:target="_blank"}   
+
+[sceneKit_tutorial](https://hongssup.tistory.com/10)){:target="_blank"}  
 
 ---
 [네이버 영어사전](https://en.dict.naver.com/#/main){:target="_blank"}   
 [네이버 국어사전](https://ko.dict.naver.com/#/main){:target="_blank"}
 
-[github배우기](https://www.devinlife.com)
+[github배우기](https://www.devinlife.com){:target="_blank"}
 
 [gtd](../gtd/)
 
