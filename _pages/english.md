@@ -1,5 +1,5 @@
 ---
 title: "english"
 layout: single   
-permalink: /about/
+permalink: /english/
 ---
