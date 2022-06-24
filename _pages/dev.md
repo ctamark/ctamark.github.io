@@ -16,9 +16,13 @@ dev 쓸 내용들
 
 [sceneKit_example](https://github.com/stevenjs/VR-iOS-Experiment){:target="_blank"}   
 
-[sceneKit_tutorial](https://hongssup.tistory.com/10)){:target="_blank"}  
+[sceneKit_tutorial](https://hongssup.tistory.com/10){:target="_blank"}  
 
-[sceneKit_tutorial](https://code.tutsplus.com/tutorials/an-introduction-to-scenekit-fundamentals--cms-23847){:target="_blank"}   
+[sceneKit_tutorial](https://code.tutsplus.com/tutorials/an-introduction-to-scenekit-fundamentals--cms-23847){:target="_blank"}  
+
+[scnbox_texture-1](https://stackoverflow.com/questions/38949083/scenekit-map-cube-texture-to-box){:target="_blank"}
+
+[scnbox_texture-2](https://stackoverflow.com/questions/64828643/scnbox-map-a-texture-onto-five-of-six-sides){:target="_blank"}
 
 ---
 [네이버 영어사전](https://en.dict.naver.com/#/main){:target="_blank"}   
