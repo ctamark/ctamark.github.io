@@ -1,6 +1,6 @@
 ---
 title: "ARCore, sceneform"
-layout: singli
+layout: singl
 ---
 
 ## Camera
