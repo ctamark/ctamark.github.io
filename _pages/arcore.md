@@ -24,3 +24,10 @@ static CompletableFuture<Material>	makeOpaqueWithTexture(Context context, Textur
   
 CompletableFuture
 : Java8 지원, 비동기
+
+  
+## ShapeFactory
+static ModelRenderable makeCube(Vector3 size, Vector3 center, Material material)
+> Creates a ModelRenderable in the shape of a cube with the give specifications.
+  
+  
