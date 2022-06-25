@@ -17,3 +17,10 @@ ArrayList<Node>	**overlapTestAll(Node node)**
 <code>  
 By default, it will automatically use a collision shape based on the dimensions of the Renderable attached to the Node. You can use Node.setCollisionShape to override the collision shape for the node, or to set collisions on a Node that doesn't have a Renderable.
 </code>
+  
+## MaterialFactory 
+static CompletableFuture<Material>	makeOpaqueWithTexture(Context context, Texture texture)
+> Creates an opaque Material with the Texture passed in.
+  
+CompletableFuture
+: Java8 지원, 비동기
