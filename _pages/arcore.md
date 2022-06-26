@@ -61,7 +61,9 @@ static ModelRenderable makeCube(Vector3 size, Vector3 center, Material material)
   
 ## ViewRenderable 
 public class ViewRenderable
-> Renders a 2D Android view in 3D space by attaching it to a Node with setRenderable(Renderable). By default, the size of the view is 1 meter in the Scene per 250dp in > the layout. Use a ViewSizer to control how the size of the view in the Scene is calculated.
+Renders a 2D Android view in 3D space by attaching it to a Node with setRenderable(Renderable).
+By default, the size of the view is 1 meter in the Scene per 250dp in the layout.   
+Use a ViewSizer to control how the size of the view in the Scene is calculated.  
 <code>
 future = ViewRenderable.builder().setView(context, R.layout.view).build();
  viewRenderable = future.thenAccept(...);
