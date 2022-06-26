@@ -19,6 +19,8 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 
 [create-renderables](https://developers.google.com/sceneform/develop/create-renderables){:target="_blank"}   
 
+[Custom material reference](https://developers.google.com/sceneform/develop/custom-material){:target="_blank"}
+
 **Anchor**
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
 
