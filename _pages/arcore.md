@@ -1,5 +1,6 @@
 ---
 title: "ARCore, sceneform"
+permalink: /arcore/
 layout: single
 ---
 
