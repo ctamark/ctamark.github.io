@@ -4,6 +4,8 @@ permalink: /arcore/
 layout: single
 ---
 
+[코틀린 문법](https://cjw-awdsd.tistory.com/20){:target="_blank"}   
+
 ## Camera
 Ray	screenPointToRay(float x, float y)
 > Calculates a ray in world space going from the near-plane of the camera and going through a point in screen space.
