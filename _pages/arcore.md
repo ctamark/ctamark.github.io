@@ -21,6 +21,8 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 
 [Custom material reference](https://developers.google.com/sceneform/develop/custom-material){:target="_blank"}
 
+[custom_material_tutorial](https://medium.com/@benjdoherty/custom-materials-with-google-sceneform-and-arcore-a930a30f867d){:target="_blank"}
+
 **Anchor**
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
 
