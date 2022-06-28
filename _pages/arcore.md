@@ -3,11 +3,11 @@ title: "ARCore, sceneform"
 permalink: /arcore/
 layout: single
 ---
-
-[코틀린 문법](https://cjw-awdsd.tistory.com/20){:target="_blank"}   
-
 # 최소사양   
-Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
+Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상    
+[코틀린 문법](https://cjw-awdsd.tistory.com/20){:target="_blank"}   
+[코틀린_코루틴(coroutine)](https://taehyungk.github.io/posts/android-kotiln-coroutine-async-await/){:target="_blank"}   
+
 
 [ArCore_homepage_official](https://developers.google.com/ar/develop){:target="_blank"}
 
