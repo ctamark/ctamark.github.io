@@ -86,146 +86,6 @@
      
       }
 
-    /* column 2개 */
-     div.solve_col_2{
-       display: table;
-       padding-left: 5px;
-       border-left : 3px solid gray;
-       text-align: top;
-      
-      }
-
-     div.solve_col_L {
-     display: table-cell;
-     padding-right:15px;
-     text-align: right;
-    
-    
-      }
- 
-     div.solve_col_R{
-       display: table-cell;
-       text-align: left;
-       padding-left:10px;
-     
-      }
-
-
-
-   /* 암산 연습 */
-
-    div.math_note{
-       display:table;
-       background-color:#696969;
-       width: 90%;
-	   font-family: Courier;
- 
-      }
-
-      div.math_note_L {
-
-      display: table-cell;
-      padding:5px;
-
-      font-size: medium;
-
-      color:white;
-
-      border-right : 1px solid black;
-      width: 42%;
-
-      }
- 
-     div.math_note_R {
-
-      display: table-cell;  
-      padding:5px;
-      
-      font-size: medium;
-
-      color:white;
-
-      border-left : 1px solid black;
-      width: 42%;
- 
-     }
-	 
-	 
-	 
-
-
-   
-      div.book{
-       display:table;
-       background-color:#D9D9D9;
-       width: 100%;
-	   font-size: 0.95rem;
-
-/*
-	   font-weight:bold;
-       font-family: Courier;*/
-
-        color:black;
-      }
-
-      div.book_L {
-
-      display: table-cell;
-      padding:2px;
-
-
-
-      border-right : 1px solid black;
-      width: 46%;
-
-      }
- 
-     div.book_R {
-
-      display: table-cell;  
-      padding:2px;
-      
-      color:black;
-
-      border-left : 1px solid black;
-      
- 
-     }
-
-
-     div.t_book ,.t_book_LR{
-       display:table;
-
-       font-size: 0.90rem;
-       color:white;
-       background-color:#898989;
-       width: 90%;
-       vertical-align:top;
-      
-    }
-
-      div.t_book_L {
-
-      display: table-cell;
-      padding:5px;
-      border-top   : 5px solid black;  
-      border-right : 3px solid black;
-      width: 40%;
-
-      }
- 
-     div.t_book_R {
-
-      display: table-cell;
-      padding:5px;
-
-      border-top : 5px solid black;  
-      border-left : 3px solid black;
-
-      width: 40%;
- 
-     }
-
     span.q{
 
      font-size: 1.1rem;
@@ -266,51 +126,6 @@
      background-color:gray;
     }
  
-
-span.label_s , .label_1, .label-1 {
-
-     margin:2px;
-     padding: 0;
-     font-size: 1.2rem;
-	 line-height: 1.5rem;
-     color: black;
-	 font-weight: bold;
-  }
-  
-  span.label_m, .label_2, .label-2 {
-
-   padding: 0;
-    font-size: 1.5rem;
-	line-height: 1.8rem;
-    color: black;
-	 font-weight: bold;
-  }
-
-   /*big*/
-  span.big  {
-     
-     margin:2px;
-     padding:2px;
-     color:black;
-	 font-size: 2.0rem;
-    }
-
-
- span.hanja , .hj{
-
-    font-size: 2.2rem;
-    color: black;
-	line-height: 1.5rem;
-  }
-
- span.hj-s{
-
-    font-size: 1.8rem;
-    color: black;
-    margin: 2px;
-	line-height: 1.6rem;
-  }
-
 
   span.title  {
      
@@ -434,7 +249,7 @@ span.label_s , .label_1, .label-1 {
 		  color: #606060;
            margin-top:5px;
            padding: 2px;
-           font-size:1.1em;
+           font-size:1.2em;
 		   
            overflow:auto;
            white-space: pre-wrap;
