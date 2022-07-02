@@ -8,7 +8,9 @@ dev 쓸 내용들
 
 [저작권관련-01](https://blog.naver.com/mangoboard/221157648641){:target="_blank"}   
 
-[artvee.com/](https://artvee.com/){:target="_blank"}   
+[artvee.com/](https://artvee.com/){:target="_blank"}      
+
+[상속과 합성](https://mangkyu.tistory.com/199){:target="_blank"} 
 
 [arcore_공식홈페이지](https://developers.google.com/ar/develop/){:target="_blank"}   
 --   
