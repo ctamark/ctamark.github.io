@@ -20,9 +20,12 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 
 [add line_sceneform_acore](https://stackoverflow.com/questions/51951704/how-to-draw-line-between-two-anchors-in-sceneform-in-arcore){:target= "_blank"}   
 
+[place_Obj_without tap](https://stackoverflow.com/questions/51673733/how-to-place-a-object-without-tapping-on-the-screen){:target= "_blank"}
+
 [add_ui_arcore](https://kristisimakova.medium.com/how-to-add-ui-elements-to-ar-scene-in-arcore-d2ba64454478){:target="_blank"}   
 
 [create-renderables](https://developers.google.com/sceneform/develop/create-renderables){:target="_blank"}   
+
 
 [Custom material reference](https://developers.google.com/sceneform/develop/custom-material){:target="_blank"}
 
