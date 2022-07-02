@@ -272,6 +272,22 @@ div.reading-line {
 
           }
 
+p.question-line {
+
+        border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+    		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:1.2em;
+		   
+           overflow:auto;
+           white-space:  normal;
+
+          }
+
 
 div.keyword-div {
 
