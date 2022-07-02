@@ -36,6 +36,10 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 [external-material(1.16.0)](https://stackoverflow.com/questions/62894670/how-to-properly-render-external-texture-in-sceneform-1-16-0){:target="_blank"}
 
 
+
+
+
+
 **Anchor**
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
 
@@ -50,6 +54,13 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 ## Camera
 Ray	screenPointToRay(float x, float y)
 > Calculates a ray in world space going from the near-plane of the camera and going through a point in screen space.
+
+<pre><code>
+  Session session = arFragment.getArSceneView().getSession();
+
+  float[] position = { 0, 0, -0.75 };  // 75 cm away from camera
+  float[] rotation = { 0, 0, 0, 1 };
+</code></pre>    
 
 ## Scene
 **Node overlapTest(Node node)**
