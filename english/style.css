@@ -54,6 +54,7 @@
 	white-space: pre-wrap; /* pre tag내에 word wrap */
       }
 
+
     b {
 
        padding:0px;
@@ -423,6 +424,23 @@ span.label_s , .label_1, .label-1 {
            white-space: pre-wrap;
 
           }
+
+ div.reading {
+
+        border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:1.1em;
+		   
+           overflow:auto;
+           white-space: pre-wrap;
+
+          }
+
 
 div.keyword-div {
 
