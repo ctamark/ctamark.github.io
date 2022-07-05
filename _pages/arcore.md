@@ -59,6 +59,19 @@ while(iter.hasNext()) {
 </code></pre>
 
 
+## 충돌관련 코드
+<pre><code>
+private void onUpdate(FrameTime frameTime) {
+  ArrayList<Node> overlappedNodes = arSceneView.getScene().overlapTestAll(ballNode);
+  for (Node node : overlappedNodes) {
+    if (node instanceof PassiveNode) {
+      // May want to use a flag to check that the node wasn't overlapping the previous frame.
+      // Play sound if overlapping started.
+    }
+  }
+}
+</code></pre>
+
 
 **Anchor**
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
