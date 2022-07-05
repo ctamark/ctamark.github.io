@@ -1,7 +1,10 @@
-----
-layout: single
-title: "sceneform으로 구현하는 AR"
-----
+---
+layout: single   
+title:  "sceneform으로 구현하는 AR"
+
+categories:
+  - AR
+---
 
 작업일지 220705
 <img src="https://ctamark.github.io/sceneform-03.jpg" width=50%>   
