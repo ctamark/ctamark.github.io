@@ -40,4 +40,59 @@ sceneform.asset('sampledata/effect/effect.obj',
         'sampledata/effect/effect.sfa',
         'src/main/res/raw/effect'
 )
+
+
+관련 shader 
+material {
+
+   parameters: [
+       
+	       {
+               type: "sampler2d" ,
+               name: "baseColorMap"
+           }
+           ,
+           {
+                  type: float,
+                  name:"offsetX"
+           }
+
+           ,
+           {
+                  type: float,
+                  name:"offsetY"
+           }
+
+       ],
+
+       requires: [
+
+               "uv0"
+           ],
+
+    blending : add,
+    shadingModel : unlit,
+    doubleSided : true,
+    culling : none
+
+}
+
+fragment {
+
+    void material(inout MaterialInputs material) {
+
+        prepareMaterial(material);
+
+        vec2 uv = getUV0();
+        uv.x = uv.x + materialParams.offsetX;
+        uv.y = uv.y + materialParams.offsetY;
+
+        float4 texSample = texture(materialParams_baseColorMap, uv);
+        material.baseColor = texSample;
+
+    }
+}
 </code></pre>
+
+
+
