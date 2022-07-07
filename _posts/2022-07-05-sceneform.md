@@ -98,4 +98,5 @@ fragment {
 </code></pre>
 
 참고로 custom material관련 정보는 아래 링크를 참고하면 된다.   
-https://developers.google.com/sceneform/develop/custom-material
+https://developers.google.com/sceneform/develop/custom-material   
+https://medium.com/@benjdoherty/custom-materials-with-google-sceneform-and-arcore-a930a30f867d   
