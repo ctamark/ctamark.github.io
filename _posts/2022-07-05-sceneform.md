@@ -97,5 +97,5 @@ fragment {
 }
 </code></pre>
 
-참고로 custom material관련 정보는 아래 링크를 참고하면 된다.
+참고로 custom material관련 정보는 아래 링크를 참고하면 된다.   
 https://developers.google.com/sceneform/develop/custom-material
