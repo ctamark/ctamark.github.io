@@ -6,7 +6,7 @@ title:  "sceneform으로 구현하는 AR"
 작업일지 220705   
 
 내가 가진 안드로이드폰이 너무 낡아서(API 19) ~~10만원을 빌려서(경제적으로 어려워서 현재 하루천원으로 생활하는 중)~~ 중고폰을 사 AR 작업중에 있다.
-(예전에 아는 동생이 애플에 개발자 등록할 돈이 없다고 내꺼 좀 빌려달라고 해서 내가 10만원도 없냐고 했는데 내가 지금 그렇게 되었다)
+(예전에 아는 동생이 애플에 개발자 등록할 돈이 없다고 내꺼 좀 빌려달라고 해서 내가 10만원도 없냐고 했는데 내가 지금 그렇게 되었다)   
 (돌아보면 그냥 그때 그 동생에게 내가 한 50만원 줄 걸 그랬다. 줘도 받지도 않았을 테지만)
    
 <img src="../sceneform-03.jpg" width="400px" >   
@@ -98,5 +98,5 @@ fragment {
 </code></pre>
 
 참고로 custom material관련 정보는 아래 링크를 참고하면 된다.   
-https://developers.google.com/sceneform/develop/custom-material   
-https://medium.com/@benjdoherty/custom-materials-with-google-sceneform-and-arcore-a930a30f867d   
+[custom_material-reference](https://developers.google.com/sceneform/develop/custom-material){:target = '_blank'}  
+[custom_material 적용 예제](https://medium.com/@benjdoherty/custom-materials-with-google-sceneform-and-arcore-a930a30f867d){:target='_blank'}   
