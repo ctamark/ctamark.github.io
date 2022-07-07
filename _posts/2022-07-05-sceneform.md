@@ -44,7 +44,7 @@ sceneform.asset('sampledata/effect/effect.obj',
 )
 
 
-관련 shader 
+//관련 shader 
 material {
 
    parameters: [
