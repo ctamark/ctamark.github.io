@@ -7,7 +7,7 @@ title:  "sceneform으로 구현하는 AR"
 
 내가 가진 안드로이드폰이 너무 낡아서(API 19) ~~10만원을 빌려서(경제적으로 어려워서 현재 하루천원으로 생활하는 중)~~ 중고폰을 사 AR 작업중에 있다.
 (예전에 아는 동생이 애플에 개발자 등록할 돈이 없다고 내꺼 좀 빌려달라고 해서 내가 10만원도 없냐고 했는데 내가 지금 그렇게 되었다)
-(돌아보면 그냥 그 때 내가 10만원 줄 걸 그랬다)
+(돌아보면 그냥 그때 그 동생에게 내가 한 50만원 줄 걸 그랬다. 줘도 받지도 않았을 테지만)
    
 <img src="../sceneform-03.jpg" width="400px" >   
 
@@ -34,9 +34,10 @@ sceneform에 새로운 material을 추가하는 것은 약간 조잡스럽다
 
 즉 material이 필요할 때마다 dummy.obj 등을 만들어서 함께 추가해야 한다.
 
-또 app수준의 build.gradle에 아래와 같이 추가시켜야 한다.
+또 build.gradle에 아래와 같이 추가시켜야 한다.
 
 <pre><code>
+//-- build.gradle(app수준) --
 sceneform.asset('sampledata/effect/effect.obj',
         'sampledata/effect/effect.mat', <----작성한 material
         'sampledata/effect/effect.sfa',
@@ -44,7 +45,7 @@ sceneform.asset('sampledata/effect/effect.obj',
 )
 
 
-//관련 shader 
+//--관련 shader--- 
 material {
 
    parameters: [
@@ -96,3 +97,5 @@ fragment {
 }
 </code></pre>
 
+참고로 custom material관련 정보는 아래 링크를 참고하면 된다.
+https://developers.google.com/sceneform/develop/custom-material
