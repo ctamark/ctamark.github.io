@@ -8,7 +8,7 @@ title:  "sceneform으로 구현하는 AR"
 
 AR작업을 하고 싶었지만 내가 가진 안드로이드폰이 너무 낡아서(API 19) 10만원을 빌려서 AR 적용이 가능한 중고폰을 사서 작업중에 있다   
    
-<img src="https://ctamark.github.io/sceneform-03.jpg" width=50%>   
+<img src="./img/sceneform-03.jpg" width=50%>   
 
 최신인 sceneform 1.16.0을 사용하고자 하시는 분이 있다면 말리고 싶다.
 
