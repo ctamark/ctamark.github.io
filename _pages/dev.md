@@ -6,6 +6,10 @@ tags: [Dev]
 ---
 dev 쓸 내용들
 
+## 디자인패턴   
+[디자인패턴-01](https://icksw.tistory.com/category/iOS/Design_Pattern){:target="_blank"}
+
+
 [저작권관련-01](https://blog.naver.com/mangoboard/221157648641){:target="_blank"}   
 
 [artvee.com/](https://artvee.com/){:target="_blank"}      
