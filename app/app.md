@@ -33,9 +33,8 @@ tags: [App]
 <img src="/assets/img/icon_account.png" width=150 border=0 >  
 [android](https://play.google.com/store/apps/details?id=com.planb.accountStudyCS){:target="_blank"} | 
 [__notice](http://ctamark.github.io/android_account_ver.html){:target="_blank"}  
-
 [ios](https://apps.apple.com/us/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%9A%8C%EA%B3%84%ED%95%99-%EA%B8%B0%EC%B6%9C/id1500689584?l=ko&ls=1/){:target="_blank"} | 
-[__notice](http://ctamark.github.io/android_account_ver.html){:target="_blank"}  
+[__notice](http://ctamark.github.io/ios_account_ver.html){:target="_blank"}  
 
 
 ## 공무원 세법 기출
