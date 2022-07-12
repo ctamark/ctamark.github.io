@@ -6,6 +6,8 @@ tags: [Dev]
 ---
 dev 쓸 내용들
 
+[인디 스프라이트-01](https://deepdivegamestudio.itch.io/demon-sprite-pack){:target="_blank"}   
+
 ## 디자인패턴      
 [디자인패턴-01](https://icksw.tistory.com/category/iOS/Design_Pattern){:target="_blank"}
 
