@@ -72,8 +72,7 @@ private void onUpdate(FrameTime frameTime) {
 }
 </code></pre>
 
-
-**Anchor**
+**Anchor**   
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
 
 ## node   
