@@ -8,12 +8,13 @@ tags:
 - 금전무상대여
 ---
 <center>
-<img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="60%">
+<img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="50%">
 </center>
 
 ## 개인간 금전 무상대출에 대한 증여세   
 
 나이가 들면 들수록 돈이 계속 필요하다는 것을 새삼 느낍니다.
+(인간으로 태어나면 '죽음과 세금'은 피할 수가 없습니다)
 
 누군가 저에게 2억원을 주는 경우 2억원에 대한 증여세가 부과됩니다.   
 [증여세율 보기](https://ctamark.github.io/tax/gift_taxrate.html){:target="_blank"}(보려면 터치하세요) 
