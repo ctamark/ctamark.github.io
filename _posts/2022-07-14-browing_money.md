@@ -13,7 +13,7 @@ tags:
 나이가 들면 들수록 돈이 계속 필요하다는 것을 새삼 느낍니다.
 
 누군가 저에게 2억원을 주는 경우 2억원에 대한 증여세가 부과됩니다.   
-[증여세율 보기](https://ctamark.github.io/tax/gift_taxrate.html){:target="_blank"} 
+[증여세율 보기](https://ctamark.github.io/tax/gift_taxrate.html){:target="_blank"}(보려면 터치하세요) 
 
 하지만 제가 나중 갚기로 하고 누군가 저에게 2억원 빌려준다면 어떻게 될까요? 
 
