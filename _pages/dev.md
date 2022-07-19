@@ -13,6 +13,7 @@ dev 쓸 내용들
 
 [디자인패턴-02](https://gmlwjd9405.github.io/tags#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4){:target="_blank"}  
 
+[디자인패턴-03](https://velog.io/@hanna2100?tag=%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4){:target="_blank"}    
 ---   
 [게임루프](https://maxidea1024.tistory.com/144){:target="_blank"}
 
