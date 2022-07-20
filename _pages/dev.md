@@ -66,8 +66,6 @@ pwd: 현재 경로 표시
 <code> ㅅㄴㄴㄴㄴ
 </code>
 
-[사이버고시센터](https://www.gosi.kr/){:target="_blank"}
-
 
 ## interview   
 [_5min](http://ctamark.github.io/interview/5min.txt){:target="_blank"}
