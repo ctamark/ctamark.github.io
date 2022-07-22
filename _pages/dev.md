@@ -8,6 +8,7 @@ dev 쓸 내용들
 
 [인디 스프라이트-01](https://deepdivegamestudio.itch.io/demon-sprite-pack){:target="_blank"}   
 
+
 ## 디자인패턴      
 [디자인패턴-01](https://icksw.tistory.com/category/iOS/Design_Pattern){:target="_blank"}
 
@@ -49,6 +50,10 @@ dev 쓸 내용들
 [gtd](../gtd/)
 
 [dev.txt_새창](./dev.txt){:target="_blank"}
+
+[기본증명서 상세](http://ctamark.github.io/app/paper-01.pdf){:target="_blank"}   
+[제출서률-전체](http://ctamark.github.io/app/paper-02.pdf){:target="_blank"}   
+
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}
 
