@@ -52,7 +52,7 @@ dev 쓸 내용들
 [dev.txt_새창](./dev.txt){:target="_blank"}
 
 [기본증명서 상세](http://ctamark.github.io/app/paper-01.pdf){:target="_blank"}   
-[제출서률-전체](http://ctamark.github.io/app/paper-02.pdf){:target="_blank"}   
+[제출서류-전체](http://ctamark.github.io/app/paper-02.pdf){:target="_blank"}   
 
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}
