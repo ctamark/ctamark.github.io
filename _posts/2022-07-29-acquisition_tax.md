@@ -2,7 +2,7 @@
 layout: single
 title: "주택 취득세 중과"
 ---
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../style_md.css">
 
 다주택자 취득세 중과
 
@@ -19,7 +19,7 @@ title: "주택 취득세 중과"
 (취득금액x2/3억-3)x1/100
 
 ---
-<b><span background="red">조정지역</span>에 신규주택을 취득하는 경우</b>
+<b><span class="red">조정지역</span>에 신규주택을 취득하는 경우</b>
 (기존주택이 어느지역인지 관계없음)   
 
 |1주택|2주택|3주택 이상|
