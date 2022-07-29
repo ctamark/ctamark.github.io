@@ -36,7 +36,7 @@ Android SDK 플랫폼 버전 7.0 (API 수준 24) 이상
 [external-material(1.16.0)](https://stackoverflow.com/questions/62894670/how-to-properly-render-external-texture-in-sceneform-1-16-0){:target="_blank"}
 
 
-<pre><code>
+```
 루프 도중에 삭제하기 
 int size = list.size();
 for(int i = 0; i < size; i++) {
@@ -54,13 +54,11 @@ while(iter.hasNext()) {
         iter.remove();
     }
 }
-
-출처: https://offbyone.tistory.com/170 [쉬고 싶은 개발자:티스토리]
-</code></pre>
+```
 
 
 ## 충돌관련 코드
-<pre><code>
+```
 private void onUpdate(FrameTime frameTime) {
   ArrayList<Node> overlappedNodes = arSceneView.getScene().overlapTestAll(ballNode);
   for (Node node : overlappedNodes) {
@@ -70,9 +68,9 @@ private void onUpdate(FrameTime frameTime) {
     }
   }
 }
-</code></pre>
+```
 
-**Anchor**   
+**Anchor**  
 앵커는 가상 객체가 공간의 동일한 위치 및 방향에 유지되도록 해준다.
 
 ## node   
