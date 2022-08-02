@@ -68,6 +68,34 @@ private void onUpdate(FrameTime frameTime) {
     }
   }
 }
+---
+
+@Override
+public void onPeekTouch(HitTestResult hitTestResult, MotionEvent tap) {
+ int action = tap.getAction();
+ Camera camera = fragment.getArSceneView().getScene().getCamera();
+ Ray ray = camera.screenPointToRay(tap.getX(), tap.getY());
+ Vector3 drawPoint = ray.getPoint(DRAW_DISTANCE);
+ if (action == MotionEvent.ACTION_DOWN) {
+  if (anchorNode == null) {
+   ArSceneView arSceneView = fragment.getArSceneView();
+   com.google.ar.core.Camera coreCamera = arSceneView.getArFrame().getCamera();
+   if (coreCamera.getTrackingState() != TrackingState.TRACKING) {
+    return;
+   }
+   Pose pose = coreCamera.getPose();
+   anchorNode = new AnchorNode(arSceneView.getSession().createAnchor(pose));
+   anchorNode.setParent(arSceneView.getScene());
+  }
+  currentStroke = new Stroke(anchorNode, material);
+  strokes.add(currentStroke);
+  currentStroke.add(drawPoint);
+ } else if (action == MotionEvent.ACTION_MOVE && currentStroke != null) {
+  currentStroke.add(drawPoint);
+ }
+}
+
+
 ```
 
 **Anchor**  
