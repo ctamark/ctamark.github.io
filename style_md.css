@@ -8,3 +8,17 @@
      background-color:#FFEBEB;
  
     }
+
+div.keyword {
+         border: 2px dotted black;
+		     background-color:#EcEcEc;
+
+   		   color: #606060;
+         margin-top:5px;
+         padding: 2px;
+         font-size:0.98em;
+
+         overflow:auto;
+         white-space: pre-wrap;
+
+       }
