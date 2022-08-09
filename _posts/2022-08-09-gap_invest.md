@@ -33,7 +33,7 @@ title: "갭투자(전세끼고 집사기)"
 : 상시거주를 하지 않은 상태에서 다른 용도(임대를 포함)로 사용  
   
   <center>  
-  <img src="https://ctamark.github.io/handshake.png" width="80%">  
+  <img src="https://ctamark.github.io/handshake.jpg" width="80%">  
   </center>
   
 ## 상생임대인 적용여부    
