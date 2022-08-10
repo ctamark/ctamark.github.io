@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[양도소득세취득세]in조정지역"
+title: "[양도소득,세취득세]in조정지역"
 ---
 
 <link rel="stylesheet" href="../style_md.css">
