@@ -11,7 +11,7 @@ tags:
 <img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="50%">
 </center>
 
-<link rel="stylesheet" href="../style_md.css" />
+<link rel="stylesheet" href="../style_md.css">
 
 ## 개인간 금전 무상대출에 대한 증여세   
 
@@ -20,8 +20,7 @@ tags:
 누군가 저에게 2억원을 주는 경우 2억원에 대한 증여세가 부과됩니다.   
 (인간으로 태어나면 '죽음과 세금'은 피할 수가 없습니다)
 
-[증여세율 보기](https://ctamark.github.io/tax/gift_taxrate.html){:target="_blank"}(보려면 터치하세요) 
-
+[증여세율 보기](https://ctamark.github.io/tax/gift_taxrate.html){:target="_blank"}(보려면 터치하세요)  
 하지만 제가 나중 갚기로 하고 누군가 저에게 2억원 빌려준다면 어떻게 될까요? 
 
 <div class="keyword">
