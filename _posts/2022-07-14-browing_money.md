@@ -10,7 +10,6 @@ tags:
 
 <link rel="stylesheet" href="../style_md.css">   
 
-## 개인간 금전 무상대출에 대한 증여세   
 <span class="red">나이가 들면 들수록 돈이 계속 필요하다는 것을 새삼 느낍니다.</span>
 
 누군가 저에게 2억원을 주는 경우 2억원에 대한 증여세가 부과됩니다.   
