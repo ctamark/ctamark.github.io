@@ -10,10 +10,9 @@ tags:
 
 <link rel="stylesheet" href="../style_md.css">   
 
-<img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="50%">
-
-
 ## 개인간 금전 무상대출에 대한 증여세   
+
+<img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="50%">
 
 나이가 들면 들수록 돈이 계속 필요하다는 것을 새삼 느낍니다.
 
