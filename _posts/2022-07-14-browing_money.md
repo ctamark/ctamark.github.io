@@ -7,9 +7,10 @@ tags:
 - 증여세
 - 금전무상대여
 ---
-<link rel="stylesheet" href="../style_md.css">
 
+<link rel="stylesheet" href="../style_md.css">
 <img src="https://ctamark.github.io/tax/borrowing_money-01.png" width="50%">
+
 
 ## 개인간 금전 무상대출에 대한 증여세   
 
