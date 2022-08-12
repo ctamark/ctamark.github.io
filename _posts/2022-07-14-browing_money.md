@@ -1,6 +1,9 @@
 ---
 layout: single
 title: "금전대여와 증여세" 
+categories: 
+ - 세금
+tags: [증여세]
 ---
 
 <link rel="stylesheet" href="https://ctamark.github.io/style_md.css">   
