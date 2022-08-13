@@ -9,11 +9,11 @@ tags: [세금, 양도소득세]
 <link rel="stylesheet" href="ctamark.github.io/style_md.css">
 장기보유특별공제 
 ## 대상   
-<b>①</b> 토지.건물로서 보유기간 3년이상인 것   
+<b>●</b> 토지.건물로서 <span class="red">보유기간 3년이상</span>인 것   
 다음의 자산은 배제   
  <b>-㉠</b>  미등기 양도자산  
  <b>-㉡</b>  다주택자의 조정지역 내 주택  
-<b>②</b> 조합원입주권 
+<b>●</b> 조합원입주권 
 
 ## 공제액 
 ### 1세대 1주택인 경우[표2]  
@@ -63,5 +63,7 @@ tags: [세금, 양도소득세]
 **case1** 3년 이상보유 + 12억 초과 주택     
 고가주택에 해당하므로 양도가액중 12억 초과 비유레 대해서 양도소득세 과세  
 공제율: <span class="red">보유기간x4%</span>   
+
+
 
 [1세대1주택 고가주택 양도소득세](https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=12271&cntntsId=8799){:target="_blank"}   
