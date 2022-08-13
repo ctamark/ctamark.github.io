@@ -60,5 +60,8 @@ tags: [세금, 양도소득세]
 최종 1주택 양도시 양도주택에 2년이상 거주하지 않은 경우  
 실거주 2년 이상 거주의무 면제  
 
-3년 이상보유, 12억 초과(고가주택)     
-<span class="red">보유기간x4%</span>   
+**case1** 3년 이상보유 + 12억 초과 주택     
+고가주택에 해당하므로 양도가액중 12억 초과 비유레 대해서 양도소득세 과세  
+공제율: <span class="red">보유기간x4%</span>   
+
+[1세대1주택 고가주택 양도소득세](https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=12271&cntntsId=8799){:target="_blank"}   
