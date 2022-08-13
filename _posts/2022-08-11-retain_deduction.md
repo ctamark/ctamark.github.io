@@ -65,5 +65,5 @@ tags: [세금, 양도소득세]
 공제율: <span class="red">보유기간x4%</span>   
 
 
-
-[1세대1주택 고가주택 양도소득세](https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=12271&cntntsId=8799){:target="_blank"}   
+[1세대1주택 고가주택 양도소득세](https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=12271&cntntsId=8799){:target="_blank"}      
+(국세청자료)
