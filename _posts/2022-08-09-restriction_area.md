@@ -1,9 +1,11 @@
 ---
 layout: single
 title: "[양도소득.취득세]in조정지역"
+categories: 
+- 세금 
 ---
 
-<link rel="stylesheet" href="../style_md.css">
+<link rel="stylesheet" href="https:/ctamark.github.io/style_md.css">
 
 ## 양도소득세in조정지역  
 ### 1세대 1주택   
