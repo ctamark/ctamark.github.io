@@ -10,5 +10,5 @@ main:
     url: /tax/
   - title: "english"
     url: /english/
-    
- 
+  - title: "공부"  
+    url: /study/   
