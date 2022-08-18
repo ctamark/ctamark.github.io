@@ -49,11 +49,11 @@ categories:
   
 [렌트홈_임대료인상률계산기](https://www.renthome.go.kr/webportal/minwon/common/rncrgAtmcCalc/rncrgAtmcCalcPopup.open){:target="_blank"}   
   
-**case 1: 전세 1억에 대해서 5%인상**
-인상분 = 1억x5% = 5백만원 
+**case 1: 전세 1억에 대해서 5%인상**   
+인상분 = 1억x5% = 5백만원   
 인상후 전세 = 1억5백만원   
 
-**case 2: 월세에 대해 5%인상**   
+**case 2: 월세에 대해 5%인상**     
 주의할 점(보증금 5%, 월세 5% 이렇게 따로 계산하시면 안됨)   
 먼저 월세금액을 전세보증금으로 변환후에 계산하게 됩니다.
   
