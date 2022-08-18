@@ -1,6 +1,8 @@
 ---
 layout: single 
 title:  "sceneform으로 구현하는 AR"
+categories: 
+ - dev 
 ---
 
 작업일지 220705   
@@ -36,7 +38,7 @@ sceneform에 새로운 material을 추가하는 것은 약간 조잡스럽다
 
 또 build.gradle에 아래와 같이 추가시켜야 한다.
 
-<pre><code>
+```
 //-- build.gradle(app수준) --
 sceneform.asset('sampledata/effect/effect.obj',
         'sampledata/effect/effect.mat', <----작성한 material
@@ -95,7 +97,7 @@ fragment {
 
     }
 }
-</code></pre>
+```
 
 참고로 custom material관련 정보는 아래 링크를 참고하면 된다.   
 [custom_material-reference](https://developers.google.com/sceneform/develop/custom-material){:target = '_blank'}  
