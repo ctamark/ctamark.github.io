@@ -7,7 +7,7 @@ main:
   - title: "Dev"
     url: /dev/
   - title: "세금"
-    url: /tax/
+    url: /categories/세금/
   - title: "독해유감"
     url: /english/
   - title: "공부"  
