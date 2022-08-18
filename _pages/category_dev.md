@@ -1,5 +1,7 @@
 ---
-layout: category
 title: "개발"
-permalink: /categories/dev
+layout: category
+permalink: /categories/dev/
 ---
+
+개발 관련 글 모음
