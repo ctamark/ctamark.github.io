@@ -3,7 +3,7 @@ title: "개발"
 layout: category
 permalink: /categories/dev/
 author_profile: true
-taxonomy: 세금
+taxonomy: dev
 ---
 
 개발 관련 글 모음
