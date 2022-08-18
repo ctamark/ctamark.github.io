@@ -1,6 +1,8 @@
 ---
 layout: single
 title: "상생임대인, 5%임대료"
+categories: 
+- 세금
 ---
 
 <link href="https://ctamark.github.io/style_md.css" rel="stylesheet">
