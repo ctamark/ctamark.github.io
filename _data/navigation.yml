@@ -5,7 +5,7 @@ main:
   - title: "App"
     url: /app/
   - title: "Dev"
-    url: /dev/
+    url: /categories/dev/
   - title: "세금"
     url: /categories/세금/
   - title: "영어"
