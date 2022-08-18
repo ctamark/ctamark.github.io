@@ -1,16 +1,15 @@
 ---
 layout: single
 title: "kotlin"
-
+categories: 
+ - dev
 ---
 
 **lateinit var**    
 : 변경 가능한 변수, 초기화는 런타임에 하겠다고 명시
 
 -----
-<code><pre>
-
-
+```
 ## 코틀린 람다
 
 코드의 간결성을 위해 아래와 같은 규칙도 존재합니다.함수의 맨 마지막 인자가 람다라면 () 안에서 빼내서 밖에 람다를 표현할 수 있다.
@@ -119,4 +118,4 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-</pre></code>
+```
