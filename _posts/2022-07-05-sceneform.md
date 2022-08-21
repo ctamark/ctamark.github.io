@@ -11,7 +11,7 @@ categories:
 (예전에 아는 동생이 애플에 개발자 등록할 돈이 없다고 내꺼 좀 빌려달라고 해서 내가 10만원도 없냐고 했는데 내가 지금 그렇게 되었다)   
 (돌아보면 그냥 그때 그 동생에게 내가 한 50만원 줄 걸 그랬다. 줘도 받지도 않았을 테지만)
    
-<img src="../sceneform-03.jpg" width="400px" >   
+<img src="http://ctamark.github.io/sceneform-03.jpg" width="400px" >   
 
 최신인 sceneform 1.16.0을 사용하고자 하시는 분이 있다면 말리고 싶다.
 
