@@ -7,6 +7,7 @@ taxonomy: dev
 ---
 
 개발 관련 글 모음  
+
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
 
 [github배우기](https://www.devinlife.com){:target="_blank"}   
@@ -19,7 +20,7 @@ taxonomy: dev
 
 [adfit](https://adfit.github.io){:target="_blank"}
 
-[addmob.com](https://www.admob.com){:target="_blank"}
+[addmob.com](https://www.admob.com){:target="_blank"}   
 [developer.apple.com](https://developer.apple.com){:target="_blank"}
 
 [itunesconnect](https://appstoreconnect.apple.com){:target="_blank"}
