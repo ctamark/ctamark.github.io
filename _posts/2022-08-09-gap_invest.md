@@ -2,7 +2,7 @@
 layout: single
 title: "갭투자(전세끼고 집사기)"
 categories: 
- - tax
+ - 세금
 ---
 
 <link rel="stylesheet" href="../style_md.css">
