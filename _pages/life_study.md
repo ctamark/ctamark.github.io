@@ -10,3 +10,7 @@ permalink: /life_study/
 <a href="https://local.gosi.go.kr" target="_blank">[지자체 고시센터]</a>   
 
 <a href="https://taxstudy.nts.go.kr/" target="_blank">[국세e교육원]</a>   
+
+**부동산세금 링크**   
+[우리집변호사](https://www.mylawstory.com/){:target="_blank"}   
+[미네르바올빼미_세금이야기](https://blog.naver.com/khr1265){:target="_blank"}   
