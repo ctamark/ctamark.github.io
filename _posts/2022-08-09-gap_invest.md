@@ -5,7 +5,7 @@ categories:
  - 세금
 ---
 
-<link rel="stylesheet" href="../style_md.css">
+<link rel="stylesheet" href="https://ctamark.github.io/style_md.css">
 
 <img src="https://ctamark.github.io/acquire_house_schedule.png" width="95%">   
 위 사례처럼 전세를 끼고 주택을 취득하는 경우 '상생임대인 제도'와 '생애최초주택에 대한 취득세 감면'을 받을 수 있는지 알아보도록 하겠습니다.   
