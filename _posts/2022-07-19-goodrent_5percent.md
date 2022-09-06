@@ -7,7 +7,6 @@ categories:
 
 <link href="https://ctamark.github.io/style_md.css" rel="stylesheet">
 
-## 전월세 전환   
 
 ## 상생임대인   
 1년간 임대료를 직전 임대차계약 대비 5% 이내로 인상한 임대인   
@@ -44,8 +43,8 @@ categories:
 전월세전환율(4.25%=0.0425)   
 = min[연 10%, 기준금리(2.25%) +2%] 
 
-<span class="red">월세 = 전세보증금 X 0.0425 X 1/12개월</span>
-<span class="red">전세보증금 = 월세보증금 +월세 X 12(개월) ÷ 0.0425</span>
+<span class="red">월세 = 전세보증금 X 0.0425 X 1/12개월</span>   
+<span class="red">전세보증금 = 월세보증금 +월세 X 12(개월) ÷ 0.0425</span>   
   
 [렌트홈_임대료인상률계산기](https://www.renthome.go.kr/webportal/minwon/common/rncrgAtmcCalc/rncrgAtmcCalcPopup.open){:target="_blank"}   
   
