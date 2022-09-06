@@ -4,6 +4,7 @@ title: "일상&공부"
 permalink: /life_study/
 ---
 
+[gmail.com](https://gmail.com/){:target="_blank"}      
 
 [영어_독해유감](https://ctamark.github.io/english/){:target="_blank"}   
 
