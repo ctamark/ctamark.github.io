@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "공부"
+title: "일상+공부"
 permalink: /life_study/
 ---
 
