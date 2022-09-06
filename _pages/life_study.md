@@ -1,8 +1,9 @@
 ---
 layout: single
-title: "일상+공부"
+title: "일상&공부"
 permalink: /life_study/
 ---
+
 
 [영어_독해유감](https://ctamark.github.io/english/){:target="_blank"}   
 
