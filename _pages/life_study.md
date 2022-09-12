@@ -17,5 +17,7 @@ permalink: /life_study/
 [우리집변호사](https://www.mylawstory.com/){:target="_blank"}   
 [미네르바올빼미_세금이야기](https://blog.naver.com/khr1265){:target="_blank"}   
 
-
 [신한은행](https://www.shinhan.com/index.jsp){:target="_blank"}  
+
+[고양이보호협회](https://www.catcare.or.kr/){:target="_blank"}  
+
