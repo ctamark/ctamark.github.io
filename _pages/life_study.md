@@ -14,7 +14,11 @@ permalink: /life_study/
 <a href="https://www.gosi.kr" target="_blank">[사이버고시센터]</a>      
 <a href="https://local.gosi.go.kr" target="_blank">[지자체 고시센터]</a>   
 
-<a href="https://taxstudy.nts.go.kr/" target="_blank">[국세e교육원]</a>   
+<a href="https://taxstudy.nts.go.kr/" target="_blank">[국세e교육원]</a>    
+[국세법령정보시스템](https://txsi.hometax.go.kr/){:target="_blank"}   
+[법령정보센터](https://www.law.go.kr/){:target="_blank"}   
+[종합법률정보](https://glaw.scourt.go.kr/wsjo/intesrch/sjo022.do/){:target="_blank"}   
+
 
 **부동산세금 링크**   
 [우리집변호사](https://www.mylawstory.com/){:target="_blank"}   
