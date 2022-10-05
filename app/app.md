@@ -5,7 +5,9 @@ excerpt: "app.md"
 layout: single
 tags: [App]
 ---
+
 [개인정보처리방침](https://ctamark.github.io/privacy.html){:target="_blank"}   
+
 
 ## 공무원 한국사  
 <img src="/assets/img/icon_studyHistory_256.png" width="150" border=0>    
