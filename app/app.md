@@ -6,7 +6,7 @@ layout: single
 tags: [App]
 ---
 
-[개인정보처리방침](https://ctamark.github.io/privacy.html){:target="_blank"}   
+<a href="https://ctamark.github.io/privacy.html" target='_blank'>개인정보처리방침</a>
 
 
 ## 공무원 한국사  
