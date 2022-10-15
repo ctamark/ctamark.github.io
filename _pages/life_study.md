@@ -9,7 +9,7 @@ permalink: /life_study/
 [영어_독해유감](https://ctamark.github.io/english/){:target="_blank"}   
 
 [영어사전_네이버](https://endic.naver.com/){:target="_blank"}   
-
+[국어사전_네이버](https://ko.dict.naver.com/){:target="_blank"}    
 ---   
 [엑셀강좌](https://xlworks.net/){:target="_blank"}   
 [office.com](https://www.office.com/){:target="_blank"}   
