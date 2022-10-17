@@ -23,42 +23,9 @@
 <BODY leftMargin=5 topMargin=5 >
 <div class = "notice" >
 (나의버전이 공지에 나온 버전보다 낮은 경우 수동으로 업데이트하셔야 해요)	
-
-22년 서울시9급 필기[6.18(토)]
-<span id="dday"></span>
-<script  language = "javascript">
-function update_dday(){
-
-var counter = document.getElementById("dday");
-var today = new Date(); //현재 날짜 가져오기
-// Date(year, month, day, hour, min, sec) // 2021년 7월 6일
-// month는 0부터 시작
-var dday = new Date(2022, 6-1, 18); //디데이
-var gap = dday - today;
-
-var totalSeconds = gap/1000;
-
-const day = Math.ceil(totalSeconds/(60 * 60 * 24));
-//ceil 올림, floor 내림, round 반올림
-
-var msg;
-if (day >=0){
-
-msg =  'D -' + day + '일';
-
-}else {
-
-msg =  '수고하셨습니다';
-
-}
-
-counter.innerText = msg;
-}
-update_dday();
-</script>	
+  
   
 <b>(ver:1.36)</b>(221005)
-(심사대기중) 
 [지방세]
 : 지9.22년 추가
 [주요키워드]
