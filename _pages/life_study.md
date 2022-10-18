@@ -19,7 +19,7 @@ permalink: /life_study/
 <a href="https://ctamark.github.io/exam/review_NTL9_2022.html" target="_blank">[2022년 국가직 공무원9급 시험 후기</a>      
 
 <a href="https://local.gosi.go.kr" target="_blank">[지자체 고시센터]</a>   
-<a href="https://ctamark.github.io/exam/review_NTL9_2022.html" target="_blank">[2022년 서울시 공무원9급 시험 후기</a>      
+<a href="https://ctamark.github.io/exam/review_LCL9_2022.html" target="_blank">[2022년 서울시 공무원9급 시험 후기</a>      
 
 <a href="https://taxstudy.nts.go.kr/" target="_blank">[국세e교육원]</a>    
 [국세법령정보시스템](https://txsi.hometax.go.kr/){:target="_blank"}   
