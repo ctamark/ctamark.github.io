@@ -42,4 +42,4 @@ permalink: /life_study/
 ---
 [고양이보호협회](https://www.catcare.or.kr/){:target="_blank"}  
 
-[마이펫플러스](https://www.mypetplus.co.k){:target="_blank"}  
+[마이펫플러스](https://www.mypetplus.co.kr){:target="_blank"}  
