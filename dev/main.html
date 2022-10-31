@@ -2,28 +2,266 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="500" height="500"
+<canvas id="myCanvas" width="600" height="600"
 style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
+<script type="module" src="earwax.js"> </script>
 
 <script>
-window.onload = function() {
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-	
-	canvas.addEventListener("click", onClick, false);
-	
-    var img = new Image();
-	img.src = "data-01.png";
 
+//import earwax from './earwax.js';
+
+//eye-close :(83, 200)   
+   
+   	  var imgX = 0; 
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+	
+  	  let cleaner_img = new Image();
+	  cleaner_img.src = "ear_swab.png";
+	  
+	  let face_img = new Image();
+	  face_img.src = "face-01.png";
+	
+   	  //degree
+	  let cleanerAngle = -90
+	  
+	  let faceEventLastT = 0;
+	  	
+      let cleanerPos = {x:350, y:120}		
+	
+      let touchSPos = [0,0]
+      let lastMovePos = {x:0, y:0}	  
+	  //배열
+	  /*
+	   var points = [];
+       points.push({x:5, y:3});
+	  */
+		
+function draw(){
+
+    imgX += 1;
+	if(imgX > 500){
+	
+    	imgX = 0;
+	}
+
+  // ctx.drawImage(img, imgX, 10);
+ 
+   //requestAnimationFrame(draw);
+
+}
+
+//Uncaught ReferenceError: x is not defined(…)
+//x가 '존재X & undefined'
+
+window.onload = function() {
+
+   initEvent();
+  
+    let  img = new Image();
+	
+	img.src = "data-01.png";
     img.onload = function(){
 
-     ctx.drawImage(img, 10, 10);
-	 //ctx.drawImage(img, 10, 10, 300, 200);
-	 //ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+         console.log("img.onload");
+	  	         
     }
+	
+
+    updateFrame(img, canvas, ctx);	
+	
+	setInterval(updateCleaner, 1000); 
+	
+	
+	
+	
 };
+
+
+function updateCleaner(){
+
+    // -90~ -110
+    // cleanerAngle =  getRandomVal(-90, -110);
+	 	
+}
+
+function updateFace(){
+
+    //eyeClose_img
+    // eyeClose_img.style.visibility = 'visible';
+    // eyeClose_img.style.visibility = 'hidden';
+
+
+}
+
+
+function updateFrame(image, canvas, context ){
+
+    //imgX += 1;
+	if(imgX > 500){
+	
+    	imgX = 0;
+	}
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+ 
+    //context.drawImage(image, imgX, 10);
+
+   // context.drawImage(cleaner_img, 10, 10);
+   	context.drawImage(face_img, 0, 0);
+
+    
+
+    angleDrawImg(context, cleanerAngle, cleaner_img, cleanerPos.x , cleanerPos.y, 25, 290 ) 
+
+    	
+		
+	 let curT = new Date().getTime();
+	 
+	if(faceEventLastT == 0){
+	
+  	   faceEventLastT = curT;
+	}
+	else {
+	 
+	  let elapsT = curT - faceEventLastT;
+	
+	  if(elapsT > 2000){
+	  
+	  //eyeblink
+	  
+	  }
+
+	
+	}
+	
+	
+	
+
+	requestAnimationFrame(function() {
+	            updateFrame(image, canvas, context);
+	});
+
+
+}
+
+
+function angleDrawImg(ctx,angle,img,x,y,width,height){
+
+	ctx.resetTransform();
+
+	ctx.translate(x + img.width / 2, y + img.height / 2);
+	ctx.rotate((Math.PI/180) * angle);
+	ctx.translate(-1 * (x + img.width / 2), -1 * (y + img.height / 2));
+
+	ctx.drawImage(img, x , y , width , height);
+
+	ctx.translate(x + img.width / 2, y + img.height / 2);
+	ctx.rotate((Math.PI/180) * -1 * angle);
+	ctx.translate(-1 * (x + img.width / 2), -1 * (y + img.height / 2));
+
+	ctx.resetTransform();
+}
+
+//========================
+function initEvent(){
+
+
+   if ('ontouchstart' in document.documentElement === true){
+   
+   console.log("add touchEvent");
+   
+   canvas.addEventListener("touchstart",ts);
+   canvas.addEventListener("touchmove",tm);
+   canvas.addEventListener("touchend",te);
+  
+   }
+   else {
+
+   console.log("add mouseEvent");
+  
+  canvas.addEventListener("click", onClick, false);
+  //------------
+  canvas.addEventListener("mousedown",md);
+  canvas.addEventListener("mousemove",mm);
+  canvas.addEventListener("mouseup",mu); 
+
+   }
+
+}
+
+
+function ts(e){
+  
+  var touches = e.touches;
+  var ex = touches[0].pageX;
+  var ey = touches[0].pageY - canvas.offsetTop;
+  
+  touchSPos[0] = ex 
+  touchSPos[1] = ey   
+  
+  lastMovePos.x = ex 
+  lastMovePos.y = ey 
+  
+   var msg = "touch start: (" + ex + ", " + ey + ")" 
+   console.log(msg);
+  
+}
+
+
+
+function tm(e){
+  var touches = e.touches;
+  
+  let ex = touches[0].pageX 
+  let ey = touches[0].pageY
+  
+  let deltaX = ex - lastMovePos.x 
+  let deltaY = ey - lastMovePos.y
+  
+  lastMovePos.x = ex
+  lastMovePos.y = ey
+  
+   var msg = "touch move.curPos: " + ex + ", " + ey 
+   //console.log(msg);
+   
+  
+    msg = "touch move:delta: " + deltaX + ", " + deltaY 
+  //  console.log(msg);
+   
+   
+
+   cleanerPos.x += deltaX
+   cleanerPos.y += deltaY
+
+
+
+}
+
+
+function te(e){
+
+console.log("touch end"); 
+
+}
+
+
+function md(e){
+
+  console.log("mouse down");
+}
+
+function mm(e){
+
+  console.log("mouse move");
+}
+
+function mu(e){
+
+}
+
 
 
 function onClick(e) {

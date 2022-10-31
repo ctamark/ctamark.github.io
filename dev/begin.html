@@ -1,0 +1,31 @@
+<HTML><HEAD><TITLE>(제목 없음)</TITLE>
+
+<script language="javascript">
+<!--
+function login_page(form) {
+//원하는 패스워드를 설정
+if (form.pass.value=="1234") {
+//패스워드가 일치하면 이동할 문서의 경로
+location="http://com.ne.kr/photo/site.htm"
+} else {
+alert("패스워드가 틀립니다.")
+}
+}
+//-->
+
+// 비밀번호는 1234, 사이트는 http://com.ne.kr/photo/site.htm로 설정되어 있습니다.
+</script>
+
+</HEAD>
+
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+
+<p align="left">
+site.htm으로 들어가시려면 비밀번호를 입력하시고 확인을 눌러주세요.</p>
+<form name="loginForm">
+<p style="margin-bottom:20;"> 비밀번호입력
+<input name="pass" type="password" size="12">
+<input type="button" value="확 인" onClick="login_page(this.form)" style="font-weight:bolder; font-size:4mm;"><BR>
+</form>
+<p align="left"></p>
+</BODY></HTML>
