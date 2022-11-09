@@ -331,12 +331,11 @@ span.label_s , .label_1, .label-1 {
 
    span.yellow, .y {
      
-     margin:2px;
-     padding:2px;
+     font-size:1.1rem;
+     margin:0px;
+     padding:0px;
      color:black;
-	   font-size:1.1rem;
-     line-height:1.4rem;
-     background-color:#fed651;
+   	 line-height:1.4rem;
     }
 
     span.accent_black,.black {
