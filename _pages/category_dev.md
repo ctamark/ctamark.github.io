@@ -23,6 +23,7 @@ AR(sceneform +kotlin)
 ### HTML5  
 ---
 [강좌](https://blog.mnmsoft.co.kr/categories/antkill/){:target="_blank"}   
+[daleseo.com](https://www.daleseo.com/){:target="_blank"}   
 
 
 ### 작업링크  
