@@ -1,9 +1,17 @@
+
+
+//Math.floor(가장 정수로 내림된 수)
+//ceil 
+//round(반올림)
+//toFixed
 function getRandomVal(min, max){
  
   let range = max-min
 
   let result = min + (Math.random()*range)
   return result;
+  
+  
 }
 
 
@@ -132,6 +140,38 @@ export class Earwax{
 	
 }
 
+//earWax, acne..
+export class Stuff{
+	
+	static state_normal = 0
+	static state_treating = 1
+	static state_treated = 2 
+	
+	
+	constructor(){
+	
+      this.x = 0;
+      this.y = 0;	 
+	  this.radius = 25;
+	  this.state = 0; 
+	  //0(none), 1(cleaning: tool 따라 다니기)
+	  //tool로부터의 상대적 거리 
+	  this.collision_offsetX = 0;
+	  this.collision_offsetY = 0;
+	  
+	  //canvas기준 좌측상단위치  
+	  this.drawPosX = 0;
+	  this.drawPosY = 0;
+	  //----------------
+	  this.rscIdx = 0;
+      //----------------
+	
+	}
+		
+	
+}
+
+
 
 export class CleanerTool{
 	
@@ -145,28 +185,102 @@ export class CleanerTool{
 		
 }
 
-
+/*
+export const ani_prop_loop = 1
+export const ani_prop_keep_endframe = 2
+export const ani_prop_hide_after_endframe = 4
+*/
 
 export class Sprite{
 	
-	constructor(imgFName){
+	static ani_prop_loop = 1;
+	static ani_prop_keep_endframe = 2
+	static ani_prop_hide_after_endframe = 4
+
+
+	static drawPos_minx_miny = 0;	
+	static drawPos_midx_maxy = 1;
+		
+	
+	constructor(){
 		
 		this.genIdx = 0;
-		this.curIdx = 0;
+		this.maxIdx = 0;
+		this.curIdx  = 0;
 	    this.coordArray= [];		
 		
-		this.img = new Image();
-		this.img.src = imgFName;
+		this.img = new Image();				
+		this.lastFrameT = 0;					
+		this.aniProp = 0;
 		
-		this.isLoop = true;
+		this.isDisplay = false 
 		
-		this.lastFrameT = 0;
-			
+		this.drawPosKind = Sprite.drawPos_minx_miny 
+		
 	}
+	
+	addProp(prop){
+	
+       this.aniProp |= prop  			
+	}
+	
+	removeProp(prop){
+		
+		this.aniProp &=~prop
+	}
+	
+	hasProp(prop){
+		
+		if((this.aniProp&prop)!= 0 ){
+			
+			return true 
+		}
+
+      return false 		
+	}
+		
+	
+	setFName(imgFName){
+		
+		this.img.src = imgFName 
+	}
+	
+    setRscName(pathFName){
+		
+		this.img.src = pathFName 
+	}
+
+	
+	//sx(srcX)
+	addFrame(sx, sy, width, height){
+	
+      var coord = {ix:sx, iy:sy, iw:width, ih:height};	
+	
+      this.coordArray[this.genIdx] = coord;	
+	  this.maxIdx = this.genIdx
+      this.genIdx = this.genIdx + 1;     	
+				
+ 	}
+	
+	
+	play(){
+		
+		this.curIdx = 0
+		this.lastFrameT  = 0;		
+        this.isDisplay = true
+	}
+	
+	wait(){
+		
+		this.isDisplay = false 
+				
+	}
+	
+	
 	
 	update(curT){
 	
-	     let lapsT = 0
+	    let lapsT = 0
 		
 		if( this.lastFrameT == 0){
 		
@@ -178,30 +292,43 @@ export class Sprite{
 			
 			lapsT = curT - this.lastFrameT;
 			
-			if(lapsT >= 500){
+			//0.5초마다 프레임 진행
+			if(lapsT >= 100){
 				
 				this.curIdx = this.curIdx + 1;
-				
-				if(this.curIdx >= this.genIdx){
-					this.curIdx = 0
-				}
-				
-			 this.lastFrameT = curT;
-				
-	        }//lapsT >=500
+				          
+				if(this.curIdx > this.maxIdx){
 
+						 if( (this.aniProp&Sprite.ani_prop_loop) != 0){
+							 
+								// console.log("ani_prop_loop");
+
+								this.curIdx = 0				
+						 }						 
+						 else if( (this.aniProp&Sprite.ani_prop_keep_endframe) != 0){
+							
+								// console.log("ani_prop_keep_endframe");
+								this.curIdx = this.maxIdx 								 
+								
+						 }
+						 else {
+							
+								 console.log("need to check ani_prop ");						
+						 }
+
+				}
+							
+								
+			 this.lastFrameT = curT;
+  			// console.log("sprite.curIdx: " + this.curIdx );
+
+			
+	        }//lapsT >=500
            
 		
 	}
 	
-	addFrame(sx, sy, width, height){
 	
-      var coord = {ix:sx, iy:sy, iw:width, ih:height};	
-	
-      this.coordArray[this.genIdx] = coord;	
-      this.genIdx = this.genIdx + 1;     	
-				
- 	}
 
     draw(ctx, cx, cy){
 				
@@ -209,7 +336,7 @@ export class Sprite{
 		
 	}		
 
-    drawframe(ctx, idx, cx, cy ){
+    drawFrame(ctx,  cx, cy ){
 
         /*
          drawImage(img ,ix,iy,iw,ih,cx, cy,cw,ch)
@@ -224,14 +351,104 @@ export class Sprite{
 		- ch : 캔버스 위에 그려질 이미지의  높이
 		*/
 		
-     let frame =  this.coordArray[idx];
-	 let cw = frame.iw		
-	 let ch = frame.ih 
+		if(this.curIdx > this.maxIdx){
+			
+			console.log("spriteIdx: out of bound");
+		}
+		
+	  let frame =  this.coordArray[this.curIdx];
+	  
+	  let cw = frame.iw		
+	  let ch = frame.ih 
+    
+	  let cx2 = cx 
+	  let cy2 = cy 			
+	  
+     if(this.drawPosKind == Sprite.drawPos_minx_miny){
+
+	
+     }
+     else if(this.drawPosKind == Sprite.drawPos_midx_maxy){
+         //          ---->
+         // (cx2,cy2)-----------|
+		 //           |             |
+		 //           |             |
+		 //           |---cx,cy---|
+
+          cx2 = cx - frame.iw/2 
+          cy2 = cy - frame.ih 		  
+		
+
+  	 }
+	else {
+		
+		console.log("undefined drawPosKind")		
+
+	}	
+				
 	 
-     ctx.drawImage(this.img, frame.ix, frame.iy, frame.iw, frame.ih, cx, cy, cw, ch) 
+     ctx.drawImage(this.img, frame.ix, frame.iy, frame.iw, frame.ih, cx2, cy2, cw, ch) 
 	
     }
 	
+
+    drawFrameEx(ctx,  cx, cy, scale ){
+
+        /*
+         drawImage(img ,ix,iy,iw,ih,cx, cy,cw,ch)
+		- img : 이미지 객체 
+		- ix : 이미지 내에 있는 x 좌표 
+		- iy : 이미지 내에 있는 y 좌표 
+		- iw : 이미지 내에 있는 (x,y)를 중심으로 그려질 넓이 
+		- ih: 이미지 내에 있는 (x,y)를 중심으로 그려질 높이 
+		- cx : 캔버스의 x 좌표
+		- cy : 캔버스의 y 좌표
+		- cw : 캔버스 위에 그려질 이미지의  넓이
+		- ch : 캔버스 위에 그려질 이미지의  높이
+		*/
+		
+		if(this.curIdx > this.maxIdx){
+			
+			console.log("spriteIdx: out of bound");
+		}
+		
+	  let frame =  this.coordArray[this.curIdx];
+	  
+	  let cw = frame.iw*scale 		
+	  let ch = frame.ih*scale 
+    
+	  let cx2 = cx 
+	  let cy2 = cy 			
+	  
+     if(this.drawPosKind == Sprite.drawPos_minx_miny){
+
+	
+     }
+     else if(this.drawPosKind == Sprite.drawPos_midx_maxy){
+         //          ---->
+         // (cx2,cy2)-----------|
+		 //           |             |
+		 //           |             |
+		 //           |---cx,cy---|
+
+          cx2 = cx - cw/2 
+          cy2 = cy - ch 		  
+		
+
+  	 }
+	else {
+		
+		console.log("undefined drawPosKind")		
+
+	}	
+				
+	 
+     ctx.drawImage(this.img, frame.ix, frame.iy, frame.iw, frame.ih, cx2, cy2, cw, ch) 
+	
+    }
+	
+
+
 	
 	
 }

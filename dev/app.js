@@ -1,5 +1,14 @@
 import {getRandomVal, isCollision_circle2Circle, isInCircle, getDistSqrt} from './helper.js'
-import {Sprite, Earwax} from './helper.js' 
+import {Sprite, Earwax, Stuff} from './helper.js' 
+
+const facestate_normal = 0
+const facestate_good = 1
+const facestate_bad = 2
+
+const stuffstate_normal = 0
+const stuffstate_touched = 1
+const stuffstate_cleaned = 2
+
 
 class App {
 	
@@ -10,30 +19,57 @@ class App {
 		this.ctx = this.canvas.getContext('2d');
 		//document.body.appendChild(this.canvas);
 		
+		this.playstate = playstate_ready
+		
+		this.numTotalStuff = 0
+		this.numCleanedStuff = 0
 		//----------------------
 		//---------------------
-	
-	
-	
-		
 		let randomVal = getRandomVal(0, 10);
 		let msg = "randomVal: " + randomVal; 
 		console.log(msg);
 
 	    this.face_img = new Image();
-	    this.face_img.src = "face-01.png";
 		
+		if(gSelectedPlay == playkind_earCleaning){
+			
+	       this.face_img.src = "face_base-01.png";
+		}
+		else if(gSelectedPlay == playkind_acne){
+
+	       this.face_img.src = "face_base-02.png";
+		}
+				
 		this.eyeclose_img = new Image();
-		this.eyeclose_img.src = "eye_close.png"
+		this.eyeclose_img.src = "eye_close_d.png"
 		
 		this.isEyeclose = true
+
+		this.eyebrow_img = new Image();
+		this.eyebrow_img.src = "./eyebrow_normal_d.png"
+		//this.eyebrow_img.style.borderImageWidth = "10px 20px"
+//		.borderImageWidth = "20px 30px";
+		
+		this.lip_img = new Image();
+		this.lip_img.src = "./lip_normal.png"
 		
 		
-		this.sound_move = new Audio("effect-01.wav"); 
+	
+	   this.stuffArray = [];
+	   this.spriteArray = [];
+
+        this.initSprite();
+
+		
+	
+				
+	   this.sound_move = new Audio("effect-01.wav"); 
+	   this.sound_move.loop = true
 		//this.sound_move.play();
 		//this.sound_move.volume = 0.0
 		// buffers automatically when created
 		/*
+
 		
 		if(this.sound_move.ended){
 			
@@ -46,33 +82,65 @@ class App {
 		
 		console.log("currentT: " + this.sound_move.currentTime);
 		*/
+		
+		this.snd_acne_effect = new Audio("acne_effect-01.wav");
+		this.snd_acne_effect.loop = false
+
+//	    this.soundBg = new Audio("sea-01.mp3"); 
+	    this.soundBg = new Audio("bg-01.mp3"); 
 
 
 		
+		this.faceState =  facestate_normal
 			  
- 
 		
 		//50x50
 		this.earwax_img = new Image(); 
-	    this.earwax_img.src = "earwax.png";
+	    this.earwax_img.src = "earwax_type.png";
 		
 		
-		this.earCloseup_img = new Image();
-		this.earCloseup_img.src = "ear_closeup.png";
+		this.stuff_img = new Image
+		
+		if(gSelectedPlay == playkind_earCleaning){
+
+     	       this.stuff_img.src = "earwax_type.png";
+			
+		}
+		else if(gSelectedPlay == playkind_acne){
+
+     	       this.stuff_img.src = "acne_type.png";
+						
+		}
+		
+		
+		this.closeup_img = new Image();		
+		
+		if(gSelectedPlay == playkind_earCleaning){
+		
+		    this.closeup_img.src = "ear_closeup.png";
+		}
+		else if(gSelectedPlay == playkind_acne){
+			
+		    this.closeup_img.src = "acne_closeup.png";			
+		}
+		
+		
+		
 		
 
-        this.earwaxArray = []		
-		
-		
 		this.touchSPos = {x:0, y:0}
 
  
-         //300x300
-         this.closeupRscPos = {x:0, y:300}
+         //300x300 귀, 여드름 피부,...
+		 //RscPos(drawPos)
+		 this.closeupRscPos = {x:0, y:300}
 		 
-		 let refPos = { x:this.closeupRscPos.x+150, y: this.closeupRscPos.y +150}
+		 this.closeupPos = {x:150, y:450}
 
-		 this.createEarwax(refPos, 3);
+		 let refPos = { x:this.closeupRscPos.x+150, y: this.closeupRscPos.y +150}
+		 
+		// this.numTotalStuff = 2
+		// this.createEarwax(refPos, 2);
 
 		/*
 		this.earwaxPos = {x:10, y:10} 
@@ -100,9 +168,16 @@ class App {
 		this.moveSpeedCheckT = 0
 		this.moveSpeedCheckPos = {x:0, y:0}
 		
+		this.touchCheckT = 0
+		this.isValidTouchPos = false 
+		//3초간 2손가락이 범위내에 유지 
+		
+		
 		this.appCurT = 0
 		
-
+		
+		
+		
 		window.addEventListener('resize', this.resize.bind(this), false);
 		this.resize();
 		
@@ -130,12 +205,13 @@ class App {
 	    console.log("collision: " + rCollision);
        */
 	   
+	   /*
 	    let toolPos_collision =  {x:this.toolPos.x+15, y:this.toolPos.y+15}
        	let toolRadius_collison = 15	
-	    let size = this.earwaxArray.length
+	    let size = this.stuffArray.length
 	   for(let i=0; i < size; i++){
 			
-			let obj = this.earwaxArray[i]
+			let obj = this.stuffArray[i]
 					
 			//earwax 		
 			let offsetA = obj.radius;
@@ -151,23 +227,265 @@ class App {
 			}
 		}
 
-/*
-       //----------
-		var clearBtn = document.querySelector('input[type="button"]');
+   */
+         
+	 /*
+       //----------	   
+		//var startBtn = document.querySelector('input[type="button"]');
+		var startBtn = document.getElementById("startBtn");	
+			
+	      startBtn.onclick = function() {
+					
+			console.log("startBtn click");
 
-			clearBtn.onclick = function(){
-			 alert('click');
-		} 
-		//----------
+           let logoPage_div = document.getElementById("logoPage");			
+		   
+		   if(logoPage_div!=null){
+         	      logoPage_div.style.display = 'none';
+		   }
+           else {		  
+		  
+		  }			  
+		   
+					
+			let canvas =	document.getElementById("myCanvas");
+			canvas.hidden = false 
+			
+			this.resize()
+					
+            this.sound_move.play();	   
+			this.sound_move.muted = true;
+			this.sound_move.loop = true;
+			 //alert('click');
+		}.bind(this) 
+		
+		*/
+		
+		
+		let mainMenuBtn = document.getElementById("mainMenuBtn")
+		mainMenuBtn.onclick = function(){
+			
+			alert("mainMenuBtn");
+			
+		}
+
+		let replayBtn = document.getElementById("replayBtn")
+		replayBtn.onclick = function(){
+			
+			alert("replayBtn");
+			
+		}.bind(this)
+
+		let playBtn = document.getElementById("playBtn")
+		playBtn.onclick = this.onTouchPlayBtn.bind(this)
+
+/*		
+		function(){
+			
+		
+		   this.sound_move.play();
+		   this.sound_move.muted = true 
+		   
+		   this.soundBg.play();
+		   this.soundBg.loop = true 
+		   this.soundBg.volume = 0.5;
+		   
+		   let menuDiv = document.getElementById("menuDiv");
+		   menuDiv.style.display = 'none'
+		  
+
+           this.showSysMsg("preparing")
+		   
+		   
+		   setTimeout(end_prepareState , 3000)
+		   
 */
+
+/*		  
+		   let refPos = { x:this.closeupRscPos.x+150, y: this.closeupRscPos.y +150} 
+          
+
+          if(gIsFirstPlay){
+			
+			 gIsFirstPlay = false;			
+	    	 replayBtn.style.display = "none"
+
+ 		    this.createEarwax(refPos, 2);
+			
+   		    this.numTotalStuff = 2;
+
+	
+		  }
+		  else  {
+			 let numEarwax = getRandomVal(2, 4); 
+			 
+			 this.numTotalStuff = numEarwax
+			 
+		    this.createEarwax(refPos, numEarwax);
+			 		 
+		  }
+ */
+		   			      
+	   this.showSysMsg("afdasfaf");
+   
+        console.log("this.playstate: " + this.playstate )
 			
 	    //객체에서 분리된 함수인 App.updateFrame이 전달되기 때문에 this의 정보가 사라짐
 		//let boundfunc = func.bind(context);
 		requestAnimationFrame(this.updateFrame.bind(this));
 
 	}
+		
+  initSprite(){
 	
+		if(gSelectedPlay!=playkind_acne){
 
+            return						
+		}
+		
+		console.log("ani_prop_debug: " + Sprite.ani_prop_debug);
+		
+
+	     this.sprite = new Sprite()
+		 this.sprite.setFName('acne_ani-01.png')
+		 this.sprite.isDisplay = false
+//		 this.sprite.aniProp = Sprite.ani_prop_loop
+   	     this.sprite.aniProp = Sprite.ani_prop_keep_endframe
+
+
+		 this.sprite.addFrame(0, 0 , 40, 70)
+		 this.sprite.addFrame(40, 0, 40, 70)
+		 this.sprite.addFrame(80, 0, 40, 70)
+		// this.sprite.addFrame(120, 0, 40, 70)
+					
+	}
+	
+	
+	drawSprite(curT){
+		
+		if(gSelectedPlay!=playkind_acne){
+
+            return						
+		}
+		
+	
+		
+	  for(let i=0; i < this.spriteArray.length ; i++){
+		
+		  let obj = this.stuffArray[i] 
+		  
+	 	  
+		  if(obj.state != 2){		
+           // console.log("obj state not 2")		  
+                continue;			
+		  }
+
+		  let sprite = this.spriteArray[i]
+		
+		 if(sprite.isDisplay == false){
+			
+		  	continue
+		 }
+		 
+		 sprite.update(curT);		
+        	
+		//----------
+		//dx(drawPosX)
+		//closeupRscPos(부모의 좌측,상단 in canvas)
+		let drawPosX = this.closeupRscPos.x + obj.x  
+		let drawPosY = this.closeupRscPos.y + obj.y 
+			
+        sprite.drawFrameEx(this.ctx, drawPosX, drawPosY, 0.8)	
+        //console.log("sprite.drawFrameEx")		
+		
+	    //this.sprite.drawFrameEx(this.ctx, drawPosX, drawPosY, 0.8)
+		
+		}
+	}
+	
+	onTouchPlayBtn(){
+	
+	  this.sound_move.play();
+	  
+	       this.playstate = playstate_prepare
+	  
+		   this.sound_move.muted = true 
+		   
+		   this.soundBg.play();
+		   this.soundBg.loop = true 
+		   this.soundBg.volume = 0.5;
+		   this.soundBg.pause();
+		   
+		   let menuDiv = document.getElementById("menuDiv");
+		   menuDiv.style.display = 'none'
+		  
+
+          //---------
+           //this.snd_acne_effect.play();
+		   //this.snd_acne_effect.muted = true 
+
+           this.showSysMsg("preparing")
+		   
+		   
+		   setTimeout(this.end_prepareState.bind(this) , 3000)
+		   
+		   
+	}
+	
+	
+	 end_prepareState(){
+		 
+		 console.log("end_prepareState");
+		 //----------------------
+		 this.playstate = playstate_treatment
+		  console.log("playstate: " + this.playstate);
+		 
+		 this.hideSysMsg()
+		 
+		 
+		 if(gSelectedPlay == playkind_earCleaning){
+			 
+			 
+			 
+		 }
+		 else if(gSelectedPlay == playkind_acne){
+		 
+	   	      this.numTotalStuff = 2
+		      this.createAcne(this.numTotalStuff )
+		 }
+		 
+		  this.soundBg.play();
+		 
+	 }
+		 
+		 
+	 showSysMsg(msg){
+
+		   let sysMsg = document.getElementById("sysMsg");
+           sysMsg.innerText = msg
+           //innerHTML은 태그까지 가능
+
+          let sysMsgDiv = document.getElementById("sysMsgDiv");
+          sysMsgDiv.style.display = "block"	    		   
+
+     	  setTimeout(this.hideSysMsg.bind(this), 3000);
+	 }
+	 
+	 hideSysMsg(){
+		 		 
+       let sysMsgDiv = document.getElementById("sysMsgDiv");
+       sysMsgDiv.style.display = "none"	   
+		 
+	 }
+	 
+	
+	 updateSoundEffect(){
+		 
+	  //this.snd_acne_effect.en	 
+		 
+		 
+		 
+	 }
 	
 	resize(){
 		
@@ -184,19 +502,18 @@ class App {
 		}
 		
 		console.log("resize: " + size.width + ", " +size.height);
-		
-	
-		this.canvas.width = size.width;
-		this.canvas.height = size.height;
+       		
+		this.canvas.width = size.width*0.9;
+		this.canvas.height =size.height*0.9;
 		
 	}
 	
 	
-	updateFace(Idx){
+       drawFace(facestate ){
 
-
-
-
+       this.ctx.drawImage(this.eyebrow_img, 164, 155)
+       this.ctx.drawImage(this.lip_img, 206, 291)
+     
 
 	}		
 	
@@ -217,104 +534,69 @@ class App {
 	  
 	    if(this.isEyeclose == true){   
 	 
-	        this.ctx.drawImage(this.eyeclose_img, 80, 200);
+	        this.ctx.drawImage(this.eyeclose_img, 164, 191);
 	    }
+     
+	   if(this.playstate == playstate_treatment){
 
-
-        this.ctx.drawImage(this.earCloseup_img, this.closeupRscPos.x, this.closeupRscPos.y); 
-		
-        let size = this.earwaxArray.length
+          this.ctx.drawImage(this.closeup_img, this.closeupRscPos.x, this.closeupRscPos.y); 
+	   }
+	   
+	   
+      
 
 
         let toolPos_collision =  {x:this.toolPos.x+15, y:this.toolPos.y+15}
        	let toolRadius_collison = 15	
 
-/*
-        //collison 등
-		for(let i=0; i < this.earwaxArray.length; i++){
-			
-			let obj = this.earwaxArray[i]
-			
-			if (obj.state == 1){		
-			
-				continue
-			}
-					
-			//earwax 		
-			let offsetA = obj.radius;
-			let cA = {x: obj.x+offsetA, y: obj.y+offsetA, r: obj.radius}; 			
-						
 
-            //let touchPos = {x:lastMovePos.x			
-			//let cB = {x:toolPos_collision.x, y: toolPos_collision.y, r: toolRadius_collison};
-								
-			let rCollision = isCollision_circle2Circle(cA, cB, false);
+      /*
+		for(let i=0; i < this.stuffArray.length; i++){
 			
-			//처음으로 충돌된 경우 
-			if(rCollision == true){
-						
-				obj.state = 1;
-				
-				this.isDraggingStuff = true 
-							
-				obj.collision_offsetX = (obj.x - this.toolPos.x) 
-				obj.collision_offsetY = (obj.y - this.toolPos.y) 
-				
-  	     		console.log("rCollision!! offset: " + obj.collision_offsetX + ", " + obj.collision_offsetY );
-				
-			}
-	
-		}
-*/
-
-
-       let attachPos = this.toolPos
-
-		for(let i=0; i < size; i++){
+			let obj = this.stuffArray[i]
 			
-			let obj = this.earwaxArray[i]
+			let drawPosX
+			let drawPosY 
 			
 			if(obj.state == 0){
 
-			  this.ctx.drawImage(this.earwax_img, obj.x, obj.y);
+               drawPosX = obj.x - obj.radius
+               drawPosY = obj.y - obj.radius             
+
+			  this.ctx.drawImage(this.earwax_img, drawPosX, drawPosY);			  
 				
 			}
 			else if(obj.state ==1){
 				
-                //let drawPosX = (attachPos.x + obj.collision_offsetX)
-                //let drawPosY = (attachPos.y + obj.collision_offsetY) 		
-				let drawPosX = this.lastMovePos.x 
-                let drawPosY = this.lastMovePos.y 		
+				drawPosX = this.lastMovePos.x + obj.collision_offsetX - obj.radius
+                drawPosY = this.lastMovePos.y + obj.collision_offsetY - obj.radius		
 				 
 				 //console.log("collisionOffset: " + obj.collision_offsetX + ", " + obj.collision_offsetY );
                  //console.log("drawPos " + drawPos.x + "," + drawPos.y);
-				 
 		     	this.ctx.drawImage(this.earwax_img, drawPosX , drawPosY);
 				 
 			}
 			else {
-				
-				
+							
 			}			
 			
 		}
+		*/
+		
+		this.drawAllStuff()
 		
 		
 		
-		// this.ctx.drawImage(this.earswab_img, this.toolPos.x, this.toolPos.y);
-		 //----------------------------
-		 //
-		 //----------------------------
-		 
-		if(this.isDraggingStuff  == true){
+      if(this.isDraggingStuff  == true){
 
 		 if(curT - this.lastMoveT >= 500){
 			 
 			 if((this.lastMoveRefPos.x == this.lastMovePos.x) && 
 			    (this.lastMoveRefPos.y ==this.lastMovePos.y) ){
                 //마지막 움직임이후 0.5초 동안 이동없음
-             
-	    		   this.sound_move.pause();
+				
+	    		   //this.sound_move.pause();
+				   this.sound_move.muted = true
 			 
 			 }		
 		
@@ -322,20 +604,124 @@ class App {
 		 else {
 		 
 		 }
+		 		 
+		 this.probe_dragSpeed(curT)
 		 
-	     if(curT - this.moveSpeedCheckT >= 500 ){
+	  } //if(this.isDraggingStuff 
+		 	 
+
+	  this.drawFace(this.faceState)
+
+	  this.updateAcneTreatment(curT)
+	
+	  this.drawSprite(curT)
+	
+  	  this.probeFinishJob(curT)
 			
+     requestAnimationFrame(this.updateFrame.bind(this));
+		
+	}
+	
+	
+	  drawAllStuff(){
+		  		  
+		     //기준점: 좌측 상단 
+		    let parentDrawX=   this.closeupRscPos.x 
+            let parentDrawY =  this.closeupRscPos.y
+				  
+		   if(gSelectedPlay == playkind_earCleaning){
+			  
+			  
+			  
+		   }
+		   else if(gSelectedPlay == playkind_acne){
+			  		  			  
+			  this.drawAcneStuff(parentDrawX, parentDrawY)
+			  			  
+		   }
+		  
+		  
+			//
+
+	
+		  
+	  }
+	
+	
+	
+	drawAcneStuff(refX, refY){
+		
+		
+      for(let i=0; i < this.stuffArray.length; i++){
+			   
+			   let obj = this.stuffArray[i]
+			   //obj size  50x50
+			   //obj.rscIdx 
+			   			   
+			   	
+				if(obj.state == 0){
+
+                      //this.ctx.drawImage(this.stuff_img, sx, sy, 50, 50, dx, dy, 50, 50);
+					
+					
+				}
+               else  if(obj.state == 2){			   
+	             //여드름을 짠 이후의 모습을 표시		
+		
+
+		        }
+				
+										   
+			   let sx = 50*obj.rscIdx 
+			   let yIdx = obj.rscIdx/5;
+               let sy = 50*yIdx 			   
+			   let dx = refX+ obj.x - obj.radius   
+               let dy = refY+ obj.y - obj.radius
+			   //-------
+			   obj.drawPosX = dx
+			   obj.drawPosY = dy 
+			   //-------
+
+               this.ctx.drawImage(this.stuff_img, sx, sy, 50, 50, dx, dy, 50, 50);				
+			   			   			   
+//drawImage(image, dx, dy)
+//drawImage(image, dx, dy, dWidth, dHeight)
+//drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+		
+		} //for 
+		
+		
+		
+	}
+
+
+	probe_dragSpeed(curT){
+		
+		   if(curT - this.moveSpeedCheckT >= 1000 ){
+			
+   			    let diffX = this.lastMovePos.x - this.moveSpeedCheckPos.x 
 				let diffY = this.lastMovePos.y - this.moveSpeedCheckPos.y 
 				
+				if(diffX < 0) { diffX *= -1;  } 
 				if(diffY < 0) {  diffY *= -1;  }
 				
-				if( diffY >= 20){
+				let moveDist = Math.sqrt(diffX*diffX + diffY*diffY);
+
+  		         console.log("speedCheck during 1s: " + moveDist);		
+				 
+				 //refDist: 난이도에 따라 달라져야 함
+				 let refDist = 30 
+									
+				if( moveDist >= refDist){
 					
-				   console.log("too fast: " + diffY);		
+				   console.log("too fast");		
 				   this.isEyeclose = false
+				   this.eyebrow_img.src = "eyebrow_pain.png"
+				   this.lip_img.src = "lip_pain.png"				  				   
 				}
 				else { //normal, good
-					
+	
+		
 				   this.isEyeclose = true 					
 				}
 			
@@ -343,80 +729,104 @@ class App {
 			   this.moveSpeedCheckPos.y  = this.lastMovePos.y 
 			   this.moveSpeedCheckT = curT		   
 	      }
-		 
-		 
-	 }
-		 
-	 
-/*
-         if(this.isCleaningStuff ==true){
-
-
-
-              //this.lastMovePos.x 
-		
-
-
-		}			 
-*/
-
-       /*
-		this.sprite_d.update(curT);
-		this.sprite_d.draw(this.ctx, 10, 10);
-		*/
-		
-		requestAnimationFrame(this.updateFrame.bind(this));
-		
+	
 	}
 	
-
+		
 	 createEarwax(refPos, num){
 				
-	   //300x300
+		this.stuffArray.length = 0;
 		
+		//40x40
 		for(let i=0; i < num; i++){
 			
-       	      let earwax = new Earwax();
-			  earwax.radius = 25;
+       	      let earwax = new Stuff();
+			  earwax.radius = 20;
 
-
-			 let genX = refPos.x + getRandomVal(-130, 130);
-             let genY = refPos.y + getRandomVal(-130, 130);			
+			 let genX = refPos.x + getRandomVal(-105, 105);
+             let genY = refPos.y + getRandomVal(-105, 105);			
 			 
 				earwax.x = genX
          		earwax.y = genY 
 
               console.log("createEarwax:Pos: " + genX + ", " + genY);
 
-               this.earwaxArray.push(earwax)
+               this.stuffArray.push(earwax)
 		  }
 
 		
 	}
 	
 	
-	updateCleaner(){
-		
-	}
+    //	
+	createAcne(num){
 	
-	updateFace(){
+		this.stuffArray.length = 0;
+        this.spriteArray.length = 0;
+
 		
+		//미리 위치가 정해져 있음 
+	   //(54, 200)
+		//40x40
 		
+		 let posArray = [] 
+		 posArray.push({x: 60, y: 265}) 		 
+		 posArray.push({x: 260, y: 150}) 
+		 posArray.push({x: 230, y: 230})  
+		 
+		 for(let i=0; i < num; i++){
+		
+  		   let acne = new Stuff();
+		   acne.state = Stuff.state_normal 
+		   
+		   acne.radius = 22;
+
+           let pos = posArray[i]
+	  	   acne.x = pos.x
+		   acne.y = pos.y 
+		     			 
+		  this.stuffArray.push(acne)
+		
+          //acne개수만큼 sprite생성해야 함  		
+		  //array Index를 똑같이 맞춤
+          let sprite = new Sprite()
+		  
+		 sprite.setFName('acne_ani-01.png')
+		 sprite.isDisplay = false
+   	     sprite.aniProp = Sprite.ani_prop_keep_endframe
+	     sprite.drawPosKind = Sprite.drawPos_midx_maxy 
+	
+         //서로 다른 애니 프레임으로 수정필요
+		 sprite.addFrame(0, 0 , 40, 70)
+		 sprite.addFrame(40, 0, 40, 70)
+		 sprite.addFrame(80, 0, 40, 70)
+		 
+		  		
+				
+         this.spriteArray.push(sprite)
+		  
+ 	 }
+		 
+   
+
 	}
+
 	
 	
 //============	
 	getTouchedStuff(touchPos){
+
+		console.log("---getTouchedStuff---");
 		
 		   //collison 등
-		for(let i=0; i < this.earwaxArray.length; i++){
+		for(let i=0; i < this.stuffArray.length; i++){
 			
-			let obj = this.earwaxArray[i]
+			let obj = this.stuffArray[i]
 								
-			//earwax 		
-			let offsetA = obj.radius;
-			let cA = {x: obj.x+offsetA, y: obj.y+offsetA, r: obj.radius}; 			
-												
+			let cA = {x: obj.x,  y: obj.y, r: obj.radius}; 			
+			
+			console.log("objPos: " + obj.x +"," + obj.y + "radius" + obj.radius);
+															
 			let rCollision = isInCircle(cA, touchPos)
 			
 			if(rCollision == true){
@@ -431,9 +841,9 @@ class App {
  
    releaseTouchedStuff(){
 	   
-      for(let i=0; i < this.earwaxArray.length; i++){
+      for(let i=0; i < this.stuffArray.length; i++){
 			
-			let obj = this.earwaxArray[i]
+			let obj = this.stuffArray[i]
 			
 			if(obj.state == 1){
 				
@@ -446,9 +856,9 @@ class App {
    
    moveTouchedStuff(deltaX, deltaY){
 	   
-	    for(let i=0; i < this.earwaxArray.length; i++){
+	    for(let i=0; i < this.stuffArray.length; i++){
 			
-			let obj = this.earwaxArray[i]
+			let obj = this.stuffArray[i]
 			
 			if(obj.state == 1){
 								
@@ -456,23 +866,32 @@ class App {
 				obj.y += deltaY;				
 			}										
 
-	   }//for(...( 
+	   }//for(...)
 	   
 	   
    }
    
-   //refPos에서 refDist이상이면 clear
+   //refPos에서 refDist이상이면 cleaned
+   //새롭게 clean된 것을 반환
    probe_touchedStuff_removal(refPos, refDist){
 
-        let  clearedStuff=0	  
+        let  cleanedStuff=0	  
 	  
-	    for(let i=0; i < this.earwaxArray.length; i++){
+	    for(let i=0; i < this.stuffArray.length; i++){
 			
-			let obj = this.earwaxArray[i]
+			let obj = this.stuffArray[i]
 			
-			if(obj.state == 0 || obj.state == 2){							
+			if(obj.state == 0 ){							
                   continue;														
 			}
+			
+			if(obj.state == stuffstate_cleaned){
+				
+				cleanedStuff += 1;
+				continue;
+			}
+			
+			//touched 상태인 stuff만 체크 
 			
 	        let objPos = {x: obj.x , y: obj.y}
 	
@@ -480,17 +899,46 @@ class App {
 			
 			if(dist >= refDist){
 				
-				clearedStuff +=1				
-				//cleared 
-				obj.state = 3
+				cleanedStuff +=1				
+				//cleaned 
+				obj.state = 2
 				console.log("remove stuff: " + dist)
 			}
 			
 	   }//for(...)
 	   
-	   
+       return cleanedStuff
    }
    
+   
+   getNumCleanedStuff(){
+	   
+	   var cleanedStuff = 0 
+	   
+	   for(let i=0; i < this.stuffArray.length; i++){
+			
+			let obj = this.stuffArray[i]
+			
+			if(obj.state != 3){							
+                  continue;														
+			}
+			
+			cleanedStuff +=1				
+			
+	   }//for(...)
+	   
+	   return cleanedStuff
+   }
+   
+  
+   showMenu(isShow){
+	   
+	  let menuDiv = document.getElementById("menuDiv");
+	   menuDiv.style.display = 'block'
+
+      	  	   
+	   
+   }
 
 
 	
@@ -523,9 +971,9 @@ class App {
 
           let numAttach = 0
           
-		  for(let i=0; i < this.earwaxArray.length ; i++){
+		  for(let i=0; i < this.stuffArray.length ; i++){
 			 
-                let obj = this.earwaxArray[i]			 
+                let obj = this.stuffArray[i]			 
 				if(obj.state == 1){
 			  
                        numAttach += 1
@@ -538,80 +986,292 @@ class App {
    }
 
 
+    postCleanStuff(){
+	  
+	  console.log("postCleanStuff")
+	  
+      this.eyebrow_img.src = "./eyebrow_normal_d.png"
+	  this.lip_img.src = "./lip_good_d.png"
+	  
+     }
+	 
+	 postFinishJob(){
+		 
+	  console.log("postFinishJob")		 
+		 
+
+		 let ratingDiv = document.getElementById("ratingDiv");
+		 ratingDiv.style.display = 'block'
+		 
+		 let bgDiv = document.getElementById("bgDiv");
+		 bgDiv.style.display = 'block'
+		 
+	 }
+	 
+
+  probeFinishJob(curT){
+		
+   if(this.playstate != playstate_treatment){
+	
+       return 	
+    }
+			
+	let numTreated = 0
+	
+	for(let i=0; i < this.stuffArray.length; i++){
+					
+		let stuff = this.stuffArray[i]
+				
+		if(stuff.state == Stuff.state_treated){
+			
+			numTreated++
+		}
+				
+	}
+	
+	if(numTreated >= this.numTotalStuff){
+		
+		this.playstate = playstate_finish
+		console.log("playstate_finish")			
+		
+		
+		setTimeout(this.postFinishJob, 3000);
+		
+	}	
+
+  }
+
+// screenX,screenY --> 디바이스기준 
+// clientX, clientY --> 브라우저 화면기준(스크롤 미포함)
+// pageX, pageY --> 브라우저 화면기준(스크롤을 포함) 
  ts(e){
   
   var touches = e.touches;
-  var ex = touches[0].pageX;
-  var ey = touches[0].pageY - this.canvas.offsetTop;
   
-  //touchSPos[0] = ex 
-  //touchSPos[1] = ey   
+  
+   if(gSelectedPlay == playkind_acne){
+	   	   
+	   this.ts_acne(touches)
+	   
+	   return 
+   }
+   
+   var ex = touches[0].pageX.toFixed(2);
+   var ey = touches[0].pageY.toFixed(2);
   
    this.lastMovePos.x = ex 
    this.lastMovePos.y = ey 
   
    this.touchSPos= {x:ex, y:ey};
+
+
+	console.log("touch_start Pos: " + ex + ", " + ey);
   
    let obj = this.getTouchedStuff(this.touchSPos);
   
     if(obj != undefined){		
 
 		this.isDraggingStuff = true 
-	
-    	obj.state = 1 
-		console.log("find touchedStuff");
+	    this.sound_move.muted = false 
+    			
+		//obj.collision_offsetX = obj.x - ex;
+		//obj.collision_offsetY = obj.y - ey;
+	    
+		obj.state = stuffstate_touched
+		
+		console.log("objPos: " + obj.x + ", " + obj.y);
+		
+		console.log("find touchedStuff, sound: muted=false");
 	}
-	
     
+	//-----------------------------
+	this.lastMoveRefPos.x = ex;
+	this.lastMoveRefPos.y = ey;		   
+	this.lastMoveT = this.appCurT //0.5초후 refPos와 lastMovePos가 같다면 이동중지 상태
+	
+	//----------------------------
+	
    this.isMoveTracking = true;
    this.moveSpeedCheckT = this.appCurT   
    this.moveSpeedCheckPos = {x: ex, y: ey}
  
    var msg = "touch start: (" + ex + ", " + ey + ")" 
    console.log(msg);
-  
+     
 }
 
 
+ts_acne(touches){
+	
 
+	let posArray = [];
+	
+	for(let i=0; i < touches.length ; i++){
+		
+		let tx = touches[i].clientX 
+		let ty = touches[i].clientY 
+		
+		posArray.push({x:tx, y:ty})
+	
+        console.log("touchStart: " + tx + ", " + ty)   	
+    }		
+	   
+   	
+	for(let i =0 ; i < this.stuffArray.length; i++){
+
+			let obj = this.stuffArray[i] 
+			//여드름 짠 후 모습			
+			
+			if(obj.state == 2){
+			  // 이미 treated 			
+                  continue;			
+			}
+		
+			//obj.x: 부모기준 좌표 
+			let objCanvasX = this.closeupRscPos.x + obj.x 
+            let objCanvasY = this.closeupRscPos.y + obj.y 
+
+			let diffX = 0, diffY = 0 					
+			
+			let touchCount = 0
+			for(let pi=0; pi < posArray.length; pi++){
+			//2개 이상의 터치가 모두 범위 내에 있어야    
+			
+				diffX = objCanvasX - posArray[pi].x
+				diffY = objCanvasY - posArray[pi].y 					
+														
+				let dist = Math.sqrt(diffX*diffX + diffY*diffY)
+			
+				if(dist <= 40){
+					
+			
+				   // console.log("distToObj: " + dist + ", touchX: "+tx + "objCanvasX: " + objCanvasX)		
+				  
+				   //let sprite = this.spriteArray[i]
+				   //sprite.play()
+				  			 
+				   touchCount++
+				}		
+								
+			}//for (pi...)
+
+           if(touchCount >= 1){
+			   
+			  console.log("obj.state  1(treating)") 
+			  obj.state =  1  // treating 
+			 	   
+			 this.touchCheckT = this.appCurT
+       		 this.isValidTouchPos = true 
+			   			   
+		   }
+
+	 } 	
+	
+					
+}
+
+
+//3초간 유지한 경우 여드름 압출
+updateAcneTreatment(curT){
+ 
+  let elapsedT =  curT - this.touchCheckT  
+  
+  if(elapsedT >= 3000){
+	  console.log("AcneTreatment")	
+		
+	  for(let i =0 ; i < this.stuffArray.length; i++){
+
+			let obj = this.stuffArray[i] 
+			//여드름 짠 후 모습			
+			
+		     console.log("obj.state: " + obj.state)
+			
+			//treating인 경우에만
+			if(obj.state != 1){ 
+			
+			   continue 
+			}
+			
+			 obj.state = 2 //treated
+			 obj.rscIdx = 1 // 짠 후의 모습 		
+
+            let sprite = this.spriteArray[i]
+		    sprite.play()
+       	    console.log("sprite.play")
+
+            this.snd_acne_effect.loop = false 
+		 	this.snd_acne_effect.currentTime = 0
+			this.snd_acne_effect.play() 
+
+    	}	  	  
+  
+      this.touchCheckT = curT  
+	  
+  }	//	if(elapsedT >= 3000
+
+	
+}
+
+
+begin_extrudeAcne(){
+	
+	
+	
+	
+}
+
+
+//screen에 손이 닿은 상태에서 움직일 경우 
  tm(e){
 	 
+  var touches = e.touches;	 
+	
+  if(gSelectedPlay == playkind_acne){
+	  
+	  this.tm_acne(touches)
+	  
+	  return 
+  }
+
    if(this.isDraggingStuff == false){
        return;
    }	   
 
-   var touches = e.touches;
+  let ex = touches[0].pageX.toFixed(2) 
+  let ey = touches[0].pageY.toFixed(2)
   
-  let ex = touches[0].pageX 
-  let ey = touches[0].pageY
-  
+
+ 
   let deltaX = ex - this.lastMovePos.x 
   let deltaY = ey - this.lastMovePos.y
   
-  this.lastMovePos.x = ex
-  this.lastMovePos.y = ey
+	
+    this.lastMovePos.x = ex
+    this.lastMovePos.y = ey
+
+    this.lastMoveRefPos.x = ex;
+	this.lastMoveRefPos.y = ey;		   
+	this.lastMoveT = this.appCurT //0.5초후 refPos와 lastMovePos가 같다면 이동중지 상태
   
-   var msg = "touch move.curPos: " + ex + ", " + ey 
-   //console.log(msg);
-     
-    msg = "touch move:delta: " + deltaX + ", " + deltaY 
-    console.log(msg);
-  
+   // var msg = "touch curPos: " + ex + ", " + ey + "delta:(" + deltaX + ", " + deltaY + ")"  
+   // console.log(msg);
+    
+    //움직인 거리만큼 stuff 이동시켜야 함	
     this.moveTouchedStuff(deltaX, deltaY);
      
-   if(this.sound_move.paused == true){	   
+   if(this.sound_move.muted==true){	   
 
-    //play중이 아니라면
+    //
 	 this.sound_move.currentTime = 0
-	 this.sound_move.play();	   
+	 this.sound_move.muted = false 
 	   
    }
    else { //playing
 	   
 	   if(this.sound_move.ended == true){
 		   
-			 this.sound_move.currentTime = 0
-			 this.sound_move.volume = 1.0
+			this.sound_move.currentTime = 0
+			 //this.sound_move.volume = 1.0
 	   }
 	   
 	  // this.sound_move.play();	      
@@ -619,16 +1279,34 @@ class App {
    }
    
    
-   
-  
     let offset = 150 
     let centerRefPos =  {x: this.closeupRscPos.x+offset , y: this.closeupRscPos.y+offset}
 		
-	this.probe_touchedStuff_removal(centerRefPos, 140);
-  
-     //this.toolPos.x += deltaX
-     //this.toolPos.y += deltaY
-   }
+	 let lastNumCleanedStuff = this.numCleanedStuff	
+		
+ 	 this.numCleanedStuff = this.probe_touchedStuff_removal(centerRefPos, 140);
+	
+	 if(this.numCleanedStuff > lastNumCleanedStuff){
+		 
+          		 this.postCleanStuff()
+	 }
+	
+	//this.numCleanedStuff = this.getNumCleanedStuff()
+	
+	if(this.numCleanedStuff >= this.numTotalStuff){	
+		 //clearStage
+    	this.playstate = playstate_finish
+		console.log("playstate_clear")		
+		
+		this.postFinishJob()
+		
+	} 
+   
+ }
+ 
+ 
+
+ 
 
 
 	te(e){
@@ -639,8 +1317,9 @@ class App {
 	this.isDraggingStuff = false  
 	
 	
+	this.sound_move.muted = true 
 	//this.sound_move.pause();
-	this.sound_move.volume = 0.0
+	//this.sound_move.volume = 0.0
 	
 	this.releaseTouchedStuff();
 	
@@ -718,7 +1397,6 @@ class App {
 		   
 		}
 
-
 		  mu(e){
 
 
@@ -727,36 +1405,17 @@ class App {
 			this.sound_move.pause();
 		
 
-
   	   	  }
-
-	
 		
 }
 
 
-var AudioContext;
-var audioContext;
-
 window.onload = function(){
 	
 		console.log("window.load");
-		
-		 navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
-			 
-        AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioContext = new AudioContext();
-   /*
-    	window.AudioContext  = window.AudioContext || window.webkitAudioContext;		 
-        var audioContext = new AudioContext();	
-	*/   
-		
-    }).catch(e => {
-        
-		console.error(`Audio permissions denied: ${e}`);
-    });
-		
+
 	new App();
+	
 	
 }
 
