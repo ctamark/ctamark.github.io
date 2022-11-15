@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;  
+  border: "1px solid blue";
+  background: 'blue';
+}
+
+#myCanvas {  
+/* or some other selector */
+
+  /*width: 500px;
+   height: 500px;
+   */
+    background: #00ff00;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	
+	z-index: 20;
+	
+	/*auto 남은 여백을 균등하게 배분 */
+   
+}
+
+/*
+  text-align은 블럭요소 안에 있는 인라인 요소에게 적용
+  인라인요소가 아닌 요소를 text-align을 적용하기 위해 block요소를 inline-block요소로 바꿔주기도 합니다.
+*/
+
+#wrap {
+
+    width:400px;
+    height:500px;
+    background:#cfcfcf;
+    position:relative;
+}
+
+
+#menuDiv {
+    /*
+    
+    	viewport 기준
+		position: fixed;
+		 top: 10px;
+    	left: 10px;	
+        width: 200px;
+        height: 200px;
+	*/
+	    width: 200px;
+    	height: 300px;
+      position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  margin-top: -150px;
+	  margin-left: -100px;
+
+    background: #0000ff;
+    text-align: center;
+	
+	z-index: 20;
+  
+
+}
+
+#mainMenu {
+    width: 80%;
+    text-align: center;
+    background: #ffff00;
+	
+}
+
+#myCanvas {
+
+  z-index: 19;
+}
+
+.menuBtn {
+   display: block;
+   margin-top: 10px;
+   margin: auto;
+   /*세로는 적용 안 됨  */
+}
+
+#sysMsgDiv{
+  position: absolute;
+  width: 300px;
+  height: 80px;
+  line-height: 80px;
+ 
+  background: black;
+  color: #ffffff; 
+
+  top: 50%;
+  left: 50%;
+  margin-left:  -150px;
+  margin-top:  -50px;
+  z-index: 20; 
+}
+
+#bgDiv{
+/*%는 상위요소 기준으로 적용되므로 상위요소에 width등이 적용되어 있어야 함*/ 
+  width: 100%;
+  height: 100%;
+
+  background: black;
+  color: #ffffff; 
+  opacity: 0.7;
+   z-index: 10; 
+}
+
+#ratingDiv{
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  
+  background: black;
+  
+  top: 50%;
+  left: 50%;
+  margin-left:  -128px;
+  margin-top:  -128px;
+  z-index: 20; 
+}
+
+
+</style>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body >
+
+<canvas  id="myCanvas"   style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<!-- 중앙정렬 --> 
+<div id="menuDiv">
+--- earcleaning ---
+<button class="menuBtn" id="playBtn" type="button" onclick="play()" style="font-size: 1.2rem">Play</button>---
+<button class="menuBtn" id="replayBtn" type="button" onclick="replay()" style="font-size: 1.2rem;">Replay</button>---
+<button class="menuBtn" id="mainMenuBtn" type="button" onclick="mainMenu()" style="font-size: 1.2rem">MainMenu</button>
+</div>
+
+<div id="sysMsgDiv">
+<span id="sysMsg">시스템 메시지...</span>
+</div>
+
+
+<div id="ratingDiv" style="display: none;">
+<button class="menuBtn" id="closeBtn" type="button" onclick="closeRatingDiv()" style="font-size: 1.2rem">Close</button>
+-----
+<img src="./rating_base.png" border=0>
+</div>
+
+<div id="bgDiv" style="display: none;">
+</div>
+
+
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script src='./appDesc.js'></script>
+
+<script>
+var gNumCleanedStuff = 0
+var gIsFirstPlay = true 
+
+const playstate_waitStart = 0
+const playstate_prepare = 1
+const playstate_cleaning = 2
+const playstate_finish = 3
+
+const gPlaystate = playstate_waitStart
+gSelectedPlay = playKind_earCleaning
+
+
+function closeRatingDiv(){
+
+   console.log("closeRatingDiv")
+
+  let bgDiv = document.getElementById('bgDiv')
+  bgDiv.style.display = 'none'
+
+  let ratingDiv = document.getElementById("ratingDiv")
+  ratingDiv.style.display = 'none'
+  
+  
+  let menuDiv = document.getElementById('menuDiv')
+  menuDiv.style.display = 'block'
+
+  //let ratingDiv = document.getElementById("ratingDiv")
+  //ratingDiv.style.display = 'none'
+  
+  
+  
+}
+
+</script> 
+
+
+<script  type="module" src="app.js"></script>
+</body>
+</html>

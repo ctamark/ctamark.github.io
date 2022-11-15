@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  
+  overflow: hidden;
+}
+
+
+#logoDiv {
+    width: 80%;
+    text-align: center;
+	/*img text는 text-align써야 함*/
+    background: #ffff00;
+}
+
+#mainMenuDiv {
+    width: 80%;
+    text-align: center;
+    background: #ffff00;
+	display: block;
+}
+
+.mainMenuBtn {
+    display: block;
+	 
+	width: 80%;
+    margin: auto;
+    text-align: center;
+    background: #ff0000;
+	display: block;
+	
+}
+
+</style>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id="logoDiv" >
+  <img src="./app_icon.png"><br> 
+  <button id="startBtn" type="button" onclick="start()" style="font-size: 1.2rem;">--START--</button>  
+</div>
+
+<div id="mainMenuDiv" style="display: none; opacity: 0.2;">
+<button class="mainMenuBtn" type="button" onclick="playEarCleaning()"><img src="./earCleaningBtn.png" width='120px'>EarCleaning</button>
+<button class="mainMenuBtn" type="button" onclick="playAcne()"><img src="./acneBtn.png" width='120px'>Acne</button>
+<button class="mainMenuBtn" type="button" onclick="playWaxing()"><img src="./waxingBtn.png"width='120px'>Waxing</button>
+</div>
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script src='./appDesc.js'></script>
+
+
+<script  type="text/javascript">
+ var interval_ID
+ var sound_bg = new Audio("sea-01.mp3"); 
+ 
+function welcome(){
+
+   alert("welcome");
+}
+
+function start() {
+  //document.getElementById("demo").innerHTML = "Hello World";
+  //alert("start");
+ 
+   sound_bg.play()
+    
+  var  logoDiv = document.getElementById("logoDiv");
+   logoDiv.style.display = 'none'
+  
+  var  menuDiv = document.getElementById("mainMenuDiv");
+   menuDiv.style.display = 'block'
+
+  const lastPlayName = window.localStorage.getItem('selectedPlay');  
+  //없다면 null이 반환됨
+  //alert(lastPlayName);
+ 
+  // interval_ID = setInterval(fadeOut, 200); 
+   interval_ID = setInterval(fadeIn, 200); 
+  
+}
+
+
+function fadeOut(){
+
+        var div = document.getElementById("logoDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity>0){
+            //Fade out 핵심 부분
+			opacity = opacity-0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            logoDiv.style.display = 'none'
+
+			clearInterval(interval_ID);
+		}
+
+}
+
+function fadeIn(){
+
+        var div = document.getElementById("mainMenuDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity < 1){
+          
+		    opacity = opacity+0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            //logoDiv.style.display = 'none'
+			clearInterval(interval_ID);
+		}
+
+}
+
+
+function playEarCleaning(){
+
+location.href = "earCleaning.html"
+
+// setItem
+window.localStorage.setItem('selectedPlay', 'earCleaning');
+//window.localStorage.setItem('age', '20');
+
+/* 
+// getItem
+const name = window.localStorage.getItem('name');
+const age = window.localStorage.getItem('age');
+ 
+// 결과 출력
+document.write(name); // anna
+document.write('<br/>');
+document.write(age);  // 20
+*/
+
+gSelectedPlay = playKind_earCleaning
+
+
+}
+
+function playAcne(){
+
+gSelectedPlay = playKind_acne
+
+// setItem
+window.localStorage.setItem('selectedPlay', 'acneClea');
+location.href = "acne.html"
+
+
+}
+
+
+
+
+</script> 
+
+</body>
+</html>
