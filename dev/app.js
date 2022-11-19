@@ -1,14 +1,6 @@
 import {getRandomVal, isCollision_circle2Circle, isInCircle, getDistSqrt} from './helper.js'
 import {Sprite, Earwax, Stuff} from './helper.js' 
 
-const facestate_normal = 0
-const facestate_good = 1
-const facestate_bad = 2
-
-const stuffstate_normal = 0
-const stuffstate_touched = 1
-const stuffstate_cleaned = 2
-
 
 class App {
 	
@@ -33,7 +25,7 @@ class App {
 		
 		if(gSelectedPlay == playkind_earCleaning){
 			
-	       this.face_img.src = "face_base-01.png";
+	       this.face_img.src = "face_base-02.png";
 		}
 		else if(gSelectedPlay == playkind_acne){
 
@@ -54,14 +46,11 @@ class App {
 		this.lip_img.src = "./lip_normal.png"
 		
 		
-	
 	   this.stuffArray = [];
 	   this.spriteArray = [];
 
         this.initSprite();
 
-		
-	
 				
 	   this.sound_move = new Audio("effect-01.wav"); 
 	   this.sound_move.loop = true
@@ -86,8 +75,8 @@ class App {
 		this.snd_acne_effect = new Audio("acne_effect-01.wav");
 		this.snd_acne_effect.loop = false
 
-//	    this.soundBg = new Audio("sea-01.mp3"); 
-	    this.soundBg = new Audio("bg-01.mp3"); 
+	    this.soundBg = new Audio("sea-01.mp3"); 
+//	    this.soundBg = new Audio("bg-01.mp3"); 
 
 
 		
@@ -124,13 +113,9 @@ class App {
 		    this.closeup_img.src = "acne_closeup.png";			
 		}
 		
-		
-		
-		
-
 		this.touchSPos = {x:0, y:0}
 
- 
+
          //300x300 귀, 여드름 피부,...
 		 //RscPos(drawPos)
 		 this.closeupRscPos = {x:0, y:300}
@@ -174,7 +159,6 @@ class App {
 		
 		
 		this.appCurT = 0
-		
 		
 		
 		
@@ -229,38 +213,6 @@ class App {
 
    */
          
-	 /*
-       //----------	   
-		//var startBtn = document.querySelector('input[type="button"]');
-		var startBtn = document.getElementById("startBtn");	
-			
-	      startBtn.onclick = function() {
-					
-			console.log("startBtn click");
-
-           let logoPage_div = document.getElementById("logoPage");			
-		   
-		   if(logoPage_div!=null){
-         	      logoPage_div.style.display = 'none';
-		   }
-           else {		  
-		  
-		  }			  
-		   
-					
-			let canvas =	document.getElementById("myCanvas");
-			canvas.hidden = false 
-			
-			this.resize()
-					
-            this.sound_move.play();	   
-			this.sound_move.muted = true;
-			this.sound_move.loop = true;
-			 //alert('click');
-		}.bind(this) 
-		
-		*/
-		
 		
 		let mainMenuBtn = document.getElementById("mainMenuBtn")
 		mainMenuBtn.onclick = function(){
@@ -269,64 +221,17 @@ class App {
 			
 		}
 
-		let replayBtn = document.getElementById("replayBtn")
-		replayBtn.onclick = function(){
-			
-			alert("replayBtn");
-			
-		}.bind(this)
-
 		let playBtn = document.getElementById("playBtn")
 		playBtn.onclick = this.onTouchPlayBtn.bind(this)
 
-/*		
-		function(){
-			
-		
-		   this.sound_move.play();
-		   this.sound_move.muted = true 
-		   
-		   this.soundBg.play();
-		   this.soundBg.loop = true 
-		   this.soundBg.volume = 0.5;
-		   
-		   let menuDiv = document.getElementById("menuDiv");
-		   menuDiv.style.display = 'none'
-		  
+         //------------- 
+         let closeRatingBtn = document.getElementById("closeRatingBtn")
+		 closeRatingBtn.onclick = this.onCloseRatingBtn.bind(this)
 
-           this.showSysMsg("preparing")
-		   
-		   
-		   setTimeout(end_prepareState , 3000)
-		   
-*/
 
-/*		  
-		   let refPos = { x:this.closeupRscPos.x+150, y: this.closeupRscPos.y +150} 
-          
-
-          if(gIsFirstPlay){
-			
-			 gIsFirstPlay = false;			
-	    	 replayBtn.style.display = "none"
-
- 		    this.createEarwax(refPos, 2);
-			
-   		    this.numTotalStuff = 2;
-
-	
-		  }
-		  else  {
-			 let numEarwax = getRandomVal(2, 4); 
-			 
-			 this.numTotalStuff = numEarwax
-			 
-		    this.createEarwax(refPos, numEarwax);
-			 		 
-		  }
- */
+        //---------------- 
 		   			      
-	   this.showSysMsg("afdasfaf");
+	    this.showSysMsg("afdasfaf");
    
         console.log("this.playstate: " + this.playstate )
 			
@@ -334,7 +239,62 @@ class App {
 		//let boundfunc = func.bind(context);
 		requestAnimationFrame(this.updateFrame.bind(this));
 
+	}//constructor()
+	
+	
+	//플레이, 다시 플레이...
+	onTouchPlayBtn(){
+	
+	       this.sound_move.play();
+	  
+	       this.playstate = playstate_prepare
+	  
+		   this.sound_move.muted = true 
+		   
+		   this.soundBg.play();
+		   this.soundBg.loop = true 
+		   this.soundBg.volume = 0.5;
+		   this.soundBg.pause();
+		   
+		   let menuDiv = document.getElementById("menuDiv");
+		   menuDiv.style.display = 'none'
+		  
+		   let floatMenuDiv = document.getElementById("floatMenuDiv");
+		   floatMenuDiv.style.display = 'block'
+		  
+		  		  
+          //---------
+           //this.snd_acne_effect.play();
+		   //this.snd_acne_effect.muted = true 
+
+           this.showSysMsg("preparing")
+		   
+		   
+		   setTimeout(this.end_prepareState.bind(this) , 3000)
+		   
+		   
 	}
+	
+	
+	
+  onCloseRatingBtn(){
+
+   console.log("closeRatingDiv")
+
+  let bgDiv = document.getElementById('bgDiv')
+  bgDiv.style.display = 'none'
+
+  let ratingDiv = document.getElementById("ratingDiv")
+  ratingDiv.style.display = 'none'
+  
+  
+  let menuDiv = document.getElementById('menuDiv')
+  menuDiv.style.display = 'block'
+  
+  this.playstate = playstate_ready
+  
+  }
+  
 		
   initSprite(){
 	
@@ -344,21 +304,36 @@ class App {
 		}
 		
 		console.log("ani_prop_debug: " + Sprite.ani_prop_debug);
-		
 
-	     this.sprite = new Sprite()
-		 this.sprite.setFName('acne_ani-01.png')
-		 this.sprite.isDisplay = false
+/*		
+	    let sprite = new Sprite()
+		 sprite.setFName('acne_ani-01.png')
+		 sprite.isDisplay = false
 //		 this.sprite.aniProp = Sprite.ani_prop_loop
-   	     this.sprite.aniProp = Sprite.ani_prop_keep_endframe
+   	     sprite.aniProp = Sprite.ani_prop_keep_endframe
 
 
-		 this.sprite.addFrame(0, 0 , 40, 70)
-		 this.sprite.addFrame(40, 0, 40, 70)
-		 this.sprite.addFrame(80, 0, 40, 70)
+		 sprite.addFrame(0, 0 , 40, 70)
+		 sprite.addFrame(40, 0, 40, 70)
+		 sprite.addFrame(80, 0, 40, 70)
+		 
+		 this.spriteArray.push(sprite)
+		 
+	
+         sprite2 = new Sprite()
+		 sprite2.setFName('acne_ani-01.png')
+		 sprite2.isDisplay = false
+//		 this.sprite.aniProp = Sprite.ani_prop_loop
+   	     sprite2.aniProp = Sprite.ani_prop_keep_endframe
+		 sprite2.addFrame(120, 0 , 40, 70)
+		 sprite2.addFrame(1600, 0, 40, 70)
+		
 		// this.sprite.addFrame(120, 0, 40, 70)
-					
+	*/
+	
 	}
+	
+	
 	
 	
 	drawSprite(curT){
@@ -403,34 +378,7 @@ class App {
 		}
 	}
 	
-	onTouchPlayBtn(){
 	
-	  this.sound_move.play();
-	  
-	       this.playstate = playstate_prepare
-	  
-		   this.sound_move.muted = true 
-		   
-		   this.soundBg.play();
-		   this.soundBg.loop = true 
-		   this.soundBg.volume = 0.5;
-		   this.soundBg.pause();
-		   
-		   let menuDiv = document.getElementById("menuDiv");
-		   menuDiv.style.display = 'none'
-		  
-
-          //---------
-           //this.snd_acne_effect.play();
-		   //this.snd_acne_effect.muted = true 
-
-           this.showSysMsg("preparing")
-		   
-		   
-		   setTimeout(this.end_prepareState.bind(this) , 3000)
-		   
-		   
-	}
 	
 	
 	 end_prepareState(){
@@ -509,7 +457,16 @@ class App {
 	}
 	
 	
-       drawFace(facestate ){
+	
+   drawFace(facestate ){
+
+       //canvas size보다 작게 유지 
+	   //600x632
+ 	   let ratio = 632/600.0
+	   let dh = 300*ratio 
+	   this.ctx.drawImage(this.face_img, 0, 0, 600, 632, 0, 0, 300, dh);
+	   
+	   //--------------------
 
        this.ctx.drawImage(this.eyebrow_img, 164, 155)
        this.ctx.drawImage(this.lip_img, 206, 291)
@@ -529,23 +486,32 @@ class App {
 		
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); 
 		
-		this.ctx.drawImage(this.face_img, 0, 0);
+		
       
+	  
+	    this.drawFace(this.faceState)
+	  
 	  
 	    if(this.isEyeclose == true){   
 	 
 	        this.ctx.drawImage(this.eyeclose_img, 164, 191);
 	    }
      
-	   if(this.playstate == playstate_treatment){
+	   if(this.playstate == playstate_treatment || this.playstate == playstate_finish){
 
-          this.ctx.drawImage(this.closeup_img, this.closeupRscPos.x, this.closeupRscPos.y); 
+           this.ctx.drawImage(this.closeup_img, this.closeupRscPos.x, this.closeupRscPos.y); 
+	   
+	       this.drawAllStuff()
+		  
+		   if(this.playstate == playstate_treatment){
+		        this.updateAcneTreatment(curT)
+		   }
+		   
+       	   this.drawSprite(curT)
+	   
 	   }
 	   
 	   
-      
-
-
         let toolPos_collision =  {x:this.toolPos.x+15, y:this.toolPos.y+15}
        	let toolRadius_collison = 15	
 
@@ -583,8 +549,6 @@ class App {
 		}
 		*/
 		
-		this.drawAllStuff()
-		
 		
 		
       if(this.isDraggingStuff  == true){
@@ -610,11 +574,9 @@ class App {
 	  } //if(this.isDraggingStuff 
 		 	 
 
-	  this.drawFace(this.faceState)
-
-	  this.updateAcneTreatment(curT)
 	
-	  this.drawSprite(curT)
+
+	 
 	
   	  this.probeFinishJob(curT)
 			
@@ -797,12 +759,17 @@ class App {
 	     sprite.drawPosKind = Sprite.drawPos_midx_maxy 
 	
          //서로 다른 애니 프레임으로 수정필요
+		 
+		 if(i==0){
 		 sprite.addFrame(0, 0 , 40, 70)
 		 sprite.addFrame(40, 0, 40, 70)
 		 sprite.addFrame(80, 0, 40, 70)
+		 }
+		 else {
+          sprite.addFrame(120, 0 , 40, 70)
+		  sprite.addFrame(160, 0, 40, 70)				
+		 }
 		 
-		  		
-				
          this.spriteArray.push(sprite)
 		  
  	 }
@@ -885,7 +852,7 @@ class App {
                   continue;														
 			}
 			
-			if(obj.state == stuffstate_cleaned){
+			if(obj.state == Stuff.state_treated){
 				
 				cleanedStuff += 1;
 				continue;
@@ -1077,7 +1044,7 @@ class App {
 		//obj.collision_offsetX = obj.x - ex;
 		//obj.collision_offsetY = obj.y - ey;
 	    
-		obj.state = stuffstate_touched
+		obj.state = Stuff.state_treating
 		
 		console.log("objPos: " + obj.x + ", " + obj.y);
 		
@@ -1161,22 +1128,50 @@ ts_acne(touches){
 			  obj.state =  1  // treating 
 			 	   
 			 this.touchCheckT = this.appCurT
-       		 this.isValidTouchPos = true 
+       		 this.isExtrudingAcneState = true 
 			   			   
 		   }
 
 	 } 	
 	
+	
+	let playInfoDiv = document.getElementById("playInfoDiv")
+	playInfoDiv.style.display = 'block'
+	playInfoDiv.style.top = this.closeupRscPos.y + 'px'	
+	
 					
+}
+
+
+updatePlayState(){
+	
+	
+	
+}
+
+updateAcnePlayState(progress){
+	
+	let stateProgress = document.getElementById("playProgress") 
+	stateProgress.value = progress
+	
 }
 
 
 //3초간 유지한 경우 여드름 압출
 updateAcneTreatment(curT){
+	
+    if(this.isExtrudingAcneState != true){
+
+          return 
+	 }		 
  
   let elapsedT =  curT - this.touchCheckT  
+ 
+  let  percent = (elapsedT/3000)*100 
+  this.updateAcnePlayState(percent)
   
   if(elapsedT >= 3000){
+	  
 	  console.log("AcneTreatment")	
 		
 	  for(let i =0 ; i < this.stuffArray.length; i++){
@@ -1201,12 +1196,13 @@ updateAcneTreatment(curT){
 
             this.snd_acne_effect.loop = false 
 		 	this.snd_acne_effect.currentTime = 0
-			this.snd_acne_effect.play() 
+			this.snd_acne_effect.play() 			
+			this.isExtrudingAcneState = false  
 
     	}	  	  
   
       this.touchCheckT = curT  
-	  
+	  	  
   }	//	if(elapsedT >= 3000
 
 	
@@ -1228,7 +1224,7 @@ begin_extrudeAcne(){
 	
   if(gSelectedPlay == playkind_acne){
 	  
-	  this.tm_acne(touches)
+	  //this.tm_acne(touches)
 	  
 	  return 
   }
@@ -1322,6 +1318,13 @@ begin_extrudeAcne(){
 	//this.sound_move.volume = 0.0
 	
 	this.releaseTouchedStuff();
+
+    //---acne------------
+	 this.isExtrudingAcneState = false
+	
+	 let playInfoDiv = document.getElementById("playInfoDiv")
+	 playInfoDiv.style.display = 'none'
+	//-------------------
 	
 	}
 
@@ -1410,12 +1413,15 @@ begin_extrudeAcne(){
 }
 
 
+
+
+
+
 window.onload = function(){
 	
-		console.log("window.load");
+	console.log("window.load");
 
 	new App();
-	
-	
+		
 }
 
