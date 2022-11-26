@@ -17,8 +17,9 @@ AR(sceneform +kotlin)
 
 [mp3용량줄이기](https://www.mp3smaller.com/){:target="_blank"}
 
-[webp변환](https://ezgif.com/webp-to-png){:target="_blank"}
+[webp변환](https://ezgif.com/webp-to-png){:target="_blank"}   
 
+[텍스트 추출](https://www.cardscanner.co/ko/image-to-text){:target="_blank"}
 ---
 ### HTML5  
 ---
