@@ -42,5 +42,7 @@ permalink: /life_study/
 ---
 [고양이보호협회](https://www.catcare.or.kr/){:target="_blank"}  
 
+[동그람이](https://blog.naver.com/animalandhuman){:target="_blank"}
+
 [마이펫플러스](https://www.mypetplus.co.kr){:target="_blank"}  
 [고양이와 비누바구니](https://binubaguni.tistory.com/){:target="_blank"}   
