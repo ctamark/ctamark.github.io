@@ -118,30 +118,48 @@ function   getDistSqrt(posA, posB){
    }
 
 
-export { getRandomVal,  isCollision_circle2Circle, isInRect, isInCircle, getDistSqrt};
+//export { getRandomVal,  isCollision_circle2Circle, isInRect, isInCircle, getDistSqrt};
+
+function drawImg_angle(ctx,angle,img,x,y,width,height){
+
+	ctx.resetTransform();
+
+	ctx.translate(x + img.width / 2, y + img.height / 2);
+	ctx.rotate((Math.PI/180) * angle);
+	ctx.translate(-1 * (x + img.width / 2), -1 * (y + img.height / 2));
+
+	ctx.drawImage(img, x , y , width , height);
+
+	ctx.translate(x + img.width / 2, y + img.height / 2);
+	ctx.rotate((Math.PI/180) * -1 * angle);
+	ctx.translate(-1 * (x + img.width / 2), -1 * (y + img.height / 2));
+
+	ctx.resetTransform();
+}
 
 
+function drawImage_angle2(ctx, image, x, y, degrees, scale) {
 
-export class Earwax{
-	
-	constructor(){
-	
-      this.x = 0;
-      this.y = 0;	 
-	  this.radius = 25;
-	  this.state = 0; 
-	  //0(none), 1(cleaning: tool 따라 다니기)
-	  //tool로부터의 상대적 거리 
-	  this.collision_offsetX = 0;
-	  this.collision_offsetY = 0;
-	
-	}
-		
-	
+	var w = image.width * scale;
+	var h = image.height * scale;
+
+	ctx.save();
+
+	ctx.translate(x, y);
+
+	ctx.rotate(degrees * Math.PI/180);
+	//x,y기준으로 회전
+
+	ctx.drawImage(image, -(w/2), -(h/2), w, h);
+
+     // we’re done with the rotating so restore the unrotated context
+	 //context 반환
+	ctx.restore();
+
 }
 
 //earWax, acne..
-export class Stuff{
+class Stuff{
 	
 	static state_normal = 0
 	static state_treating = 1
@@ -165,33 +183,15 @@ export class Stuff{
 	  //----------------
 	  this.rscIdx = 0;
       //----------------
+	  
+	  this.userVal = 0;
 	
 	}
 		
 	
 }
 
-
-
-export class CleanerTool{
-	
-
-	 constructor(){
-
-
-
-
-	 }	 
-		
-}
-
-/*
-export const ani_prop_loop = 1
-export const ani_prop_keep_endframe = 2
-export const ani_prop_hide_after_endframe = 4
-*/
-
-export class Sprite{
+class Sprite{
 	
 	static ani_prop_loop = 1;
 	static ani_prop_keep_endframe = 2
@@ -338,6 +338,14 @@ export class Sprite{
 
     drawFrame(ctx,  cx, cy ){
 
+/*
+drawImage(image ,canvas_x, canvas_y,canvas_width,canvas_height)
+- image : 이미지 객체
+- canvas_x : 캔버스의 x 좌표
+- canvas_y : 캔버스의 y 좌표
+- canvas_width : 캔버스 위에 그려질 이미지의 넓이
+- canvas_height : 캔버스 위에 그려질 이미지의 높이
+*/
         /*
          drawImage(img ,ix,iy,iw,ih,cx, cy,cw,ch)
 		- img : 이미지 객체 
