@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+html {
+  width: 100%;
+  height: 100%;  
+
+}
+
+body {
+ 
+  width: 100%;
+  height: 100%;  
+  
+  margin: 0;
+  padding: 0;
+  background: #888888;
+  
+  overflow: hidden;
+}
+
+
+#myCanvas {  
+
+  /*width: 500px;
+   height: 500px;
+   */
+    background: #BFBFBF;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	
+	z-index: 10;	
+    padding: 0px;
+	/*auto 남은 여백을 균등하게 배분 */
+	
+    display: none;	
+	/* 'none'-->적용 안됨  */
+}
+
+#sysMsgDiv{
+  display: none;
+
+  position: absolute;
+  width: 300px;
+  height: 80px;
+  
+  bottom: 0px;
+  
+  line-height: 80px;
+  
+  background: black;
+  color: #ffffff; 
+  
+  
+  z-index: 20; 
+  
+  
+}
+
+
+#logoDiv {
+ 
+    position: relative;
+	/*원래 있어야 할 위치에서 얼마큼 떨어져 있는지를 설정*/
+    width: 100%;
+	height: 100%;
+    text-align: center;
+	/*img text는 text-align써야 함*/
+    background: #888888;
+	z-index: 21;
+}
+
+#mainMenuDiv {
+    position: fixed;
+    right: 0px;
+    top: 0px;	
+   
+    padding: 10px;
+    width: 50%;
+	height: 100%;
+    text-align: left;
+    background: #000000;
+	display: block;
+	opacity: 0.8;
+	
+	line-height: 180%;
+
+    font-weight: bold;
+ 	
+	z-index: 21;
+}
+
+#playMenuDiv {
+    position: fixed;
+    right: 0px;
+    top: 0px;	
+   
+    padding: 10px;
+    width: 50%;
+	height: 100%;
+    text-align: left;
+    
+	background: #000000;
+	display: none;
+		
+	line-height: 150%;
+    font-weight: bold;
+ 	
+	z-index: 22;
+}
+
+
+
+.mainMenuBtn {
+	
+	width: 50%;
+    text-align: center;
+   
+	display: block;
+	
+}
+
+.menuItem {
+
+  color: gray;
+  font-size: 1.2rem;
+}
+
+#preMenuDiv {
+
+   position: fixed;
+   right: 10px;
+   top: 10px;   
+   z-index: 21;
+}
+
+/*
+ z-index 
+ : position으로 배치된 요소들은 배치되지않은 요소들의 위에 표시
+
+*/
+
+#bgDiv{
+/*%는 상위요소 기준으로 적용되므로 상위요소에 width등이 적용되어 있어야 함*/ 
+  width: 100%;
+  height: 100%;
+
+  background: black;
+  color: #ffffff; 
+  opacity: 0.7;
+   z-index: 10; 
+}
+
+#ratingDiv{
+  position: absolute;
+  width: 256px;
+  height: 256px;
+  
+  background: black;
+  
+  top: 50%;
+  left: 50%;
+  margin-left:  -128px;
+  margin-top:  -128px;
+  z-index: 20; 
+}
+
+#playInfoDiv{
+  position: absolute;
+  top: 300;
+  z-index: 21;
+
+}
+
+#playAsmrDiv{
+
+  position: relative;
+
+  width: 100%; 
+  height: 100%;
+      
+  background: #888888;
+  text-align: center;
+  
+   z-index: 20;
+ 
+}
+
+
+</style>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body  oncontextmenu="return false">
+<canvas  id="myCanvas"   style="border:1px solid #ff0000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<div id="logoDiv" >
+  <img src="./app_icon.png" width='200px'><br> 
+  presented by planB.com<br><br>
+  <button id="startBtn" type="button" onclick="start()" style="font-size: 1.2rem;">--START--</button>  
+</div>
+
+
+<div id="sysMsgDiv">
+<span id="sysMsg">시스템 메시지...</span>
+</div>
+
+<div id="preMenuDiv" style="display: none;">
+<button onclick="openBasicMenu()">☰</button>
+</div>
+
+
+<div id="mainMenuDiv" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="toggleMainMenu()">X</span></p>
+---mainMenu---<br>
+<span class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">EarCleaning</span><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">Acne</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">Waxing</a><br>
+---<br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-01')">asmr-01</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-02')">asmr-02</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-03')">asmr-03(typing)</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-04')">asmr-04(shaving)</a>
+
+</div>
+
+<div id="playMenuDiv" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="togglePlayMenu()">X</span></p>
+---playMenu---<br>
+<a class="menuItem" id="playBtn"  href= 'javascript:void(0)' onclick="playMenu_play()" >Play</a><br>
+<a class="menuItem" id="mainMenuBtn" href='javascript:void(0)' onclick="playMenu_goToMainMenu()" >MainMenu</a>
+</div>
+
+
+<div id="ratingDiv" style="display: none;">
+<!--<button class="menuBtn" id="closeRatingBtn" onclick='onCloseRatingBtn()'  type="button" style="font-size: 1.2rem">Close</button>-->
+-----
+<img src="./rating_base.png" border=0>
+</div>
+
+<div id="bgDiv" style="display: none;">
+</div>
+
+
+<div id="playAsmrDiv" style="display: none;">
+<img src="./asmr_icon.png"><br>
+<button type="button" onclick="stopAsmr()" style="font-size:1.5rem;">Stop</button>
+</div>
+
+
+<!--  --->
+<div id="playInfoDiv">
+<progress id="playProgress" value="32" max="100"> 32% </progress>
+</div>
+
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script type="text/javascript" src='./appDesc.js'></script>
+
+<script src='./wave.js'></script>
+
+<script src='./helper.js'></script>
+
+<script src='./earCleaning.js'></script>
+<script src='./acne.js'></script>
+<script src='./waxing.js'></script>
+
+
+<script  type="text/javascript">
+ var interval_ID
+ var sound_bg = new Audio("sea-01.mp3"); 
+ sound_bg.loop = true;
+
+ var gCtx 
+ var gWaveGroup;
+ 
+ let gClientWidth, gClientHeight;
+ 
+ var gAppCurT = 0
+ 
+ let gPlayObj 
+ let gAsmr 
+ 
+ let gUpperBody_img = new Image()
+ gUpperBody_img.src = './upper_body.png'
+ gUpperBody_img.onload = function(){
+ 
+ console.log('upper_body loaded')
+ 
+ }
+
+
+ let gSun_img = new Image()
+ gSun_img.src = './sun-icon.png'
+
+
+
+ let gBottomMenuH = 80
+ 
+ function playAsmr(fname){
+ 
+  console.log('playAsmr-->: ' + fname)
+  
+  let asmrDiv = document.getElementById('playAsmrDiv')
+  asmrDiv.style.display = 'block'
+  
+   let final_fname = './' + fname +'.mp3'
+ 	gAsmr = new Audio(final_fname);
+	gAsmr.loop = true 
+    gAsmr.addEventListener('canplay', onLoadAsmr);    
+  
+
+    let  mMenuDiv = document.getElementById("mainMenuDiv");
+   mMenuDiv.style.display = 'none'	
+
+    let  preMenuDiv = document.getElementById("preMenuDiv");  
+	preMenuDiv.style.display = 'none'	
+	
+ 
+ }
+ 
+ function stopAsmr(){
+  
+     gAsmr.pause()
+	 
+	  let asmrDiv = document.getElementById('playAsmrDiv')
+      asmrDiv.style.display = 'none'
+
+      sound_bg.play() 
+	  	  
+      let  preMenuDiv = document.getElementById("preMenuDiv");  
+	  preMenuDiv.style.display = 'block'	
+	  
+ }
+ 
+ 
+function onLoadAsmr(){
+	
+	 console.log('asmr.mp3 loaded')
+     sound_bg.pause()
+	 
+	 gAsmr.play()	
+}
+
+ 
+ //메뉴버튼 터치시
+function openBasicMenu(){
+ 
+    console.log('openBasicMenu.appstate--> ' + gAppstate)
+
+   if(gAppstate == appstate_mainmenu){
+   
+      toggleMainMenu()
+  
+  
+   }
+   else if(gAppstate == appstate_play){
+   
+ 	   let  preMDiv = document.getElementById("preMenuDiv");	  
+        preMDiv.style.display = 'none'	  
+ 
+    
+	   let  playMDiv = document.getElementById("playMenuDiv");
+	    playMDiv.style.display = 'block'
+      
+  
+  
+   }
+
+
+}
+
+
+function toggleMainMenu(){
+
+   console.log('toggleMainMenu')
+
+    let  mMenuDiv = document.getElementById("mainMenuDiv");
+    var  preMenuDiv = document.getElementById("preMenuDiv");
+  
+    if(mMenuDiv.style.display === 'none'){
+	
+        mMenuDiv.style.display = 'block'	
+		preMenuDiv.style.display = 'none'
+	}
+	else {
+
+        mMenuDiv.style.display = 'none'	
+		preMenuDiv.style.display = 'block'	
+	
+	}
+     
+}
+
+//-----------------
+function togglePlayMenu(){
+
+   console.log('togglePlayMenu()')
+
+    let  playMDiv = document.getElementById("playMenuDiv");
+    let  preMDiv = document.getElementById("preMenuDiv");
+  
+    if(playMDiv.style.display === 'none'){
+	
+	   console.log('playMDiv none')
+	
+        playMDiv.style.display = 'block'	
+		preMDiv.style.display = 'none'
+	}
+	else {
+
+	    console.log('playMDiv block')
+
+        playMDiv.style.display = 'none'	
+		preMDiv.style.display = 'block'	
+	
+	}
+     
+}
+
+//=======================
+
+function playMenu_play(){
+      //replay 
+      console.log('goToMainMenu')
+
+       let ratingDiv = document.getElementById("ratingDiv");
+	   
+	   if(ratingDiv.style.display == 'block'){
+	   
+     	   ratingDiv.style.display = 'none'	   
+	   }
+
+     //   let bgDiv = document.getElementById('bgDiv')
+     //  bgDiv.style.display = 'none'
+	    
+	
+
+
+}
+
+
+function playMenu_goToMainMenu(){
+  console.log('goToMainMenu')
+
+     //   let bgDiv = document.getElementById('bgDiv')
+     //  bgDiv.style.display = 'none'
+	   
+	   let ratingDiv = document.getElementById("ratingDiv");
+	   
+	   if(ratingDiv.style.display == 'block'){
+	   
+     	   ratingDiv.style.display = 'none'
+	   
+	   }
+	 
+
+   togglePlayMenu()
+
+   beginMainMenu()
+
+}
+
+//============
+//-------------------
+
+function showSysMsg(msg, spanT=0){
+
+/*
+		   let sysMsg = document.getElementById("sysMsg");
+           sysMsg.innerText = msg
+           //innerHTML은 태그까지 가능
+*/
+          let sysMsgDiv = document.getElementById("sysMsgDiv");
+          sysMsgDiv.style.display = "block"	  
+          sysMsgDiv.innerText = msg 		  
+		  
+		  if(spanT > 0){
+
+     	     setTimeout(hideSysMsg, spanT);
+		  }
+	 }
+
+	 
+function hideSysMsg(){
+		 
+  let sysMsgDiv = document.getElementById("sysMsgDiv");
+  sysMsgDiv.style.display = "none"	   
+ 
+}
+	 
+	 
+
+
+function start() {
+  //document.getElementById("demo").innerHTML = "Hello World";
+  //alert("start");
+  
+   gAppstate = appstate_mainmenu;
+ 
+   sound_bg.play()
+    
+  var  logoDiv = document.getElementById("logoDiv");
+   logoDiv.style.display = 'none'
+
+  var  preMenuDiv = document.getElementById("preMenuDiv");
+   preMenuDiv.style.display = 'block'
+    
+ 
+ // var  menuDiv = document.getElementById("mainMenuDiv");
+ //  menuDiv.style.display = 'block'
+
+  var canvas = document.getElementById('myCanvas');
+  canvas.style.display = 'block';  
+
+
+
+  const lastPlayName = window.localStorage.getItem('selectedPlay');  
+  //없다면 null이 반환됨
+  //alert(lastPlayName);
+ 
+  // interval_ID = setInterval(fadeOut, 200); 
+   interval_ID = setInterval(fadeIn, 200); 
+   
+   
+ //  showSysMsg("asdjsa;fjasfasfa")
+  
+  
+}
+
+
+function openMenuBtn(){
+
+     console.log('openMenuBtn')
+
+     var  mainMenuDiv = document.getElementById("mainMenuDiv");
+     mainMenuDiv.style.display = 'block'
+
+}
+
+/*
+  let closeRatingBtn = document.getElementById("closeRatingBtn")
+  
+		 closeRatingBtn.onclick = this.onCloseRatingBtn.bind(this)
+*/
+
+//from play ---> mainmenu
+function onCloseRatingBtn(){
+
+     console.log('onCloseRatingBtn')
+
+       let bgDiv = document.getElementById('bgDiv')
+       bgDiv.style.display = 'none'
+	    
+	   let ratingDiv = document.getElementById("ratingDiv");
+	   ratingDiv.style.display = 'none'
+	   
+	   
+	   if(gPlayObj != undefined){
+	   
+	      gPlayObj.closePlay()
+	   }
+	   	 
+ 	   beginMainMenu()
+		
+} 
+
+function beginMainMenu(){
+
+       gAppstate = appstate_mainmenu 
+	   sound_bg.play()
+
+      var  preMenuDiv = document.getElementById("preMenuDiv");
+      preMenuDiv.style.display = 'block'
+
+} 
+
+		 
+
+function fadeOut(){
+
+        var div = document.getElementById("logoDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity>0){
+            //Fade out 핵심 부분
+			opacity = opacity-0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            logoDiv.style.display = 'none'
+
+			clearInterval(interval_ID);
+		}
+
+}
+
+function fadeIn(){
+
+        var div = document.getElementById("mainMenuDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity < 1){
+          
+		    opacity = opacity+0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            //logoDiv.style.display = 'none'
+			clearInterval(interval_ID);
+		}
+
+}
+
+
+function playEarCleaning(){
+ gSelectedPlay = playkind_earCleaning
+ 
+ sound_bg.pause()
+
+ gAppstate = appstate_play;
+ gPlaystate = playstate_prepare 
+
+ console.log('begin playEarCleaning');
+
+
+//location.href = "earCleaning.html"
+
+// setItem
+window.localStorage.setItem('selectedPlay', 'earCleaning');
+//window.localStorage.setItem('age', '20');
+
+/* 
+// getItem
+const name = window.localStorage.getItem('name');
+const age = window.localStorage.getItem('age');
+ 
+// 결과 출력
+document.write(name); // anna
+document.write('<br/>');
+document.write(age);  // 20
+*/
+
+ 
+
+  gPlayObj = new earCleaning()  
+  gPlayObj.beginPrepare()
+  
+   toggleMainMenu()
+
+  
+   showSysMsg("preparing", 0)
+  
+   setTimeout(end_prepare.bind(this) , 3000)
+  
+  
+
+}
+
+
+function end_prepare(){
+
+ console.log('end_prepare')
+ gPlaystate = playstate_treatment 
+
+  showSysMsg("treatment", 0)
+
+ if(gPlayObj != undefined){
+ 
+     gPlayObj.beginTreatment()
+   }
+
+
+
+}
+
+
+
+function playAcne(){
+
+sound_bg.pause()
+
+gSelectedPlay = playkind_acne
+
+gAppstate = appstate_play;
+gPlaystate = playstate_prepare 
+
+console.log('begin playEarCleaning');
+
+window.localStorage.setItem('selectedPlay', 'acne');
+
+	 let  mMenuDiv = document.getElementById("mainMenuDiv");  
+	 mMenuDiv.style.display = 'none'	
+ 
+	 //---------------
+	
+
+  gPlayObj = new acne()  
+  gPlayObj.beginPrepare()
+  
+  // toggleMainMenu()
+   showSysMsg("preparing")
+   setTimeout(end_prepare.bind(this) , 3000)
+   
+}
+
+
+function playWaxing(){
+
+	console.log('begin playWaxing');
+
+	sound_bg.pause()
+
+	console.log('playkind_waxing: ' + playkind_waxing)
+	gSelectedPlay = playkind_waxing
+
+	gAppstate = appstate_play;
+	gPlaystate = playstate_prepare 
+
+	window.localStorage.setItem('selectedPlay', 'waxing');
+
+  let  mMenuDiv = document.getElementById("mainMenuDiv");  
+  mMenuDiv.style.display = 'none'	
+
+	 //---------------
+	
+  gPlayObj = new waxing()  
+  gPlayObj.beginPrepare()
+  
+  // toggleMainMenu()
+   showSysMsg("preparing")
+   setTimeout(end_prepare.bind(this) , 3000)
+
+}
+
+function onResize(){
+ 
+    gClientWidth = document.body.clientWidth 
+	gClientHeight =document.body.clientHeight
+
+    console.log('onResize: ' + gClientWidth + ", " + gClientHeight)
+    	
+
+    let canvas = document.getElementById('myCanvas')   
+    canvas.width  = gClientWidth 
+    canvas.height = gClientHeight    
+   
+   gWaveGroup.resize(gClientWidth, gClientHeight)
+}
+
+
+function initEvent(canvas){
+
+   if ('ontouchstart' in document.documentElement === true){
+   
+      console.log("add touchEvent");
+   
+      canvas.addEventListener("touchstart",touchS);
+      canvas.addEventListener("touchmove",touchM);
+      canvas.addEventListener("touchend",touchE);
+  
+     }	 
+	 
+	 
+	 
+	 document.addEventListener('postFinishJob', onPostFinishJob);
+
+}
+
+// playObj로부터 postFinishJob 이벤트 받은 경우  
+function onPostFinishJob(e){
+
+	gAppstate = appstate_mainmenu
+
+    console.log('onPostFinishJob') 
+	
+	sound_bg.play()
+
+
+}
+
+
+
+
+
+function touchS(e){
+
+  console.log('touchS')
+  
+   if(gPlayObj != undefined){
+     
+	 gPlayObj.touchS(e)
+      
+   }
+   
+   
+}
+
+function touchM(e){
+
+  console.log('touchM')
+   if(gPlayObj != undefined){
+     
+	 gPlayObj.touchM(e)
+      
+   }
+
+}
+
+
+function touchE(e){
+ 
+    console.log('touchE') 
+ 
+    if(gPlayObj != undefined){
+     
+	 gPlayObj.touchE(e)
+      
+   }
+
+ 
+}
+
+
+//==============
+//common interface
+//=============
+function updateFrame(){
+
+	 let curT = new Date().getTime();
+	 gAppCurT = curT 
+
+    gCtx.clearRect(0, 0, gClientWidth, gClientHeight) 
+	
+
+   if(gAppstate == appstate_mainmenu){
+
+	   if(gCtx != undefined){
+
+		  gWaveGroup.draw(gCtx) 
+		  		  
+	   
+	     gCtx.drawImage(gSun_img, 0, 0, 120, 120) 
+	   
+	   
+	   }
+	   
+	   
+   }
+   else if( gAppstate == appstate_play){
+   
+		//=================    
+		if(gPlayObj != undefined){
+		
+			gPlayObj.updateFrame(curT)
+		
+		 }
+
+		//------------------	 
+		if(gPlayObj != undefined && gCtx != undefined){
+	   
+		   gPlayObj.draw(gCtx)
+		
+		}
+	}
+	//=================
+	 
+   requestAnimationFrame(updateFrame);
+
+}
+
+
+window.onload = function(){
+
+    console.log('window.onload ')
+    let canvas = document.getElementById('myCanvas')   
+    gCtx = canvas.getContext("2d");
+   
+     initEvent(canvas);
+   
+    gWaveGroup = new WaveGroup()
+	//gWave.x = 250
+	//gWave.y = 250
+	
+	onResize()
+	
+
+    window.addEventListener('resize', onResize, false);
+	
+	
+	requestAnimationFrame(updateFrame);
+}
+
+
+
+
+</script> 
+
+</body>
+</html>
