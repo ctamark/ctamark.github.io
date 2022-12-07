@@ -12,6 +12,8 @@ permalink: /life_study/
 [국어사전_네이버](https://ko.dict.naver.com/){:target="_blank"}    
 [라임국어학원](https://www.youtube.com/channel/UCbQfkzEECenPKsoTvZNTcNg/featured){:target="_blank"}  
 
+[택스워치](https://www.taxwatch.co.kr/){:target="_blank"}  
+
 ---   
 [엑셀강좌](https://xlworks.net/){:target="_blank"}   
 [office.com](https://www.office.com/){:target="_blank"}   
@@ -30,6 +32,8 @@ permalink: /life_study/
 [국세법령정보시스템](https://txsi.hometax.go.kr/){:target="_blank"}   
 [법령정보센터](https://www.law.go.kr/){:target="_blank"}   
 [종합법률정보](https://glaw.scourt.go.kr/wsjo/intesrch/sjo022.do/){:target="_blank"}   
+
+
 
 
 **부동산세금 링크**   
