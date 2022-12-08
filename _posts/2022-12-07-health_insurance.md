@@ -62,4 +62,4 @@ title: "건강보험 피부양자요건"
 
 ---
 참고사이트   
-: [mingom2](mingom2.tistory.com){:target='_blank'}
+: [mingom2](https://mingom2.tistory.com){:target='_blank'}
