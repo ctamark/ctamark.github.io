@@ -17,16 +17,22 @@ body {
   padding: 0;
   background: #888888;
   
+  /*
   overflow: hidden;
+                         */
+   user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+
 }
 
+a { text-decoration:none }
 
 #myCanvas {  
 
   /*width: 500px;
    height: 500px;
    */
-    background: #BFBFBF;
+    background: #8F8F8F;
     position: absolute;
     top:0;
     bottom: 0;
@@ -43,13 +49,18 @@ body {
 
 #sysMsgDiv{
   display: none;
-
+  
   position: absolute;
+  /* 부모기준으로 얼마큼 떨어질지 
+  */
+  top: 20px;
+ 
+  opacity: 0.7;
+ 
   width: 300px;
   height: 80px;
   
-  bottom: 0px;
-  
+
   line-height: 80px;
   
   background: black;
@@ -74,6 +85,23 @@ body {
 	z-index: 21;
 }
 
+
+
+#screenBG{
+	position: relative;
+	display: none;
+
+	width: 100%;
+	height: 100%;
+
+    background: #000000;
+  
+   opacity: 0.8;
+
+	z-index: 22;
+
+}
+
 #mainMenuDiv {
     position: fixed;
     right: 0px;
@@ -94,7 +122,30 @@ body {
 	z-index: 21;
 }
 
-#playMenuDiv {
+#timerMenuDiv{
+
+    position: fixed;
+    right: 0px;
+    top: 0px;	
+   
+  
+    padding: 10px;
+    width: 50%;
+	height: 100%;
+    text-align: left;
+    background: #000000;
+	display: none;
+	opacity: 0.8;
+	
+	line-height: 180%;
+
+    font-weight: bold;
+ 	
+	z-index: 21;
+
+}
+
+#gameMenuDiv {
     position: fixed;
     right: 0px;
     top: 0px;	
@@ -114,6 +165,27 @@ body {
 }
 
 
+#mm_item_menu {
+    position: fixed;
+    right: 0px;
+    top: 0px;	
+   
+    padding: 20px;
+    width: 50%;
+	height: 100%;
+    text-align: left;
+    background: #000000;
+	display: block;
+	opacity: 0.8;
+	
+	line-height: 200%;
+    font-weight: bold;
+ 	
+	z-index: 21;
+}
+
+
+
 
 .mainMenuBtn {
 	
@@ -130,12 +202,13 @@ body {
   font-size: 1.2rem;
 }
 
-#preMenuDiv {
+#simpleMenuDiv {
 
    position: fixed;
    right: 10px;
    top: 10px;   
    z-index: 21;
+   background: #888888;
 }
 
 /*
@@ -171,13 +244,57 @@ body {
 
 #playInfoDiv{
   position: absolute;
-  top: 300;
-  z-index: 21;
+  /*부모기준으로 얼마나 떨어질지*/
+  top: 10;
+  z-index: 22;
+  
+  display: none 
+}
+
+#asmrDiv{
+
+  position: absolute;
+  left: 0px;
+  top: 0px;  
+
+
+ /* position: relative;*/
+  /*원래 있어야 할 위치에서 얼마나 떨어질지 */
+
+  width: 100%; 
+  height: 100%;
+  
+  display:none;
+      
+  background: #888888;
+  
+   border: solid red 5px;
+   
+   text-align: center;
+   
+   z-index: 21; 
+}
+
+#candleDiv{
+
+ position: relative;
+
+  width: 100%; 
+  height: 100%;
+  
+  border: solid red 5px;
+      
+  background: #000000;
+  text-align: center;
+  
+   z-index: 21; 
 
 }
 
-#playAsmrDiv{
-
+#configDiv{
+  /*position설정이 있어야 z-index가 적용됨
+  */
+  display: none;  
   position: relative;
 
   width: 100%; 
@@ -186,15 +303,82 @@ body {
   background: #888888;
   text-align: center;
   
-   z-index: 20;
+  z-index: 20;
+  
+  overflow: auto;
+  white-space: pre-wrap; /* pre tag내에 word wrap */
  
 }
+
+#asmrMixDiv{
+
+  position: fixed;
+  display: none;
+  
+  left: 0px;
+  top: 0px;	
+  
+  padding: 20px;
+  
+  text-align: left;
+  width: 60%;
+  height: 100%;
+  
+  opacity: 0.9;
+      
+  color: white;	  
+  background: #000000;
+  
+  line-height: 180%;
+  
+  z-index: 22;
+  
+}
+
+
+.configMenu{
+
+  width: 100%;
+  text-align: center;
+}
+
+
+#comMenuDiv {
+    position: fixed;
+    right: 0px;
+    top: 0px;	
+   
+    padding: 10px;
+    width: 60%;
+	height: 100%;
+    text-align: left;
+  
+    color: gray;  
+	background: #000000;
+	display: none;
+  
+    opacity: 0.8;  
+	
+	line-height: 160%;
+    font-weight: bold;
+ 	
+	z-index: 23;
+}
+
 
 
 </style>
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<script type="text/javascript">
+   window.addEventListener('load', function() {
+     setTimeout(scrollTo, 0, 0, 1);
+    }, false);
+</script>
+
 </head>
 
 <body  oncontextmenu="return false">
@@ -214,31 +398,51 @@ Your browser does not support the HTML5 canvas tag.
 <span id="sysMsg">시스템 메시지...</span>
 </div>
 
-<div id="preMenuDiv" style="display: none;">
-<button onclick="openBasicMenu()">☰</button>
+<div id="simpleMenuDiv" style="display: none;">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem;'>☰</span>
+
+</div>
+
+
+<div id='screenBG' onclick="closeMainMenu()">
 </div>
 
 
 <div id="mainMenuDiv" style="display: none;">
 <p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="toggleMainMenu()">X</span></p>
----mainMenu---<br>
-<span class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">EarCleaning</span><br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">Acne</a><br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">Waxing</a><br>
+<font color='white'>[ASMR Game]</font><br>
+<a class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">- EarCleaning</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">- Acne</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">- Waxing</a><br>
+<font color='white'>---</font><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="pomodoro()">Pomodoro Timer</a><br>
+<font color='white'>---</font><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="onAsmr(9)">ASMR</a><br><br>
 ---<br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-01')">asmr-01</a><br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-02')">asmr-02</a><br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-03')">asmr-03(typing)</a><br>
-<a class='menuItem'  href="javascript:void(0);" onclick="playAsmr('asmr-04')">asmr-04(shaving)</a>
+<a class='menuItem'  href="javascript:void(0);" onclick="onCandle()">Candle</a><br>
+---<br>
 
+
+<a class='menuItem'  href="javascript:void(0);" onclick="openConfig()"><img src='./config.png' width='50'></a> 
 </div>
 
-<div id="playMenuDiv" style="display: none;">
+
+<div id="gameMenuDiv" style="display: none;">
 <p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="togglePlayMenu()">X</span></p>
 ---playMenu---<br>
-<a class="menuItem" id="playBtn"  href= 'javascript:void(0)' onclick="playMenu_play()" >Play</a><br>
-<a class="menuItem" id="mainMenuBtn" href='javascript:void(0)' onclick="playMenu_goToMainMenu()" >MainMenu</a>
+<a class="menuItem" id="playBtn"  href= 'javascript:void(0)' onclick="playMenu_play()" >RePlay</a><br>
+<font color='white'>-----</font><br>
+<a class="menuItem" id="mainMenuBtn" href='javascript:void(0)' onclick="quitAsmrGame()" >Quit</a>
 </div>
+
+
+<!--mm(mainMenu)-->
+<div id="mm_item_menu" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="closeItemMenu()">X</span></p>
+--------<br>
+<a class="menuItem" id="mm_item_menuBtn"  href= 'javascript:void(0)' onclick="onClose_mm_item_menuBtn()" >Close</a>
+</div>
+
 
 
 <div id="ratingDiv" style="display: none;">
@@ -251,15 +455,122 @@ Your browser does not support the HTML5 canvas tag.
 </div>
 
 
-<div id="playAsmrDiv" style="display: none;">
-<img src="./asmr_icon.png"><br>
-<button type="button" onclick="stopAsmr()" style="font-size:1.5rem;">Stop</button>
+<div id="asmrDiv" >
+<div style="float:right; width:80px; height:80px; margin:10px; font-size:1.2rem; border: solid 2px green; ">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem;'>☰</span>
+</div>
+
+<div style="float:left; width:80px; height:80px; margin:10px; font-size:1.2rem; border: solid 2px green; ">
+<span onclick="onAsmrMix()" style='font-size: 1.2rem;'>asmrMix</span>
+</div>
+
+<div style="border: 2px solid black; width:100%; height:50%;">
+</div>
+<div style="width:100%; height:50%;">
+</div>
+
+
+<div style="width: 200px; height: 200px;  text-align:center; position:absolute; left:50%; top:50%; margin-left: -100px; margin-top: -100px; ">
+<span id='asmrName'>---</span>
+<img id='asmrBG'  src="./bg_night.png" width='80%'><br>
+</div>
+
+</div>
+
+
+<!--   -->
+<div id='comMenuDiv'>
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="onCloseComMenu()">X</span></p>
+<a class='menuItem'  id='menu-quit'  href="javascript:void(0);" onclick="closeCurState()">Quit</a><br>
+<font color='gray'>-----</font><br>
+
+<font color='white'>[ASMR Game]</font><br>
+<a class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">- EarCleaning</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">- Acne</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">- Waxing</a><br>
+<font color='gray'>-----</font><br><br>
+
+<a class='menuItem' id='menu-asmr'  href="javascript:void(0);" onclick="onAsmr(-1)">ASMR</a><br>
+
+<font color='gray'>-----</font><br><br>
+<a class='menuItem'  id='menu-timer' href="javascript:void(0);" onclick="onPomodoro()">Pomodoro Timer</a>
+- <label><input type="checkbox" id="autoStartCB" checked='checked' onclick='onCheckboxAutoStart(event)'><font color='gray'>autoStart</font></label><br>
+---<br>
+- focusTime: <span id="focusTimeVal">25</span><br>   
+<label><input type="range" id="focusTimeRange"  style="width: 90%;" min='5' max='60' value="25" ></label><br>
+
+
+<font color='gray'>-----</font><br>
+<a class='menuItem'  id= 'menu-candle' href="javascript:void(0);" onclick="onCandle()">Candle</a><br><br>
+
+</div>
+
+
+
+<div id="candleDiv" style="display: none;">
+<div style="float:right; width:80px; height:80px; margin:10px; font-size:1.2rem; border: solid 2px green; ">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem; color: gray;' >☰</span>
+</div>
+<div style="float:left; width:80px; height:80px; margin:10px; font-size:1.2rem; border: solid 2px red; ">
+<span onclick="onAsmrMix()" style='font-size: 1.2rem; color: white;'>asmrMix</span>
+</div>
+<img src="./bg_candle.gif"  width='50%' style='border: 2px solid green;'>
 </div>
 
 
 <!--  --->
 <div id="playInfoDiv">
 <progress id="playProgress" value="32" max="100"> 32% </progress>
+</div>
+
+
+<div id='timerMenuDiv'>
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="onCloseTimerComMenu()">X</span></p>
+
+<a class='menuItem'  href="javascript:void(0);" onclick="quitPomodoro()">Quit</a><br>
+<font color='gray'>-----</font><br>
+
+</div>
+
+
+
+<!-- --->
+<div id='asmrMixDiv'>
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="onCloseAsmrMix()">X</span></p>
+
+[asmr sound]<br>(multi check possible)<br><br>
+<label><input type="checkbox" id="asmrSlot-00-CB"  value = '01' checked='checked' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-01</font></label><br>
+<label><input type="checkbox" id="asmrSlot-01-CB"  value = '02' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-02</font></label><br>
+<label><input type="checkbox" id="asmrSlot-02-CB"  value = '03' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-typing</font></label><br>
+<br>
+<font color='white'>---</font><br>
+<input type="checkbox" id="asmrSlot-03-CB"  value = '04' onclick='onCBAsmrSlot(this)'>asmr-04(shaving)</label><br>
+<input type="checkbox" id="asmrSlot-04-CB"  value = '05' onclick='onCBAsmrSlot(this)'>asmr-05(cafe)</a><br>
+<input type="checkbox" id="asmrSlot-05-CB"  value = '06' onclick='onCBAsmrSlot(this)'>asmr-06(cafe)</a><br>
+---<br>
+<input type="checkbox" id="asmrSlot-06-CB"  value = '07' onclick='onCBAsmrSlot(this)'>asmr-rain</a><br>
+<input type="checkbox" id="asmrSlot-07-CB"  value = '08' onclick='onCBAsmrSlot(this)'>asmr-forest</a><br>
+<input type="checkbox" id="asmrSlot-08-CB"  value = '09' onclick='onCBAsmrSlot(this)'>asmr-criket</a><br>
+<input type="checkbox" id="asmrSlot-09-CB"  value = '10' onclick='onCBAsmrSlot(this)'>asmr-sea</a><br>
+---
+</div>
+
+
+
+<div id='configDiv'>
+-----
+config
+-----
+<!--
+  <input type="range" min="1" max="100" value="50" class="slider" id="volumeRange">
+  <p>Value: <span id="volumeValue"></span></p>-->
+      
+  <label><input type="checkbox" id="keepScreenOnCB" checked='checked' onclick='onCheckboxKeepScreenOn(event)'><font color='white'>Keep Screen On</font></label><br>
+   
+  <div class='configMenu'>      
+  <button type="button" onclick="closeConfig()" style="font-size:1.2rem;">Close</button> | <button type="button" onclick="applyConfig()" style="font-size:1.2rem;">apply</button>
+  </div>
+
 </div>
 
 
@@ -274,11 +585,33 @@ Your browser does not support the HTML5 canvas tag.
 <script src='./acne.js'></script>
 <script src='./waxing.js'></script>
 
+<script src='./pTimer.js'></script>
+
 
 <script  type="text/javascript">
+
+
+var slider = document.getElementById('focusTimeRange');
+let focusTVal = document.getElementById('focusTimeVal');
+//output.innerHTML = slider.value;
+ slider.oninput = function() {
+ 
+	focusTVal.innerHTML = this.value;	
+	console.log('oninput: ' + slider.value)	
+	
+	if(gPTimer != undefined){
+	
+	gPTimer.focusMin = this.value
+	
+	}
+	
+} 
+
+
+
+var gMainmenuItem = 0 
+
  var interval_ID
- var sound_bg = new Audio("sea-01.mp3"); 
- sound_bg.loop = true;
 
  var gCtx 
  var gWaveGroup;
@@ -286,6 +619,12 @@ Your browser does not support the HTML5 canvas tag.
  let gClientWidth, gClientHeight;
  
  var gAppCurT = 0
+ 
+ 
+ let gAsmrArray = [] 
+ 
+ let gCurAsmrIdx = 0
+ 
  
  let gPlayObj 
  let gAsmr 
@@ -299,6 +638,8 @@ Your browser does not support the HTML5 canvas tag.
  }
 
 
+let gPTimer = undefined
+
  let gSun_img = new Image()
  gSun_img.src = './sun-icon.png'
 
@@ -306,73 +647,538 @@ Your browser does not support the HTML5 canvas tag.
 
  let gBottomMenuH = 80
  
- function playAsmr(fname){
+function initAsmr(){
+
+  console.log('initAsmr')
+  
+   gAsmrArray.push(new Audio("./asmr-01.mp3"))
+   gAsmrArray.push(new Audio("./asmr-02.mp3"))
+   gAsmrArray.push(new Audio("./asmr-typing.mp3"))   
+
+   gAsmrArray.push(new Audio("./asmr-04.mp3"))   
+   gAsmrArray.push(new Audio("./asmr-05.mp3"))   
+   gAsmrArray.push(new Audio("./asmr-06.mp3"))   
+   
+   gAsmrArray.push(new Audio("./asmr-rain.mp3") )   
+   gAsmrArray.push(new Audio("./asmr-forest.mp3") )   
+   gAsmrArray.push(new Audio("./asmr-cricket.mp3") )   
+   
+   gAsmrArray.push(new Audio("./asmr-sea.mp3") )   
+   
+
+}
+
+
  
-  console.log('playAsmr-->: ' + fname)
-  
-  let asmrDiv = document.getElementById('playAsmrDiv')
-  asmrDiv.style.display = 'block'
-  
-   let final_fname = './' + fname +'.mp3'
- 	gAsmr = new Audio(final_fname);
-	gAsmr.loop = true 
-    gAsmr.addEventListener('canplay', onLoadAsmr);    
-  
+ function onAsmr(idx){
 
-    let  mMenuDiv = document.getElementById("mainMenuDiv");
-   mMenuDiv.style.display = 'none'	
-
-    let  preMenuDiv = document.getElementById("preMenuDiv");  
-	preMenuDiv.style.display = 'none'	
+    if(gMainmenuItem == mainmenu_item_asmr){
+	
+    	return 
+	}
+	
+	closeCurState()
+	
 	
  
+    gMainmenuItem  = mainmenu_item_asmr 
+   
+    let screenBG = document.getElementById('screenBG')
+	screenBG.style.display = 'none'
+	
+    let  comMenuDiv = document.getElementById("comMenuDiv");
+    comMenuDiv.style.display = 'none'	
+
+
+    let  moreMenuDiv = document.getElementById("simpleMenuDiv");  
+   moreMenuDiv.style.display = 'block'	
+
+   let asmrDiv = document.getElementById('asmrDiv')
+   asmrDiv.style.display = 'block'
+  
+  
+    if(idx >= 0){
+
+		gCurAsmrIdx = idx 
+		console.log('onAsmr-->: ' + idx)
+	  
+		let curAsmr =  gAsmrArray[idx]
+		curAsmr.loop = true 
+		curAsmr.play()
+		
+		let name = document.getElementById('asmrName')
+		name.innerText = 'firstIdx' + idx
+	}
+   
+   //------------
+ 
  }
+ 
+ 
+ 
  
  function stopAsmr(){
   
      gAsmr.pause()
 	 
-	  let asmrDiv = document.getElementById('playAsmrDiv')
+	 gMainmenuItem = 0
+	 
+	  let asmrDiv = document.getElementById('asmrDiv')
       asmrDiv.style.display = 'none'
 
-      sound_bg.play() 
+  
 	  	  
-      let  preMenuDiv = document.getElementById("preMenuDiv");  
+      let  preMenuDiv = document.getElementById("simpleMenuDiv");  
 	  preMenuDiv.style.display = 'block'	
 	  
  }
  
+ function onAsmrMix(){
+ 
+ console.log('onAsmrMix')
+
+        //z: 21
+        let screenBG = document.getElementById('screenBG')
+	    screenBG.style.display = 'block'
+ 
+		let asmrMix =	document.getElementById('asmrMixDiv')
+		asmrMix.style.display = 'block'		
+		
+		for(let i=0; i < gAsmrArray.length; i++){
+		
+		  let sound =  gAsmrArray[i]
+		  
+		  let elmtCB = getAsmrSlotCB(i)
+          
+		   if(sound.paused){
+         
+	    	 elmtCB.checked = false 
+		   }
+          else {
+
+	    	 elmtCB.checked = true 
+			 
+            }		  
+		
+		}
+		  
+ }
+ 
+ 
+ function getAsmrSlotCB(idx){
+ 
+   let elmt = undefined
+   let numStr = '0' + idx 
+   let name = 'asmrSlot-' + numStr + '-CB'
+       
+    elmt = document.getElementById(name)
+ 
+    return elmt  
+ }
+ 
+ 
+ 
+function onCloseAsmrMix(){
+
+ //z:22
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'
+//z:22
+  let asmrMix =	document.getElementById('asmrMixDiv')
+  asmrMix.style.display = 'none'
+
+}
+
+
+
+function onCBAsmrSlot(cb){
+
+   console.log('onCBAsmrSlot: name:' + cb.name +', value' +  cb.value)
+ 
+   let slot_idx = parseInt(cb.value) - 1 
+   //parseInt 대신 Number()사용도 가능 
+   console.log("slot-idx: " + slot_idx)
+ 
+   let asmr = gAsmrArray[slot_idx]
+   
+   if(cb.checked){
+   
+       asmr.loop = true 
+       asmr.play();
+   
+   }
+   else {
+
+      asmr.pause();
+   }
+
+
+}
+
+
+function onCandle() {
+
+    console.log('onCandle')
+	
+   closeCurState()
+
+   gMainmenuItem  = mainmenu_item_candle
+   
+   let asmrDiv = document.getElementById('asmrDiv')
+   asmrDiv.style.display = 'none'
+ 
+   let candleDiv = document.getElementById('candleDiv')
+   candleDiv.style.display = 'block'
+  
+  /*
+   let final_fname = './' + fname +'.mp3'
+ 	gAsmr = new Audio(final_fname);
+	gAsmr.loop = true 
+    gAsmr.addEventListener('canplay', onLoadAsmr);    
+ */
+ 
+    let screenBG = document.getElementById('screenBG')
+	screenBG.style.display = 'none'
+
+    let  comMenuDiv = document.getElementById("comMenuDiv");
+     comMenuDiv.style.display = 'none'	
+   
+
+    let  preMenuDiv = document.getElementById("simpleMenuDiv");  
+	preMenuDiv.style.display = 'none'	
+	
+//	let asmrMix = document.getElementById('asmrMixDiv');
+//	asmrMix.style.display = 'none'
+
+}
+
+
+function closeCandle(){
+
+   console.log('closeCandle')
+   
+    let candleDiv = document.getElementById('candleDiv')
+    candleDiv.style.display = 'none'
+	
+    let  menu_IconDiv = document.getElementById("simpleMenuDiv");  
+	menu_IconDiv.style.display = 'block'	
+      
+    gMainmenuItem  = 0
+   
+}
+
+
+function onPomodoro(){
+
+ console.log('onPomodoro()')
+
+  closeCurState()
+
+  let  comMenuDiv = document.getElementById("comMenuDiv");
+   comMenuDiv.style.display = 'none'	
+   
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'  
+   
+  let moreMenu = document.getElementById('simpleMenuDiv')
+  moreMenu.style.display = 'block'  
+	
+	
+	
+  gMainmenuItem  = mainmenu_item_pomodoro
+
+  if(gPTimer == undefined){ 
+ 
+     gPTimer = new PTimer()
+  }
+  
+  gPTimer.init()
+  //5분휴식  
+  gPTimer.begin_stateRest(5)
+
+}
+
+
+
+function onCloseTimerMenuDiv(){
+
+   let div = document.getElementById('timerMenuDiv')
+   div.style.display = 'none'
+
+}
+
+function onCheckboxAutoStart(event){
+
+   if(event.target.checked){
+   
+      gPTimer.isAutoStart = true 
+	//  console.log('autoStart=true')
+   
+   }
+   else {
+
+
+      gPTimer.isAutoStart = false
+	      //  console.log('autoStart=false')
+      
+   }
+
+
+}
+
+
+function quitPomodoro(){
+ 
+   console.log('quitPomodoro')
+
+   let div = document.getElementById('timerMenuDiv')
+   div.style.display = 'none'
+   
+   gMainmenuItem = 0
+   
+ //  gPTimer = undefined
+  
+
+}
+
+
+
+function onCloseComMenu(){
+
+
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'
+
+  let menuDiv = document.getElementById('comMenuDiv') 
+  menuDiv.style.display = 'none'
+ 
+  let moreMenuIcon = document.getElementById('simpleMenuDiv')
+  moreMenuIcon.style.display = 'block'
+ 
+}
+
+
+function closeCurState(){
+
+
+  let menuDiv = document.getElementById('comMenuDiv') 
+  menuDiv.style.display = 'none'
+
+   if(gAppstate == appstate_mainmenu){
+
+         if(gMainmenuItem == mainmenu_item_asmr){
+		 
+		     let asmrDiv = document.getElementById('asmrDiv')
+			 asmrDiv.style.display = 'none' 
+			
+		 }
+    	 else if(gMainmenuItem == mainmenu_item_pomodoro){
+				
+				//canvas Div가 표시 
+		    // let pomoDiv = document.getElementById('timerMenuDiv')
+			// pomoDiv.style.display = 'none' 
+		   // gMainmenuItem = mainmenu_item_asmr
+		     
+		     //let asmrDiv = document.getElementById('asmrDiv')
+			 //asmrDiv.style.display = 'block' 
+			 			 
+		
+		 }else if(gMainmenuItem == mainmenu_item_candle){
+		 
+		 
+		    let candleDiv = document.getElementById('candleDiv')
+			 candleDiv.style.display = 'none' 
+		 
+		 
+		 }
+
+   }
+
+}
+
+
+
+function onClose_mm_item_menuBtn(){
+
+   console.log('onClose_mm_item_menuBtn')
+   
+   
+    let itemMM = document.getElementById('mm_item_menu')
+   itemMM.style.display = 'none'
+   
+   if(gMainmenuItem == mainmenu_item_asmr){
+   
+     let asmrDiv = document.getElementById('playAsmrDiv')
+      asmrDiv.style.display = 'none'
+   
+   }
+   else if( gMainmenuItem == mainmenu_item_candle){
+
+     let candleDiv = document.getElementById('candleDiv')
+      candleDiv.style.display = 'none'   
+   }
+   
+	  gMainmenuItem = 0 
+   
+   
+
+}
+
+
+function openConfig(){
+
+    let  mMenuDiv = document.getElementById("mainMenuDiv");
+    mMenuDiv.style.display = 'none'	
+	
+	let moreMenuDiv =document.getElementById("simpleMenuDiv");
+	moreMenuDiv.style.display = 'none'
+   
+	let  cfgDiv = document.getElementById('configDiv')
+	cfgDiv.style.display = 'block'
+} 
+
+
+function onCheckboxKeepScreenOn(event){
+
+   let isActive = event.target.checked
+
+  //App의 함수호출    
+  android.setKeepScreenOn(isActive)
+
+
+
+}
+
+function  closeConfig(){
+
+    let moreMenuDiv =document.getElementById("simpleMenuDiv");
+	moreMenuDiv.style.display = 'block'
+
+
+	let  cfgDiv = document.getElementById('configDiv')
+	cfgDiv.style.display = 'none'
+
+}
+
+
+
  
 function onLoadAsmr(){
 	
 	 console.log('asmr.mp3 loaded')
-     sound_bg.pause()
+    // gSound_bg.pause()
 	 
-	 gAsmr.play()	
+	 let curAsmr = gAsmrArray[gCurAsmrIdx]
+	 curAsmr.play()	 
 }
 
  
- //메뉴버튼 터치시
-function openBasicMenu(){
+ //더보기메뉴버튼 터치시
+function openRelativeMenu(){
  
-    console.log('openBasicMenu.appstate--> ' + gAppstate)
+    console.log('openRelativeMenu.appstate--> ' + gAppstate)
+	
+	    let  menuIcon = document.getElementById("simpleMenuDiv");	  
+        menuIcon.style.display = 'none'	  
+ 
+	
 
    if(gAppstate == appstate_mainmenu){
    
-      toggleMainMenu()
+   
+      if(gMainmenuItem == mainmenu_item_asmr ){
+
+		  
+			 let menuDiv =	document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'
+			  
+			  let screenBG = document.getElementById('screenBG')
+			  screenBG.style.display = 'block'
+			  		  
+			  let quit_item = document.getElementById('menu-quit')
+			  quit_item.style.display = 'none'
+		 
+		     let asmr_item  = document.getElementById('menu-asmr')
+			 asmr_item.style.display = 'none'
+			 
+			  let timer_item  = document.getElementById('menu-timer')
+			 timer_item.style.display = 'block'			
+	
+		     let mitem  = document.getElementById('menu-candle')
+			 mitem.style.display = 'block'
+		      		 
+
+      }else if(gMainmenuItem == mainmenu_item_candle){
+	  
+	    	  let quit_item = document.getElementById('menu-quit')
+			  quit_item.style.display = 'none'
+		
+             let asmr_item  = document.getElementById('menu-asmr')
+			 asmr_item.style.display = 'block'
   
+             let timer_item  = document.getElementById('menu-timer')
+			 timer_item.style.display = 'block'			
+	
+		     let mitem  = document.getElementById('menu-candle')
+			 mitem.style.display = 'none'
+	  
+  	         let menuDiv =	document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'
+	  
+	  } 
+	  else if(gMainmenuItem == mainmenu_item_pomodoro){
+	  
+        	 let menuDiv =		document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'	
+		  		  
+		   let checkBox = document.getElementById('autoStartCB')
+	
+	
+		  if(gPTimer != undefined){
+		 
+              console.log('gPTimer.isAutoStart' + gPTimer.isAutoStart)
+		 
+		       checkBox.checked = gPTimer.isAutoStart
+		  }
+		  else {
+		  		  
+		  }		  
+		  
+		      let asmr_item  = document.getElementById('menu-asmr')
+			 asmr_item.style.display = 'block'
+  
+         //    let timer_item  = document.getElementById('menu-timer')
+		//	 timer_item.style.display = 'none'			
+	
+		     let mitem  = document.getElementById('menu-candle')
+			 mitem.style.display = 'block'
+			 
+		  
+		  
+		  
+	  } 
+	  else {
+	 
+	       let screenBG = document.getElementById('screenBG');
+		   screenBG.style.display = 'block'
+	 
+	       let mmenu = document.getElementById('mainMenuDiv')
+	       mmenu.style.display = 'block' 
+      }
+	 
   
    }
    else if(gAppstate == appstate_play){
    
- 	   let  preMDiv = document.getElementById("preMenuDiv");	  
+   
+   
+ 	   let  preMDiv = document.getElementById("simpleMenuDiv");	  
         preMDiv.style.display = 'none'	  
  
     
-	   let  playMDiv = document.getElementById("playMenuDiv");
+	   let  playMDiv = document.getElementById("gameMenuDiv");
 	    playMDiv.style.display = 'block'
       
-  
   
    }
 
@@ -385,7 +1191,7 @@ function toggleMainMenu(){
    console.log('toggleMainMenu')
 
     let  mMenuDiv = document.getElementById("mainMenuDiv");
-    var  preMenuDiv = document.getElementById("preMenuDiv");
+    var  preMenuDiv = document.getElementById("simpleMenuDiv");
   
     if(mMenuDiv.style.display === 'none'){
 	
@@ -393,6 +1199,9 @@ function toggleMainMenu(){
 		preMenuDiv.style.display = 'none'
 	}
 	else {
+	
+   	    let screenBG = document.getElementById('screenBG');
+		screenBG.style.display = 'none'
 
         mMenuDiv.style.display = 'none'	
 		preMenuDiv.style.display = 'block'	
@@ -401,13 +1210,27 @@ function toggleMainMenu(){
      
 }
 
+
+function closeMainMenu(){
+
+   let bgDiv = document.getElementById('screenBG')
+   bgDiv.style.display = 'none'
+
+   let  mMenuDiv = document.getElementById("mainMenuDiv");
+   mMenuDiv.style.display = 'none'
+   
+    var  menuIconDiv = document.getElementById("simpleMenuDiv");
+    menuIconDiv.style.display = 'block'	
+
+}
+
 //-----------------
 function togglePlayMenu(){
 
    console.log('togglePlayMenu()')
 
-    let  playMDiv = document.getElementById("playMenuDiv");
-    let  preMDiv = document.getElementById("preMenuDiv");
+    let  playMDiv = document.getElementById("gameMenuDiv");
+    let  preMDiv = document.getElementById("simpleMenuDiv");
   
     if(playMDiv.style.display === 'none'){
 	
@@ -428,7 +1251,7 @@ function togglePlayMenu(){
 }
 
 //=======================
-
+//다시 플레이 하는 경우 
 function playMenu_play(){
       //replay 
       console.log('goToMainMenu')
@@ -439,7 +1262,41 @@ function playMenu_play(){
 	   
      	   ratingDiv.style.display = 'none'	   
 	   }
+	   
+	   
+	    gAppstate = appstate_play;
+        gPlaystate = playstate_prepare 
 
+	   
+	    if(gSelectedPlay == playkind_earCleaning){
+		
+		 console.log('begin playEarCleaning');
+
+		
+		}
+		else if (gSelectedPlay == playkind_acne){
+		
+		
+		
+		}else if(gSelectedPlay == playkind_waxing){
+		
+		
+		
+		}
+	   
+   if(gPlayObj != undefined){
+
+		   gPlayObj.beginPrepare()	   
+   
+   }
+	  
+   let menuDiv = document.getElementById('gameMenuDiv')
+   menuDiv.style.display = 'none'   
+ 
+   showSysMsg("preparing", 5000)
+  
+   setTimeout(end_prepare.bind(this) , 3000)
+  
      //   let bgDiv = document.getElementById('bgDiv')
      //  bgDiv.style.display = 'none'
 	    
@@ -462,6 +1319,13 @@ function playMenu_goToMainMenu(){
      	   ratingDiv.style.display = 'none'
 	   
 	   }
+	 
+	   if(gPlayObj != undefined){
+	   
+	       gPlayObj.closePlay()
+	   
+	   }
+	 
 	 
 
    togglePlayMenu()
@@ -507,14 +1371,17 @@ function start() {
   
    gAppstate = appstate_mainmenu;
  
-   sound_bg.play()
     
   var  logoDiv = document.getElementById("logoDiv");
    logoDiv.style.display = 'none'
 
-  var  preMenuDiv = document.getElementById("preMenuDiv");
+  var  preMenuDiv = document.getElementById("simpleMenuDiv");
    preMenuDiv.style.display = 'block'
-    
+
+ //  gMainmenuItem = mainmenu_item_asmr    
+	
+	//
+	onAsmr(9)
  
  // var  menuDiv = document.getElementById("mainMenuDiv");
  //  menuDiv.style.display = 'block'
@@ -577,9 +1444,9 @@ function onCloseRatingBtn(){
 function beginMainMenu(){
 
        gAppstate = appstate_mainmenu 
-	   sound_bg.play()
 
-      var  preMenuDiv = document.getElementById("preMenuDiv");
+
+      var  preMenuDiv = document.getElementById("simpleMenuDiv");
       preMenuDiv.style.display = 'block'
 
 } 
@@ -626,10 +1493,40 @@ function fadeIn(){
 }
 
 
+function showComMenu(isShow){
+
+		let menuDiv = document.getElementById('comMenuDiv')		
+		let screenBG = document.getElementById('screenBG')
+
+		if(isShow){
+	         	screenBG.style.display = 'block'
+            	menuDiv.style.display = 'block'
+		
+		}
+		else {
+
+			screenBG.style.display = 'none'
+			menuDiv.style.display = 'none'
+
+		}
+}
+
+
 function playEarCleaning(){
- gSelectedPlay = playkind_earCleaning
- 
- sound_bg.pause()
+
+
+     closeCurState()
+	 
+	 showComMenu(false)
+
+	
+	let moreMenu = document.getElementById('simpleMenuDiv')
+	moreMenu.style.display = 'block'
+
+    gSelectedPlay = playkind_earCleaning
+
+
+
 
  gAppstate = appstate_play;
  gPlaystate = playstate_prepare 
@@ -659,10 +1556,10 @@ document.write(age);  // 20
   gPlayObj = new earCleaning()  
   gPlayObj.beginPrepare()
   
-   toggleMainMenu()
+
 
   
-   showSysMsg("preparing", 0)
+   showSysMsg("preparing", 5000)
   
    setTimeout(end_prepare.bind(this) , 3000)
   
@@ -676,7 +1573,7 @@ function end_prepare(){
  console.log('end_prepare')
  gPlaystate = playstate_treatment 
 
-  showSysMsg("treatment", 0)
+  showSysMsg("treatment", 5000)
 
  if(gPlayObj != undefined){
  
@@ -691,7 +1588,6 @@ function end_prepare(){
 
 function playAcne(){
 
-sound_bg.pause()
 
 gSelectedPlay = playkind_acne
 
@@ -700,7 +1596,7 @@ gPlaystate = playstate_prepare
 
 console.log('begin playEarCleaning');
 
-window.localStorage.setItem('selectedPlay', 'acne');
+     window.localStorage.setItem('selectedPlay', 'acne');
 
 	 let  mMenuDiv = document.getElementById("mainMenuDiv");  
 	 mMenuDiv.style.display = 'none'	
@@ -722,7 +1618,6 @@ function playWaxing(){
 
 	console.log('begin playWaxing');
 
-	sound_bg.pause()
 
 	console.log('playkind_waxing: ' + playkind_waxing)
 	gSelectedPlay = playkind_waxing
@@ -743,6 +1638,19 @@ function playWaxing(){
   // toggleMainMenu()
    showSysMsg("preparing")
    setTimeout(end_prepare.bind(this) , 3000)
+
+}
+
+function quitAsmrGame(){
+
+   let  playMDiv = document.getElementById("gameMenuDiv");
+   playMDiv.style.display = 'none'
+       
+
+ 	   
+  gAppstate = appstate_mainmenu
+
+  onAsmr(-1)
 
 }
 
@@ -768,9 +1676,10 @@ function initEvent(canvas){
    
       console.log("add touchEvent");
    
-      canvas.addEventListener("touchstart",touchS);
-      canvas.addEventListener("touchmove",touchM);
-      canvas.addEventListener("touchend",touchE);
+      canvas.addEventListener("touchstart",touchS, false);
+      canvas.addEventListener("touchmove",touchM, false);
+     // document.body.addEventListener("touchmove",touchM);
+      canvas.addEventListener("touchend",touchE, false);
   
      }	 
 	 
@@ -787,7 +1696,7 @@ function onPostFinishJob(e){
 
     console.log('onPostFinishJob') 
 	
-	sound_bg.play()
+	
 
 
 }
@@ -800,7 +1709,11 @@ function touchS(e){
 
   console.log('touchS')
   
-   if(gPlayObj != undefined){
+  if(gPTimer != undefined){
+  
+      gPTimer.touchS(e)
+  }
+  else if(gPlayObj != undefined){
      
 	 gPlayObj.touchS(e)
       
@@ -810,6 +1723,8 @@ function touchS(e){
 }
 
 function touchM(e){
+
+  e.preventDefault()
 
   console.log('touchM')
    if(gPlayObj != undefined){
@@ -849,12 +1764,23 @@ function updateFrame(){
    if(gAppstate == appstate_mainmenu){
 
 	   if(gCtx != undefined){
-
-		  gWaveGroup.draw(gCtx) 
-		  		  
 	   
-	     gCtx.drawImage(gSun_img, 0, 0, 120, 120) 
+	     gWaveGroup.draw(gCtx) 
+		 
+		 
+		 if(gMainmenuItem != mainmenu_item_pomodoro){ 
+		 
+	         gCtx.drawImage(gSun_img, 0, 0, 120, 120) 
+	      }
+		  
 	   
+	     if(gMainmenuItem == mainmenu_item_pomodoro){ 
+		 
+			 if(gPTimer!=undefined){
+			 
+				 gPTimer.draw(gCtx)
+			   }
+	      }
 	   
 	   }
 	   
@@ -889,6 +1815,7 @@ window.onload = function(){
     let canvas = document.getElementById('myCanvas')   
     gCtx = canvas.getContext("2d");
    
+     initAsmr()
      initEvent(canvas);
    
     gWaveGroup = new WaveGroup()

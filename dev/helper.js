@@ -182,9 +182,11 @@ class Stuff{
 	  this.drawPosY = 0;
 	  //----------------
 	  this.rscIdx = 0;
+	  this.id = 0;
       //----------------
 	  
 	  this.userVal = 0;
+	  this.userFlag = 0;
 	
 	}
 		

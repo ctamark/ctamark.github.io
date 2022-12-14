@@ -3,11 +3,13 @@
 const facestate_normal = 0
 const facestate_good = 1
 //0x00000001
-const facestate_bad = 2
+const facestate_bad = 0x00000010
 //0x00000010
 const face_lip_bad        =  0x00000100
 const face_eyebrow_bad = 0x00001000
 const face_eye_good     = 0x00010000
+
+const facestate_bad2     = 0x00100000
 
 //------
 const  playkind_earCleaning = 0
@@ -22,6 +24,11 @@ const appstate_mainmenu = 1
 const appstate_waitPlaykind = 1 
 const appstate_play = 2 
 
+const mainmenu_item_asmr        = 1
+const mainmenu_item_candle      = 2  
+const mainmenu_item_pomodoro = 3 
+
+//-----------------------
 
 const dir_none = 0
 const dir_left = 1

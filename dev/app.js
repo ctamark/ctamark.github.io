@@ -6,15 +6,13 @@ class App {
 	
 	constructor(){
 		
-		//this.canvas = document.createElement('canvas');
 		this.canvas = document.getElementById("myCanvas");
 		this.ctx = this.canvas.getContext('2d');
-		//document.body.appendChild(this.canvas);
 		
 		this.playstate = playstate_ready
 		
 		this.numTotalStuff = 0
-		this.numCleanedStuff = 0
+		this.numTreatedStuff = 0
 		//----------------------
 		//---------------------
 		let randomVal = getRandomVal(0, 10);
@@ -276,7 +274,7 @@ class App {
 	}
 	
 	
-	
+//공통	
   onCloseRatingBtn(){
 
    console.log("closeRatingDiv")
@@ -295,46 +293,7 @@ class App {
   
   }
   
-		
-  initSprite(){
-	
-		if(gSelectedPlay!=playkind_acne){
 
-            return						
-		}
-		
-		console.log("ani_prop_debug: " + Sprite.ani_prop_debug);
-
-/*		
-	    let sprite = new Sprite()
-		 sprite.setFName('acne_ani-01.png')
-		 sprite.isDisplay = false
-//		 this.sprite.aniProp = Sprite.ani_prop_loop
-   	     sprite.aniProp = Sprite.ani_prop_keep_endframe
-
-
-		 sprite.addFrame(0, 0 , 40, 70)
-		 sprite.addFrame(40, 0, 40, 70)
-		 sprite.addFrame(80, 0, 40, 70)
-		 
-		 this.spriteArray.push(sprite)
-		 
-	
-         sprite2 = new Sprite()
-		 sprite2.setFName('acne_ani-01.png')
-		 sprite2.isDisplay = false
-//		 this.sprite.aniProp = Sprite.ani_prop_loop
-   	     sprite2.aniProp = Sprite.ani_prop_keep_endframe
-		 sprite2.addFrame(120, 0 , 40, 70)
-		 sprite2.addFrame(1600, 0, 40, 70)
-		
-		// this.sprite.addFrame(120, 0, 40, 70)
-	*/
-	
-	}
-	
-	
-	
 	
 	drawSprite(curT){
 		
@@ -702,6 +661,7 @@ class App {
 		//40x40
 		for(let i=0; i < num; i++){
 			
+			
        	      let earwax = new Stuff();
 			  earwax.radius = 20;
 
@@ -878,7 +838,7 @@ class App {
    }
    
    
-   getNumCleanedStuff(){
+   getNumTreatedStuff(){
 	   
 	   var cleanedStuff = 0 
 	   
@@ -1278,18 +1238,17 @@ begin_extrudeAcne(){
     let offset = 150 
     let centerRefPos =  {x: this.closeupRscPos.x+offset , y: this.closeupRscPos.y+offset}
 		
-	 let lastNumCleanedStuff = this.numCleanedStuff	
+	 let lastNumTreatedStuff = this.numTreatedStuff	
 		
- 	 this.numCleanedStuff = this.probe_touchedStuff_removal(centerRefPos, 140);
+ 	 this.numTreatedStuff = this.probe_touchedStuff_removal(centerRefPos, 140);
 	
-	 if(this.numCleanedStuff > lastNumCleanedStuff){
+	 if(this.numTreatedStuff > lastNumTreatedStuff){
 		 
           		 this.postCleanStuff()
 	 }
 	
-	//this.numCleanedStuff = this.getNumCleanedStuff()
 	
-	if(this.numCleanedStuff >= this.numTotalStuff){	
+	if(this.numTreatedStuff >= this.numTotalStuff){	
 		 //clearStage
     	this.playstate = playstate_finish
 		console.log("playstate_clear")		

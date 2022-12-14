@@ -23,6 +23,8 @@ class  earCleaning {
 	  this.eyeclose_img = new Image();
       this.eyeclose_img.src = "eye_close-01-d.png";
 
+      this.eyeopen_img = new Image();
+	  this.eyeopen_img.src = 'eye_open-01-d.png' 
 	  
 	  this.highlight_bg_img = new Image();
 	  this.highlight_bg_img.src = "./highlight_bg.png"
@@ -30,15 +32,33 @@ class  earCleaning {
 	  this.lipbad_img = new Image();
 	  this.lipbad_img.src = "./lip_bad-01.png"
 	  
-	   this.faceProp = 0
+	  this.lipgood_img = new Image();
+	  this.lipgood_img.src = "./lip_good.png"
+	  
+	  
+	  this.bubble_img = new Image();
+	  this.bubble_img.src = "./speech_bubble.png"
+	  
+	 // this.dialogST = 0 
+	  this.dialogMsg = ""
+	  
+	 
+	 
+	  
+	   this.faceProp = facestate_good
+	  
+
+       this.bottomFrame_img = new Image();
+	   this.bottomFrame_img.src = './bottom_frame.png'
 	   
+	  
 	 //   console.log("lip_bad: "+ face_lip_bad)
 	   
 	 //  this.faceProp |= face_lip_bad
 	   
-	   if( (this.faceProp&face_lip_bad) != 0){
+	   if( (this.faceProp&facestate_good) != 0){
 		   
-		   console.log('has lip_bad')
+		   console.log('facestate_good')
 	   }
 	  
 	  
@@ -68,6 +88,9 @@ class  earCleaning {
       //---------------	
 	  this.moveSpeedCheckT = 0
       this.moveSpeedCheckPos = {x: 0, y: 0}
+	  //0.5초 안에 100이상 이면 too fast 
+	  this.moveSpeedDist = 0;
+	  this.touchMoveDist = 0;
 	  
 	  //---------------
 	  
@@ -82,14 +105,25 @@ class  earCleaning {
 	  this.isShowTrashcan = false 	  
 	     
 	  this.objV = 1.5
-	  this.moveDist = 0
 	  this.objAddedW = 0.0
+	  
+	  
+	  this.isShowTool = false  
 	  
 	  
 	  this.isTouchState = false 
 	  
-	  this.curSwabDir = 0
+	
+
+      this.closeUpDrawPos = {x: 0, y: 220}
+	  
+	  this.treatingStuff_id = 0
 		 
+      this.faceEventST = 0
+	  
+	
+	  
+	  
     }
 
 	
@@ -102,7 +136,7 @@ class  earCleaning {
 	
 	}
 	
-
+	
    //===================
    // commonInterface
    //================   
@@ -110,33 +144,28 @@ class  earCleaning {
 		
 	    this.appCurT = curT
 				
-        if(this.isTreatingStuff  == true){
+		if(this.treatingStuff_id > 0){
 		   
 	        let elapsedT = curT - this.lastMoveT 
 
 	 	   if( elapsedT >= 1000 ){
-			   
-             //   console.log('elapsedT: ' + elapsedT)			   
-			 /*
-			 if((this.lastMoveRefPos.x == this.lastMovePos.x) && 
-			    (this.lastMoveRefPos.y ==this.lastMovePos.y) ){
-                //마지막 움직임이후 0.5초 동안 이동없음
+			   			   
+			   if(this.touchMoveDist <= 2 ){
+				   
+         	           this.sound_treatment.pause()	
+					  // console.log('sound pause')
+					   
+			   }
+			   			   
+               // console.log('touchMoveDist: ' + this.touchMoveDist)			   
+			
+               this.touchMoveDist = 0 		
 				
-	    		   this.sound_treatment.muted = true			 
-			 }					 
-			 */			 
-	           this.sound_treatment.muted = true			 
-			 
-		
-  	 	 }
-		 else {
-		 
-		 }
-		 
+  	   	  }
 		 		 
-		 this.probe_dragSpeed(curT)
+		  this.probe_dragSpeed(curT)
 		 
-	  } //if(this.isTreatingStuff 
+	  } //if(his.treatingStuff_id > 0)
 		 	 
 				
 	} //updateFrame
@@ -153,34 +182,77 @@ class  earCleaning {
 		//======================
        //canvas size보다 작게 유지 
 	   //600x632
+      //-------------------	 
+	  //원본 이미지(upper_body)  
+	  let imgRatio = 850/370
+	  let cWidth = 400  
+	  let cHeight = 400*imgRatio
 	  
-	  let cfaceW = 300 
-	  let offsetX = (gClientWidth - cfaceW)*0.5
+	  let offsetX = (gClientWidth - cWidth)*0.5
+	  let drawPosY;		
 	  
-	  
-	  this.drawFace(ctx, this.faceProp)
+	
+	
+	  //this.drawFace(ctx, this.faceProp)
+	    if(gPlaystate == playstate_prepare || gPlaystate == playstate_treatment){
+						
+						
+		    cWidth  = 400 
+		    cHeight = cWidth*imgRatio		
+			
+			let xOffsetRatio = cWidth/370
+			let yOffsetRatio = cHeight/850			
+			
+	        ctx.drawImage(gUpperBody_img, 0, 0, cWidth, cHeight)
+              			
+		   this.updateFace(ctx, this.faceProp, 0, 0, xOffsetRatio, yOffsetRatio )
+			  
+			drawPosY = gClientHeight - 130		
+		    ctx.drawImage(this.bottomFrame_img, 0, drawPosY)
+			
+		}
+		else if( gPlaystate == playstate_rest || gPlaystate == playstate_finish){
 
-	   
+             cWidth  = 350 
+		     cHeight = 350*imgRatio
+	         offsetX = (gClientWidth - cWidth)*0.5
+				  
+			ctx.drawImage(gUpperBody_img, offsetX, 0, cWidth, cHeight)
+
+         	ctx.save()
+			ctx.globalAlpha = 0.7;
+			ctx.drawImage(this.highlight_bg_img, 0, 0, gClientWidth, gClientHeight )
+			
+			ctx.restore()
+		}
+		
+		
+	
+
 	   //rest일 때는 얼굴만 
 	   if(gPlaystate == playstate_treatment ){
-
 
              ctx.globalAlpha = 0.7;
 			 ctx.drawImage(this.highlight_bg_img, 0, 0, gClientWidth, gClientHeight )
    		     ctx.globalAlpha = 1.0;
 					   		   
+
+             //closeUP size_canvas(원본: 300x300)  
+			  cWidth = 300
+              offsetX = (gClientWidth - cWidth)*0.5							   
+							   
 				   
 			//let drawPosY = gClientHeight - 300
-			let drawPosY = 0
+			 drawPosY = this.closeUpDrawPos.y
 			
-		     ctx.drawImage(this.closeup_img, offsetX, drawPosY); 
+		     ctx.drawImage(this.closeup_img, offsetX, this.closeUpDrawPos.y); 
 			 		
 			if(this.isShowTrashcan){
 								
 				//closeUPLT
 				let w = 60, h=60
 				let trashcanDrawX = 0 + offsetX + 150 + this.trashcanPos.x - (w/2)
-				let trashcanDrawY = 0 + 150 + this.trashcanPos.y - (h/2)
+				let trashcanDrawY = 0 + drawPosY + 150 + this.trashcanPos.y - (h/2)
 											
 			    ctx.drawImage(this.trashcan_img, trashcanDrawX, trashcanDrawY, w, h);	
 				
@@ -237,19 +309,7 @@ class  earCleaning {
 						 let angle = 0//getRandomVal(10, 15)
 						 
 						 let offsetW = 0
-						 
-						 if(this.curSwabDir == dir_right){
-							 
-							 //offsetW = -10							 
-							 //dx = this.lastMovePos.x + 5
-							 
-						 }
-						 else {
-
-							 //offsetW = -10							 
-							 //dx = this.lastMovePos.x - 5
-							 
-						 }
+					
 						 
 						 //dx, dy 캔버스기준 이미지 LT좌표
 						 //this.draw_treatingStuff_ex(ctx, obj.rscIdx, dx, dy,  cw, ch, diffX, diffY)
@@ -275,13 +335,20 @@ class  earCleaning {
 					   
 			  }			   	
 			  
-
-			   this.drawEarSwab(ctx)
+			  
+			  if(this.isShowTool){
+			  
+			      this.drawEarSwab(ctx)
+			  
+			  }
 			
-			
-   	    }
+   	    } //end treatment
 		
+		
+		this.drawDialog(ctx)
 	
+		
+	/*
 		//---------------
 		if(gPlaystate == playstate_rest || gPlaystate == playstate_finish){
 			
@@ -293,7 +360,8 @@ class  earCleaning {
 
 						
 		}
-					
+*/
+		
 	
 	}
 	
@@ -303,12 +371,92 @@ class  earCleaning {
 		  let w=30 , h=200 
 	
 		   let  drawX = this.lastMovePos.x - (w/2)
-		   let  drawY = this.lastMovePos.y	- (h/2)	   
+		   let  drawY = this.lastMovePos.y	- h*(2/3)	   
 			   			   
 			ctx.drawImage(this.earswab_img, drawX, drawY, 30,200);	
 					   		
 	}
 	
+	//==================
+	//
+	//=================
+	updateFace(ctx, faceProp, refDrawX, refDrawY, xOffsetRatio, yOffsetRatio){
+	  
+	  let refX = 0
+	  let refY = 0
+	  let cx, cy 
+	
+		if((faceProp&facestate_bad) !=0){
+						
+					
+			//132, 85
+			cx = 132*xOffsetRatio; 
+            cy = 85*yOffsetRatio;  			
+		    ctx.drawImage(this.eyebrow_img, cx, cy)
+			
+            //135, 101
+			cx = 135*xOffsetRatio; 
+            cy = 101*yOffsetRatio;  						
+			ctx.drawImage(this.eyeopen_img, cx, cy)
+			
+			//lip normal  
+		}
+		else if((faceProp&facestate_bad2) !=0){
+						
+		   //eyebrow
+		   ctx.drawImage(this.eyebrow_bad_img, 132, 85)
+		  
+		   ctx.drawImage(this.eyeopen_img, 135, 101)
+		  
+		  	let cx = refX + 160
+		   let cy = refY + 158
+				
+				/*
+				 dx = faceDrawX + 246*300/600
+	 			 dy = faceDrawY + 375*cfaceH/imgH	   
+				
+				 cw = 118*width_scale	
+				 ch = 64*height_scale	
+                */	
+			 ctx.drawImage(this.lipbad_img, cx, cy);
+			
+		}
+		else if( (faceProp&facestate_good) != 0 ){
+			
+			console.log('facestate_good')
+			//132, 85
+	      cx = 132*xOffsetRatio; 
+	  	  cy = 85*yOffsetRatio;  			
+          ctx.drawImage(this.eyebrow_img, cx, cy)
+			
+			
+			cx = 153*xOffsetRatio; 
+	      	cy = 156*yOffsetRatio;  			
+            ctx.drawImage(this.lipgood_img, cx, cy);
+
+                		
+		}
+		else {
+		//eyebrow 
+		
+		//132, 85
+		cx = 132*xOffsetRatio; 
+		cy = 85*yOffsetRatio;  			
+         ctx.drawImage(this.eyebrow_img, cx, cy)
+					
+		}
+		
+			
+     let  elapsedT = this.appCurT - this.faceEventST
+   
+  
+     if(elapsedT >= 1000){
+	   
+	       this.faceProp = 0	   
+      }
+	  
+	  
+  }
 	
   drawFace(ctx, faceProp){
 
@@ -341,8 +489,8 @@ class  earCleaning {
 		   }
 		   else if( gPlaystate == playstate_treatment){
 			   
-			  // faceDrawY = 0
-			   faceDrawY =  300//gClientHeight - cfaceH
+			   faceDrawY = 0
+			  // faceDrawY =  300//gClientHeight - cfaceH
 			   
 		   }
 
@@ -359,14 +507,24 @@ class  earCleaning {
        //drawImage( img, cx, cy, cwidth, cheight )
 	   ctx.drawImage(this.eyebrow_img,  dx,  dy, cw, ch);
 	   
+	   
+	   //good이면 감은 눈, 
+	   if((faceProp&face_eye_good)!=0){
+	   
 	   //eyeclose위치 175, 236
-	    dx = faceDrawX + 175*300/600
-        dy = faceDrawY + 236*cfaceH/imgH	   
+	     dx = faceDrawX + 175*300/600
+         dy = faceDrawY + 236*cfaceH/imgH	   
 		
          cw = 258*width_scale	
          ch = 67*height_scale			
-   	    ctx.drawImage(this.eyeclose_img, dx, dy, cw, ch);
+   	      ctx.drawImage(this.eyeclose_img, dx, dy, cw, ch);
+		  
+		  
+		  
+	   }
 		//==========================
+		
+		
 				
 			if((this.faceProp&face_lip_bad) != 0){
 				
@@ -378,13 +536,13 @@ class  earCleaning {
 				 ctx.drawImage(this.lipbad_img, dx, dy, cw, ch);
 				
 			}
+			
+			
+			
+			
 
 	  }
-	   	
-
-
-
-
+	  
 
   }	  
 
@@ -542,6 +700,26 @@ class  earCleaning {
 }
 
 
+
+    drawDialog(ctx){
+		
+		if(this.dialogMsg.length == 0){
+			
+			return
+		}
+		
+		let cx=100, cy=10 
+			
+		//180x120	
+		ctx.drawImage(this.bubble_img, cx, cy)
+		
+	     ctx.font ="15pt System";
+         ctx.fillStyle = 'black'
+		 ctx.fillText(this.dialogMsg, cx+10, cy+50);
+                
+		
+	}
+
 	
 	//==============
 	//common interface
@@ -553,20 +731,24 @@ class  earCleaning {
 	   	   
 	   this.sound_bg.pause()
 		
-		//150, 300+150 		
-		let refPos = {x:150, y: 150}
-		
+     	
+	   let playInfoDiv = document.getElementById("playInfoDiv")
+	   playInfoDiv.style.display = 'block'
+	   playInfoDiv.style.top = 0 + 'px'	
+	  
+  
 		this.totalTreatedStuff = 2
 		this.numTreatedStuff = 0
 		
-		this.createEarwax(refPos, 2);
+		
+		this.createEarwax(this.closeUpDrawPos, 2);
 		
 	}
 	
 	
 	//미리 할당된 자리에 생성되는 것으로 변경해야 함
 	//refPos -->closeup 중심점
-	createEarwax(refPos, num){
+	createEarwax(closeUpDrawPos, num){
 				
 		this.stuffArray.length = 0;
 		
@@ -586,11 +768,13 @@ class  earCleaning {
 				
 				earwax.rscIdx= i 
 				
+				earwax.id = i+1
+				
 				//canvas기준 위치 
-				earwax.drawPosX = 0 + refPos.x + genX 
-				earwax.drawPosY = 0 + refPos.y + genY  
+				earwax.drawPosX =  closeUpDrawPos.x + 150 + genX 
+				earwax.drawPosY =  closeUpDrawPos.y + 150 + genY  
 
-              console.log("createEarwax:drawPos: " + earwax.drawPosX  + ", " + earwax.drawPosY );
+         //     console.log("createEarwax:drawPos: " + earwax.drawPosX  + ", " + earwax.drawPosY );
 			  
 
                this.stuffArray.push(earwax)
@@ -614,6 +798,15 @@ class  earCleaning {
 				if(diffX < 0) { diffX *= -1;  } 
 				if(diffY < 0) {  diffY *= -1;  }
 				
+				
+				if(this.touchMoveDist <= 2){
+					
+					
+				}else {
+					
+				}
+				
+				
 				let moveDist = Math.sqrt(diffX*diffX + diffY*diffY);
 
   		         console.log("speedCheck during 1s: " + moveDist);		
@@ -625,11 +818,14 @@ class  earCleaning {
 					
 				   console.log("too fast");		
 				   
+				  this.showDialog('too fast', 1000)		
+				   
 				   //this.isEyeclose = false
 				   //this.eyebrow_img.src = "eyebrow_pain.png"
 				   //this.lipbad_img.src = "lip_bad-01.png"		
 
-                   this.faceProp |= face_lip_bad				   
+                   this.faceProp = facestate_bad				   
+				   this.faceEventST = this.appCurT
 				   
 				   
 				}
@@ -658,6 +854,8 @@ class  earCleaning {
 
 		let tx = touches[0].clientX 
 		let ty = touches[0].clientY 
+		
+	    this.isShowTool = true 
 
        console.log("x: " + tx + ", " + "y: " + ty); 		
 	  
@@ -672,7 +870,7 @@ class  earCleaning {
 		let swabW = 30
 		let swabH = 200 
 		
-		let probePos = {x: tx-(swabW/2), y: ty-(swabH/2)} 
+		let probePos = {x: tx-(swabW/2), y: ty- swabH*(2/3)} 
 		  
 		let obj = this.getTouchedStuff(probePos);
 	  
@@ -693,7 +891,7 @@ class  earCleaning {
 			console.log("find touchedStuff, sound: muted=false");
 			
 			this.objV = 1.5 
-			this.moveDist = 0
+		
 			
 			this.sound_treatment.currentTime = 0
 			this.sound_treatment.play()
@@ -709,6 +907,9 @@ class  earCleaning {
 		   //-----
 		   this.moveSpeedCheckT = this.appCurT
 		   this.moveSpeedCheckPos = {x: tx, y: ty}
+		   this.touchMoveDist = 0
+		   
+		   this.treatingStuff_id = obj.id 
 		   //-----
 	 }
 	 else {
@@ -717,21 +918,24 @@ class  earCleaning {
 		
 	 }
 	
+	  this.draw(gCtx)
 
 
     }
 
 	//==============
 	//common interface
+	//touch한 채로 움직이지 않으면 호출안됨 
 	//=============
    touchM(e){
 	   	   
-        console.log("touchM:  ");
-	   
 	   if(gPlaystate != playstate_treatment){
 		   
 		    return 
 	    }
+	   
+	    this.isShowTool = true 
+
 	   
     	 let touches = e.touches 
 
@@ -740,68 +944,95 @@ class  earCleaning {
 
 	    let deltaX =  tx - this.lastMovePos.x 
 	    let deltaY =  ty - this.lastMovePos.y
-		
-		if(deltaX >0){
-		
-		   this.curSwabDir = dir_right
-		}
-		else if(deltaX < 0) {
-			
-			 this.curSwabDir = dir_left
-		}
-			
+						
+		let moveDist = Math.sqrt(deltaX*deltaX + deltaY*deltaY)
+		//----------------------------
+	
+		//-----------------------------
+
+	    this.moveSpeedDist += moveDist
 		
 		
-    let swabW = 30
-	let swabH = 200 
-	
-	
-	
-	
-	
-	let probePos = {x: tx-(swabW/2), y: ty-(swabH/2)} 
-	  
-    let obj = this.getTouchedStuff(probePos);
-	
-	if(obj != undefined){
-		
-		if(obj.state == Stuff.state_normal){
-			
-			obj.state = Stuff.state_treating
-            this.isTreatingStuff = true 		
-		
-			if(this.sound_treatment.paused){
-				
-				this.sound_treatment.play()
+        let elapsedT = this.appCurT - this.moveSpeedCheckT
+        if(elapsedT >= 1000){
+
+            console.log('moveSpeedDist:  ' + this.moveSpeedDist + 'during 1s')
+            if(this.moveSpeedDist > 100){
+
+          
 			}
+   		   else {
+
+    
+		    }	
 			
-		}
-		
-		this.trashcanPos = this.procTrashcan(obj.x, obj.y)
-		this.isShowTrashcan = true 
-		
-		this.objAddedW = -20
-				
-   	}						      	
+			   //this.touchMoveDist  =0 
+               this.moveSpeedCheckT = this.appCurT
+		 }			 
+      		
 	
-      this.moveTouchedStuff(deltaX, deltaY)
-				
-				
-		if(deltaX < 0) {		
-  		   deltaX  = -1 *deltaX
-		}
-		
-		this.moveDist += deltaX 
 
 	  this.lastMovePos.x = tx 
 	  this.lastMovePos.y = ty 		 
+				  
+    				  
+    let  treatingStuff =  this.getTreatingStuff()		  
+
+    if( treatingStuff != null){
+				
 		
-	 
-		 //------------
-		 this.lastMoveT = this.appCurT
-		 
+	 //this.touchMoveDist += moveDist
+	 //console.log("add moveDist: " + moveDist)
+		
+		
+ 	 } else {
+		
+		
+			let swabW = 30
+			let swabH = 200 
+
+			let probePos = {x: tx-(swabW/2), y: ty-(swabH*2/3) } 
+			
+			 treatingStuff =  this.getTouchedStuff(probePos);	
+			 
+			 if(treatingStuff != null){
+					 
+				if(treatingStuff.state == Stuff.state_normal){
+			 
+					treatingStuff.state = Stuff.state_treating
+					//bug-fix
+				    this.treatingStuff_id = treatingStuff.id
+					this.touchMoveDist = 0
+					this.moveSpeedCheckT = this.appCurT
+					
+					
+						
+				    if(this.sound_treatment.paused){
+					
+					   this.sound_treatment.play()
+					 }
+			 
+				  }
+			 }
+  	}
+					
+	if(treatingStuff == null){
+		
+		return 
+	}
+
+
+	 this.trashcanPos = this.procTrashcan(treatingStuff.x, treatingStuff.y)
+	 this.isShowTrashcan = true 
+			
+      this.moveTouchedStuff(deltaX, deltaY)
+				
+
+		 //------------------------
+		 this.lastMoveT = this.appCurT 
 		 this.lastMoveRefPos.x = tx 
 		 this.lastMoveRefPos.y = ty 
+		 //-----------------------------
 		  
 		if(this.sound_treatment.muted==true){	   
 
@@ -829,6 +1060,9 @@ class  earCleaning {
 			
 			//추가로 치료 
 			this.postAddTreatedStuff()
+			
+			this.faceProp = facestate_good;
+			this.faceEventST = this.appCurT;
 			
 		}
 	
@@ -858,6 +1092,8 @@ class  earCleaning {
 			setTimeout(this.end_playstate_rest.bind(this), 10000)		
 		}
 	   
+	     this.draw(gCtx)
+	   
   }
 
 
@@ -867,7 +1103,11 @@ class  earCleaning {
 	//=============
    touchE(e){
 	   
+ 	   this.isShowTool = false 
+
+
 	   this.isTouchState  = false 
+	   
 	   
 	   this.objAddedW = 0
 	   
@@ -875,7 +1115,10 @@ class  earCleaning {
 		this.isShowTrashcan = false
 		this.sound_treatment.pause() 
 		
-        this.moveDist = 0
+		this.touchMoveDist = 0
+		
+		
+		this.treatingStuff_id = 0
 		
 		for(let i=0; i < this.stuffArray.length; i++){
 			
@@ -927,6 +1170,26 @@ class  earCleaning {
 		
 	}
 	
+	getTreatingStuff(){
+		
+	     //collison 등
+		for(let i=0; i < this.stuffArray.length; i++){
+			
+			let obj = this.stuffArray[i]
+			
+			if(obj.state == Stuff.state_treating){
+				
+				return obj
+			}
+			
+		}		
+		
+		return null
+		
+	}
+	
+	
+	
 	//objPos(obj의 closeUp 중심점 기준 상대좌표: (ex) (-3, +5)    
 	//return closeUp중심점 기준 상대좌표 
 	procTrashcan(objX, objY){
@@ -943,10 +1206,10 @@ class  earCleaning {
 	let dstX = x*radius 
 	let dstY = y*radius  	
 	
-	console.log("raotated UnitV: " + x + ", " + y)
+	//console.log("raotated UnitV: " + x + ", " + y)
 	
 	
-	  return {x:0 , y: 150}
+	  return {x:150 , y: 0}
 	
 	   //  return {x:dstX , y: dstY}
 		
@@ -986,7 +1249,7 @@ void rotate(  float* nx, float* ny, float tx, float ty, float cx, float cy,  flo
 				obj.drawPosX += deltaX;
 				obj.drawPosY += deltaY;		
            
-		         console.log('drawPos: ' + obj.drawPosX + ", " + obj.drawPosY) 
+		       //  console.log('drawPos: ' + obj.drawPosX + ", " + obj.drawPosY) 
 				
 			}										
 
@@ -1066,7 +1329,7 @@ void rotate(  float* nx, float* ny, float tx, float ty, float cx, float cy,  flo
 			
 			let dist = Math.sqrt(diffX*diffX + diffY*diffY)
   
-            if(dist < 50){
+            if(dist < 25){
 			 
 				treatedStuff +=1				
 				//cleaned 
@@ -1079,6 +1342,23 @@ void rotate(  float* nx, float* ny, float tx, float ty, float cx, float cy,  flo
 	   
        return treatedStuff
    }
+   
+
+   showDialog(msg, spanT=2000){
+
+    this.dialogMsg = msg
+
+     setTimeout(this.hideDialog.bind(this), spanT)   
+
+   }	
+   
+   hideDialog(){
+
+     this.dialogMsg = ""
+    
+	   
+   }
+ 
    
   //================    
   //

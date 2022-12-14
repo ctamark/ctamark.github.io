@@ -1,5 +1,10 @@
 class acne {
 	
+	
+	  static touch_none = 0
+	  static touch_good = 1 
+	  static touch_bad = 2
+	  
 	   constructor(){
 	   
       this.face_img = new Image();
@@ -9,7 +14,7 @@ class acne {
 	  this.closeup_img.src = "acne_closeup.png";	  
 	  //canvas 기준
 	  
- 	  this.closeupRscPos = {x:0, y:0}
+ 	  this.closeupRscPos = {x:0, y:300}
 	
 	
 	  this.stuff_img = new Image();
@@ -17,9 +22,13 @@ class acne {
 
 	  this.eyebrow_img = new Image();
       this.eyebrow_img.src = "eyebrow_normal-01.png";
+	  //
+	 
+ 	  this.eyebrow_bad_img = new Image();
+      this.eyebrow_bad_img.src = './eyebrow_bad-03-d.png';	  
 	  
-	  this.eyeclose_img = new Image();
-	  this.eyeclose_img.src = 'eye_close-01-d.png' 
+	  this.eyeopen_img = new Image();
+	  this.eyeopen_img.src = 'eye_open-01-d.png' 
 	  
 	  
 	  this.highlight_bg_img = new Image();
@@ -28,15 +37,20 @@ class acne {
 	  this.lipbad_img = new Image();
 	  this.lipbad_img.src = "./lip_bad-01.png"
 	  
+
+	  this.finger_img = new Image();
+	  this.finger_img.src = "./acne_finger-01.png"
+	  
+	  
 	  
 	   this.faceProp = 0
-	  
+	  // this.faceProp |= face_lip_bad
 	  
 	   this.sound_treatment = new Audio("acne_effect-01.wav"); 
 	   this.sound_treatment.loop = true
 		   
 		   
-	   this.sound_bg = new Audio("white_noise-01.mp3"); 
+	   this.sound_bg = new Audio("asmr-01.mp3"); 
 	   this.sound_bg.loop = true
 	  
 			  		
@@ -64,7 +78,12 @@ class acne {
 	  
 	   this.isExtrudingAcneState = false
 	   
+	   this.isShowFinger = false 
 	   
+	   
+	   this.postMsg_begin_rest = false 
+	   
+	   this.faceEventST = 0
 	   
 	     
     }
@@ -85,17 +104,23 @@ class acne {
 	beginTreatment(){
 	
        console.log('beginTreatment');	
-		
+	   
+	   this.sound_bg.pause();
+	   
 		//150, 300+150 		
 		let refPos = {x:150, y: 150}
-		
-		this.numTotalStuff = 2
+
 		this.numTreatedStuff = 0
 		
-		this.createAcne(2);
+		this.numTotalStuff = 3		
+		this.createAcne(this.numTotalStuff);
+		
+       let playInfoDiv = document.getElementById("playInfoDiv")
+	   playInfoDiv.style.display = 'block'
+ 	   //playInfoDiv.style.top = this.closeupRscPos.y + 'px'	
 		
 	}
-	
+
 	//==============
     //common interface
     //=============
@@ -120,24 +145,42 @@ class acne {
     //=============	
 	draw(ctx){
 		
+				
+	//	this.drawFace(ctx, this.faceProp)
 		
+	//	this.drawLine(ctx, 0,0, 200,200)
+	    
+		ctx.drawImage(gUpperBody_img, 0, 0)
 		
-		this.drawFace(ctx, this.faceProp)
-		
-		this.drawLine(ctx, 0,0, 200,200)
+		let faceRefX = 0
+		let faceRefY = 0				
+		this.updateFace(ctx, this.faceProp)		
+				
+	   
+	   	if(gPlaystate == playstate_treatment || gPlaystate == playstate_rest || gPlaystate == playstate_finish){
+			
+			//ctx.drawImage(gUpperBody_img, 0, 0)
+			ctx.save()			
+			ctx.globalAlpha = 0.7;
+			ctx.drawImage(this.highlight_bg_img, 0, 0, gClientWidth, gClientHeight )
+			ctx.restore()
+						
+		}
+	   
+	   
 		
 		let cFaceW = 300
 		
 		this.closeupRscPos.x  = (gClientWidth - gCloseupCanvasSize)*0.5
-		this.closeupRscPos.y = 0
+		this.closeupRscPos.y = 250
 
      
 	    if(gPlaystate == playstate_treatment){
-         
+           /*
 	         ctx.globalAlpha = 0.7;
 			 ctx.drawImage(this.highlight_bg_img, 0, 0, gClientWidth, gClientHeight )
    		     ctx.globalAlpha = 1.0;		
-		 
+		  */
             ctx.drawImage(this.closeup_img, this.closeupRscPos.x, this.closeupRscPos.y, gCloseupCanvasSize, gCloseupCanvasSize); 
 	   	     
 		}
@@ -147,26 +190,82 @@ class acne {
            this.drawAcneStuff(ctx)
 		   
 		    this.drawSprite(ctx, this.appCurT)		
+			
+			if(this.isShowFinger==true){
+				
+				  let w= this.finger_img.width
+				  let h= this.finger_img.height
+				
+				  let drawX  = this.lastMovePos.x - w/2
+				  let drawY  = this.lastMovePos.y - h*(2/3)
+
+                  ctx.drawImage(this.finger_img, drawX, drawY, w, h); 			
+			
+			}
+			
+		   this.drawPlayInfo(ctx)
+						
 		 }
 		 
 		 
-     	if(gPlaystate == playstate_rest || gPlaystate == playstate_finish){
-			
-			ctx.drawImage(gUpperBody_img, 0, 0)
-						
-			ctx.globalAlpha = 0.7;
-			ctx.drawImage(this.highlight_bg_img, 0, 0, gClientWidth, gClientHeight )
-   		    ctx.globalAlpha = 1.0;
-
-						
-		}
-		 
-		 
-
 	} //draw 
 
+//================
+//
+//=================
+updateFace(ctx, faceProp){
+	  
+	  let refX = 0
+	  let refY = 0
+	
+		if((faceProp&facestate_bad) !=0){
+						
+		    ctx.drawImage(this.eyebrow_img, 132, 85)
+			ctx.drawImage(this.eyeopen_img, 135, 101)
+			
+			//lip normal  
+		}
+		else if((faceProp&facestate_bad2) !=0){
+						
+		   //eyebrow
+		   ctx.drawImage(this.eyebrow_bad_img, 132, 85)
+		  
+		   ctx.drawImage(this.eyeopen_img, 135, 101)
+		  
+		  	let cx = refX + 160
+		   let cy = refY + 158
+				
+				/*
+				 dx = faceDrawX + 246*300/600
+	 			 dy = faceDrawY + 375*cfaceH/imgH	   
+				
+				 cw = 118*width_scale	
+				 ch = 64*height_scale	
+                */	
+			 ctx.drawImage(this.lipbad_img, cx, cy);
+			
+		}
+		else {
+		//eyebrow 
+         ctx.drawImage(this.eyebrow_img, 132, 85)
+		
+			
+		}
+		
+			
+     let  elapsedT = this.appCurT - this.faceEventST
+   
+  
+     if(elapsedT >= 1000){
+	   
+	       this.faceProp = 0	   
+      }
+	  
+	  
+  }
 
 
+/*
   drawFace(ctx, faceProp){
 
 	   let imgW = 600	 
@@ -190,7 +289,6 @@ class acne {
 	   	 
       if(gPlaystate == playstate_prepare || gPlaystate == playstate_treatment){ 
 
-
          if(gPlaystate == playstate_prepare){
 
                faceDrawY =  gClientHeight - cfaceH
@@ -199,8 +297,7 @@ class acne {
 		   else if( gPlaystate == playstate_treatment){
 			   
 			  // faceDrawY = 0
-			   faceDrawY =  300//gClientHeight - cfaceH
-			   
+			   faceDrawY =  0//gClientHeight - cfaceH			   
 		   }
 
 	   
@@ -238,6 +335,8 @@ class acne {
 
 	  }
   }	  
+*/
+
 
 
 
@@ -279,24 +378,39 @@ class acne {
 			
     } //drawAcneStuff(ctx)
 		
-	
+	//===========
+	//
+	//===========
     touchS(e){
+				
+    if(gPlaystate != playstate_treatment){
+
+       return 
+	}		
+		
     
 	let touches = e.touches 
 
-	let posArray = [];
+	//let posArray = [];
 	
-	for(let i=0; i < touches.length ; i++){
 		
-		let tx = touches[i].clientX 
-		let ty = touches[i].clientY 
-		
-		posArray.push({x:tx, y:ty})
+	let tx = touches[0].clientX 
+	let ty = touches[0].clientY 
 	
-        console.log("touchStart: " + tx + ", " + ty)   	
-    }		
-	   
-   	
+	//posArray.push({x:tx, y:ty})
+	
+	let probePos = {x:0, y:0}
+	//finger 200x155
+	
+	let w = this.finger_img.width
+	let h = this.finger_img.height
+	
+	probePos.x =  tx 
+	probePos.y =  ty - h*(2/3) 
+	
+	let touchState = acne.touch_none
+	let touchCount = 0
+	      	
 	for(let i =0 ; i < this.stuffArray.length; i++){
 
 			let obj = this.stuffArray[i] 
@@ -307,53 +421,76 @@ class acne {
                   continue;			
 			}
 		
-			//obj.x: 부모기준 좌표 
+			//obj.x: 부모기준 obj중심좌표(화면출력시 반지름만큼 보정해야함) 
 			let objCanvasX = this.closeupRscPos.x + obj.x 
             let objCanvasY = this.closeupRscPos.y + obj.y 
 
 			let diffX = 0, diffY = 0 					
 			
-			let touchCount = 0
-			for(let pi=0; pi < posArray.length; pi++){
-			//2개 이상의 터치가 모두 범위 내에 있어야    
-			
-				diffX = objCanvasX - posArray[pi].x
-				diffY = objCanvasY - posArray[pi].y 					
+				diffX = objCanvasX - probePos.x
+				diffY = objCanvasY - probePos.y					
 														
 				let dist = Math.sqrt(diffX*diffX + diffY*diffY)
 			
 				if(dist <= 40){
-					
-			
-				   // console.log("distToObj: " + dist + ", touchX: "+tx + "objCanvasX: " + objCanvasX)		
+								
+				    console.log("inRange: ")		
 				  
 				   //let sprite = this.spriteArray[i]
 				   //sprite.play()
-				  			 
+				  
+                  if(diffY < 0){
+					  
+					  touchState = acne.touch_good
+				  }
+				  else {
+					  
+					  touchState = acne.touch_bad					  
+				  }
+				  
 				   touchCount++
-				}		
-								
-			}//for (pi...)
+			
+				   console.log("obj.state  1(treating)") 
+				   obj.state =  Stuff.state_treating  // treating 
+								   
+				   this.touchCheckT = this.appCurT
+				   this.isExtrudingAcneState = true 
 
-           if(touchCount >= 1){
-			   
-			  console.log("obj.state  1(treating)") 
-			  obj.state =  1  // treating 
-			 	   
-			 this.touchCheckT = this.appCurT
-       		 this.isExtrudingAcneState = true 
-			   			   
-		   }
+   			   }		
 
-	 } 	
+	  } 	
+	 
+	 if(touchCount == 0){
+		 //엉뚱한 곳 터치 
+
+	   this.faceEventST = this.appCurT  
+       this.faceProp = facestate_bad2
+  		
+	 }else {
+		 //터치는 했지만 벗어난 경우 
+		 
+		 if(touchState == acne.touch_bad){			
+
+     	    this.faceEventST = this.appCurT  
+            this.faceProp = facestate_bad
+		 }
+		 
+	 }
+	 
+	 
+	 this.lastMovePos.x = tx 
+	 this.lastMovePos.y = ty 
+	 
+ 	 this.isShowFinger = true 
 	
-	let playInfoDiv = document.getElementById("playInfoDiv")
-	playInfoDiv.style.display = 'block'
-	playInfoDiv.style.top = this.closeupRscPos.y + 'px'	
+
 
 
 	}		
 	
+	//=============
+	//
+	//==============
     touchM(e){
 
     let touches = e.touches
@@ -363,14 +500,27 @@ class acne {
 
 	}		
 
+
+	//=============
+	//
+	//============
     touchE(e){
 
+		for(let i =0 ; i < this.stuffArray.length; i++){
 
+				let obj = this.stuffArray[i] 
+				
+				if(obj.state == Stuff.state_treating){
+					
+					obj.state = Stuff.state_normal
+					//obj.userVal = 0
+				}
+		}
+
+     this.isShowFinger = false 
      //---acne------------
 	 this.isExtrudingAcneState = false
 	
-	 let playInfoDiv = document.getElementById("playInfoDiv")
-	 playInfoDiv.style.display = 'none'
 	 //-------------------
 	
 	}		
@@ -434,11 +584,17 @@ class acne {
 		  sprite.addFrame(40, 0, 40, 70)
 		  sprite.addFrame(80, 0, 40, 70)
 		 }
-		 else {
+		 else if(i==1){
 		   sprite.addFrame(120, 0 , 40, 70)
 		   sprite.addFrame(160, 0, 40, 70)				
 		   sprite.addFrame(200, 0, 40, 70)				
 
+		 }else {
+			 
+		   sprite.addFrame(0,  70 , 40, 40)
+		   sprite.addFrame(40, 70, 40, 40)				
+		   sprite.addFrame(80, 70, 40, 40)				
+			 			 
 		 }
 		 
 		 this.spriteArray.push(sprite)
@@ -457,6 +613,9 @@ class acne {
 	  console.log("begin_playstate_rest")		 
 		
 	  gPlaystate = playstate_rest
+	  
+	  this.sound_bg.play();
+
 	
   	 showSysMsg("begin-->playstate_rest", 0)
 	
@@ -491,6 +650,10 @@ class acne {
 	  let bgDiv = document.getElementById("bgDiv");
 	  bgDiv.style.display = 'block'
 	  
+	
+	 //playMenu용 메뉴표시 
+     var  preMenuDiv = document.getElementById("simpleMenuDiv");
+      preMenuDiv.style.display = 'block'
 	  
 	  //this.sound_bg.pause()
 	   
@@ -507,6 +670,7 @@ class acne {
 	 } //postFinishJob 
 		
 		
+		
 	//user가 rating 닫기 누를 때
 	closePlay(){
 
@@ -516,7 +680,9 @@ class acne {
 	}		
  		
 
-
+//==================
+//
+//=================
     drawSprite(ctx, curT){
 		
 	
@@ -546,22 +712,13 @@ class acne {
 		let drawPosY = this.closeupRscPos.y + obj.y 
 			
         sprite.drawFrameEx(ctx, drawPosX, drawPosY, 0.8)	
-        //console.log("sprite.drawFrameEx")		
-		
+        //console.log("sprite.drawFrameEx")				
 	    //this.sprite.drawFrameEx(this.ctx, drawPosX, drawPosY, 0.8)
 		
 		}
 	}		
 		
-		
-		
-		updateAcnePlayState(progress){
 	
-	let stateProgress = document.getElementById("playProgress") 
-	stateProgress.value = progress
-	
-}
-
 
 //3초간 유지한 경우 여드름 압출
 updateAcneTreatment(curT){
@@ -571,13 +728,13 @@ updateAcneTreatment(curT){
 		  return 
 	 }		 
 
+
   let elapsedT =  curT - this.touchCheckT  
  
   let  percent = (elapsedT/3000)*100 
-  this.updateAcnePlayState(percent)
+//  this.updateAcnePlayState(percent)
   
-  if(elapsedT >= 3000){
-	  
+ 
 	  console.log("AcneTreatment")	
 		
 	  for(let i =0 ; i < this.stuffArray.length; i++){
@@ -588,42 +745,87 @@ updateAcneTreatment(curT){
 		     console.log("obj.state: " + obj.state)
 			
 			//treating인 경우에만
-			if(obj.state != 1){ 
+			if(obj.state == Stuff.state_normal || obj.state == Stuff.state_treated){ 
 			
 			   continue 
 			}
 			
-			 obj.state = 2 //treated
-			 obj.rscIdx = 1 // 짠 후의 모습 		
+			obj.userVal += elapsedT 
+			
+			
+			
+			if(obj.userVal  >= 3000){
+				
+				 obj.state = 2 //treated
+			     obj.rscIdx = 1 // 짠 후의 모습 	
+				 
+		        let sprite = this.spriteArray[i]
+				sprite.play()
+				console.log("sprite.play")
 
-            let sprite = this.spriteArray[i]
-		    sprite.play()
-       	    console.log("sprite.play")
+				this.sound_treatment.loop = false 
+				this.sound_treatment.currentTime = 0
+				this.sound_treatment.play() 			
+				this.isExtrudingAcneState = false  
+								
+				this.numTreatedStuff +=1
+				
+				let percent = (this.numTreatedStuff/this.numTotalStuff)*100
+				
+				let stateProgress = document.getElementById("playProgress") 
+				stateProgress.value = percent 	
 
-            this.sound_treatment.loop = false 
-		 	this.sound_treatment.currentTime = 0
-			this.sound_treatment.play() 			
-			this.isExtrudingAcneState = false  
+            				
+				
+			}
+			else {
+								
+				
+			}
 			
-			
-			this.numTreatedStuff +=1
-			
-			let percent = this.numTreatedStuff/this.numTotalStuff
-			
-			let stateProgress = document.getElementById("playProgress") 
-	        stateProgress.value = percent 		
-			
-
     	}	  	  
   
       this.touchCheckT = curT  
 	  	  
-  }	//	if(elapsedT >= 3000
 
 	
 }
 
 
+drawPlayInfo(ctx){
+	
+	  for(let i =0 ; i < this.stuffArray.length; i++){
+
+			let obj = this.stuffArray[i] 
+			//여드름 짠 후 모습			
+		
+ 		   //treating인 경우에만
+			if(obj.state != Stuff.state_treating){ 
+			
+			   continue 
+			}
+			
+			
+		   //cx: 캔버스 기준 좌표
+		   //obj.x(부모기준 obj's LT좌표)
+          let cx = this.closeupRscPos.x + obj.x 
+	   	  let cy = this.closeupRscPos.y + obj.y
+		  
+		  let info =  obj.userVal + '/3000'
+
+	     // 3-6. 텍스트+외곽선 그리기
+		 ctx.font ="10pt Fira";
+         ctx.fillStyle = 'white'
+		 ctx.fillText(info, cx, cy);
+                
+         ctx.strokeStyle = 'black';
+		 ctx.strokeText(info, cx, cy);
+			
+			
+    	}	  	  
+	
+	
+}
 
 drawLine(ctx, sx,sy, dx, dy){
 	
@@ -652,6 +854,11 @@ drawLine(ctx, sx,sy, dx, dy){
        return 	
     }
 	
+	if(this.postMsg_begin_rest ==true){
+		
+		return 
+	}
+	
 	if(this.numTotalStuff == 0){
 		
 		console.log("numTotalStuff==0 ")
@@ -677,15 +884,16 @@ drawLine(ctx, sx,sy, dx, dy){
 	if(numTreated >= this.numTotalStuff){
 				
 		     this.isTreatingStuff = false; 
+			 
+		 	this.postMsg_begin_rest = true 
 			
 			//너무 빨리 rest로 넘어가면 안됨 
 			//압출sprite가 끝이 나고 넘어가야 자연스러움 			
 			 //함수만 넘겨주는 것이므로 bind(this) 빼먹지 말기			
-			setTimeout(this.begin_playstate_rest.bind(this), 5000)		
-		
-		
-		
+			setTimeout(this.begin_playstate_rest.bind(this), 5000)				
 	}	
+	
+	
 
   }
   
