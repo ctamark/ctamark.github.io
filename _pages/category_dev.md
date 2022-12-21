@@ -11,6 +11,9 @@ taxonomy: dev
 AR(sceneform +kotlin)       
 <img src="https://ctamark.github.io/sceneform-02.jpg" width="40%">   
 
+
+[cmdevicemotion](https://nshipster.com/cmdevicemotion/){:target="_blank"}   
+
 [github배우기](https://www.devinlife.com){:target="_blank"}   
 
 [dev.txt_새창](./dev.txt){:target="_blank"}   
