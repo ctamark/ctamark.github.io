@@ -1,0 +1,32 @@
+function endCandle_JS(){
+    
+    try{
+                
+      //android.endCandle_JS()
+      webkit.messageHandlers.callbackJS.postMessage('endCandle_JS()')
+        
+    }catch(err){
+        
+        console.log(err)
+    }
+        
+}
+
+
+	//let adInfoStr =  android.getUserAdInfo_JS()
+        webkit.messageHandlers.callbackJS.postMessage("getUserAdInfo_JS()")
+        
+        function webkitSendLogMsg(log){
+    
+    try {
+        
+        webkit.messageHandlers.iosListener.postMessage(log)
+        
+    }catch(err){
+        
+        alert(err)
+        
+    }
+        
+    
+}
