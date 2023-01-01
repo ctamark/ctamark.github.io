@@ -28,9 +28,45 @@
 
 <BODY leftMargin=5 topMargin=5 >	
 <div class = "notice" >  
----  
-<a class="kwdlink" href="https://ctamark.github.io/exam/blabla-01.html" target='_self'>9급면접후 느낀점과 팁</a>(보려면 터치하세요)
----
+국가직9급(2023.4.8.) <span id="dday" style="color:white; background-color:black; size:1.5rem;"></span>
+(원서접수:2.9~2.11.)   
+-------------  
+<script  language = "javascript">
+function update_dday(){
+
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2023년 4월 8일
+// month는 0부터 시작
+var dday = new Date(2023, 4-1, 8); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  'D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨습니다';
+
+    }
+
+   counter.innerText = msg;
+}
+update_dday();
+</script>		   	  
+----    
 
 <b>[저질오타]</b>  
 @ox_0321  
@@ -52,9 +88,7 @@ Unequal terms of trade....
 <span class="red">[ver: 166]</span>(167)(221024)
 + 검색기능에 버그가 있어 수정
 + 일부 기능 로딩속도 개선  
-  
-<span class="red">[ver: 165]</span>(166)(221010)
-+ [국9.22년] 객관식 모드에 추가
+
        
 </div>
 </BODY>
