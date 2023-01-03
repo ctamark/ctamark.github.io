@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+</style>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+
+<script type="text/javascript">
+   window.addEventListener('load', function() {
+     setTimeout(scrollTo, 0, 0, 1);
+    }, false);
+</script>
+
+<link rel="stylesheet" href="style.css">	  
+
+</head>
+
+<body  oncontextmenu="return false">
+<canvas  id="myCanvas"   style="border:1px solid #ff0000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<div id="logoDiv" >
+  <img src="./app_icon.png" width='200px'><br> 
+  presented by planB.com<br><br>
+  <button id="startBtn" type="button" onclick="start()" style="font-size: 1.2rem;">--START--</button>  
+</div>
+
+
+<div id="sysMsgDiv">
+<span id="sysMsg">시스템 메시지...</span>
+</div>
+
+<div id="simpleMenuDiv" style="display: none;">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem;'>☰</span>
+
+</div>
+
+
+<div id='screenBG' onclick="onScreenBG()">
+</div>
+
+<!--
+<div id="mainMenuDiv" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="toggleMainMenu()">X</span></p>
+<font color='white'>[ASMR Game]</font><br>
+<a class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">- EarCleaning</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">- Acne</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">- Waxing</a><br>
+<font color='white'>---</font><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="pomodoro()">Pomodoro Timer</a><br>
+<font color='white'>---</font><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="onAsmr(9)">ASMR</a><br><br>
+---<br>
+<a class='menuItem'  href="javascript:void(0);" onclick="onCandle()">Candle</a><br>
+---<br>
+
+<a class='menuItem'  href="javascript:void(0);" onclick="openConfig()"><img src='./config.png' width='50'></a> 
+</div>
+-->
+
+<div id="gameMenuDiv" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="togglePlayMenu()">X</span></p>
+---playMenu---<br>
+<a class="menuItem" id="playBtn"  href= 'javascript:void(0)' onclick="gameMenu_play()" >RePlay</a><br>
+<font color='white'>-----</font><br>
+<a class="menuItem" id="mainMenuBtn" href='javascript:void(0)' onclick="gameMenu_goToAsmr()" >Quit</a>
+</div>
+
+
+<!--mm(mainMenu)-->
+<div id="mm_item_menu" style="display: none;">
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="closeItemMenu()">X</span></p>
+--------<br>
+<a class="menuItem" id="mm_item_menuBtn"  href= 'javascript:void(0)' onclick="onClose_mm_item_menuBtn()" >Close</a>
+</div>
+
+
+
+<div id="ratingDiv" style="display: none;">
+<!--<button class="menuBtn" id="closeRatingBtn" onclick='onCloseRatingBtn()'  type="button" style="font-size: 1.2rem">Close</button>-->
+-----
+<img src="./rating_base.png" border=0>
+</div>
+
+<div id="bgDiv" style="display: none;">
+</div>
+
+
+<div id="asmrDiv" >
+<div style="float:right; width:80px; height:80px; margin:10px; font-size:1.2rem;  ">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem;'><img src="./btn_more_menu.png" width='50px'></span>
+</div>
+
+<div style="float:left; width:80px; height:80px; margin:10px; font-size:1.2rem; ">
+<span onclick="onAsmrMix()" style='font-size: 1.2rem;'>asmrMix</span>
+</div>
+
+<div style="border: 2px solid black; width:100%; height:50%;">
+</div>
+<div style="width:100%; height:50%;">
+</div>
+
+
+<div style="width: 200px; height: 200px;  text-align:center; position:absolute; left:50%; top:50%; margin-left: -100px; margin-top: -100px; ">
+<span id='asmrName'>---</span>
+<img id='asmrBG'  src="./bg_night.gif" width='80%'><br>
+</div>
+
+</div>
+
+
+<!--   -->
+<div id='comMenuDiv'>
+<p style="text-align: right; padding: 6px; margin: 0px;"><span  style="color: white;  font-size: 1.2rem; " onclick="onCloseComMenu()">X</span></p>
+<a class='menuItem'  id='menu-quit'  href="javascript:void(0);" onclick="goToAsmr()">Quit</a><br>
+
+<div id="comMenu_timer" style='border:2px dotted gray;'>
+<a class='menuItem'  id='menu-timer' href="javascript:void(0);" onclick="onPomodoro()">Pomodoro Timer</a>
+<div id='timerOption'>
+- <label><input type="checkbox" id="autoStartCB" checked='checked' onclick='onCheckboxAutoStart(event)'><font color='gray'>autoStart</font></label><br>
+<br>
+- focusTime: <span id="focusTimeVal">25min</span><br>   
+<label><input type="range" id="focusTimeRange"  style="width: 90%;" min='5' max='60' value="25" ></label><br>
+
+selected toDo item<br>
+<select id='todoListSelect-timerMenu' onchange='onChangeTodoList_timerMenu(this)'>
+<option>--</option>
+<option>--</option>
+</select>
+<br><br>
+<button   onclick="javascript:showTodoListDiv(true);" >edit todoList</button><br>
+</div>
+</div>
+<br>
+<div id="comMenu_asmrGame" style='border:2px dotted gray; margin-right:0px;'>
+<font color='white'>[ASMR Game]</font><br>
+<a class='menuItem'  href="javascript:void(0);"  onclick="playEarCleaning()">- EarCleaning</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playAcne()">- Acne</a><br>
+<a class='menuItem'  href="javascript:void(0);" onclick="playWaxing()">- Waxing</a><br>
+</div>
+<br><br>
+
+<div id='comMenu_candle' onclick ='onCandle()'  style='border:2px dotted gray;'>
+<a class='menuItem'  id= 'menu-candle' href="javascript:void(0);" onclick="onCandle()">Candle</a>
+</div>
+<br>
+<a class='menuItem'  href="javascript:void(0);" onclick="openConfig()"><img src='./config.png' width='50'></a> 
+<br>ver(20221225)
+</div>
+<!--  comMenuDiv 끝 -->
+
+
+<div id="candleDiv" style="display: none;">
+<div style="float:right; width:80px; height:80px; margin:10px; font-size:1.2rem;  ">
+<span onclick="openRelativeMenu()" style='font-size: 1.5rem; color: gray;' >☰</span>
+</div>
+<div style="float:left; width:80px; height:80px; margin:10px; font-size:1.2rem; ">
+<span onclick="onAsmrMix()" style='font-size: 1.2rem; color: white;'>asmrMix</span>
+</div>
+<img id= 'candle_img' src="./bg_candle.gif"  width='50%'>
+</div>
+
+
+<!--  --->
+<div id="playInfoDiv">
+<progress id="playProgress" value="32" max="100"> 32% </progress>
+</div>
+
+
+<div id='timerMenuDiv'>
+<p style="text-align: right; margin-right: 10px;"><span  style="color: white;  font-size: 1.5rem;" onclick="onCloseTimerComMenu()">X</span></p>
+
+<a class='menuItem'  href="javascript:void(0);" onclick="quitPomodoro()">Quit</a><br>
+<font color='gray'>-----</font><br>
+
+</div>
+
+
+
+<!-- --->
+<div id='asmrMixDiv'>
+<p style="text-align: right; margin-right: 10px;"><span  style="color: gray;  font-size: 1.5rem;" onclick="onCloseAsmrMix()">X</span></p>
+[asmr sound]<br>(multi check possible)<br>
+<label><input type="checkbox" id="asmrSlot-00-CB"  value = '01' checked='checked' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-01</font></label><br>
+<label><input type="checkbox" id="asmrSlot-01-CB"  value = '02' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-02</font></label><br>
+<label><input type="checkbox" id="asmrSlot-02-CB"  value = '03' onclick='onCBAsmrSlot(this)'><font color='white'>asmr-typing</font></label><br>
+<br>
+<font color='white'>---</font><br>
+<input type="checkbox" id="asmrSlot-03-CB"  value = '04' onclick='onCBAsmrSlot(this)'>asmr-04(shaving)<br>
+<input type="checkbox" id="asmrSlot-04-CB"  value = '05' onclick='onCBAsmrSlot(this)'>asmr-05(cafe)</a><br>
+<input type="checkbox" id="asmrSlot-05-CB"  value = '06' onclick='onCBAsmrSlot(this)'>asmr-06(cafe)</a><br>
+---<br>
+<input type="checkbox" id="asmrSlot-06-CB"  value = '07' onclick='onCBAsmrSlot(this)'>asmr-rain</a><br>
+<input type="checkbox" id="asmrSlot-07-CB"  value = '08' onclick='onCBAsmrSlot(this)'>asmr-forest</a><br>
+<input type="checkbox" id="asmrSlot-08-CB"  value = '09' onclick='onCBAsmrSlot(this)'>asmr-criket</a><br>
+<input type="checkbox" id="asmrSlot-09-CB"  value = '10' onclick='onCBAsmrSlot(this)'>asmr-sea</a><br>
+---
+</div>
+
+<div id='todoListDiv'>
+<p style="text-align: right; padding-right: 30px;"><span  style="color: black;  font-size: 1.5rem;" onclick="showTodoListDiv(false)">X</span></p>
+<!--to do: <input type="text" id="input-todo" onchange='onInputTodo()'/>-->
+type todoItem<br>
+<input type="text" style='width: 50%' id="todoItemText"  placeholder="type job Name to add"/> <button type="button" onclick="onBtnRegTodoItem()" style="font-size:1.2rem;">register</button> 
+<br>
+[to-do-List]<br>
+<select id='todoListSelect' style='width: 70%' size='10' onchange='onChangeTodoList()'>
+<option>afdasfa1</option>
+<option>afdasfa2</option>
+</select>
+<br><br>
+<button type="button" onclick="deleteTodoItem()" style="font-size:1.2rem;">delete</button> 
+
+
+</div>
+
+
+
+<div id='configDiv'>
+-----
+config
+-----
+<!--
+  <input type="range" min="1" max="100" value="50" class="slider" id="volumeRange">
+  <p>Value: <span id="volumeValue"></span></p>-->
+
+<label><input type="checkbox" id="keepScreenOnCB" checked='checked' onclick='onCheckboxKeepScreenOn(event)'><font color='white'>Keep Screen On</font></label><br>
+---
+<a class='menuItem'  href="javascript:void(0);"  onclick="onRewardAd()"><font color='white'>- remove ad</font></a><br>
+<span id='adUserInfo'>---</span><br>
+
+<input type="checkbox" id="powerSave-CB"  onclick='onCBPowerSave(this)'>powerSave</a><br>
+
+<div class='configMenu'>      
+<button type="button" onclick="closeConfig()" style="font-size:1.2rem;">Close</button> | <button type="button" onclick="applyConfig()" style="font-size:1.2rem;">apply</button>
+</div>
+
+</div>
+
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script type="text/javascript" src='./appDesc.js'></script>
+
+<script src='./wave.js'></script>
+
+<script src='./helper.js'></script>
+
+<script src='./earCleaning.js'></script>
+<script src='./acne.js'></script>
+<script src='./waxing.js'></script>
+
+<script src='./pTimer.js'></script>
+<script  type="text/javascript">
+
+
+let gIsAndroid = false
+
+let gIsConnectDevice = true
+let gIsBackground = false 
+
+
+var slider = document.getElementById('focusTimeRange');
+let focusTVal = document.getElementById('focusTimeVal');
+//output.innerHTML = slider.value;
+ slider.oninput = function() {
+ 
+	focusTVal.innerHTML = this.value + ' min'
+	console.log('oninput: ' + this.value)	
+	
+	/*
+	if(gPTimer != undefined){
+	
+	gPTimer.focusMin = this.value
+	
+	}
+	*/
+	gFocusTime = this.value 
+	//key와 value 모두 string 으로 저장
+	window.localStorage.setItem('focusT', this.value)
+	
+} 
+
+
+let gBubble_img = new Image();
+gBubble_img.src = "./speech_bubble.png"
+	  
+
+var gMainmenuItem = 0 
+
+ var interval_ID
+
+ var gCtx 
+ var gWaveGroup;
+ 
+ let gClientWidth, gClientHeight;
+ 
+ var gAppCurT = 0
+ 
+ 
+ let gAsmrArray = [] 
+ let gCurAsmrIdx = 0
+ 
+
+ let  gSound_alarm
+ 
+ let gPlayObj 
+ let gAsmr 
+ 
+ let gUpperBody_img = new Image()
+ gUpperBody_img.src = './upper_body.png'
+ gUpperBody_img.onload = function(){
+  
+ }
+ 
+ let gTodoListArray = [] 
+// gTodoListArray.push('job-01')
+ gTodoList_selectedIdx = 0
+ 
+//=====================
+gBottomFrame_img = new Image();
+gBottomFrame_img.src = './bottom_frame.png'	   
+//=====================
+
+
+let gDialogMsg = ''
+
+let gPTimer
+
+ let gSun_img = new Image()
+ gSun_img.src = './sun-icon.png'
+
+
+
+let gIsPowersave = false
+
+
+ let gBottomMenuH = 80
+
+let gTimerAutoStart = false  
+//
+let gFocusTime = 25 
+//단위 min
+
+let gIsMobile = false 
+
+const isMobile = () => {
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+}
+
+//===========
+//
+//============
+ function initData(){
+ 
+    gIsMobile = isMobile()
+    console.log('isMobile ' + gIsMobile)
+	
+//-------------	
+     let val = window.localStorage.getItem('autoStart')
+ 
+	 if(val == undefined){	  
+	    console.log('key(autoStart) not found') 
+	 }
+	 else {
+		 
+		   if(val == 'true'){   
+		   
+		   gTimerAutoStart = true 
+		  
+		  }else {
+			 gTimerAutoStart = false 	  
+		  }
+	 
+	 }
+	 
+	  val = window.localStorage.getItem('powersave')
+	 if(val != undefined){
+	 
+	    if(val == 'true'){
+             gIsPowersave = true 
+	    }
+		else {
+             gIsPowersave = false 		
+		}
+
+	 }
+
+	 
+      val = window.localStorage.getItem('focusT') 
+	 if(val == undefined){	  
+	 
+	
+	 }
+	 else {
+	 
+	 gFocusTime = parseInt(val)	  	 
+     console.log('gFocusTime: '+ gFocusTime) 
+	 
+	 }
+    //---------------------------------	 
+	
+   let items = window.localStorage.getItem('todoItems')	
+   if(items == undefined){   
+   
+   
+    }
+
+    console.log(items)	
+   let itemArray = items.split(', ')
+   for(let i=0;  i < itemArray.length; i++){
+    
+	 let item = itemArray[i]    
+     gTodoListArray.push(item)   
+   
+   }
+   
+   
+	  
+ }
+ 
+ 
+function initAsmr(){
+
+  console.log('initAsmr')
+  
+   gAsmrArray.push(new Audio("./asmr-01.mp3"))
+   gAsmrArray.push(new Audio("./asmr-02.mp3"))
+   gAsmrArray.push(new Audio("./asmr-typing.mp3"))   
+
+   gAsmrArray.push(new Audio("./asmr-04.mp3"))   
+   gAsmrArray.push(new Audio("./asmr-05.mp3"))   
+   gAsmrArray.push(new Audio("./asmr-06.mp3"))   
+   
+   gAsmrArray.push(new Audio("./asmr-rain.mp3") )   
+   gAsmrArray.push(new Audio("./asmr-forest.mp3") )   
+   gAsmrArray.push(new Audio("./asmr-cricket.mp3") )   
+   
+   gAsmrArray.push(new Audio("./asmr-sea.mp3") )   
+   
+
+}
+
+function handleVisibilityChange() {
+
+  console.log('handleVisibilityChange')
+  
+  gIsBackground = document.hidden 
+  
+  if(document.hidden) {
+  
+  
+    // the page is hidden
+	
+  } else {
+    // the page is visible
+  }
+  
+  console.log('isInBackground: ' + gIsBackground)
+
+
+
+}
+
+ //idx: -1 현재 asmr그대로 사용 
+ function onAsmr(idx){
+ 
+     console.log('onAsmr')
+
+    if(gMainmenuItem == mainmenu_item_asmr){
+	
+	
+	     console.log('already mainmenu_item_asmr so return')
+	
+    	return 
+	}
+	
+	closeCurDiv()
+	
+    gMainmenuItem  = mainmenu_item_asmr 
+   
+    let screenBG = document.getElementById('screenBG')
+	screenBG.style.display = 'none'
+	
+    let  comMenuDiv = document.getElementById("comMenuDiv");
+    comMenuDiv.style.display = 'none'	
+
+
+    let  moreMenuDiv = document.getElementById("simpleMenuDiv");  
+    moreMenuDiv.style.display = 'block'	
+  
+ //   showTimerOptionMenu(false)
+  
+   //----------------------------------
+   let asmrDiv = document.getElementById('asmrDiv')
+   asmrDiv.style.display = 'block'
+   //--------------------------------
+  
+  
+    if(idx >= 0){
+
+		gCurAsmrIdx = idx 
+		console.log('onAsmr-->: ' + idx)
+	  
+		let curAsmr =  gAsmrArray[idx]
+		curAsmr.loop = true 
+		curAsmr.play()
+		
+		let name = document.getElementById('asmrName')
+		name.innerText = 'firstIdx' + idx
+	}
+   
+   //------------
+ 
+ }
+ 
+ 
+ 
+ 
+ function stopAsmr(){
+  
+     gAsmr.pause()
+	 
+	 gMainmenuItem = 0
+	 
+	  let asmrDiv = document.getElementById('asmrDiv')
+      asmrDiv.style.display = 'none'
+
+  
+	  	  
+      let  preMenuDiv = document.getElementById("simpleMenuDiv");  
+	  preMenuDiv.style.display = 'block'	
+	  
+ }
+ 
+ function onAsmrMix(){
+ 
+ console.log('onAsmrMix')
+
+        //z: 21
+        let screenBG = document.getElementById('screenBG')
+	    screenBG.style.display = 'block'
+ 
+		let asmrMix =	document.getElementById('asmrMixDiv')
+		asmrMix.style.display = 'block'		
+		
+		for(let i=0; i < gAsmrArray.length; i++){
+		
+		  let sound =  gAsmrArray[i]
+		  
+		  let elmtCB = getAsmrSlotCB(i)
+          
+		   if(sound.paused){
+         
+	    	 elmtCB.checked = false 
+		   }
+          else {
+
+	    	 elmtCB.checked = true 
+			 
+            }		  
+		
+		}
+		  
+ }
+ 
+ 
+ function getAsmrSlotCB(idx){
+ 
+   let elmt = undefined
+   let numStr = '0' + idx 
+   let name = 'asmrSlot-' + numStr + '-CB'
+       
+    elmt = document.getElementById(name)
+ 
+    return elmt  
+ }
+ 
+ 
+ 
+function onCloseAsmrMix(){
+
+ //z:22
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'
+//z:22
+  let asmrMix =	document.getElementById('asmrMixDiv')
+  asmrMix.style.display = 'none'
+
+}
+
+function stopPlayingAsmr(){
+
+   console.log('stopPlayingAsmr')
+
+	for(let i=0; i < gAsmrArray.length; i++){
+
+      let asmr = gAsmrArray[i]
+      
+	   if(asmr.muted ==false){
+	   
+  	         asmr.pause();
+	   }
+	   
+	}
+}
+
+
+function playAsmr(idx){
+
+  if( idx < -1 || (idx > gAsmrArray.length -1)  ){
+
+     return;
+  }
+  
+   console.log('playAsmr: ' + idx)
+
+ let asmr = gAsmrArray[idx]
+   
+   if(asmr.muted){
+   
+       asmr.loop = true 
+       asmr.play();
+   
+   }
+   else {
+   
+   }
+
+}
+
+
+function onCBAsmrSlot(cb){
+
+   console.log('onCBAsmrSlot: name:' + cb.name +', value' +  cb.value)
+ 
+   let slot_idx = parseInt(cb.value) - 1 
+   //parseInt 대신 Number()사용도 가능 
+   console.log("slot-idx: " + slot_idx)
+ 
+   let asmr = gAsmrArray[slot_idx]
+   
+   if(cb.checked){
+   
+       asmr.loop = true 
+       asmr.play();
+   
+   }
+   else {
+
+      asmr.pause();
+   }
+
+
+}
+
+
+function onCandle() {
+
+    console.log('onCandle')
+	
+   closeCurDiv()
+
+   gMainmenuItem  = mainmenu_item_candle
+   
+   let asmrDiv = document.getElementById('asmrDiv')
+   asmrDiv.style.display = 'none'
+ 
+   let candleDiv = document.getElementById('candleDiv')
+   candleDiv.style.display = 'block'
+  
+  /*
+   let final_fname = './' + fname +'.mp3'
+ 	gAsmr = new Audio(final_fname);
+	gAsmr.loop = true 
+    gAsmr.addEventListener('canplay', onLoadAsmr);    
+ */
+ 
+    let screenBG = document.getElementById('screenBG')
+	screenBG.style.display = 'none'
+
+    let  comMenuDiv = document.getElementById("comMenuDiv");
+     comMenuDiv.style.display = 'none'	
+   
+
+    let  preMenuDiv = document.getElementById("simpleMenuDiv");  
+	preMenuDiv.style.display = 'none'	
+	
+//	let asmrMix = document.getElementById('asmrMixDiv');
+//	asmrMix.style.display = 'none'
+
+    //rotateCandle(45);
+	
+	if(gIsConnectDevice&&!gIsPowersave){
+
+	    startCandle_JS();
+	   
+    }
+}
+
+
+
+
+function closeCandle(){
+
+   console.log('closeCandle')
+   
+    let candleDiv = document.getElementById('candleDiv')
+    candleDiv.style.display = 'none'
+	
+    let  menu_IconDiv = document.getElementById("simpleMenuDiv");  
+	menu_IconDiv.style.display = 'block'	
+      
+    gMainmenuItem  = 0
+   
+}
+
+
+function rotateCandle(angleD){
+
+/*
+// Access DOM element object
+const rotated = document.getElementById('rotated');
+
+// Rotate element by 90 degrees clockwise
+rotated.style.transform = 'rotate(90deg)';
+*/
+
+const img = document.getElementById('candle_img')
+
+let cmd = 'rotate(' + angleD+'deg)' 
+
+img.style.transform = cmd 
+
+}
+
+
+
+function onPomodoro(){
+
+  console.log('onPomodoro()')
+
+  closeCurDiv()
+
+  let  comMenuDiv = document.getElementById("comMenuDiv");
+   comMenuDiv.style.display = 'none'	
+   
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'  
+   
+  let moreMenu = document.getElementById('simpleMenuDiv')
+  moreMenu.style.display = 'block'  
+	
+ 		
+  gMainmenuItem  = mainmenu_item_pomodoro
+
+  if(gPTimer == undefined){ 
+ 
+     gPTimer = new PTimer()
+  }
+  
+  gPTimer.init()
+  gPTimer.focusMin = gFocusTime 
+
+  //휴식  
+  gPTimer.begin_stateBreak(5)
+  
+  
+  startTimer_JS()
+  
+  
+
+}
+
+
+function showTimerOptionMenu(isShow){
+
+    let optionDiv =  document.getElementById('timerOption')
+
+   if(isShow){
+
+      	optionDiv.style.display = 'block'		
+		updateTodoListSelect_timerMenu()
+
+   }else {
+
+     	optionDiv.style.display = 'none'   
+   }
+
+}
+
+
+function onCloseTimerMenuDiv(){
+
+   let div = document.getElementById('timerMenuDiv')
+   div.style.display = 'none'
+
+}
+
+function onCheckboxAutoStart(event){
+
+   if(event.target.checked){
+   
+    //  gPTimer.isAutoStart = true 
+	//  console.log('autoStart=true')
+  	 window.localStorage.setItem('autoStart', 'true');	
+     console.log('autoStart: true')  
+	 gTimerAutoStart = true 
+	 
+   
+   }
+   else {
+
+    //  gPTimer.isAutoStart = false
+	      //  console.log('autoStart=false')
+	 window.localStorage.setItem('autoStart', 'false');	
+     console.log('autoStart: false')  
+     gTimerAutoStart = false  
+      
+   }
+
+
+}
+
+
+function quitPomodoro(){
+ 
+   console.log('quitPomodoro')
+
+   let div = document.getElementById('timerMenuDiv')
+   div.style.display = 'none'
+   
+   gMainmenuItem = 0
+   
+ //  gPTimer = undefined
+  
+
+}
+
+
+
+function onCloseComMenu(){
+
+
+  let screenBG = document.getElementById('screenBG')
+  screenBG.style.display = 'none'
+
+  let menuDiv = document.getElementById('comMenuDiv') 
+  menuDiv.style.display = 'none'
+  
+  if(gMainmenuItem == mainmenu_item_pomodoro){
+  
+   var slider = document.getElementById('focusTimeRange');
+  
+  	//gFocusTime = slider.value 
+	//key와 value 모두 string 으로 저장
+	window.localStorage.setItem('focusT', slider.value)  
+  }  
+ 
+  let moreMenuIcon = document.getElementById('simpleMenuDiv')
+  moreMenuIcon.style.display = 'block'
+ 
+}
+
+//
+//mainMenu에서 asmr로 가는 경우 
+function goToAsmr(){
+
+let menuDiv = document.getElementById('comMenuDiv') 
+  menuDiv.style.display = 'none'
+  
+  
+ 
+  closeCurDiv()
+
+  onAsmr(-1)
+
+}
+
+function closeCurDiv(){
+
+
+  let menuDiv = document.getElementById('comMenuDiv') 
+  menuDiv.style.display = 'none'
+
+   if(gAppstate == appstate_mainmenu){
+
+         if(gMainmenuItem == mainmenu_item_asmr){
+		 
+		     let asmrDiv = document.getElementById('asmrDiv')
+			 asmrDiv.style.display = 'none' 
+			
+		 }
+    	 else if(gMainmenuItem == mainmenu_item_pomodoro){
+				
+			    endTimer_JS()
+					
+				//setTimeout 취소처리 등
+				if(gPTimer != undefined){
+				
+		     		gPTimer.end()
+				}
+				
+			
+				
+				//canvas Div가 표시 
+		    // let pomoDiv = document.getElementById('timerMenuDiv')
+			// pomoDiv.style.display = 'none' 
+		   // gMainmenuItem = mainmenu_item_asmr
+		     
+		     //let asmrDiv = document.getElementById('asmrDiv')
+			 //asmrDiv.style.display = 'block' 
+			 			 
+		
+		 }else if(gMainmenuItem == mainmenu_item_candle){
+		  
+		  if(gIsConnectDevice){		    
+			     
+				 endCandle_JS()
+			}
+		 
+		    let candleDiv = document.getElementById('candleDiv')
+			 candleDiv.style.display = 'none' 
+		 
+		 
+		 }
+
+   }
+
+}
+
+
+function onClose_mm_item_menuBtn(){
+
+   console.log('onClose_mm_item_menuBtn')
+   
+   
+    let itemMM = document.getElementById('mm_item_menu')
+   itemMM.style.display = 'none'
+   
+   if(gMainmenuItem == mainmenu_item_asmr){
+   
+     let asmrDiv = document.getElementById('playAsmrDiv')
+      asmrDiv.style.display = 'none'
+   
+   }
+   else if( gMainmenuItem == mainmenu_item_candle){
+
+     let candleDiv = document.getElementById('candleDiv')
+      candleDiv.style.display = 'none'   
+   }
+   
+	  gMainmenuItem = 0 
+   
+}
+
+
+function openConfig(){
+
+    let comMenuDiv = document.getElementById("comMenuDiv");
+    comMenuDiv.style.display = 'none'	
+	
+	let moreMenuDiv =document.getElementById("simpleMenuDiv");
+	moreMenuDiv.style.display = 'none'
+   
+	let  cfgDiv = document.getElementById('configDiv')
+	cfgDiv.style.display = 'block'
+	
+	
+	 if(gIsConnectDevice){	
+       //광고제거 남은 시간 등 표시 	  	
+		getUserAdInfo_JS()		
+	}
+	
+} 
+
+
+function onCheckboxKeepScreenOn(event){
+
+   let isActive = event.target.checked
+
+  if(gIsConnectDevice){
+	   //App의 함수호출    
+	  setKeepScreenOn_JS(isActive)  
+   }
+
+}
+
+
+function  closeConfig(){
+
+    let screenBG = document.getElementById('screenBG');
+	screenBG.style.display = 'none'
+
+	let  cfgDiv = document.getElementById('configDiv')
+	cfgDiv.style.display = 'none'
+
+    let moreMenuDiv =document.getElementById("simpleMenuDiv");
+	moreMenuDiv.style.display = 'block'
+
+}
+
+
+function onRewardAd(){
+
+   console.log('onRewardAd')
+   
+   if(navigator.onLine){
+
+       if(gIsConnectDevice){
+	      //App의 함수호출    
+	       android.onRewardAd_JS()
+        }
+   }
+   else {
+   
+       alert('network offline')
+   }
+
+  closeConfig();
+
+}
+
+
+function onCBPowerSave(cb){
+
+	if(cb.checked){
+
+      window.localStorage.setItem('powersave', 'true')
+
+	}
+	else {
+
+     window.localStorage.setItem('powersave', 'false')	
+	}
+
+}
+//---------------
+
+ 
+function onLoadAsmr(){
+	
+	 console.log('asmr.mp3 loaded')
+    // gSound_bg.pause()
+	 
+	 let curAsmr = gAsmrArray[gCurAsmrIdx]
+	 curAsmr.play()	 
+}
+
+ 
+ //더보기메뉴버튼 터치시
+function openRelativeMenu(){
+ 
+    console.log('openRelativeMenu.appstate--> ' + gAppstate)
+	
+	    let  menuIcon = document.getElementById("simpleMenuDiv");	  
+        menuIcon.style.display = 'none'	  
+ 
+	
+
+   if(gAppstate == appstate_mainmenu){
+   
+   
+      if(gMainmenuItem == mainmenu_item_asmr ){
+		  
+			 let menuDiv =	document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'
+			  
+			  let screenBG = document.getElementById('screenBG')
+			  screenBG.style.display = 'block'
+			  		  
+			  let quit_item = document.getElementById('menu-quit')
+			  quit_item.style.display = 'none'
+		 
+		
+            let game_menuDiv = document.getElementById('comMenu_asmrGame');
+            	game_menuDiv.style.display = 'block'		
+		 	 
+			 let timer_menu = document.getElementById('comMenu_timer')
+			 timer_menu.style.display = 'block'			
+	
+		     let candle_menu  = document.getElementById('comMenu_candle')
+            candle_menu.style.display = 'block'
+		      		 					
+             showTimerOptionMenu(false);					
+					 
+
+      }else if(gMainmenuItem == mainmenu_item_candle){
+	  
+	         showTimerOptionMenu(false);					
+
+	           let menuDiv =	document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'
+	
+	    	  let quit_item = document.getElementById('menu-quit')
+			  quit_item.style.display = 'block'
+			  
+			 
+ 		    let game_menuDiv = document.getElementById('comMenu_asmrGame');
+            	game_menuDiv.style.display = 'none'		
+		 	 
+			 let timer_menu = document.getElementById('comMenu_timer')
+			 timer_menu.style.display = 'none'			
+	
+		     let candle_menu  = document.getElementById('comMenu_candle')
+             candle_menu.style.display = 'none'
+			
+  /*
+             let timer_item  = document.getElementById('menu-timer')
+			 timer_item.style.display = 'block'			
+	
+		     let mitem  = document.getElementById('menu-candle')
+			 mitem.style.display = 'none'
+*/	  
+
+  			  
+	  
+	  } 
+	  else if(gMainmenuItem == mainmenu_item_pomodoro){
+	  
+     		  
+        	 let menuDiv =		document.getElementById('comMenuDiv')
+			  menuDiv.style.display = 'block'	
+	
+  	        let quit_item = document.getElementById('menu-quit')
+			  quit_item.style.display = 'block'
+	
+	         showTimerOptionMenu(true);					
+			 
+			 
+		     let screenBG = document.getElementById('screenBG')
+			  screenBG.style.display = 'block'
+
+
+		     let checkBox = document.getElementById('autoStartCB')
+	         checkBox.checked = gTimerAutoStart
+			 			 
+			 //------------------
+			 var focusTRange = document.getElementById('focusTimeRange');
+             let focusTVal = document.getElementById('focusTimeVal');
+
+              focusTRange.value = gFocusTime
+              focusTVal.innerText = focusTRange.value + 'min'
+			 //--------------------- 
+			 
+ 	        let game_menuDiv = document.getElementById('comMenu_asmrGame');
+             game_menuDiv.style.display = 'none'		
+		 	 
+		     let candle_menu  = document.getElementById('comMenu_candle')
+             candle_menu.style.display = 'none'
+			 
+		  
+	  } 
+	  else {
+	 
+	       let screenBG = document.getElementById('screenBG');
+		   screenBG.style.display = 'block'
+	 
+	       let mmenu = document.getElementById('mainMenuDiv')
+	       mmenu.style.display = 'block' 
+      }
+	 
+  
+   }
+   else if(gAppstate == appstate_play){
+   
+   
+   
+ 	   let  preMDiv = document.getElementById("simpleMenuDiv");	  
+        preMDiv.style.display = 'none'	  
+ 
+    
+	   let  playMDiv = document.getElementById("gameMenuDiv");
+	    playMDiv.style.display = 'block'
+      
+  
+   }
+
+
+}
+
+
+function toggleMainMenu(){
+
+   console.log('toggleMainMenu')
+
+    let  mMenuDiv = document.getElementById("mainMenuDiv");
+    var  preMenuDiv = document.getElementById("simpleMenuDiv");
+  
+    if(mMenuDiv.style.display === 'none'){
+	
+        mMenuDiv.style.display = 'block'	
+		preMenuDiv.style.display = 'none'
+	}
+	else {
+	
+   	    let screenBG = document.getElementById('screenBG');
+		screenBG.style.display = 'none'
+
+        mMenuDiv.style.display = 'none'	
+		preMenuDiv.style.display = 'block'	
+	
+	}
+     
+}
+
+
+function closeMainMenu(){
+
+   let bgDiv = document.getElementById('screenBG')
+   bgDiv.style.display = 'none'
+
+   let  mMenuDiv = document.getElementById("mainMenuDiv");
+   mMenuDiv.style.display = 'none'
+   
+    var  menuIconDiv = document.getElementById("simpleMenuDiv");
+    menuIconDiv.style.display = 'block'	
+
+}
+
+//screenBG터치 한 경우 
+function onScreenBG(){
+
+
+   let bgDiv = document.getElementById('screenBG')
+   bgDiv.style.display = 'none'
+
+   let comMenuDiv = document.getElementById("comMenuDiv");
+   comMenuDiv.style.display = 'none'
+   
+    var  menuIconDiv = document.getElementById("simpleMenuDiv");
+    menuIconDiv.style.display = 'block'	
+	
+	
+	let asmrMix = document.getElementById('asmrMixDiv');
+	if(asmrMix.style.display != 'none'){
+	
+	  asmrMixDiv.style.display = 'none'
+
+	}
+	
+
+}
+
+//-----------------
+function togglePlayMenu(){
+
+   console.log('togglePlayMenu()')
+
+    let  playMDiv = document.getElementById("gameMenuDiv");
+    let  preMDiv = document.getElementById("simpleMenuDiv");
+  
+    if(playMDiv.style.display === 'none'){
+	
+	   console.log('playMDiv none')
+	
+        playMDiv.style.display = 'block'	
+		preMDiv.style.display = 'none'
+	}
+	else {
+
+	    console.log('playMDiv block')
+
+        playMDiv.style.display = 'none'	
+		preMDiv.style.display = 'block'	
+	
+	}
+     
+}
+
+//=======================
+//다시 플레이 하는 경우 
+function gameMenu_play(){
+      //replay 
+      console.log('gameMenu_play')
+
+       let ratingDiv = document.getElementById("ratingDiv");
+	   
+	   if(ratingDiv.style.display == 'block'){
+	   
+     	   ratingDiv.style.display = 'none'	   
+	   }
+	   
+	   
+	    gAppstate = appstate_play;
+        gPlaystate = playstate_prepare 
+
+	   
+	    if(gSelectedPlay == playkind_earCleaning){
+		
+		 console.log('begin playEarCleaning');
+
+		
+		}
+		else if (gSelectedPlay == playkind_acne){
+		
+		
+		
+		}else if(gSelectedPlay == playkind_waxing){
+		
+		
+		
+		}
+	   
+   if(gPlayObj != undefined){
+
+		   gPlayObj.beginPrepare()	   
+   
+   }
+	  
+    let menuDiv = document.getElementById('gameMenuDiv')
+    menuDiv.style.display = 'none'   
+   
+   let moreMenu = document.getElementById('simpleMenuDiv')
+   moreMenu.style.display = 'block'
+ 
+  g_showSysMsg("preparing", 5000)
+  
+   setTimeout(end_prepare.bind(this) , 3000)
+  
+     //   let bgDiv = document.getElementById('bgDiv')
+     //  bgDiv.style.display = 'none'
+	    
+	
+
+
+}
+
+
+function gameMenu_goToAsmr(){
+  console.log('gameMenu_goToAsmr')
+	   	   
+		   
+	   let gameMenu = document.getElementById('gameMenuDiv')
+	   gameMenu.style.display = 'none'
+	   
+	   let playInfoDiv = document.getElementById("playInfoDiv")
+       playInfoDiv.style.display = 'none'			   
+	  
+	   let ratingDiv = document.getElementById("ratingDiv");
+	   
+	   if(ratingDiv.style.display == 'block'){
+	   
+     	   ratingDiv.style.display = 'none'
+	   
+	   }
+	 
+	   if(gPlayObj != undefined){
+	   
+	       gPlayObj.closePlay()
+		   
+		   gPlayObj = null
+	   
+	   }
+	   
+	   gAppstate = appstate_mainmenu
+	   gMainmenuItem = mainmenu_item_none
+	   	 
+       //gMainmenuItem에 asmr이 적용되어 있으면 onAsmr이 수행되지 않음  		 
+	   onAsmr(-1)
+/*
+   togglePlayMenu()
+
+   beginMainMenu()
+*/
+}
+
+//============
+//-------------------
+
+function g_showSysMsg(msg, spanT=0){
+
+/*
+		   let sysMsg = document.getElementById("sysMsg");
+           sysMsg.innerText = msg
+           //innerHTML은 태그까지 가능
+*/
+          let sysMsgDiv = document.getElementById("sysMsgDiv");
+          sysMsgDiv.style.display = "block"	  
+          sysMsgDiv.innerText = msg 		  
+		  
+		  if(spanT > 0){
+
+     	     setTimeout(g_hideSysMsg, spanT);
+		  }
+	 }
+
+	 
+function g_hideSysMsg(){
+		 
+  let sysMsgDiv = document.getElementById("sysMsgDiv");
+  sysMsgDiv.style.display = "none"	   
+ 
+}
+	 
+
+
+function start() {
+  //document.getElementById("demo").innerHTML = "Hello World";
+  //alert("start");
+  
+   gAppstate = appstate_mainmenu;
+ 
+    
+  var  logoDiv = document.getElementById("logoDiv");
+   logoDiv.style.display = 'none'
+
+  var  preMenuDiv = document.getElementById("simpleMenuDiv");
+   preMenuDiv.style.display = 'block'
+
+ //  gMainmenuItem = mainmenu_item_asmr    
+	
+    gSound_alarm = new Audio('./sound_alarm.wav')
+
+
+
+   let screenBG = document.getElementById('screenBG')
+   screenBG.style.display = 'block'
+   
+   g_showSysMsg('wait a sec', 1000)
+
+   setTimeout(start_step2, 1000)
+
+  //const lastPlayName = window.localStorage.getItem('selectedPlay');  
+  //없다면 null이 반환됨
+  //alert(lastPlayName);
+ 
+   // interval_ID = setInterval(fadeOut, 200); 
+   //interval_ID = setInterval(fadeIn, 200); 
+   
+   
+ //  showSysMsg("asdjsa;fjasfasfa")
+  
+  
+}
+
+
+function start_step2(){
+
+
+   let screenBG = document.getElementById('screenBG')
+   screenBG.style.display = 'none'
+   //-------------
+
+	onAsmr(9)
+ 
+  var canvas = document.getElementById('myCanvas');
+  canvas.style.display = 'block';  
+
+
+}
+
+
+function openMenuBtn(){
+
+     console.log('openMenuBtn')
+
+     var  mainMenuDiv = document.getElementById("mainMenuDiv");
+     mainMenuDiv.style.display = 'block'
+
+}
+
+/*
+  let closeRatingBtn = document.getElementById("closeRatingBtn")
+  
+		 closeRatingBtn.onclick = this.onCloseRatingBtn.bind(this)
+*/
+
+//from play ---> mainmenu
+function onCloseRatingBtn(){
+
+     console.log('onCloseRatingBtn')
+
+       let bgDiv = document.getElementById('bgDiv')
+       bgDiv.style.display = 'none'
+	    
+	   let ratingDiv = document.getElementById("ratingDiv");
+	   ratingDiv.style.display = 'none'
+	   
+	   
+	   if(gPlayObj != undefined){
+	   
+	      gPlayObj.closePlay()
+	   }
+	   	 
+ 	   beginMainMenu()
+		
+} 
+
+function beginMainMenu(){
+
+       gAppstate = appstate_mainmenu 
+
+
+      var  preMenuDiv = document.getElementById("simpleMenuDiv");
+      preMenuDiv.style.display = 'block'
+
+} 
+
+		 
+
+function fadeOut(){
+
+        var div = document.getElementById("logoDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity>0){
+            //Fade out 핵심 부분
+			opacity = opacity-0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            logoDiv.style.display = 'none'
+
+			clearInterval(interval_ID);
+		}
+
+}
+
+function fadeIn(){
+
+        var div = document.getElementById("mainMenuDiv");
+		opacity = Number(window.getComputedStyle(div).getPropertyValue("opacity"));
+		//opacity = div.style.opacity
+		
+		if(opacity < 1){
+          
+		    opacity = opacity+0.1;
+			div.style.opacity=opacity;
+		}
+		else{
+ 
+            //logoDiv.style.display = 'none'
+			clearInterval(interval_ID);
+		}
+
+}
+
+
+function showComMenu(isShow){
+
+		let menuDiv = document.getElementById('comMenuDiv')		
+		let screenBG = document.getElementById('screenBG')
+
+		if(isShow){
+	         	screenBG.style.display = 'block'
+            	menuDiv.style.display = 'block'
+		
+		}
+		else {
+
+			screenBG.style.display = 'none'
+			menuDiv.style.display = 'none'
+
+		}
+}
+
+
+function playEarCleaning(){
+
+
+     closeCurDiv()
+	 
+	 showComMenu(false)
+
+     gMainmenuItem = mainmenu_item_none
+	
+	let moreMenu = document.getElementById('simpleMenuDiv')
+	moreMenu.style.display = 'block'
+
+    gSelectedPlay = playkind_earCleaning
+
+ gAppstate = appstate_play;
+ gPlaystate = playstate_prepare 
+
+ console.log('begin playEarCleaning');
+ 
+
+    stopPlayingAsmr() 
+    gAsmrArray[0].play()
+	//playAsmr(0)
+
+  // setItem
+ // window.localStorage.setItem('selectedPlay', 'earCleaning');
+ //window.localStorage.setItem('age', '20');
+
+/* 
+// getItem
+const name = window.localStorage.getItem('name');
+const age = window.localStorage.getItem('age');
+ 
+// 결과 출력
+document.write(name); // anna
+document.write('<br/>');
+document.write(age);  // 20
+*/
+
+ 
+
+  gPlayObj = new earCleaning()  
+  gPlayObj.beginPrepare()
+  
+
+
+  
+    g_showSysMsg("preparing", 5000)
+  
+   setTimeout(end_prepare.bind(this) , 3000)
+  
+  
+
+}
+
+
+function end_prepare(){
+
+ console.log('end_prepare')
+ gPlaystate = playstate_treatment 
+
+  g_showSysMsg("play treatment", 3000)
+
+ if(gPlayObj != undefined){
+ 
+      gPlayObj.beginTreatment()
+	
+       let playInfoDiv = document.getElementById("playInfoDiv")
+	   playInfoDiv.style.display = 'block'
+	   playInfoDiv.style.top = 0 + 'px'	
+	  		 		 
+   }
+
+}
+
+
+//------------------
+//
+//--------------------
+function playAcne(){
+
+     console.log('begin playEarCleaning');
+  
+     closeCurDiv()
+	 
+	 showComMenu(false)
+	 
+     let moreMenu = document.getElementById('simpleMenuDiv')
+	 moreMenu.style.display = 'block'
+	 
+	gMainmenuItem = mainmenu_item_none 
+	gSelectedPlay = playkind_acne
+	gAppstate = appstate_play;
+	gPlaystate = playstate_prepare 
+   
+     //window.localStorage.setItem('selectedPlay', 'acne');
+	 
+	 //
+    stopPlayingAsmr() 
+	gAsmrArray[0].play()
+   //------------
+
+   gPlayObj = new acne()  
+   gPlayObj.beginPrepare()
+  
+   g_showSysMsg("preparing")
+   setTimeout(end_prepare.bind(this) , 3000)
+   
+}
+
+
+function playWaxing(){
+
+	console.log('begin playWaxing');
+
+     closeCurDiv()
+     gMainmenuItem = mainmenu_item_none
+ 
+	 showComMenu(false)
+	 
+	 let moreMenu = document.getElementById('simpleMenuDiv')
+	 moreMenu.style.display = 'block'
+	 
+
+	console.log('playkind_waxing: ' + playkind_waxing)
+	gSelectedPlay = playkind_waxing
+
+	gAppstate = appstate_play;
+	gPlaystate = playstate_prepare 
+	
+    stopPlayingAsmr() 
+    gAsmrArray[0].play()
+	
+	window.localStorage.setItem('selectedPlay', 'waxing');
+
+	 //---------------	
+   gPlayObj = new waxing()  
+   gPlayObj.beginPrepare()
+  
+   g_showSysMsg("preparing")
+   setTimeout(end_prepare.bind(this) , 3000)
+
+}
+
+
+function onResize(){
+ 
+    gClientWidth = document.body.clientWidth 
+	gClientHeight =document.body.clientHeight
+
+    console.log('onResize: ' + gClientWidth + ", " + gClientHeight)
+    	
+
+    let canvas = document.getElementById('myCanvas')   
+    canvas.width  = gClientWidth 
+    canvas.height = gClientHeight    
+   
+   gWaveGroup.resize(gClientWidth, gClientHeight)
+}
+
+
+function initEvent(canvas){
+
+   if ('ontouchstart' in document.documentElement === true){
+   
+      console.log("add touchEvent");
+   
+      canvas.addEventListener("touchstart",touchS, false);
+      canvas.addEventListener("touchmove",touchM, false);
+     // document.body.addEventListener("touchmove",touchM);
+      canvas.addEventListener("touchend",touchE, false);
+  
+     }	 
+	 
+	 document.addEventListener("visibilitychange", handleVisibilityChange, false);
+	 
+	 document.addEventListener('postFinishJob', onPostFinishJob);
+
+}
+
+// playObj로부터 postFinishJob 이벤트 받은 경우  
+function onPostFinishJob(e){
+
+	gAppstate = appstate_mainmenu
+
+    console.log('onPostFinishJob') 
+	
+	
+
+
+}
+
+
+
+
+
+function touchS(e){
+
+  console.log('touchS')
+  
+  if(gPTimer != undefined){
+  
+      gPTimer.touchS(e)
+  }
+  else if(gPlayObj != undefined){
+     
+	 gPlayObj.touchS(e)
+      
+   }
+   
+   
+}
+
+function touchM(e){
+
+  e.preventDefault()
+
+  console.log('touchM')
+   if(gPlayObj != undefined){
+     
+	 gPlayObj.touchM(e)
+      
+   }
+
+}
+
+
+function touchE(e){
+ 
+    console.log('touchE') 
+ 
+    if(gPlayObj != undefined){
+     
+	 gPlayObj.touchE(e)
+      
+   }
+
+ 
+}
+
+
+//==============
+//common interface
+//=============
+function updateFrame(){
+
+	 let curT = new Date().getTime();
+	 gAppCurT = curT 
+
+    gCtx.clearRect(0, 0, gClientWidth, gClientHeight) 
+	
+
+   if(gAppstate == appstate_mainmenu){
+
+	   if(gCtx != undefined){
+	   
+	     gWaveGroup.draw(gCtx) 
+		 
+		 
+		 if(gMainmenuItem != mainmenu_item_pomodoro){ 
+		 
+	         gCtx.drawImage(gSun_img, 0, 0, 120, 120) 
+	      }
+		  
+	   
+	     if(gMainmenuItem == mainmenu_item_pomodoro){ 
+		 
+			 if(gPTimer!=undefined){
+			 
+				 gPTimer.draw(gCtx)
+			   }
+	      }
+	   
+	   }
+	   
+	   
+   }
+   else if( gAppstate == appstate_play){
+   
+		//=================    
+		if(gPlayObj != undefined){
+		
+			gPlayObj.updateFrame(curT)
+		
+		 }
+
+		//------------------	 
+		if(gPlayObj != undefined && gCtx != undefined){
+	   
+		   gPlayObj.draw(gCtx)
+		
+	 	   g_drawDialog(gCtx)
+		
+		}
+		
+		
+	}
+	
+	//Chrome does not call requestAnimationFrame() when a page is in the background. This behavior has been in place since 2011.
+	 requestAnimationFrame(updateFrame);
+
+}
+
+
+//===========
+//dialog
+//==========
+
+function   g_showDialog(msg, spanT=3000){
+
+    gDialogMsg = msg
+
+     setTimeout(g_hideDialog, spanT)   
+
+   }	
+   
+function  g_hideDialog(){
+
+     gDialogMsg = ""
+    	   
+   }
+ 
+
+
+function  g_drawDialog(ctx){
+		
+	if(gDialogMsg.length == 0){
+		
+		return
+	}
+		
+		let cx=10, cy=10 
+			
+		//180x120	
+		ctx.drawImage(gBubble_img, cx, cy)
+		
+	     ctx.font ="15pt System";
+         ctx.fillStyle = 'black'
+		 ctx.fillText(gDialogMsg, cx+20, cy+50);
+                
+}
+
+
+
+window.onload = function(){
+
+    console.log('window.onload ')
+    let canvas = document.getElementById('myCanvas')   
+    gCtx = canvas.getContext("2d");
+
+     initData()
+     initAsmr()
+     initEvent(canvas);
+   
+    gWaveGroup = new WaveGroup()
+	//gWave.x = 250
+	//gWave.y = 250
+	
+	onResize()
+	
+
+    window.addEventListener('resize', onResize, false);
+	
+	
+	requestAnimationFrame(updateFrame);
+}
+
+
+
+
+function onChangeTodoList_timerMenu(e){
+
+  console.log('onChangeTodoList_timerMenu()')
+
+ var select = document.getElementById('todoListSelect-timerMenu');	
+  gTodoList_selectedIdx = select.selectedIndex 
+ 
+}
+
+
+function onChangeTodoList(e){
+
+ console.log('onChangeTodoList()')
+ var select = document.getElementById('todoListSelect');	
+ 
+  console.log("selIdx: ", select.selectedIndex)
+ 
+
+}
+
+
+function showTodoListDiv(isShow){
+//todoListDiv열기 
+    console.log('showTodoListDiv')
+
+	let div = document.getElementById('todoListDiv')
+	
+	if(isShow){
+
+	   div.style.display = 'block'
+	   updateTodoListSelect();
+	
+	  // updateSizeTodoListSelect()
+	
+	}else {
+	
+    	div.style.display = 'none'	
+		
+		//todolist저장
+		let res_item = ''
+		for(let i=0; i < gTodoListArray.length; i++){
+		 
+		   let item =  gTodoListArray[i] 
+		  
+		  if(i==0){
+              res_item = item  
+           }		   
+		   else {
+		   
+		     res_item += ', ' + item  
+		   }
+			
+		}
+		
+		window.localStorage.setItem('todoItems', res_item)
+		
+	}
+
+}
+
+//timer menu에서 보이는 select 
+//select {editMenu, timerMenu}
+function updateTodoListSelect_timerMenu(){
+
+	console.log('updateTodoListSelect_timerMenu')
+
+
+  let select = document.getElementById('todoListSelect-timerMenu')  
+  removeOptions(select)
+
+  
+  for(let i=0; i < gTodoListArray.length; i++){
+  
+    let itemStr = gTodoListArray[i] 
+	console.log('add: ' + itemStr)
+	
+/*	 var opt = document.createElement('option');
+	 opt.value = i 
+	 opt.innerHTML = itemStr
+	 select.appendChild(opt)
+  */
+    //key, value 
+    select.options[select.options.length] = new Option(itemStr, i) 
+  
+  }
+  
+
+}
+
+
+
+function updateTodoListSelect(){
+
+	console.log('updateTodoListSelect')
+
+  let select = document.getElementById('todoListSelect')  
+  removeOptions(select)
+
+  
+  for(let i=0; i < gTodoListArray.length; i++){
+  
+    let itemStr = gTodoListArray[i] 
+	console.log('add: ' + itemStr)
+	
+/*	 var opt = document.createElement('option');
+	 opt.value = i 
+	 opt.innerHTML = itemStr
+	 select.appendChild(opt)
+  */
+    //key, value 
+    select.options[select.options.length] = new Option(itemStr, i) 
+  
+  }
+  
+  if(gTodoListArray.length > 0){
+  
+    select.options[0].selected = true   
+  }
+  
+
+}
+
+
+
+
+function removeOptions(selectElement) {
+   var i, L = selectElement.options.length - 1;
+   for(i = L; i >= 0; i--) {
+      selectElement.remove(i);
+   }
+}
+
+
+function onBtnRegTodoItem(){
+
+  let textV = document.getElementById('todoItemText')
+  
+  if(textV.value==""){
+  
+    alert('type at least one character')
+	return 
+  }
+ 
+    gTodoListArray.push(textV.value)
+ 
+	textV.placeholder = 'type job Name to add'
+ 
+   let select = document.getElementById('todoListSelect') 
+       
+   
+   //alert('select length: ' + select.options.length)
+   let idxStr = select.options.length.toString()
+   select.options[select.options.length] = new Option(textV.value, idxStr) 
+   //-----  
+    textV.value = ""
+
+   
+   updateLayout_todoListSelect()
+      
+}
+
+function updateLayout_todoListSelect(){
+
+var todoListSelect = document.getElementById('todoListSelect');
+todoListSelect.setAttribute('size', todoListSelect.childElementCount)
+
+}
+
+
+function deleteTodoItem(){
+
+	var select = document.getElementById('todoListSelect');	
+	let remove_idx = select.selectedIndex 
+	
+	select.remove(remove_idx);
+		
+	gTodoListArray.splice(remove_idx, 1)
+		
+}
+
+//---------------
+//
+//---------------
+
+function startTimer_JS(){
+
+
+}
+
+function endTimer_JS(){
+
+
+}
+
+function setKeepScreenOn_JS(isActive){
+
+	if(gIsAndroid){
+	
+	  //App의 함수호출    
+      android.setKeepScreenOn(isActive)
+
+	}
+	else {
+  	 
+	   try{	  
+	   
+		   let cmd = "setKeepScreenOn(" + isActive + ")"		   	   
+		   webkit.messageHandlers.callbackJS.postMessage(cmd)	   
+	   }
+	   catch(err){
+	   
+	   }
+
+ 	}
+
+}
+
+
+
+
+function startCandle_JS(){
+
+	if(gIsAndroid){
+
+	   android.startCandle_JS()
+
+	}
+	else {
+
+	   try{   
+		 
+			webkit.messageHandlers.callbackJS.postMessage("startCandle_JS()")
+		}
+		catch(err){
+		
+		   alert(err)	
+		}
+
+	}
+
+}
+
+function endCandle_JS(){
+
+   if(gIsAndroid){
+
+	   android.endCandle_JS()
+
+	}
+	else {
+
+	   try{   
+		 
+			webkit.messageHandlers.callbackJS.postMessage("endCandle_JS()")
+		}
+		catch(err){
+		
+		   alert(err)	
+		}
+
+	}
+
+}
+
+
+function getUserAdInfo_JS(){
+
+   if(gIsAndroid){
+     
+		let info = document.getElementById('adUserInfo')
+		//광고제거 남은 시간 등 표시 	
+         try{ 
+		    	let adInfoStr =  android.getUserAdInfo_JS()	
+		    	info.innerText = adInfoStr	   
+			}
+			catch(err){
+			   
+			   alert(err)
+			}
+   
+   }else{
+
+        webkit.messageHandlers.callbackJS.postMessage("getUserAdInfo_JS()")
+
+	}
+
+}
+
+
+//ios native에서 세팅해줍니다.
+function setUserAdInfo_JS(adInfo){
+
+	   let info = document.getElementById('adUserInfo')
+		//광고제거 남은 시간 등 표시 				
+		info.innerText = adInfoS	  
+}
+
+
+ function webkitSendLogMsg(log){
+    
+    try {
+        
+        webkit.messageHandlers.iosListener.postMessage(log)
+        
+    }catch(err){
+        
+        alert(err)
+        
+    }
+}
+//-------------
+
+</script> 
+
+</body>
+</html>
