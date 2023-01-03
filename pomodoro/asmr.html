@@ -2117,12 +2117,49 @@ function deleteTodoItem(){
 //---------------
 
 function startTimer_JS(){
-
+    
+    if(gIsAndroid){
+                
+        android.startTimer_JS()
+        
+    }
+    else {
+        
+        try{
+        
+            let cmd = "startTimer_JS()"
+            webkit.messageHandlers.callbackJS.postMessage(cmd)
+        }
+        catch(err){
+        
+        }
+        
+    }
 
 }
 
 function endTimer_JS(){
 
+    
+    if(gIsAndroid){
+                
+        android.endTimer_JS()
+        
+    }
+    else {
+        
+        try{
+        
+            let cmd = "endTimer_JS()"
+            webkit.messageHandlers.callbackJS.postMessage(cmd)
+        }
+        catch(err){
+        
+        }
+        
+    }
+    
+    
 
 }
 
