@@ -769,6 +769,9 @@ function onPomodoro(){
   //휴식  
   gPTimer.begin_stateBreak(5)
   
+  stopPlayingAsmr()
+  gAsmrArray[9].play()
+  
   
   startTimer_JS()
   
@@ -872,10 +875,9 @@ function goToAsmr(){
 
 let menuDiv = document.getElementById('comMenuDiv') 
   menuDiv.style.display = 'none'
-  
-  
- 
-  closeCurDiv()
+   
+  //closeCurDiv()
+  //onAsmr에서closeCurDiv가 호출됨
 
   onAsmr(-1)
 
