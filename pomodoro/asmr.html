@@ -258,11 +258,6 @@ config
 <script  type="text/javascript">
 
 
-let gIsAndroid = false
-
-let gIsConnectDevice = true
-let gIsBackground = false 
-
 
 var slider = document.getElementById('focusTimeRange');
 let focusTVal = document.getElementById('focusTimeVal');
@@ -272,13 +267,7 @@ let focusTVal = document.getElementById('focusTimeVal');
 	focusTVal.innerHTML = this.value + ' min'
 	console.log('oninput: ' + this.value)	
 	
-	/*
-	if(gPTimer != undefined){
 	
-	gPTimer.focusMin = this.value
-	
-	}
-	*/
 	gFocusTime = this.value 
 	//key와 value 모두 string 으로 저장
 	window.localStorage.setItem('focusT', this.value)
@@ -765,16 +754,33 @@ function onPomodoro(){
   
   gPTimer.init()
   gPTimer.focusMin = gFocusTime 
+ 
+   //-------------------------- 
+    gSound_alarm.currentTime = 0 
+    if(gIsAndroid){
+   //안드로이드는 btn등에서만 play가능 
+ 
+	  gSound_alarm.play()
+	  gSound_alarm.volume = 0.0
 
+	  }else {
+		  //ios는 btn 등에서만 load가능 이후 자유롭게  play 가능  
+		  //load는 이미 start에서 했음, 
+	  
+	  }  
+     //-----------------------------
+ 
+ 
   //휴식  
   gPTimer.begin_stateBreak(5)
   
   stopPlayingAsmr()
   gAsmrArray[9].play()
   
+  if(gIsConnectDevice){
   
-  startTimer_JS()
-  
+         startTimer_JS()
+  }
   
 
 }
@@ -899,7 +905,10 @@ function closeCurDiv(){
 		 }
     	 else if(gMainmenuItem == mainmenu_item_pomodoro){
 				
-			    endTimer_JS()
+			     if(gIsConnectDevice){
+				 
+ 			            endTimer_JS()
+				 }
 					
 				//setTimeout 취소처리 등
 				if(gPTimer != undefined){
@@ -2119,6 +2128,8 @@ function deleteTodoItem(){
 //---------------
 
 function startTimer_JS(){
+
+
     
     if(gIsAndroid){
                 
