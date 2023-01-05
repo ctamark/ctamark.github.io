@@ -25,12 +25,55 @@
 (나의버전이 공지에 나온 버전보다 낮은 경우 수동으로 업데이트하셔야 해요)	
 (ox문제에는 공무원 문제가 반영되어 있지 않아요)
 (객관식 문제 풀이를 추천)  
-<a class="kwdlink" href="https://ctamark.github.io/exam/review_NTL9_2022.html" target='_self'>2022_국가직9급_시험 후기</a>
----  
-<a class="kwdlink" href="https://ctamark.github.io/exam/review_LCL9_2022.html" target='_self'>2022_서울시9급_시험 후기</a>
----  
-<a class="kwdlink" href="https://ctamark.github.io/exam/blabla-01.html" target='_self'>면접을 보고 느낀점</a>
+  
+국가직9급(2023.4.8.) <span id="dday" style="color:white; background-color:black; font-size:2.0rem;"></span>
+(원서접수:2.9~2.11.)   
+-------------  
+<script  language = "javascript">
+function update_dday(){
 
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2023년 4월 8일
+// month는 0부터 시작
+var dday = new Date(2023, 4-1, 8); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  'D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨습니다';
+
+    }
+
+   counter.innerText = msg;
+}
+update_dday();
+</script>		   	    
+
+<span class="red">(ver:1.41)</span>(230110)
+(업데이트 준비중...)  
+[키워드 노트]  
+: 2023년 개정세법 관련 키워드를 수정.추가 
+: 지방세 과세표준 개정
+: 국기법{당해세 예외신설(주택임차보증금)...}
+: 국기법{후발적사유 대상확대....}
+어쩌고저쩌고...
+  
 <span class="red">(ver:1.40)</span>(221128)
 +[서7.22년]을 추가
 + 일부키워드 수정  
@@ -41,10 +84,7 @@
 +[국7.22년]을 추가
 +일부 UI가 광고를 가리는 문제가 있어 수정
 +일부 키워드를 수정
------
-<b>(ver:1.38)</b>(221023)  
-+ [국9.22년]을 추가 
-+ 일부 불안정한 기능을 개선    
+ 
     
 </div>
 </BODY>
