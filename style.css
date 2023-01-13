@@ -515,3 +515,13 @@ div.keyword-div {
 
       background-color:#FBEBEB;
   }
+
+ .law-div {
+	  
+	   color: #555555;
+	   background-color:#FBEBEB;
+	   font-size: 0.95rem;
+	   
+	   border: 2px dotted gray; 
+  
+  }
