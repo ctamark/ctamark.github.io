@@ -518,8 +518,9 @@ div.keyword-div {
 
  .law-div {
 	  
-	   color: #555555;
-	   background-color:#FBEBEB;
+	 padding: 4px;
+	   color: #202020;
+	   background-color:#EBFBEB;
 	   font-size: 0.95rem;
 	   
 	   border: 2px dotted gray; 
