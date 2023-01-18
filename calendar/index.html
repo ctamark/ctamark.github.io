@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!--<!DOCTYPE>은 태그가 아니라 버전을  알려주는 것 -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+<style>
+
+.month {  
+  position: relative;
+  color: black;
+  background-color: white;
+  
+/*  border: 2px solid red;*/
+
+}
+
+
+.paraNav {
+	position: fixed;
+	right: 10px; top: 10px;
+	z-index: 1000;
+	background: rgba(0, 0, 0, .7);
+	padding: 10px 20px;
+	border-radius: 50px;
+	transition: top 0.4s ease;
+	
+	display:none;
+}
+
+.paraNav li {
+	display: inline-block;
+	list-style: none;
+}
+
+.paraNav li a {
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	padding: 5px;
+	width: 40px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	
+	border-radius: 20px;
+}
+
+.paraNav li.active a {
+	background: #fff;
+	color: #000;
+}
+
+
+.imgWrap {
+
+    width: 100%;
+    padding-bottom: 60%;
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+	
+   margin-left: 10px;
+
+	border: 2px solid yellow;
+
+}
+
+
+.month-img{
+
+        position: absolute;
+        left:  -10%; top: -10%;
+        width: 120%;
+        height: 120%;
+        background-repeat: no-repeat;
+        background-size: cover;
+		
+
+}
+
+.title-div {
+  width: 80%;
+  position: absolute;
+  /*border: 2px solid green;*/
+  top: 70px;
+  left: 0px;
+}
+
+.month-content{
+ color: black;
+ background-color: white;
+ 
+  position: relative;
+  z-index: 100;
+ 
+  overflow: auto;
+  white-space: pre-wrap; /* pre tag내에 word wrap */
+
+}
+
+.title-span{
+
+background-color:white;
+
+}
+
+#navi-icon	{
+    position: fixed;
+	right: 10px; top: 10px;
+	z-index: 1000;
+	
+	
+
+}
+
+.day-span{
+  color: white;
+  background-color: black; 
+  font-size: 1.3rem;
+
+} 
+
+
+</style>
+
+<!-- <link rel="stylesheet" href="./style-01.css"> -->
+
+</head>
+
+<body>
+<!-- nav -->
+<nav class="paraNav" id='naviMenu'>
+<p style='width: 100%; text-align:right; color:white;font-size:1.2rem;'><span onclick="close_paraNav()"> [close]</span></p>
+	<ul>
+		<li class="active"><a href="#jan">1월</a></li>
+		<li><a href="#feb">2월</a></li>
+		<li><a href="#mar">3월</a></li>
+		<li><a href="#april">4월</a></li>
+		<li><a href="#may">5월</a></li>
+		<li><a href="#jun">6월</a></li>
+		<li><a href="#jul">7월</a></li>
+		<li><a href="#aug">8월</a></li>
+		<li><a href="#sep">9월</a></li>
+		<li><a href="#oct">10월</a></li>
+		<li><a href="#nov">11월</a></li>
+		<li><a href="#dec">12월</a></li>
+	</ul>
+</nav>
+<!-- //nav -->
+
+<div id='navi-icon' style='text-align: right'>
+<img src='./navi-icon.png' width='50px' onclick='onClick_navi_icon()'>
+
+</div>
+
+
+<h1>세무 달력</h1>
+
+<div class='month' id='jan'>
+<figure class="imgWrap">
+<div class="month-img" style="background-image: url(./img-jan.jpg);"></div>
+</figure>
+<div class='title-div'>
+<h2 class="title" ><span class='title-span'>1월</span></h2>
+</div>
+<p class='month-content'>
+1.1.
+1.2.
+---
+<span class='day-span'>1.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+---
+<span class='day-span'>1.25.</span>
+부가가치세 확정신고.납부기한 
+자동차세 주행분 신고납부기한
+
+<span class='day-span'>1.31.</span>
+일용근로소득 지급명세서제출기한
+근로소득 간이지급명세서 제출기한
+(근로장려금 산정을 위해 1월말, 7월말까지 제출)
+---
+사업소득 간이지급명세서 제출기한
+
+
+</p>
+</div>
+
+
+<div class='month' id='feb'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-feb.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>2월</span></h2>
+</div>
+<p class='month-content'>
+<span class="day-span">2.10.</span> 
+원천세 신고.납부기한(법인세, 소득세 등)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+--
+면세사업자 사업장현황신고
+
+<span class='day-span'>2.28.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+---
+이자.배당.기타소득 등 지급명세서 제출기한 
+(다음 연도 2월말까지)
+</p>
+</div>
+
+
+<div class='month' id='mar'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-mar.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>3월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>3.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+----
+근로.퇴직.사업소득 지급명세서제출기한
+
+<span class='day-span'>3.31.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+</div>
+
+<div class='month' id='april'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-april.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>4월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>4.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+</p>
+
+
+</div>
+
+
+<div class='month' id='may'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-may.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>5월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>5.2.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+
+----
+<span class='day-span'>5.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>5.31.</span>
+소득세 확정신고납부기한(5.1~)
+---
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+
+<div class='month' id='jun'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-june.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>6월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>6.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+
+<span class='day-span'>6.30.</span>
+소득세 확정신고납부기한(성실신고확인대상 사업자) 
+---
+자동차세 소유분 납부기한(6.16~)
+--
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+</div>
+
+
+<div class='month' id='jul'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-july.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>7월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>7.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>7.31.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+
+<div class='month' id='aug'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-august.png);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>8월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>8.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>8.31.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+
+<div class='month' id='sep'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-september.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>9월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>9.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>9.30.</span>(월)
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+<div class='month' id='oct'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-october.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>10월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>10.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>10.31.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+
+<div class='month' id='nov'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-november.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>11월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>11.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<span class='day-span'>11.30.</span>
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+</p>
+
+</div>
+
+
+<div class='month' id='dec'>
+<figure class="imgWrap">
+<div class="month-img" style='background-image: url(./img-december.jpg);'></div>
+</figure>
+<div class='title-div'>
+<h2><span class='title-span'>12월</span></h2>
+</div>
+<p class='month-content'>
+<span class='day-span'>12.10.</span> 
+원천세 신고.납부기한(반기별 포함)
+주민세 종업원분 신고.납부기한
+레저세 신고.납부기한
+4대보험 납부기한
+
+<!--
+<span class='day-span'>12.31.</span>
+자동차세 소유분 납부기한(12.16~)
+---
+일용근로소득 지급명세서제출기한
+사업소득 간이지급명세서 제출기한
+-->
+</p>
+
+</div>
+
+
+<script  type="text/javascript">
+
+function close_paraNav(){
+  console.log('close_paraNav()')
+
+  let naviMenu = document.getElementById('naviMenu')
+  naviMenu.style.display = 'none'
+    
+  let navi_icon = document.getElementById('navi-icon')
+  navi_icon.style.display = 'block'
+
+}
+
+function onClick_navi_icon(){
+
+  let naviMenu = document.getElementById('naviMenu')
+  naviMenu.style.display = 'block'
+    
+  let navi_icon = document.getElementById('navi-icon')
+  navi_icon.style.display = 'none'
+
+}
+
+ //버튼 클릭
+    document.querySelectorAll(".paraNav ul li a").forEach( elmt => {
+        elmt.addEventListener("click", e => {
+            e.preventDefault();
+            document.querySelector(elmt.getAttribute("href")).scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+    });
+	
+	
+	
+function scroll_paraNav(scrollTop){
+
+
+
+  //for보다는 forEach를 쓰도록 노력 
+ //메뉴
+        document.querySelectorAll(".month").forEach((item, index) => {
+            if( scrollTop >= item.offsetTop - 2){
+                document.querySelectorAll(".paraNav ul li").forEach(li => {
+                    li.classList.remove("active");
+                })
+                document.querySelector(".paraNav ul li:nth-child("+(index+1)+")").classList.add("active");
+            }
+			
+        })
+		
+
+}	
+
+function scroll_handler(){
+console.log('scroll_handler')
+
+   let scrollTop = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+  
+     scroll_paraNav(scrollTop)
+
+   
+      document.querySelectorAll(".month").forEach(item => {
+
+     let offset1 = (scrollTop - item.offsetTop) * 0.1;	 
+     
+	 let imgDiv = item.querySelector(".month-img");	
+
+  	if(imgDiv!=undefined || imgDiv !=null){
+	 
+	          imgDiv.style.transform = "translateY("+ offset1 +"px)";
+	 }
+	 
+	 
+	 });
+
+}
+
+
+window.addEventListener("scroll" , scroll_handler)
+</script>
+  
+</body>
+</html>
