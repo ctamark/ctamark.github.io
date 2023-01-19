@@ -55,14 +55,14 @@
 .imgWrap {
 
     width: 100%;
-    padding-bottom: 60%;
+    padding-bottom: 45%;
 	background: #fff;
 	position: relative;
 	overflow: hidden;
 	
-   margin-left: 10px;
+   margin-left: 5px;
 
-	border: 2px solid yellow;
+	/*border: 2px solid yellow;*/
 
 }
 
@@ -109,10 +109,14 @@ background-color:white;
     position: fixed;
 	right: 10px; top: 10px;
 	z-index: 1000;
-	
-	
-
 }
+
+#more-menu-icon	{
+    position: fixed;
+	right: 10px; bottom: 10px;
+	z-index: 1000;
+}
+
 
 .day-span{
   color: white;
@@ -121,7 +125,148 @@ background-color:white;
 
 } 
 
+.local-tax{
 
+ border: 1px dotted black;
+  overflow: auto;
+  white-space: pre-wrap; /* pre tag내에 word wrap */
+
+}
+
+
+
+
+.sec_cal {
+
+   position: fixed;
+   top: 5px;
+
+    width: 360px;
+    margin: 0 auto;
+    font-family: "NotoSansR";
+	
+	background-color: white;
+	
+	z-index: 1000;
+	
+	padding-bottom: 10px;
+	border: 1px dotted black;
+	
+}
+
+.sec_cal .cal_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+    width: 300px;
+    text-align: center;
+    line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+    display: flex;
+    border: 1px solid #333333;
+    border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+    display: block;
+    width: 50px;
+    height: 78px;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-width: 3px 3px 0 0;
+    transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+    border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+    transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+    transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+    padding-top: 40px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+    top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 7);
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    border-radius:5px
+}
+
+.current.today {background: rgb(242 242 242);}
+
+.sec_cal .cal_wrap .dates {
+    display: flex;
+    flex-flow: wrap;
+    height: 290px;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+    color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+    color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+    color: #ddd;
+}
+
+
+#cbook-ok, #cbook-cancel {
+
+ font-size: 1.2rem;
+ color: black;
+ background-color: gray;
+
+}
 </style>
 
 <!-- <link rel="stylesheet" href="./style-01.css"> -->
@@ -153,6 +298,12 @@ background-color:white;
 <img src='./navi-icon.png' width='50px' onclick='onClick_navi_icon()'>
 
 </div>
+
+<div id='more-menu-icon'>
+<img src='./btn_more_menu.png' width='50px' onclick='onClick_moreMenu()'>
+
+</div>
+
 
 
 <h1>세무 달력</h1>
@@ -354,7 +505,6 @@ background-color:white;
 ----
 일용근로소득 지급명세서제출기한
 사업소득 간이지급명세서 제출기한
------
 <div class="local-tax">
 주민세 사업소분 납부기한(8.1~)
 주민세 개인분 납부기한(8.16~)
@@ -456,6 +606,36 @@ background-color:white;
 </div>
 
 
+<!---  --->
+<div class="sec_cal">
+  <div class="cal_nav">
+    <a href="javascript:;" class="nav-btn go-prev">prev</a>
+    <div class="year-month"></div>
+    <a href="javascript:;" class="nav-btn go-next">next</a>
+  </div>
+  <div class="cal_wrap">
+    <div class="days">
+      <div class="day">MON</div>
+      <div class="day">TUE</div>
+      <div class="day">WED</div>
+      <div class="day">THU</div>
+      <div class="day">FRI</div>
+      <div class="day">SAT</div>
+      <div class="day">SUN</div>
+    </div>
+    <div class="dates"></div>
+  </div>
+  <div style='width: 100%; text-align: center'>
+  <span id='cbook-cancel' onclick='onCancel_cbook()'><b>취소</b></span>  |   <span id='cbook-ok' onclick='onOk_cbook()'><b>확인</b></span>  
+  </div>
+  
+</div>
+<!-- --->
+
+
+
+<script src="./calendarBook.js"></script>
+
 <script  type="text/javascript">
 
 function close_paraNav(){
@@ -478,6 +658,51 @@ function onClick_navi_icon(){
   navi_icon.style.display = 'none'
 
 }
+
+function onClick_moreMenu(){
+
+   let iconDiv = document.getElementById('more-menu-icon')
+   iconDiv.style.display = 'none'    
+
+   showCalendarBook(true)
+}
+
+function showCalendarBook(isShow){
+
+  //class는 dot(.)붙여야 함
+   let bookDiv = document.querySelector('.sec_cal')
+   
+   if(isShow){
+   
+        bookDiv.style.display  = 'block'
+    }
+	else {
+	
+        bookDiv.style.display  = 'none'
+	
+	}
+
+}
+
+function onCancel_cbook(){
+
+   showCalendarBook(false);
+   
+   let iconDiv = document.getElementById('more-menu-icon')
+   iconDiv.style.display = 'block'    
+
+
+}
+
+function onOk_cbook(){
+
+   showCalendarBook(false);
+   let iconDiv = document.getElementById('more-menu-icon')
+   iconDiv.style.display = 'block'    
+
+}
+
+
 
  //버튼 클릭
     document.querySelectorAll(".paraNav ul li a").forEach( elmt => {
@@ -536,6 +761,18 @@ console.log('scroll_handler')
 
 
 window.addEventListener("scroll" , scroll_handler)
+
+let gCalendarBook 
+
+window.onload = function(){
+
+gCalendarBook = new calendarBook()
+gCalendarBook.init()    
+
+showCalendarBook(false)
+
+}
+
 </script>
   
 </body>
