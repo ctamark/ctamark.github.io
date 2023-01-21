@@ -1,0 +1,312 @@
+.month {  
+  position: relative;
+  color: black;
+  background-color: white;
+  
+  margin-bottom: 50px;
+  
+/*  border: 2px solid red;*/
+
+}
+
+
+.paraNav {
+	position: fixed;
+	right: 10px; top: 10px;
+	z-index: 1000;
+	background: rgba(0, 0, 0, .7);
+	padding: 10px 20px;
+	border-radius: 50px;
+	transition: top 0.4s ease;
+	
+	display:none;
+}
+
+.paraNav li {
+	display: inline-block;
+	list-style: none;
+}
+
+.paraNav li a {
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	padding: 5px;
+	width: 40px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	
+	border-radius: 20px;
+}
+
+.paraNav li.active a {
+	background: #fff;
+	color: #000;
+}
+
+
+.imgWrap {
+
+    width: 100%;
+    padding-bottom: 45%;
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+	
+   margin-left: 5px;
+
+	/*border: 2px solid yellow;*/
+
+}
+
+
+.month-img{
+
+        position: absolute;
+        left:  -10%; top: -10%;
+        width: 120%;
+        height: 120%;
+        background-repeat: no-repeat;
+        background-size: cover;
+		
+
+}
+
+.title-div {
+  width: 80%;
+  position: absolute;
+  /*border: 2px solid green;*/
+  top: 70px;
+  left: 0px;
+}
+
+.month-content{
+ color: black;
+ background-color: white;
+ 
+  position: relative;
+  z-index: 100;
+ 
+  overflow: auto;
+  white-space: pre-wrap; /* pre tag내에 word wrap */
+
+}
+
+.title-span{
+
+background-color:white;
+
+}
+
+#navi-icon	{
+    position: fixed;
+	right: 10px; top: 10px;
+	z-index: 1000;
+}
+
+#more-menu-icon	{
+    position: fixed;
+	right: 10px; bottom: 10px;
+	z-index: 1000;
+}
+
+
+.day-span{
+  color: white;
+  background-color: black; 
+  font-size: 1.3rem;
+
+} 
+
+.local-tax{
+
+ border: 1px dotted black;
+  overflow: auto;
+  white-space: pre-wrap; /* pre tag내에 word wrap */
+
+}
+
+.sec_cal {
+
+   position: fixed;
+   top: 5px;
+
+    width: 360px;
+    margin: 0 auto;
+    font-family: "NotoSansR";
+	
+	background-color: white;
+	
+	z-index: 1000;
+	
+	padding-bottom: 10px;
+	border: 1px dotted black;
+	
+}
+
+.sec_cal .cal_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+    width: 300px;
+    text-align: center;
+    line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+    display: flex;
+    border: 1px solid #333333;
+    border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+    display: block;
+    width: 50px;
+    height: 78px;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-width: 3px 3px 0 0;
+    transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+    border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+    transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+    transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+    padding-top: 40px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+    top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 7);
+    text-align: left;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    border-radius:20px
+}
+
+/*조건선택자
+ current & today */
+ 
+.current.today {
+
+   color: white;
+   background: rgb(200 50 50);
+
+}
+
+
+.sec_cal .cal_wrap .dates {
+    display: flex;
+    flex-flow: wrap;
+    height: 290px;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+    color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+    color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+    color: #ddd;
+}
+
+.day.current.selectday {
+
+   color: black;
+   background: #6A90FC
+   /*background-color는 색상만 지정가능*/
+
+}
+
+
+#cbook-ok, #cbook-cancel {
+
+ font-size: 1.2rem;
+ color: black;
+ background-color: gray;
+
+}
+
+
+#todo-div {
+	
+	position: fixed;
+	
+	width: 100px;
+	height: 100px;
+	
+	padding: 10px;
+	
+	left: 50%; 
+	top: 50%;
+	
+	background-color: #eee;
+	/*
+	margin-left:  -15opx;
+	margin-top:  -50%;
+    */
+	 overflow: auto;
+     white-space: pre-wrap; /* pre tag내에 word wrap */
+	
+	z-index: 1000;
+	
+}
+
+.item-span{
+	
+	
+}
+
+.item-span.select{
+	
+	background-color: yellow;
+}

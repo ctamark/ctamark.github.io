@@ -4,272 +4,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta charset="UTF-8">
-<style>
 
-.month {  
-  position: relative;
-  color: black;
-  background-color: white;
-  
-/*  border: 2px solid red;*/
-
-}
-
-
-.paraNav {
-	position: fixed;
-	right: 10px; top: 10px;
-	z-index: 1000;
-	background: rgba(0, 0, 0, .7);
-	padding: 10px 20px;
-	border-radius: 50px;
-	transition: top 0.4s ease;
-	
-	display:none;
-}
-
-.paraNav li {
-	display: inline-block;
-	list-style: none;
-}
-
-.paraNav li a {
-	color: #fff;
-	text-decoration: none;
-	display: inline-block;
-	padding: 5px;
-	width: 40px;
-	height: 30px;
-	text-align: center;
-	line-height: 30px;
-	
-	border-radius: 20px;
-}
-
-.paraNav li.active a {
-	background: #fff;
-	color: #000;
-}
-
-
-.imgWrap {
-
-    width: 100%;
-    padding-bottom: 45%;
-	background: #fff;
-	position: relative;
-	overflow: hidden;
-	
-   margin-left: 5px;
-
-	/*border: 2px solid yellow;*/
-
-}
-
-
-.month-img{
-
-        position: absolute;
-        left:  -10%; top: -10%;
-        width: 120%;
-        height: 120%;
-        background-repeat: no-repeat;
-        background-size: cover;
-		
-
-}
-
-.title-div {
-  width: 80%;
-  position: absolute;
-  /*border: 2px solid green;*/
-  top: 70px;
-  left: 0px;
-}
-
-.month-content{
- color: black;
- background-color: white;
- 
-  position: relative;
-  z-index: 100;
- 
-  overflow: auto;
-  white-space: pre-wrap; /* pre tag내에 word wrap */
-
-}
-
-.title-span{
-
-background-color:white;
-
-}
-
-#navi-icon	{
-    position: fixed;
-	right: 10px; top: 10px;
-	z-index: 1000;
-}
-
-#more-menu-icon	{
-    position: fixed;
-	right: 10px; bottom: 10px;
-	z-index: 1000;
-}
-
-
-.day-span{
-  color: white;
-  background-color: black; 
-  font-size: 1.3rem;
-
-} 
-
-.local-tax{
-
- border: 1px dotted black;
-  overflow: auto;
-  white-space: pre-wrap; /* pre tag내에 word wrap */
-
-}
-
-
-
-
-.sec_cal {
-
-   position: fixed;
-   top: 5px;
-
-    width: 360px;
-    margin: 0 auto;
-    font-family: "NotoSansR";
-	
-	background-color: white;
-	
-	z-index: 1000;
-	
-	padding-bottom: 10px;
-	border: 1px dotted black;
-	
-}
-
-.sec_cal .cal_nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 78px;
-}
-
-.sec_cal .cal_nav .year-month {
-    width: 300px;
-    text-align: center;
-    line-height: 1;
-}
-
-.sec_cal .cal_nav .nav {
-    display: flex;
-    border: 1px solid #333333;
-    border-radius: 5px;
-}
-
-.sec_cal .cal_nav .go-prev,
-.sec_cal .cal_nav .go-next {
-    display: block;
-    width: 50px;
-    height: 78px;
-    font-size: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.sec_cal .cal_nav .go-prev::before,
-.sec_cal .cal_nav .go-next::before {
-    content: "";
-    display: block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #000;
-    border-width: 3px 3px 0 0;
-    transition: border 0.1s;
-}
-
-.sec_cal .cal_nav .go-prev:hover::before,
-.sec_cal .cal_nav .go-next:hover::before {
-    border-color: #ed2a61;
-}
-
-.sec_cal .cal_nav .go-prev::before {
-    transform: rotate(-135deg);
-}
-
-.sec_cal .cal_nav .go-next::before {
-    transform: rotate(45deg);
-}
-
-.sec_cal .cal_wrap {
-    padding-top: 40px;
-    position: relative;
-    margin: 0 auto;
-}
-
-.sec_cal .cal_wrap .days {
-    display: flex;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.sec_cal .cal_wrap::after {
-    top: 368px;
-}
-
-.sec_cal .cal_wrap .day {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% / 7);
-    text-align: left;
-    color: #999;
-    font-size: 12px;
-    text-align: center;
-    border-radius:5px
-}
-
-.current.today {background: rgb(242 242 242);}
-
-.sec_cal .cal_wrap .dates {
-    display: flex;
-    flex-flow: wrap;
-    height: 290px;
-}
-
-.sec_cal .cal_wrap .day:nth-child(7n -1) {
-    color: #3c6ffa;
-}
-
-.sec_cal .cal_wrap .day:nth-child(7n) {
-    color: #ed2a61;
-}
-
-.sec_cal .cal_wrap .day.disable {
-    color: #ddd;
-}
-
-
-#cbook-ok, #cbook-cancel {
-
- font-size: 1.2rem;
- color: black;
- background-color: gray;
-
-}
-</style>
-
-<!-- <link rel="stylesheet" href="./style-01.css"> -->
+<link rel="stylesheet" href="./calendar-style.css">	  
 
 </head>
 
@@ -305,7 +41,6 @@ background-color:white;
 </div>
 
 
-
 <h1>세무 달력</h1>
 
 <div class='month' id='jan'>
@@ -335,8 +70,6 @@ background-color:white;
 (근로장려금 산정을 위해 1월말, 7월말까지 제출)
 ---
 사업소득 간이지급명세서 제출기한
-
-
 </p>
 </div>
 
@@ -494,6 +227,7 @@ background-color:white;
 <h2><span class='title-span'>8월</span></h2>
 </div>
 <p class='month-content'>
+<!--
 <span class='day-span'>8.10.</span> 
 원천세 신고.납부기한(반기별 포함)
 주민세 종업원분 신고.납부기한
@@ -509,7 +243,7 @@ background-color:white;
 주민세 사업소분 납부기한(8.1~)
 주민세 개인분 납부기한(8.16~)
 </div>
-
+-->
 </p>
 
 </div>
@@ -602,16 +336,15 @@ background-color:white;
 사업소득 간이지급명세서 제출기한
 -->
 </p>
-
 </div>
 
 
 <!---  --->
 <div class="sec_cal">
   <div class="cal_nav">
-    <a href="javascript:;" class="nav-btn go-prev">prev</a>
+    <a href="javascript:void(0);" onclick="onPrevMonth()" class="nav-btn go-prev">prev</a>	
     <div class="year-month"></div>
-    <a href="javascript:;" class="nav-btn go-next">next</a>
+    <a href="javascript:void(0);"  onclick="onNextMonth()" class="nav-btn go-next">next</a>
   </div>
   <div class="cal_wrap">
     <div class="days">
@@ -626,17 +359,38 @@ background-color:white;
     <div class="dates"></div>
   </div>
   <div style='width: 100%; text-align: center'>
-  <span id='cbook-cancel' onclick='onCancel_cbook()'><b>취소</b></span>  |   <span id='cbook-ok' onclick='onOk_cbook()'><b>확인</b></span>  
+  <span id='cbook-cancel' onclick='onCancel_cbook()'><b>취소</b></span>    <span id='cbook-ok' onclick='onOk_cbook()'><b>확인</b></span>  
   </div>
   
 </div>
 <!-- --->
 
+<!-- 일정 등 입력창 -->
+<div id='todo-div' id='todo-div'>
+<p style='width: 90%; text-align: right; font-size: 1.2rem'><span onclick='onDel_todoInfo()' style='background-color: black; color: white; border-radius: 15px;'>삭제</span></p>
+<span id='sel-date' style='font-size: 1.3rem'>selDate</span>
+---
+<input id="todo-input"  type = "text"  placeholder="일정을 추가 후 Enter입력" onKeypress="onEnterTodoInputText(this)"> </input>
+(입력후 Enter을 입력하셔야 추가돼요)
+---
+<div id='items-div'>  </div>
+
+<button  onclick="onCancel_todoDiv()" style="font-size:1.2rem; margin-right: 10px;">취소</button>  <button  onclick="onOk_todoDiv()" style="font-size:1.2rem; margin-right: 10px;">확인</button>
+</div>
 
 
 <script src="./calendarBook.js"></script>
+<script src="./data.js"></script>
 
 <script  type="text/javascript">
+
+function initData(){
+
+   console.log(todoItemArray)
+
+   loadUserTodoItemArray()
+
+}
 
 function close_paraNav(){
   console.log('close_paraNav()')
@@ -680,8 +434,12 @@ function showCalendarBook(isShow){
 	
         bookDiv.style.display  = 'none'
 	
-	}
+  	    let iconDiv = document.getElementById('more-menu-icon')
+        iconDiv.style.display = 'block'    
 
+	}
+	
+	
 }
 
 function onCancel_cbook(){
@@ -691,7 +449,6 @@ function onCancel_cbook(){
    let iconDiv = document.getElementById('more-menu-icon')
    iconDiv.style.display = 'block'    
 
-
 }
 
 function onOk_cbook(){
@@ -699,7 +456,18 @@ function onOk_cbook(){
    showCalendarBook(false);
    let iconDiv = document.getElementById('more-menu-icon')
    iconDiv.style.display = 'block'    
-
+   
+/*
+   let dateInfo = 
+   {    date: "2.22"  , 
+        items: [ "fdas;fja;sf" ]
+	}   
+   
+   addDateInfo(dateInfo)
+ */
+ 
+  showTodoDiv(true)
+   
 }
 
 
@@ -736,7 +504,7 @@ function scroll_paraNav(scrollTop){
 }	
 
 function scroll_handler(){
-console.log('scroll_handler')
+   //console.log('scroll_handler')
 
    let scrollTop = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
   
@@ -760,17 +528,392 @@ console.log('scroll_handler')
 }
 
 
+
+function onPrevMonth(){
+
+   console.log('onPrevMonth')
+   
+   gCalendarBook.prevMonth()
+}
+
+function onNextMonth(){
+
+   console.log('onNextMonth')
+   
+   gCalendarBook.nextMonth()
+}
+
+
+function showTodoDiv(isShow){
+
+  let div= document.getElementById('todo-div')
+  
+  if(isShow){
+      
+	    div.style.display = 'block'
+				
+		let spanElmt = document.getElementById('sel-date')
+		spanElmt.innerText = gDispSelDateStr
+		
+		let inputElmt = document.getElementById('todo-input')
+		inputElmt.value = ""
+      
+	 
+		let itemsDiv  = document.getElementById('items-div')
+		
+		console.log('selDateStr: ' + gSelDateStr)
+		
+		let htmlStr = ''
+		
+		let sel_info = getDateInfo(gSelDateStr)
+		
+		if(sel_info != undefined && sel_info != null){
+	  
+		  sel_info.items.forEach( (item, idx)=>{
+							
+						 if(idx==0){
+							htmlStr = "<span class='item-span' onclick=\'onClick_items(" +idx+ ")\'>"+ item + "</span>"
+							
+						 }else {
+
+							htmlStr += "\n" + "<span class='item-span' onclick=\'onClick_items(" +idx+ ")\'>"+ item + "</span>"
+						 }
+		     })
+			 			 
+			 itemsDiv.innerHTML = htmlStr
+	   }
+			 
+			 
+				 
+   }
+   else {
+
+	   div.style.display = 'none'   
+   }
+
+}
+
+
+//현재 선택된 dateInfo를 삭제하기 
+function onDel_todoInfo(){
+  
+    delDateInfo(gSelDateStr)
+	
+	showTodoDiv(false); 
+	
+	saveUserTodoItemArray()
+  
+    updateSelectedMonthContent()   
+  '
+}
+
+function updateSelectedMonthContent(){
+
+     let tokens = gSelDateStr.split('.') 
+      let  monthStr = tokens[0] +'.'
+	 
+	  updateMonthContent(monthStr)	
+ 
+
+}
+
+
+
+function onClick_items(iidx){
+
+console.log('onClick_items ' + iidx)
+
+     let itemSpans =  document.querySelectorAll('.item-span');
+	 
+	    itemSpans.forEach( (span, idx )=>{
+	
+        span.classList.remove('select')	
+	 
+	 });
+	 
+	 itemSpans[iidx].classList.add('select')
+
+}
+
+
+
+function updateLayoutUI(){
+
+  let todoDiv = document.getElementById('todo-div')
+  
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  
+  todoDiv.style.width  = w + 'px'
+  todoDiv.style.height = h + 'px'
+  //width = 100px<---px주의 
+  
+  todoDiv.style.marginLeft = -w/2  + 'px'   
+  todoDiv.style.marginTop = -h/2  + 'px'
+
+}
+
+
+let gClientWidth, gClientHeight
+
+function onResize(){
+ 
+    gClientWidth = document.body.clientWidth 
+	gClientHeight =document.body.clientHeight
+	
+	  var w = window.innerWidth;
+      var h = window.innerHeight;
+		
+	console.log('window innerSize: ' + w + 'x' + h)
+    console.log('onResize: ' + gClientWidth + ", " + gClientHeight)
+         	  
+}
+
+
+function onEnterTodoInputText(inputText){
+	 
+		if(window.event.keyCode==13) {
+		
+     	   let sel_info = getDateInfo(gSelDateStr)
+		   
+		   if(sel_info == undefined || sel_info == null){
+ 
+               let newItem = { 
+ 			        date: gSelDateStr,
+				    items: [ ]
+                 }				
+			    
+				newItem.items.push(inputText.value)
+				
+                addDateInfo(newItem)              
+			    //새로 dateInfo를 추가 		
+
+                sel_info = newItem 			  
+
+            }else {		   
+	
+		        sel_info.items.push(inputText.value)
+			
+			}
+			
+			inputText.value = ""			
+			
+			console.log(sel_info)
+			
+			update_todoItemsDiv(sel_info)
+       
+	   }
+	  	   	   
+}
+
+
+function update_todoItemsDiv(iDateInfo){
+
+	    let itemsDiv  = document.getElementById('items-div')
+		
+		console.log('selDateStr: ' + gSelDateStr)
+		
+		let htmlStr = ''
+		
+		let sel_info = iDateInfo
+	  
+		sel_info.items.forEach( (item, idx)=>{
+							
+					 if(idx==0){
+						//textArea.value = item
+						htmlStr = "<span class='item-span' onclick=\'onClick_items(" +idx+ ")\'>"+ item + "</span>"
+						
+					 }else {
+
+						//textArea.value += "\n" + item				 
+						htmlStr += "\n" + "<span class='item-span' onclick=\'onClick_items(" +idx+ ")\'>"+ item + "</span>"
+					 }
+		    })
+			 			 
+   	    itemsDiv.innerHTML = htmlStr
+}
+
+
+
+function onCancel_todoDiv(){
+
+   showTodoDiv(false)
+
+}
+
+function onOk_todoDiv(){
+
+    let inputElmt = document.getElementById('todo-input')
+    console.log(inputElmt.value)
+ 
+    showTodoDiv(false)
+
+
+    let tokens = gSelDateStr.split('.') 
+
+
+    let  monthStr = tokens[0] +'.'
+	 
+	  updateMonthContent(monthStr)	   
+
+    //save todoItemArray	
+	saveUserTodoItemArray()
+		
+	  
+}
+
+
+function buildTodoItemHtml(dateInfo){
+/*
+  "2.0" 등은 날짜표시 없이 전체 month 대상 
+  
+  date: "1.25" ,
+	  items: [
+	  "부가가치세 확정신고.납부기한",
+      "자동차세 주행분 신고납부기한"	  
+	  ]	 	  
+*/	     
+    let html = ''
+	if(dateInfo.date.includes(".0")){
+	
+	}
+	else {
+	
+  	   html = '<span class=\"day-span\">'+dateInfo.date+'</span>'	
+	}
+	
+	for(let i=0; i < dateInfo.items.length; i++){
+
+     let item = dateInfo.items[i] 
+	 
+	    html += "\n" + item
+	}
+
+   return html 
+
+}
+
+//month 
+function updateMonthContent(monthStr){
+
+   let rHtml = ''
+   let isFirst = true
+  todoItemArray.forEach( (info, idx)=>{
+    
+      let date = info.date 
+	  let val = parseFloat(date)       
+	  if(date.startsWith(monthStr)){
+
+ 	   if(isFirst){
+	   
+  	     isFirst = false 
+ 	      rHtml +=  buildTodoItemHtml(info)		 
+	   }
+	   else {
+	  
+ 	      rHtml +=  '\n' + buildTodoItemHtml(info)
+		 }
+	   }
+
+   });
+   
+   let monthVal = parseInt(monthStr)
+   let month_id = getMonthId(monthVal)
+    
+   attachTodoItemHtmlToMonth(month_id, rHtml)
+
+}
+
+function getMonthId(monthVal){
+
+let monthId = 'undefined'
+
+switch(monthVal){
+	case 1: monthId = "#jan" 
+	break;
+	
+	case 2: monthId = "#feb" 
+	break;
+	
+	case 3: monthId = "#mar" 
+	break;
+	
+	case 4: monthId = "#april" 
+	break;
+	
+	case 5: monthId = "#may" 
+	break;
+	
+	case 6: monthId = "#jun" 
+	break;
+	case 7: monthId = "#jul" 
+	break;
+	case 8: monthId = "#aug" 
+	break;
+	case 9: monthId = "#sep" 
+	break;
+	case 10: monthId = "#oct" 
+	break;
+	case 11: monthId = "#nov" 
+	break;
+	case 12: monthId = "#dec" 
+	break;
+}
+
+   return monthId
+
+}
+
+function attachTodoItemHtmlToMonth(month_id, htmlStr){
+
+      let  content = document.querySelector(month_id +' .month-content')
+  
+	   if(content == undefined || content == null){
+	   
+	      console.log('content invalid')
+		   return
+	   }
+
+
+     content.innerHTML = htmlStr 
+
+}
+
+
+
 window.addEventListener("scroll" , scroll_handler)
 
 let gCalendarBook 
 
 window.onload = function(){
 
+  initData();
+
 gCalendarBook = new calendarBook()
 gCalendarBook.init()    
 
-showCalendarBook(false)
+ showCalendarBook(false)
+ showTodoDiv(false)
 
+ onResize();
+ 
+ 
+ 
+ updateLayoutUI()
+ 
+ updateMonthContent('1.')
+ updateMonthContent('2.')
+ updateMonthContent('3.')
+ updateMonthContent('4.')
+ updateMonthContent('5.')
+ updateMonthContent('6.')
+ updateMonthContent('7.')
+ updateMonthContent('8.')
+ updateMonthContent('9.')
+ updateMonthContent('10.')
+ updateMonthContent('11.')
+ updateMonthContent('12.')
+ 
 }
 
 </script>

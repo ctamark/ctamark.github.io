@@ -1,6 +1,40 @@
+
+
+let gDispSelDateStr = ''
+let gSelDateStr = ''
+
+function onClickDate(seldate){
+	
+	let month_idx = gCalendarBook.curMonth
+	
+	console.log('onClickDate ' + (month_idx+1) +"." + seldate)
+	
+    var currentMonthDate = document.querySelectorAll('.dates .current');
+	currentMonthDate.forEach( (elmt, idx)=>{
+	
+      elmt.classList.remove('selectday')
+	
+	})
+	
+	gSelDateStr = (month_idx+1) + "." + seldate 
+	
+	gDispSelDateStr = gCalendarBook.curYear +"."+ (month_idx+1) + "." + seldate 
+	
+    currentMonthDate[seldate -1].classList.add('selectday');		
+		
+}
+
+
 class calendarBook {
 	
 	constructor(){
+		
+		this.curYear;
+		this.curMonth
+		
+		this.dispDate;
+		
+		this.today
 
   
 	}
@@ -14,33 +48,33 @@ class calendarBook {
     var kstGap = 9 * 60 * 60 * 1000; // 한국 kst 기준시간 더하기
 	
     let today = new Date(utc + kstGap); // 한국 시간으로 date 객체 만들기(오늘)
+	
+	this.today = today 
      
-    var thisMonth = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var curDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     // 달력에서 표기하는 날짜 객체
-  
-    
-    var currentYear = thisMonth.getFullYear(); // 달력에서 표기하는 연
-    var currentMonth = thisMonth.getMonth(); // 달력에서 표기하는 월
-    var currentDate = thisMonth.getDate(); // 달력에서 표기하는 일
+      
+    var currentYear = curDate.getFullYear(); // 달력에서 표기하는 연
+    var currentMonth = curDate.getMonth(); // 달력에서 표기하는 월
+    var currentDate = curDate.getDate(); // 달력에서 표기하는 일
 
     // kst 기준 현재시간
     // console.log(thisMonth);
+	
+	 this.curMonth = currentMonth
+	 this.curYear = currentYear
 
-    this.draw(thisMonth, today)
-
-
-
-
+     this.draw(curDate)
 		
 	}
 	
-	
-	draw(dispMonth, today){
-		
+	//=================
+	draw(dispDate){
+				
 	   // 렌더링을 위한 데이터 정리
-      let  currentYear = dispMonth.getFullYear();
-      let  currentMonth = dispMonth.getMonth();
-      let  currentDate = dispMonth.getDate();
+      let  currentYear = dispDate.getFullYear();
+      let  currentMonth = dispDate.getMonth();
+      let  currentDate = dispDate.getDate();
 
         // 이전 달의 마지막 날 날짜와 요일 구하기
         var startDay = new Date(currentYear, currentMonth, 0);
@@ -69,22 +103,53 @@ class calendarBook {
         for (var i = prevDate - prevDay + 1; i <= prevDate; i++) {
             calendar.innerHTML = calendar.innerHTML + '<div class="day prev disable">' + i + '</div>'
         }
-        // 이번달
+        // 이번달 nextDate(마지막 날짜) 
         for (var i = 1; i <= nextDate; i++) {
-            calendar.innerHTML = calendar.innerHTML + '<div class="day current">' + i + '</div>'
+            calendar.innerHTML = calendar.innerHTML + '<div class="day current" onclick="onClickDate(' + i + ')">' + i + '</div>'
+					
+		
         }
         // 다음달
         for (var i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
             calendar.innerHTML = calendar.innerHTML + '<div class="day next disable">' + i + '</div>'
         }
 
+        let today = this.today
+
         // 오늘 날짜 표기
         if (today.getMonth() == currentMonth) {
             let todayDate = today.getDate();
             var currentMonthDate = document.querySelectorAll('.dates .current');
             currentMonthDate[todayDate -1].classList.add('today');
-        }
-    
+        }    
+	
+	}
+	
+	
+	prevMonth(){
+		
+		console.log('prevMonth')
+		
+		this.dispDate = new Date(this.curYear, this.curMonth - 1, 1);
+		
+		this.curYear = this.dispDate.getFullYear();
+		this.curMonth = this.dispDate.getMonth();
+		
+		this.draw(this.dispDate)
+		
+	}
+	
+	nextMonth(){
+
+    console.log('nextMonth')
+		
+	  this.dispDate = new Date(this.curYear, this.curMonth + 1, 1);
+	  this.curYear = this.dispDate.getFullYear();
+	  this.curMonth = this.dispDate.getMonth();
+		
+	 
+	  this.draw(this.dispDate)
+		
 	}
 	
 	
