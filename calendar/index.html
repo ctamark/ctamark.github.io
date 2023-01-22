@@ -10,10 +10,11 @@
 </head>
 
 <body>
-
+<!--
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1799596498506801"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous"></script> -->
 <!-- generic -->
+<!--
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-1799596498506801"
@@ -22,11 +23,11 @@
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+</script>-->
 
 <!-- nav -->
 <nav class="paraNav" id='naviMenu'>
-<p style='width: 100%; text-align:right; color:white;font-size:1.2rem;'><span onclick="close_paraNav()"> [close]</span></p>
+<p style='width: 100%; text-align:right; color:white;font-size:1.2rem;'><span onclick="close_paraNav()"> [닫기]</span></p>
 	<ul>
 		<li class="active"><a href="#jan">1월</a></li>
 		<li><a href="#feb">2월</a></li>
@@ -51,12 +52,19 @@
 
 <div id='more-menu-icon'>
 <img src='./btn_more_menu.png' width='50px' onclick='onClick_moreMenu()'>
+</div>
 
+
+<div id='more-menu'>
+<p style='width: 95%; text-align:right; font-size:1.2rem; margin-right: 10px;'><span style="background-color: black; color:white;"   onclick="onCloseMoreMenu()">[닫기]</span></p>
+
+<span onclick='onResetDateInfo()'>날짜정보 초기화</span>(어플의 기본 날짜정보 사용)
+
+<span  onclick='showCalendarBook(true)'><img src='./calendar-icon.png' width='50px'>(일정추가)</span>
 </div>
 
 
 <h1>세무 달력</h1>
-
 <div class='month' id='jan'>
 <figure class="imgWrap">
 <div class="month-img" style="background-image: url(./img-jan.jpg);"></div>
@@ -373,7 +381,7 @@
     <div class="dates"></div>
   </div>
   <div style='width: 100%; text-align: center'>
-  <span id='cbook-cancel' onclick='onCancel_cbook()'><b>취소</b></span>    <span id='cbook-ok' onclick='onOk_cbook()'><b>확인</b></span>  
+  <span id='cbook-cancel' onclick='onCancel_cbook()' style='margin-right: 10px;'><b>취소</b></span> <span id='cbook-ok' style='margin-left: 10px;' onclick='onOk_cbook()'><b>확인</b></span>  
   </div>
   
 </div>
@@ -381,7 +389,7 @@
 
 <!-- 일정 등 입력창 -->
 <div id='todo-div' id='todo-div'>
-<p style='width: 90%; text-align: right; font-size: 1.2rem'><span onclick='onDel_todoInfo()' style='background-color: black; color: white; border-radius: 15px;'>삭제</span></p>
+<p style='width: 90%; text-align: right; font-size: 1.2rem'><span onclick='onDel_todoInfo()' style='background-color: black; color: white; border-radius: 10px;'>삭제</span></p>
 <span id='sel-date' style='font-size: 1.3rem'>selDate</span>
 ---
 <input id="todo-input"  type = "text"  placeholder="일정을 추가 후 Enter입력" onKeypress="onEnterTodoInputText(this)"> </input>
@@ -389,7 +397,7 @@
 ---
 <div id='items-div'>  </div>
 
-<button  onclick="onCancel_todoDiv()" style="font-size:1.2rem; margin-right: 10px;">취소</button>  <button  onclick="onOk_todoDiv()" style="font-size:1.2rem; margin-right: 10px;">확인</button>
+<button  onclick="onCancel_todoDiv()" style="font-size:1.2rem; margin-right: 20px;">취소</button> <button  onclick="onOk_todoDiv()" style="font-size:1.2rem; margin-left: 20px;">확인</button>
 </div>
 
 
@@ -400,7 +408,7 @@
 
 function initData(){
 
-   console.log(todoItemArray)
+   console.log(defTodoItemArray)
 
    loadUserTodoItemArray()
 
@@ -431,9 +439,28 @@ function onClick_moreMenu(){
 
    let iconDiv = document.getElementById('more-menu-icon')
    iconDiv.style.display = 'none'    
+      
+   let moreMenu = document.getElementById('more-menu')
+   moreMenu.style.display = 'block'
 
-   showCalendarBook(true)
 }
+
+function onCloseMoreMenu(){
+
+   let moreMenu = document.getElementById('more-menu')
+   moreMenu.style.display = 'none'
+
+   let iconDiv = document.getElementById('more-menu-icon')
+   iconDiv.style.display = 'block'    
+
+}
+
+
+function onResetDateInfo(){
+
+   removeUserTodoItemArray()
+}
+
 
 function showCalendarBook(isShow){
 
@@ -443,6 +470,10 @@ function showCalendarBook(isShow){
    if(isShow){
    
         bookDiv.style.display  = 'block'
+		
+		let moreMenu = document.getElementById('more-menu')
+	    moreMenu.style.display = 'none'	
+		
     }
 	else {
 	
@@ -754,6 +785,7 @@ function onCancel_todoDiv(){
 
 }
 
+
 function onOk_todoDiv(){
 
     let inputElmt = document.getElementById('todo-input')
@@ -787,7 +819,7 @@ function buildTodoItemHtml(dateInfo){
 	  ]	 	  
 */	     
     let html = ''
-	if(dateInfo.date.includes(".0")){
+	if(dateInfo.date.includes(".00")){
 	
 	}
 	else {
@@ -811,7 +843,7 @@ function updateMonthContent(monthStr){
 
    let rHtml = ''
    let isFirst = true
-  todoItemArray.forEach( (info, idx)=>{
+  userTodoItemArray.forEach( (info, idx)=>{
     
       let date = info.date 
 	  let val = parseFloat(date)       

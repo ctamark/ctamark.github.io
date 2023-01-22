@@ -1,5 +1,5 @@
 
-let todoItemArray = [
+let defTodoItemArray = [
 
       {
 	  date: "1.10" , 
@@ -32,7 +32,7 @@ let todoItemArray = [
 //-------------------------
   ,
   {   
-      date: "2.0",
+      date: "2.00",
 	  items: [
 	  
 	  "● 2월분 근로소득 지급시 연말정산<br>"
@@ -96,7 +96,14 @@ let todoItemArray = [
 //
 //============
  { 
-date: "5.2", 
+date: "5.01", 
+items:  [
+ "근로자의 날"
+     ]
+ },
+
+ { 
+date: "5.02", 
 items:  [
  "일용근로소득 지급명세서제출기한(4월제출분)",
  "사업소득 간이지급명세서 제출기한(4월제출분)"
@@ -261,8 +268,7 @@ items: [
 ]
 
 
-
-let custom_todoItemArray = []
+let userTodoItemArray = []
  
 
 /*
@@ -303,9 +309,9 @@ dataInfo = {
 //dateStr
 function getDateInfo(iDateStr){
 	
-	for(let idx=0; idx< todoItemArray.length; idx++){
+	for(let idx=0; idx< userTodoItemArray.length; idx++){
 		
-		let info = todoItemArray[idx]
+		let info = userTodoItemArray[idx]
 		
 		if(info.date == iDateStr){
 			
@@ -321,9 +327,9 @@ function addDateInfo(dateInfo){
 	let date = dateInfo.date 
 	let val = parseFloat(date)
 		
-	todoItemArray.push(dateInfo)
+	userTodoItemArray.push(dateInfo)
 		
-	todoItemArray.sort(function compare(obj1, obj2){
+	userTodoItemArray.sort(function compare(obj1, obj2){
 
     let a = parseFloat(obj1.date) 
 	let b = parseFloat(obj2.date)
@@ -334,7 +340,7 @@ function addDateInfo(dateInfo){
     return 0	
 	});		
 	
-	 console.log(todoItemArray)
+	// console.log(userTodoItemArray)
 
 }
 
@@ -343,43 +349,59 @@ function delDateInfo(dateStr){
 		
 	//arr.splice(1, 2);
     //배열의 1번째 index부터 2개의 원소를 삭제합니다.	
-	todoItemArray.forEach( (item, idx)=>{
+	userTodoItemArray.forEach( (item, idx)=>{
 	
          if(item.date == dateStr){
 
-           todoItemArray.splice(idx, 1)
+           userTodoItemArray.splice(idx, 1)
 		   
 		 }			 
 	
 	} );
 	
-			
 }
 
+
+function removeUserTodoItemArray(){
+	
+    console.log('removeUserTodoItemArray')	
+	window.localStorage.removeItem("userTodoItemArray")
+	
+	 userTodoItemArray = defTodoItemArray 
+		
+}
 
 function saveUserTodoItemArray(){
   
     console.log('saveUserTodoItemArray')
 	
-	window.localStorage.setItem("userTodoItemArray", JSON.stringify(todoItemArray));
-		
+	window.localStorage.setItem("userTodoItemArray", JSON.stringify(userTodoItemArray));
+			
 }
 
 function loadUserTodoItemArray(){
+	
+	 console.log('loadUserTodoItemArray')
 	
      let dataObj = window.localStorage.getItem("userTodoItemArray");
 
      if(dataObj!= undefined && dataObj !=null){
 		 
 		 //json파일을 javascript object로 변환
-         todoItemArray = JSON.parse(dataObj) 		 
+        // todoItemArray = JSON.parse(dataObj) 		 
+		 userTodoItemArray = JSON.parse(dataObj)
 		 
-		 console.log(todoItemArray)
+		 console.log(userTodoItemArray)
 		 
 	 }
 	 else {
 		 
+		 userTodoItemArray = defTodoItemArray
 		 console.log('userTodoItemArray not found')
+		 
+		 console.log(userTodoItemArray)
+		 
+		 
 	 }
 	
 	
