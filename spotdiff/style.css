@@ -1,0 +1,381 @@
+html {
+  width: 100%;
+  height: 100%;  
+
+}
+
+body {
+ 
+  width: 100%;
+  height: 100%;  
+  
+  margin: 0;
+  padding: 0;
+  background: #888888;
+  
+  /*
+  overflow: hidden;
+                         */
+   user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+
+}
+
+a { text-decoration:none }
+
+#iCanvas {  
+
+  /*width: 500px;
+   height: 500px;
+   */
+    background: #8F8F8F;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	
+	z-index: 10;	
+    padding: 0px;
+	/*auto 남은 여백을 균등하게 배분 */
+	
+    display: none;	
+	/* 'none'-->적용 안됨  */
+}
+
+#sysMsgDiv{
+  display: none;
+  
+  position: absolute;
+  /* 부모기준으로 얼마큼 떨어질지 
+  */  
+  left: 50%;
+  top: 50%;
+ 
+ margin-left:  -150px;
+
+  opacity: 0.7;
+ 
+  width: 300px;
+  height: 80px;
+  
+
+  line-height: 80px;
+  
+  background: black;
+  color: #ffffff; 
+  
+  
+  z-index: 25; 
+  
+  
+}
+
+
+#logoDiv {
+ 
+    position: relative;
+	/*원래 있어야 할 위치에서 얼마큼 떨어져 있는지를 설정*/
+    width: 100%;
+	height: 100%;
+	margin-top: 100px;
+    text-align: center;
+	/*img text는 text-align써야 함*/
+    background: #888888;
+	z-index: 21;
+}
+
+
+
+#screenBG{
+    display: none;
+	position: absolute; 
+    left: 0px;
+	top: 0px;
+
+	width: 100%;
+	height: 100%;
+
+    background: #000000;
+  
+   opacity: 0.8;
+
+	z-index: 22;
+
+}
+
+#game-home-div {
+	
+	
+	
+	
+}
+
+
+#game-dialog-div{
+	/*중앙정렬 */
+  display: none;
+  position: absolute;
+  
+  color: white;
+  background: #000000;
+  font-size: 1.5rem;
+  	
+  left: 50%;
+  top: 50%;
+
+  width: 300px;
+  height: 400px;
+  
+  margin-left:  -150px;  
+  margin-top:  -200px;
+ 	
+  z-index: 23;
+  
+  text-align: center;
+	
+}
+
+#stageScene-div{
+
+  display: none;	
+	
+  position: fixed;
+  left: 0px; 
+  top: 0px;
+  
+  width:100%; 
+  height:100%;
+ 
+  background-color: black;
+  opacity: 0.8; 
+ 
+
+  pointer-events: none;	
+ 
+    z-index: 23;
+}
+
+@keyframes box-ani {
+	0% { transform: translate(0, 0); }
+	100% { transform: translate(0px, 100px); }
+}
+
+
+.box{
+  display: inline-block;
+ 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  width:  200px; 
+  height: 200px;
+  
+  margin-left: -100px;
+  margin-top: -100px;
+  
+  text-align: center;
+  
+  
+  float:left;  
+  position: relative;
+  /*margin:0 -4px -5px -2px;*/
+  transition: all .2s ease;
+  
+  background-color: #000;
+}
+
+/*
+.box p{
+  color: #777;
+  position: absolute;
+  font-size: 20px;
+  width: 100%;
+  height: 25px;
+  text-align: center;
+  bottom: 0px;
+  margin: 0;
+  top:160px;
+  background-color: #fff;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: all .2s ease;
+}
+*/
+
+.box p{
+	
+ color: white;
+
+ 	
+}
+
+
+.loader1{
+  position: relative;
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  border: 3px solid  rgba(255,255,255, .7);
+
+  top: 28%;
+  top: -webkit-calc(50% - 43px);
+  top: calc(50% - 43px);
+  left: 35%;
+  left: -webkit-calc(50% - 43px);
+  left: calc(50% - 43px);
+
+  -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+  -webkit-animation: loader1 3s linear infinite;
+      animation: loader1 3s linear infinite;
+}
+
+.loader1:after{
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  width: 11px;
+  height: 11px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+@-webkit-keyframes loader1{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes loader1{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+
+
+.loader9:before{
+  content: "";
+  position: absolute;
+  top: 0px;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  -webkit-animation: loader9g 3s ease-in-out infinite;
+      animation: loader9g 3s ease-in-out infinite;
+}
+
+.loader9{
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 46%;
+  left: 46%;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+
+.loader9:after{
+  content: "";
+  position: absolute;
+  top: 0px;
+  height: 12px;
+  width: 12px;
+  border-radius: 12px;
+  -webkit-animation: loader9d 3s ease-in-out infinite;
+      animation: loader9d 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes loader9g{
+  0%{ left: -25px; background-color: rgba(255, 255, 255, .8); }
+  50%{ left: 0px; background-color: rgba(255, 255, 255, .1);}
+  100%{ left:-25px; background-color: rgba(255, 255, 255, .8); }
+}
+@keyframes loader9g{
+  0%{ left: -25px; background-color: rgba(255, 255, 255, .8); }
+  50%{ left: 0px; background-color: rgba(255, 255, 255, .1);}
+  100%{ left:-25px; background-color: rgba(255, 255, 255, .8); }
+}
+
+
+@-webkit-keyframes loader9d{
+  0%{ left: 25px; background-color: rgba(255, 255, 255, .8); }
+  50%{ left: 0px; background-color: rgba(255, 255, 255, .1);}
+  100%{ left:25px; background-color: rgba(255, 255, 255, .8); }
+}
+@keyframes loader9d{
+  0%{ left: 25px; background-color: rgba(255, 255, 255, .8); }
+  50%{ left: 0px; background-color: rgba(255, 255, 255, .1);}
+  100%{ left:25px; background-color: rgba(255, 255, 255, .8); }
+}
+
+/*
+https://poiemaweb.com/css3-animation
+.clock{
+  border-radius: 60px;
+  border: 3px solid #fff;
+  height: 80px;
+  width: 80px;
+  position: relative;
+
+  top: 28%;
+  top: -webkit-calc(50% - 43px);
+  top: calc(50% - 43px);
+  left: 35%;
+  left: -webkit-calc(50% - 43px);
+  left: calc(50% - 43px);
+}
+.clock:after{
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top:2px;
+  left: 48%;
+  height: 38px;
+  width: 4px;
+  border-radius: 5px;
+  -webkit-transform-origin: 50% 97%;
+      transform-origin: 50% 97%;
+  -webkit-animation: grdAiguille 2s linear infinite;
+      animation: grdAiguille 2s linear infinite;
+}
+
+@-webkit-keyframes grdAiguille{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes grdAiguille{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+.clock:before{
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top:6px;
+  left: 48%;
+  height: 35px;
+  width: 4px;
+  border-radius: 5px;
+  -webkit-transform-origin: 50% 94%;
+      transform-origin: 50% 94%;
+  -webkit-animation: ptAiguille 12s linear infinite;
+      animation: ptAiguille 12s linear infinite;
+}
+
+@-webkit-keyframes ptAiguille{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes ptAiguille{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+
+*/
