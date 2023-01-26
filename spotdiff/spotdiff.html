@@ -1,0 +1,609 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+
+
+<link rel="stylesheet" href="./style.css">	  
+<style>
+
+
+
+</style>
+
+
+</head>
+<body  oncontextmenu="return false">
+<canvas  id="iCanvas"   style="border:1px solid #ff0000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<div id="logoDiv" >
+  <img src="./logo_dog.png" width='200px'><br> 
+  presented by planB.com<br><br>
+  <button id="startBtn" type="button" onclick="start()" style="font-size: 1.2rem;">--START--</button>  
+  <!--
+ <form method="get" name="form" action="destination.php">
+	<input type="text" placeholder="Enter Data" name="data">
+	<input type="submit" value="Submit">
+</form>
+  -->
+</div>
+
+<div id="sysMsgDiv">
+<span id="sysMsg">시스템 메시지...</span>
+</div>
+
+<div id='screenBG' onclick="onScreenBG()">
+</div>
+
+
+<!-- clearstage보여주기, 클리어한 그림 보기등-->
+<div id='game-home-div'>
+<span style='font-size: 1.5rem;'>main-menu</span>
+<table>
+</table>
+
+</div>
+<!-- state clear 등 끝-->
+
+<!-- timeout, stageover-->
+<div id='game-dialog-div' >
+<!-- span은 line요소이기 때문에 text-align을 적용해야 안됨, 상위에 block요소에서 적용해야함 -->
+<span id='dlgTitle' >title</span><br><br>
+<div id="stageClearMenu" style='text-align: center;'>
+<input type='image' src='./home.png' width='80px' onclick='onHomeBtn()'></input> <input type='image' src='./next.png'  width='80px' onclick='onNextBtn()'></input>
+</div>
+
+<div id="timeOutMenu">
+<input type='image' src='./home.png' width='80px'  onclick='onHomeBtn()'></input> <input type='image' src='./retry.png' width='80px'  onclick='onRetryBtn()'></input>
+</div>
+</div>
+
+<div id="stageScene-div" onclick='onClick_stageScene()'>
+<div class="box">    
+<span id='sceneTitle' style='color: white; background-color: black; font-size: 1.8rem; margin: 10px'>Scene Title</span>
+ <div class="loader9"></div>
+ </div>
+</div>
+
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script type="text/javascript" src='./appDesc.js'></script>
+<script type="text/javascript" src='./data.js'></script>
+<script type="text/javascript" src='./spotDiff.js'></script>
+
+
+<script  type="text/javascript">
+
+var gCtx 
+let gClientWidth, gClientHeight;
+ 
+let gAppCurT
+
+let gPlayObj 
+let gUpdate_interval_id
+
+let gNumHeart = 3
+//===========
+//
+//============
+
+let gIsIgnoreUserInput = false
+
+let img_home =new Image();
+img_home.src = './ui-home.png'
+
+let img_locker = new Image();
+img_locker.src = './locker.png'
+
+ function initData(){
+ 
+  //  gIsMobile = isMobile()
+  //  console.log('isMobile ' + gIsMobile)
+	
+//-------------	
+     let val = window.localStorage.getItem('stage-idx')
+	 if(val != undefined){	  
+
+	 
+	 }
+	  val = window.localStorage.getItem('powersave')
+	 if(val != undefined){
+	 
+	   console.log('powersave-->' + val )
+	
+       if(val == 'true'){
+             gIsPowersave = true 
+	    }
+		else {
+             gIsPowersave = false 		
+		}
+	 }
+	
+   
+	 
+ }
+
+
+function initEvent(canvas){
+
+   if ('ontouchstart' in document.documentElement === true){
+   
+      console.log("add touchEvent");
+   
+      canvas.addEventListener("touchstart",touchS, false);
+      canvas.addEventListener("touchmove",touchM, false);
+     // document.body.addEventListener("touchmove",touchM);
+      canvas.addEventListener("touchend",touchE, false);
+  
+     }	 
+	 
+	 /*
+	 let sceneDiv = document.getElementById('stageScene-div')
+	 sceneDiv.addEventListener('click', onClick_stageScene, false)
+	 */
+	// document.addEventListener("visibilitychange", handleVisibilityChange, false);
+	 //document.addEventListener('postFinishJob', onPostFinishJob);
+
+}
+
+
+
+function touchS(e){
+
+    console.log('touchS')
+	
+	let touches = e.touches 
+		
+	let tx = touches[0].clientX 
+	let ty = touches[0].clientY 
+	
+	
+	if(gAppstate == appstate_home){
+
+	   touchS_home(tx, ty)
+	
+	
+	  return 
+	}
+  
+    if(gPlayObj != undefined){
+     
+	 gPlayObj.touchS(e)
+      
+     }
+   
+}
+
+
+function onClick_stageScene(){
+
+ console.log('onClick_stageScene')
+
+
+}
+
+
+function touchS_home(tx, ty){
+
+   
+    let sel_idx =  getStageIdx(tx, ty)
+     gStageIdx = sel_idx 
+	 
+	 gAppstate = appstate_game
+	 
+     console.log('touchS_home selIdx: ' + gStageIdx)
+	 
+	 
+	 gPlayObj.beginStage()
+	
+	 beginStageScene(stageScene_stageBegin)
+
+
+}
+
+
+function getStageIdx(tx, ty){
+
+    let idx, xIdx= Math.floor(tx/75), yIdx = Math.floor(ty/47) 
+    return idx = xIdx + yIdx*5
+}
+
+
+function draw_home(ctx){
+
+  //chapter: 1 (idx:0)
+  let refX = 0;
+  let refY = 0
+   ctx.drawImage(img_home , refX+0 , refY + 0)
+   ctx.drawImage(img_home , refX+0 , refY + 48)
+
+   //locker표시    
+    let x, y
+    let i= gPlayable_stageMaxIdx+1
+   for(; i< 10; i++){
+		  
+   x = (i%5)*76;    
+   y = Math.floor(i/5)*47 
+			
+	ctx.drawImage(img_locker, x, y, 46, 46)
+
+   }
+
+
+
+	  ctx.font ="15pt Fira";
+	  ctx.fillStyle = 'white'
+
+	   let info = 'n/a';
+	
+	   for(i=0; i< 10; i++){
+	   	   
+	    info =  i.toString() 
+	   
+	   x = (i%5)*76 + 17;    
+	   y = Math.floor(i/5)*47 + 15 
+	   
+		ctx.fillText(info, x, y);		
+
+	   }
+	   
+	   
+	   
+
+
+	   
+	   
+	   
+}
+
+
+function touchM(e){
+
+  e.preventDefault()
+
+  console.log('touchM')
+   if(gPlayObj != undefined){
+     
+	 gPlayObj.touchM(e)
+      
+   }
+
+}
+
+
+function touchE(e){
+ 
+    console.log('touchE') 
+ 
+    if(gPlayObj != undefined){
+     
+	 gPlayObj.touchE(e)
+      
+   }
+
+}
+
+
+
+function g_showSysMsg(msg, spanT=0){
+
+/*
+		   let sysMsg = document.getElementById("sysMsg");
+           sysMsg.innerText = msg
+           //innerHTML은 태그까지 가능
+*/
+   
+
+          let sysMsgDiv = document.getElementById("sysMsgDiv");
+          sysMsgDiv.style.display = "block"	  
+          sysMsgDiv.innerText = msg 		  
+		  
+		  if(spanT > 0){
+
+     	     setTimeout(g_hideSysMsg, spanT);
+		  }
+	 }
+
+	 
+function g_hideSysMsg(){
+		 
+  let sysMsgDiv = document.getElementById("sysMsgDiv");
+  sysMsgDiv.style.display = "none"	   
+  
+  
+ 
+}
+
+
+
+function onHomeBtn(){
+
+   let dlgDiv = document.getElementById('game-dialog-div')
+   dlgDiv.style.display = 'none'
+   
+   let bg = document.getElementById('screenBG')
+	 bg.style.display = 'none'
+
+  if(gPlaystate == playstate_timeout){
+  
+  
+  }
+  else if( gPlaystate == playstate_stageClear){
+  
+  }
+
+   gAppstate = appstate_home 
+
+
+}
+
+	 
+function onNextBtn(){
+
+   hideGameDlg()
+
+   if( gPlaystate == playstate_stageClear){
+   
+ 
+        gPlayObj.beginStage() 
+	    beginStageScene(stageScene_stageBegin)
+  
+   }
+
+
+}
+
+
+
+function onRetryBtn(){
+
+  console.log('onRetryBtn')
+  
+   hideGameDlg()
+ 
+  if(gPlaystate == playstate_timeout){
+  
+     gPlayObj.beginStage() 
+  }
+  
+   beginStageScene(stageScene_stageBegin)
+  
+
+}
+
+
+
+function start(){
+
+   //gAppstate = appstate_mainmenu;
+ 
+    
+  var  logoDiv = document.getElementById("logoDiv");
+   logoDiv.style.display = 'none'
+
+/*
+  var  preMenuDiv = document.getElementById("simpleMenuDiv");
+   preMenuDiv.style.display = 'block'
+*/
+
+ //  gMainmenuItem = mainmenu_item_asmr    
+	
+  // gSound_alarm = new Audio('./sound_alarm.wav')
+
+
+
+   let screenBG = document.getElementById('screenBG')
+   screenBG.style.display = 'block'
+   
+   g_showSysMsg('wait a sec', 1000)
+
+   setTimeout(start_step2, 1000)
+
+    getRankInfo()
+}
+
+
+function start_step2(){
+
+   let screenBG = document.getElementById('screenBG')
+   screenBG.style.display = 'none'
+   //-------------
+    
+  var canvas = document.getElementById('iCanvas');
+  canvas.style.display = 'block';  
+
+  gAppstate = appstate_home
+
+  gPlayObj = new spotDiff()
+  gPlayObj.init() 
+  
+
+}
+
+
+
+
+function onResize(){
+ 
+    gClientWidth = document.body.clientWidth 
+	gClientHeight =document.body.clientHeight
+
+    console.log('onResize: ' + gClientWidth + ", " + gClientHeight)
+    	
+    let canvas = document.getElementById('iCanvas')   
+    canvas.width  = gClientWidth 
+    canvas.height = gClientHeight    
+  
+}
+
+
+//==============
+//common interface
+//=============
+function updateFrame(){
+
+	   let curT = new Date().getTime();
+	   gAppCurT = curT 
+
+       gCtx.clearRect(0, 0, gClientWidth, gClientHeight) 
+	
+	    if(gAppstate == appstate_home){
+
+         draw_home(gCtx)
+
+         }			
+
+		//=================    
+		if(gPlayObj != undefined){
+		
+			gPlayObj.updateFrame(curT)
+		 
+			if(gCtx != undefined){
+		   
+			   gPlayObj.draw(gCtx)		
+			
+			}
+
+		}
+
+				
+		if(gIsPowersave){
+		
+		 
+		}
+		else {	
+		   //Chrome does not call requestAnimationFrame() when a page is in the background. This behavior has been in place since 2011.
+			requestAnimationFrame(updateFrame);
+		 }
+ }
+
+
+function g_showGameDlg(dlgkind){
+
+     let bg = document.getElementById('screenBG')
+	 bg.style.display = 'block'
+
+    let div = document.getElementById('game-dialog-div')
+     div.style.display = 'block'
+	  
+	  
+	  let stageClearDiv = document.getElementById('stageClearMenu')
+	  let timeOutDiv = document.getElementById('timeOutMenu')
+		 
+	  
+	 let spanElmt = document.getElementById('dlgTitle');
+	 
+	 if(dlgkind==gameDlg_stageClear){
+	  
+	     spanElmt.textContent = "Stage Clear"
+		 
+		 stageClearDiv.style.display = 'block'		 
+		 timeOutDiv.style.display = 'none'
+		 
+	  }
+	  else if(dlgkind == gameDlg_timeOut){
+	  
+	     spanElmt.textContent =  'Time Out'
+		 
+	     timeOutDiv.style.display = 'block'
+		 stageClearDiv.style.display = 'none'
+	  	  
+	  }
+
+}
+
+function hideGameDlg(){
+
+  let bg = document.getElementById('screenBG')
+	 bg.style.display = 'none'
+
+    let div = document.getElementById('game-dialog-div')
+     div.style.display = 'none'
+
+}
+
+window.onload = function(){
+
+    console.log('window.onload ')
+    let canvas = document.getElementById('iCanvas')   
+    gCtx = canvas.getContext("2d");
+
+     initData()
+     initEvent(canvas);
+	 
+	onResize()
+	
+    window.addEventListener('resize', onResize, false);
+	
+	if(gIsPowersave){
+
+       console.log('updateframe by setInterval')
+	
+    	gUpdate_interval_id = setInterval(updateFrame, 100);
+	
+	}
+	else {
+	
+	    requestAnimationFrame(updateFrame);
+	}
+}
+
+
+function getRankInfo(){
+
+//fetch함수는 Promise객체를 리턴
+/*
+fetch('https://ctamark.github.io/dev/rank.txt')
+    .then( (response) => response.text())
+    .then( (result) => { console.log('result-->' + result) }
+	).catch( (err)=>{ console.log(err);  })	
+*/	
+}
+
+
+//POST--> GET 방식과는 달리 URL에 입력한 값이 노출되지 않음
+//input 의 name(속성값) value(유저입력 데이터)
+//미리선언된 전역변수 $_GET $_POST 
+//서버로 id와 점수를 보내기
+function postRankInfo(){
+
+
+}
+
+function  beginStageScene(sceneIdx){
+
+  let sceneDiv = document.getElementById('stageScene-div')
+   sceneDiv.style.display = 'block'
+   
+  let spanElmt = document.getElementById('sceneTitle')
+
+  if(sceneIdx ==stageScene_stageBegin){
+    
+      spanElmt.innerText = 'STAGE-' + (gStageIdx +1)
+ 
+  }
+
+  setTimeout(endStageScene, 3000)
+
+}
+
+
+function endStageScene(){
+
+   console.log('endStageScene')
+
+   let sceneDiv = document.getElementById('stageScene-div')
+   sceneDiv.style.display = 'none'
+   
+   gIsIgnoreUserInput = false 
+
+}
+
+
+
+</script>
+
+</body>
+</html>
