@@ -35,6 +35,9 @@ let gIsBackground = false
 let gIsPowersave = false
 let gIsAlarm = true 
 
-let gStageIdx = 2 
+let gStageIdx = 0
+
+let gPlayable_stageMaxIdx = 2 
+
 let gGameRating = 5 
 //실수가 있을 때 마다 감점 1

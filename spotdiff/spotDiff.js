@@ -470,8 +470,8 @@ drawPlayInfo(ctx, timerY){
 		 
 		 let ratio = remainSec/60 
 		 
-		 //drawImage(img ,ix,iy,iw,ih,cx, cy,cw,ch)
-     	 ctx.drawImage(this.img_progress, 0, 0, 500, 50, 0, timerY, gClientWidth, 30)	
+		 //ref--->drawImage(img ,ix,iy,iw,ih,cx, cy,cw,ch)
+     	// ctx.drawImage(this.img_progress, 0, 0, 500, 50, 0, timerY, gClientWidth, 30)	
 	
 		 
 	 	 	 
