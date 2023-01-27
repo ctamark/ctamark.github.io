@@ -2,6 +2,12 @@
 let gImgFrameW = 100 
 let gImgFrameH = 100 
 
+let gCountLoadImg = 0
+
+
+let gImgOrigin 
+let gImgMod
+
 class spotDiff{
 	
 	   constructor(){
@@ -14,17 +20,47 @@ class spotDiff{
             //this 의미 
 			//arrow function : 최상위
 			//function: scope
-     			 
-		   console.log('img_origin onload')				
-    	  this.beginStage_step2()
+			
+		  console.log('img_origin onload')				
+    	  //me.beginStage_step2()
 		 	
 	   }	   
 	   	   
 	    this.img_origin.src = './img-01.png'
 	  
 	   
+	   
+	   
+	   
+	/*   
+	   const loadImage = (url) => new Promise((resolve, reject) => {
+  const img = new Image();
+  img.addEventListener('load', () => resolve(img));
+  img.addEventListener('error', (err) => reject(err));
+  img.src = url;
+});
+
+loadImage("example.com/house.jpg")
+  .then(img => console.log(`w: ${img.width} | h: ${img.height}`))
+  .catch(err => console.error(err));
+  
+====  
+  https://codereview.stackexchange.com/questions/128587/check-if-images-are-loaded-es6-promises
+  */
+	   
+	   
+	   
 	   this.img_mod = new Image();
    	   //this.img_mod.src = './img-01-mod.png' 
+	   
+	   /*
+	   loadImage_promise('./img-01-mod.png').then(img=>{ console.log('loadimg-01-mod') })
+	   */
+	  
+		gCountLoadImg = 0
+		
+		
+		
 
 	   this.img_progress= new Image();
    	   this.img_progress.src = './progress.png' 
@@ -76,11 +112,8 @@ class spotDiff{
 		this.falseMarkBeginT = 0
 		this.isShowFalseMark = false 
 		this.falseMarkPos = {x:0, y:0}
-		
-		
+				
         this.maxNumSpot = 0
-		
-
 		
      }
 	
@@ -93,7 +126,6 @@ class spotDiff{
 	
 	}
 	
-
 
 beginStage(){
 	
@@ -112,10 +144,37 @@ beginStage(){
 	   stageNumberStr = gStageIdx.toString()
 		
 	}
+		//this.img_origin.src = './img-' + stageNumberStr + '.png'
+		//this.img_mod.src = './img-' + stageNumberStr + '-mod.png' 
+		
+		let originFname =  './img-' + stageNumberStr + '.png'	
+		let modFname =  './img-' + stageNumberStr + '-mod.png'
+		   
+		   /*
+		   Promise.all([loadImage_promise(originFname), loadImage_promise(modFname)])
+		   .then(function(){
+			 
+		   console.log('promise all fulfilled')
+			 
+		   })
+		   */
+		   
+	       loadImage_origin(originFname).then( (img)=>{
+			 
+		   console.log('loadImage_origin-->fullfilled ')			 
+			 
+			this.img_origin = img 
+		
+		    return loadImage_mod(modFname)
+		
+		 }).then( img=>{  
+
+		     console.log('loadImage_mod-->fullfilled ')			 		 
+		     this.img_mod = img
+			 
+			 this.beginStage_step2()			 
+		 })
 	
-	this.img_origin.src = './img-' + stageNumberStr + '.png'
-	this.img_mod.src = './img-' + stageNumberStr + '-mod.png' 
-			
 	
    //gClientHeight	
    //imgArea
@@ -139,7 +198,6 @@ beginStage(){
       this.spotInfoArray.push(spotInfo)	  
    }
      
-   
   // this.spotInfoArray.push( {x:355, y:72, spot: false} )
   // this.spotInfoArray.push( {x:117, y:24, spot: false} )
 
@@ -150,6 +208,8 @@ beginStage(){
    gImgFrameH = this.imgFrameH 
 
   console.log('ImgFrameSize:  ' + this.imgFrameW  + ' x '  + this.imgFrameH)  
+  
+   
   
   console.log('beginStage()--end')
 }
@@ -550,12 +610,26 @@ drawPlayInfo(ctx, timerY){
 		 ctx.fillText(info, 0, cy);		 
 
 	
-	    //하트 		
+	    //하트는 gameDlg에서 보여주기  		
 		
-		cy = gClientHeight - 15
+		cy =gCanvasH - 15
 		ctx.drawImage(this.img_heart, 0, cy-25, 40, 40)
 		info =  "x" + gNumHeart
 	    ctx.fillText(info, 0 + 50, cy);		 
+		
+		//----------
+		//hintSize: 50x50
+		ctx.drawImage(uiSprite, 156, 156, 100, 100, gClientWidth - 50 , 0,  50, 50)
+	
+	  
+		
+		//=================		
+		//
+		//
+		//=================
+		
+		
+		
 
 }
 
@@ -608,4 +682,27 @@ drawPlayInfo(ctx, timerY){
   
   
 	//https://www.crocus.co.kr/1617
+}
+
+
+function loadImage_origin(fname){
+		
+	return new Promise( (resolve , reject)=>{
+		
+		const img =new Image()
+		img.addEventListener('load', ()=>{  resolve(img)} );	
+    	img.addEventListener('error', (err) => reject(err));				 
+		img.src= fname;
+	})
+}
+
+function loadImage_mod(fname){
+		
+	return new Promise( (resolve , reject)=>{
+		
+		const img =new Image()
+		img.addEventListener('load', ()=>{  resolve(img)} );	
+    	img.addEventListener('error', (err) => reject(err));				 
+		img.src= fname;
+	})
 }
