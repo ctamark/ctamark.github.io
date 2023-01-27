@@ -34,7 +34,8 @@ class spotDiff{
 	   
 	   this.img_heart = new Image();
 	   this.img_heart.src = './heart.png'
-	   	   
+	
+      	   
 
 	   //canvas에서 이미지 사이즈
 	   this.cImgW = 200 
@@ -143,7 +144,7 @@ beginStage(){
   // this.spotInfoArray.push( {x:117, y:24, spot: false} )
 
    this.imgFrameW = gClientWidth 
-   this.imgFrameH  = (gClientHeight- this.topMenuH - this.bottomMenuH)/2 
+   this.imgFrameH  =gCanvasH/2 
    
    gImgFrameW =  gClientWidth 
    gImgFrameH = this.imgFrameH 
@@ -507,11 +508,14 @@ drawPlayInfo(ctx, timerY){
 
          info = ' '		 
 		 
-		 cy = 15
+		 cy = 15		 
+		 
 		 
 		if(this.spotInfoArray.length ==2){			
-			
-             ctx.fillText('●●', 0, cy);		 
+
+			ctx.drawImage(uiSprite, 0, 0, 225, 45, 0, 0, 225, 45)		
+ 		
+            // ctx.fillText('●●', 0, cy);		 
 		
 		}else if(this.spotInfoArray.length ==3){			
 			
@@ -550,7 +554,7 @@ drawPlayInfo(ctx, timerY){
 		
 		cy = gClientHeight - 15
 		ctx.drawImage(this.img_heart, 0, cy-25, 40, 40)
-		info =  "x " + gNumHeart
+		info =  "x" + gNumHeart
 	    ctx.fillText(info, 0 + 50, cy);		 
 
 }

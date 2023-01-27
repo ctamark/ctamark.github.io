@@ -7,8 +7,6 @@
 <link rel="stylesheet" href="./style.css">	  
 <style>
 
-
-
 </style>
 
 
@@ -17,6 +15,8 @@
 <canvas  id="iCanvas"   style="border:1px solid #ff0000;">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
+<div id='ad-div'>
+</div>
 
 <div id="logoDiv" >
   <img src="./logo_dog.png" width='200px'><br> 
@@ -83,6 +83,9 @@ let gAppCurT
 
 let gPlayObj 
 let gUpdate_interval_id
+
+let uiSprite = new Image()
+uiSprite.src = "./ui-sprite.png"
 
 let gNumHeart = 3
 //===========
@@ -152,14 +155,16 @@ function initEvent(canvas){
 
 function touchS(e){
 
-    console.log('touchS')
 	
 	let touches = e.touches 
 		
 	let tx = touches[0].clientX 
-	let ty = touches[0].clientY 
+	let ty = touches[0].clientY
 	
+	//ty는 client기준으로 나오므로 canvas기준값으로 변환해야 함  
 	
+    console.log('touchS ' + tx + ',' + ty)
+		
 	if(gAppstate == appstate_home){
 
 	   touchS_home(tx, ty)
@@ -222,7 +227,7 @@ function draw_home(ctx){
    //locker표시    
     let x, y
     
-	let i= (gPlayable_stageMaxIdx+1)
+	let i = (gPlayable_stageMaxIdx+1)
 	
    for(; i< 10; i++){
 		  
@@ -251,11 +256,7 @@ function draw_home(ctx){
 
 	   }
 	   
-	   
-	   
-
-
-	   
+	  
 	   
 	   
 }
@@ -425,18 +426,24 @@ function start_step2(){
 }
 
 
-
+let gCanvasW
+let gCanvasH 
 
 function onResize(){
  
     gClientWidth = document.body.clientWidth 
 	gClientHeight =document.body.clientHeight
 
-    console.log('onResize: ' + gClientWidth + ", " + gClientHeight)
     	
     let canvas = document.getElementById('iCanvas')   
+	gCanvasW = gClientWidth
     canvas.width  = gClientWidth 
-    canvas.height = gClientHeight    
+	
+	let bannerH=50;
+    gCanvasH = gClientHeight - bannerH;   
+    canvas.height = gCanvasH
+
+    console.log('onResize-->canvasSize: ' + gCanvasW + ", " + gCanvasH)
   
 }
 
