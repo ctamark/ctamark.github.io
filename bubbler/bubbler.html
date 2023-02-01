@@ -20,6 +20,40 @@ Your browser does not support the HTML5 canvas tag.
 <span style='font-size: 1.5rem;'>main-menu</span>
 </div>
 
+
+<!-- timeout, stageover-->
+<div id='game-dialog-div' >
+<!-- span은 line요소이기 때문에 text-align을 적용해야 안됨, 상위에 block요소에서 적용해야함 -->
+<span id='dlgTitle' >title</span><br><br>
+<img src='./heart.png' width='50px'><span id='heart-info'></span><br>
+----<br>
+<div id="stageClearMenu" style='text-align: center;'>
+<input type='image' src='./home.png' width='80px' onclick='onHomeBtn()'></input> <input type='image' src='./next.png'  width='80px' onclick='onNextBtn()'></input>
+</div>
+
+<div id="timeOutMenu">
+<input type='image' src='./home.png' width='80px'  onclick='onHomeBtn()'></input> <input type='image' src='./retry.png' width='80px'  onclick='onRetryBtn()'></input>
+</div>
+<!-- -->
+<div id="noHeartMenu">
+There is no heart.<br> 
+Would you watch video to get hearts? 
+<span style='background-color: black; color:white; font-size: 1.2rem;'onclick='onWatchVideo(false)'>[NO]</span> <span  class='menu-button' onclick='onWatchVideo(true)'>[YES]</span>
+</div>
+
+</div>
+
+
+<!--  -->
+<div id="stageScene-div" onclick='onClick_stageScene()'>
+<div class="box">    
+<span id='sceneTitle' style='color: white; background-color: black; font-size: 1.8rem; margin: 10px'>Scene Title</span>
+ <div class="loader9"></div>
+ </div>
+</div>
+
+
+
 <script src="./Box2d.min.js"></script>
 <script src="./appDesc.js"></script>
 <script src="./ball.js"></script>
@@ -368,9 +402,11 @@ function init(){
 
     //rscIdx, radius 
     b = new ball(rscIdx_rock_01, 30)
+	
+	//top info: 20px
 		
 	xp = 30 + (i%5)*60
-	yp = 30 + Math.floor((i/5))*60
+	yp = 20+ 30 + Math.floor((i/5))*60
 		
 	b.pos = {x:xp, y: yp}
 	b.setVelocity(0,0)
@@ -558,17 +594,26 @@ function init(){
 function drawPlayer(){
 
   let cx = gClientW/2
-  let cy = gClientH - 80
+  let cy = gClientH - 40
   
   let w = 80 
   let h = 80
 
-   gCtx.drawImage(player_img,  cx-w/2, cy-h/2, w, h)
+   gCtx.translate(cx, cy)      
+   gCtx.drawImage(player_img,  -w/2, -h/2, w, h)
+   gCtx.translate(-cx, -cy)
 
 
    let ball_img = getImage(gReadyBallRscIdx)
    
-   gCtx.drawImage(ball_img,  15, cy-h/2, 30, 30)
+   cx = gClientW/2
+   cy = gClientH - 80 - 20  
+  
+   gCtx.translate(cx, cy)      
+   gCtx.rotate(1.8)
+   gCtx.drawImage(ball_img,  -20, -20, 40, 40)
+   gCtx.rotate(-1.8)
+   gCtx.translate(-cx, -cy)
    
 
 }	 
@@ -732,8 +777,7 @@ function touchS(e){
 	else {
 	
 	   //gWorld.SetGravity(new b2Vec2(0, -10) )
-		//applyForce_d()
-
+	
 
 	     for(let i=0; i < gObjects.length; i++){
 		   
@@ -741,8 +785,7 @@ function touchS(e){
 			   
           }
 
-       		  
-
+       		
 	
 	}
 	*/
@@ -780,7 +823,8 @@ function fireBall(dirV){
    
    let rscIdx = gReadyBallRscIdx
    
-   let b = new ball(rscIdx, 30)
+   //width: 40
+   let b = new ball(rscIdx, 20)
 
    b.img = getImage(rscIdx)     
    
@@ -877,17 +921,26 @@ function getContactBall(probeObj){
 
 		let normalV = {x: diffX/dist, y: diffY/dist}
 		
+		
 		let  contactDist = probeObj.radius + b1.radius
+	    refDist = probeObj.radius + b1.radius + 10
 		
 		let contactPos = {	
-		x: b1.pos.x + normalV.x*contactDist  ,
-		y: b1.pos.y + normalV.y*contactDist 
-				
+			x: b1.pos.x + normalV.x*contactDist  ,
+			y: b1.pos.y + normalV.y*contactDist 				
 		}
-
-		refDist = probeObj.radius + b1.radius + 5
+		
 	
 		if(dist <= refDist){
+				console.log('normalV' + normalV.x + ', ' + normalV.y)
+
+		
+		     console.log('dist, refDist ' + dist +', ' + refDist)	
+	        console.log('probe.contactPos ' +probeObj.pos.x +',' +probeObj.pos.y + 'refDist: ' + refDist)	
+	        console.log('contactPos ' +b1.pos.x +', ' +b1.pos.y)	
+	 
+  		
+  		   	console.log('r1->' + probeObj.radius + ', r2-> ' + b1.radius)
 				
 			  return {ball:b1, pos: contactPos}
 		}
@@ -1092,6 +1145,8 @@ function probeContact(id){
 		  let effectSpr = new sprite(2000)
 		  effectSpr.pos = {x: ball.pos.x, y: ball.pos.y}
 		
+		  gUserScore += 15 
+		
 	  	  effectSpr.msg = '+15'
 		  effectSpr.isUpMove = true 
 		  gEffectSprites.push(effectSpr) 
@@ -1211,13 +1266,6 @@ function getContactPeer(id, oArray, called=0 ){
 
 
 
-
-
-
-
-
-
-
 function getBall(id){
 
   for(let i=0; i< gBalls.length; i++){
@@ -1234,32 +1282,6 @@ function getBall(id){
 }
 
 
-
-function postLinkConnect(id){
-
-   //해당 id  
-    
-   
- 
- 
-}
-
-
-/*
-//
-function regBallToLink(ballA){
- 
-    for(let i = 0; i < gLinks.length ; i++){
-   
-       let linkItem  =  gLinks[i]
-        
-        linkItem	
-    
-   }
-
-
-}
-*/
 
 function hasBall(link, ball_id){
 
@@ -1353,52 +1375,6 @@ function drawPlayInfo(ctx){
 
 }
 
-
-
-
-function applyForce_d(){
-
-   console.log('applyForce_d')
-  
-  
-  //gWorld.SetGravity({x: 0, y:0} )
-
-   let refPos = gCatBody.GetPosition()
-  
-        
-           let obj;
-	 	  for(let i=0; i < gObjects.length; i++){
-		   
-		       obj = gObjects[i]
-			   let b = obj.body
-			   
-			   let objPos = b.GetWorldCenter();
-			     
-              let diffX = refPos.x - objPos.x 
-              let diffY = refPos.y - objPos.y 			  
-			  
-			  let dist 
-			  
-			  let forceV2 = new b2Vec2(diffX, diffY)
-			  
-	//		  b.SetAwake(true)
-	   
-	         if(b.IsAwake()){
-			 
-			    console.log('isAwake')
-			 }
-	
-			  b.SetSleepingAllowed(false)
-			  
-			  console.log('apply Force: ' + forceV2.x + ',' + forceV2.y)
-			  
-   		      // b.ApplyTorque( 20 );
-			  // b.ApplyAngularImpulse( 20 )--->not working
-               b.ApplyForce(forceV2,  b.GetWorldCenter());		
-			
-          } 
-		 
-}
 
 </script>
 

@@ -21,6 +21,8 @@ class ball{
 		this.isWaitForRemove = false 
 		
 		this.isCheckMatchedBall = false  
+		
+		this.acc = {x:0, y:0};
 	}
 		
 	
@@ -39,21 +41,28 @@ class ball{
 			
 				//console.log('update: ' + this.pos.x + ',' + this.pos.y)
 				let acc = 0.0	
-				let deltaY = (this.velocity.y += acc)
+				
 				
 				let minX = this.pos.x - this.radius 
 				let maxX = this.pos.x + this.radius 
 					
-				 if(minX < 10 || maxX > (gClientW-10)){
+				 if(minX <= 10 || maxX > (gClientW-10)){
 
-					 this.velocity.x = -1*this.velocity.x;			 
+					 this.velocity.x = -1*this.velocity.x;		
+
+                     //this.acc.x = this.velocity.x*0.05					 
+                     //this.acc.y = this.velocity.y*0.05					 
 					 
 				 }
 				 
 				 this.angleR += 0.1
 				 
-				this.pos.x += this.velocity.x             
-				this.pos.y += deltaY
+				 this.velocity.x += this.acc.x 
+                 this.velocity.y += this.acc.y 
+
+				 
+				this.pos.x +=  this.velocity.x             
+				this.pos.y +=  this.velocity.y
 				
 				
 				let contactInfo = getContactBall(this)
@@ -81,6 +90,7 @@ class ball{
 					this.state = ballstate_link 
 					
 					this.pos = contactInfo.pos
+					
 				}
 						
 		}
@@ -98,15 +108,15 @@ class ball{
 	draw(ctx){
 				
 		let size = this.radius*2
-		let cx = this.pos.x - this.radius
-		let cy = this.pos.y - this.radius 
+		let cx = this.pos.x
+		let cy = this.pos.y 
 		
-    //    console.log('draw: ' + cx+ ',' + cy)				
-
+		let hSize = size/2
+		
         ctx.translate(cx, cy) 	
 		ctx.rotate(this.angleR); 
 			
-		ctx.drawImage(this.img, -size/2, -size/2, size, size)
+		ctx.drawImage(this.img, -hSize, -hSize, size, size)
 		//ctx.drawImage(this.img, 100, 200, size, size)
 		
 		 ctx.rotate(-this.angleR);
