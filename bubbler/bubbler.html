@@ -110,7 +110,13 @@ var gDestroy_list = [];
 let gCatBody
 
 
+let distJoint_array = [] 
+let matchBall_array = []
+
 let gReadyBallRscIdx = 0
+
+
+let gLastFallingDownT = 0
 
 
 let gContactInfo_array = []
@@ -125,8 +131,100 @@ function regContactInfo(iA, iB){
 }
 
 
+function isContactBall(iA, iB){
+   
+  for(let idx=0 ; idx <  gContactInfo_array.length; idx++){
+    
+	   let cInfo = gContactInfo_array[idx] 
+	   
+	   if(cInfo.idA == iA && cInfo.idB == iB){
+	   
+		  return true 
+	   }
+	  
+	   if(cInfo.idA == iB && cInfo.idB == iA){
+	   
+		  return true 
+	   }
+	  
+  }
+
+	   return false   
+
+}
+
+
+
+
+function regDistJoint(id1, id2, dist, userDesc="--"){
+
+ let joint = {A:id1, B:id2, refDist: dist, desc:userDesc}
+
+  distJoint_array.push(joint) 
+      
+  print_distJoints()
+  
+
+}
+
+function isDistJoint(idA, idB){
+
+   let joint
+
+    for(let i=0; i < distJoint_array.length; i++){
+  
+      joint = distJoint_array[i] 
+	   
+	   if(joint.A == idA && joint.B ==idB){
+	   
+		  return true 
+	   }
+	  
+	   if(joint.A == idB && joint.B == idA){
+	   
+		  return true 
+	   }
+       
+  }
+  
+   return false 
+}
+
+function regMatchBall_id(id1, id2){
+
+	let match_info = {A:id1, B:id2}
+	matchBall_array.push(match_info)
+
+    print_matchBalls()
+
+}
+
+function print_matchBalls(){
+	
+	matchBall_array.forEach( (info, idx)=>{
+		
+	console.log('matchBall.' + idx +'.-->' + info.A +', ' + info.B )
+	
+	
+	});
+}
+
+
+  //print CurContactInfo 
+  
+function print_distJoints(){
+	
+	distJoint_array.forEach( (info, idx)=>{
+		
+	console.log('distJoint.' + idx +'.-->' + info.A +', ' + info.B + ', ' + info.refDist + ', ' + info.desc)
+	
+	
+	});
+}
+
+
 let player_img = new Image()
-player_img.src = './player-back.png' 
+player_img.src = './player-sprite.png' 
 //size 100
 
 
@@ -375,6 +473,7 @@ function init(){
   
   function getRandomBallRscIdx(){
   
+    
      let rscIdx = rscIdx_pig
      let random =  Math.random()
      if(random > 0.6){
@@ -391,6 +490,7 @@ function init(){
 	 }
   
     return rscIdx
+	
   }
   
  function createDefBalls(){
@@ -450,7 +550,17 @@ function init(){
    */
    
       updateBalls()
+	  
+	  updateDistJoints()
    
+      updateFallingDown(gAppCurT)
+  
+       if(isWaitForDrawingBall()){
+
+           console.log('siatForDrawingBall')   
+          
+       }	   
+  
 
 		for (var i in gDestroy_list) {
 			gWorld.DestroyBody(gDestroy_list[i]);
@@ -477,7 +587,57 @@ function init(){
          gWorld.ClearForces();
       };
 	  
+
+       //================	  
+	  function updateDistJoints(){
+		
+		
+		  let joint
+		  for(let i=0; i < distJoint_array.length; i++){
+		  
+            joint = distJoint_array[i]		  
+		  
+		    //joint.A 
+			//joint.B 
+			//joint.refDist			
+			let A = getBall(joint.A)
+			let B = getBall(joint.B)
+			
+			if(A==null){
+			
+			       console.log('distJoint: A' + joint.A + 'null')
+				   return 
+			}
+			
+       	    if(B==null){
+			
+			       console.log('distJoint: B' + joint.B + 'null')
+				   return 
+			}
+
+			
+			let diffX = A.pos.x - B.pos.x 
+			let diffY = A.pos.y - B.pos.y 
+			let curDist = Math.sqrt(diffX*diffX + diffY*diffY)
+						
+		    let diffDist = curDist - joint.refDist
+
+            let dirV = {x: diffX/curDist, y: diffY/curDist}
+			
+			//A를 기준으로 B를 이동  			
+			let dstPos = {x: A.pos.x - dirV.x*joint.refDist,  y: A.pos.y - dirV.y*joint.refDist}
+			
+			B.pos.x = dstPos.x 
+ 			B.pos.y = dstPos.y 
+		  
+		  }
+			  
 	  
+	  }
+	  
+	  
+      //=============
+      //	  
 	  //=============
      function draw(){
     
@@ -597,10 +757,17 @@ function drawPlayer(){
   let cy = gClientH - 40
   
   let w = 80 
-  let h = 80
-
+  let h =  80
+  
+  //front : 0,0, 128x128
+  //back : 128,0, 128x128
    gCtx.translate(cx, cy)      
-   gCtx.drawImage(player_img,  -w/2, -h/2, w, h)
+
+   
+  // gCtx.drawImage(player_img,               -w/2, -h/2, w, h)
+   gCtx.drawImage(player_img, 0, 0, 128, 128, -w/2, -h/2, w, h)
+
+
    gCtx.translate(-cx, -cy)
 
 
@@ -718,12 +885,30 @@ function initEvent(){
   
      }	 
 	 
+
+    document.addEventListener('post_ball_interact', onPost_ball_interact );  
+	 
+	 
 	 /*
 	 let sceneDiv = document.getElementById('stageScene-div')
 	 sceneDiv.addEventListener('click', onClick_stageScene, false)
 	 */
 	// document.addEventListener("visibilitychange", handleVisibilityChange, false);
-	 //document.addEventListener('postFinishJob', onPostFinishJob);
+
+}
+
+function onPost_ball_interact(event){
+
+  
+  let id = event.detail.id 
+  console.log('onPost_ball_interact: '+ id )
+  
+  
+  buildMatchList_m1(id)
+  
+  
+  
+  
 
 }
 
@@ -749,6 +934,10 @@ function touchS(e){
   
     let dirV = {x: diffX, y: diffY}  
     fireBall(dirV)
+
+
+
+  
 	
 	/*
 	if(touchCount == 0){
@@ -814,6 +1003,7 @@ function touchM(e){
 	
 }
 
+let gLatestBall_id = 0
 
 function fireBall(dirV){
 
@@ -823,13 +1013,15 @@ function fireBall(dirV){
    
    let rscIdx = gReadyBallRscIdx
    
-   //width: 40
-   let b = new ball(rscIdx, 20)
+   //width: 50
+   let b = new ball(rscIdx, pet_radius)
 
    b.img = getImage(rscIdx)     
    
    b.id = getNewObjId()
-   
+   gLatestBall_id = b.id 
+   //drawBall 대상이 아님 
+      
    b.pos = {x: refX, y: refY}
    
    let power = 5.0
@@ -879,13 +1071,14 @@ function updateBalls(){
 				
 		})
 		
-
-	      // probeMatchedBall(obj)		   
 		  
 		   probeContact(obj.id)
 	 }
   
   })
+
+
+   probeDrawBalls()
 
 
   for(let idx=0; idx < gBalls.length; idx++){
@@ -900,12 +1093,96 @@ function updateBalls(){
  
   }
  
+}
 
+
+/*
+//collision resolution
+//calculates the balls new velocity vectors after the collision
+function coll_res_bb(b1, b2){
+	//collision normal vector
+    let normal = b1.pos.subtr(b2.pos).unit();
+    //relative velocity vector
+    let relVel = b1.vel.subtr(b2.vel);
+    //separating velocity - relVel projected onto the collision normal vector
+    let sepVel = Vector.dot(relVel, normal);
+    //the projection value after the collision (multiplied by -1)
+    let new_sepVel = -sepVel;
+    //collision normal vector with the magnitude of the new_sepVel
+    let sepVelVec = normal.mult(new_sepVel);
+
+    //adding the separating velocity vector to the original vel. vector
+    b1.vel = b1.vel.add(sepVelVec);
+    //adding its opposite to the other balls original vel. vector
+    b2.vel = b2.vel.add(sepVelVec.mult(-1));
+}*/
+
+
+//https://www.youtube.com/watch?v=vnfsA2gWWOA
+function resolveCollision(probeBall, style=0){
+
+  let rContacts = []  
+
+   let refDist
+   for(let i=0; i < gBalls.length; i++){
+   
+	   let b1 = gBalls[i]
+	   if(b1 == probeBall){
+			continue;
+		}
+    
+		let diffX =  probeBall.pos.x - b1.pos.x 
+		let diffY =  probeBall.pos.y - b1.pos.y  
+		
+		let dist = Math.sqrt(diffX*diffX + diffY*diffY)
+
+		let unitV = {x: diffX/dist, y: diffY/dist}
+		let normalV = unitV  
+		
+		let dotVal = probeBall.velocity.x*normalV.x + probeBall.velocity.y*normalV.y 
+	    let responseV = {x:0 , y: 0}
+		
+		responseV.x = probeBall.velocity.x - 2*dotVal*normalV.x 
+		responseV.y = probeBall.velocity.y - 2*dotVal*normalV.y
+		
+		let  contactDist = probeBall.radius + b1.radius
+	    refDist = probeBall.radius + b1.radius + 2
+		
+		let contact_pos = {	
+			x: (probeBall.pos.x )  ,
+			y: (probeBall.pos.y ) 
+		}		
+		
+		if(b1.rscIdx != rscIdx_rock_01){
+	
+		    //console.log(b1.id + '.dist: ' + dist)				
+	    }
+	
+	
+		if(dist <= refDist){		
+		
+		  console.log('contact!')				
+		  rContacts.push({ball:b1, pos: contact_pos, resV: responseV})
+			 			 			 
+		}
+		else {
+		
+		
+		
+		}
+		
+		
+   
+   }
+   
+   return rContacts 
 
 }
 
 
 function getContactBall(probeObj){
+
+   let rContacts = []  
 
    let refDist
    for(let i=0; i < gBalls.length; i++){
@@ -915,95 +1192,50 @@ function getContactBall(probeObj){
 			continue;
 		}
     
-		let diffX = probeObj.pos.x - b1.pos.x 
-		let diffY = probeObj.pos.y - b1.pos.y 
+		let diffX =  probeObj.pos.x - b1.pos.x 
+		let diffY =  probeObj.pos.y - b1.pos.y  
+		
 		let dist = Math.sqrt(diffX*diffX + diffY*diffY)
 
-		let normalV = {x: diffX/dist, y: diffY/dist}
+		let unitV = {x: diffX/dist, y: diffY/dist}
+		let normalV = unitV  
 		
+		let dotVal = probeObj.velocity.x*normalV.x + probeObj.velocity.y*normalV.y 
+	    let responseV = {x:0 , y: 0}
+		
+		responseV.x = probeObj.velocity.x - 2*dotVal*normalV.x 
+		responseV.y = probeObj.velocity.y - 2*dotVal*normalV.y
 		
 		let  contactDist = probeObj.radius + b1.radius
-	    refDist = probeObj.radius + b1.radius + 10
+	    refDist = probeObj.radius + b1.radius + 2
 		
-		let contactPos = {	
-			x: b1.pos.x + normalV.x*contactDist  ,
-			y: b1.pos.y + normalV.y*contactDist 				
-		}
 		
+		let contact_pos = {	
+			x: (probeObj.pos.x )  ,
+			y: (probeObj.pos.y ) 
+		}		
 	
-		if(dist <= refDist){
-				console.log('normalV' + normalV.x + ', ' + normalV.y)
-
+		if(dist <= refDist){		
 		
-		     console.log('dist, refDist ' + dist +', ' + refDist)	
-	        console.log('probe.contactPos ' +probeObj.pos.x +',' +probeObj.pos.y + 'refDist: ' + refDist)	
-	        console.log('contactPos ' +b1.pos.x +', ' +b1.pos.y)	
-	 
-  		
-  		   	console.log('r1->' + probeObj.radius + ', r2-> ' + b1.radius)
+			  console.log('respV ' + responseV.x + ',' + responseV.y)
+		       console.log('unitV ' + unitV.x + ',' + unitV.y)
+		 
+		   /*
+			  console.log('b1.pos ' + b1.pos.x + ',' + b1.pos.y)
+			  console.log('probe.pos ' + probeObj.pos.x + ',' + probeObj.pos.y)
+		     console.log('contacPos ' + contact_pos.x + ',' + contact_pos.y)
+			*/ 
 				
-			  return {ball:b1, pos: contactPos}
+			 rContacts.push({ball:b1, pos: contact_pos, resV: responseV})
+			 
+			 break;
+			 			 
 		}
    
    }
-   return null 
-}
-
-
-//ballA ---> 시작점 ball 
-function probeMatchedBall(ballA){
-
-    let matchIDArray = [] 
-	
-     console.log('probeMatchedBall: start_id-->' + ballA.id + 'link_id: ' + ballA.link_ball_id)
-	let numMatch = 1		
-	
-	matchIDArray.push(ballA.id)
-	
-    let nextLinkBall = getBall(ballA.link_ball_id)	
    
-    while(nextLinkBall != null && (nextLinkBall.rscIdx == ballA.rscIdx) ){
-
-            matchIDArray.push(nextLinkBall.id)
-
-    	    numMatch++
-			
-            console.log('ball-id--->' +  nextLinkBall.id + '-->link_id: ' + nextLinkBall.link_ball_id)
-			
-            nextLinkBall = getBall(nextLinkBall.link_ball_id) 
-     }   
-	 
-	 console.log('numMatchedBall: --->' + numMatch)
-	 
-	 if(matchIDArray.length < 3){
-	 
-	      return;
-	 }
-
-	  matchIDArray.forEach(id=>{
-	  
-		  let ball = getBall(id)
-		  		  
-		  if(ball != null){
-		  		  
-			ball.isWaitForRemove = true 
-			
-			
-			let effectSpr = new sprite(2000)
-			effectSpr.pos = {x: ball.pos.x, y: ball.pos.y}
-			
-			effectSpr.msg = '+15---'
-			effectSpr.isUpMove = true 
-			gEffectSprites.push(effectSpr) 
-			
-		  }		  
-	  })
-	 	 
+   return rContacts 
 }
-
-
-
-
 
 
 function removeLinkedBalls(ballA){
@@ -1024,101 +1256,6 @@ function removeLinkedBalls(ballA){
 
 }
 
-/*
-//ballA ---> 시작점 ball 
-function probeMatchedBall(iBall){
-
-   // ballA와 연결된 contactInfo가 2이상이면 remove
-   //
-   // ball_0----ball_1---ball_2 
-   
-   let numMatch= 0
-    for(let idx=0; idx < gContactInfo_array.length; idx++){
-	
-		let cinfo =  gContactInfo_array[idx]
-		
-		if(cinfo.idA == ballA.id || cinfo.idB == ballA.id){
-		  //find cinfo 
-		      numMatch++	
-		  
-		    if(cinfo.idA == iBall.id){
-
-                      //b가 포함됨 contact정보 검색       
-					  
-					  let ii=idx
-					  for( ; ii < gContactInfo_array.length; ii++){
-					  
-					  
-					  
-					  }
-					  
-					  
-		     }else {
-			  
-			            //a가 포함된 contact 정보 검색 
-			 
-			 }
-			
-
-			
-			
-		}
-		
-	
-	}
-	
-	
-
-
-    let matchIDArray = [] 
-	
-     console.log('probeMatchedBall: start_id-->' + ballA.id + 'link_id: ' + ballA.link_ball_id)
-	let numMatch = 1		
-	
-	matchIDArray.push(ballA.id)
-	
-    let nextLinkBall = getBall(ballA.link_ball_id)	
-   
-    while(nextLinkBall != null && (nextLinkBall.rscIdx == ballA.rscIdx) ){
-
-            matchIDArray.push(nextLinkBall.id)
-
-    	    numMatch++
-			
-            console.log('ball-id--->' +  nextLinkBall.id + '-->link_id: ' + nextLinkBall.link_ball_id)
-			
-            nextLinkBall = getBall(nextLinkBall.link_ball_id) 
-     }   
-	 
-	 console.log('numMatchedBall: --->' + numMatch)
-	 
-	 if(matchIDArray.length < 3){
-	 
-	      return;
-	 }
-
-	  matchIDArray.forEach(id=>{
-	  
-		  let ball = getBall(id)
-		  		  
-		  if(ball != null){
-		  		  
-			ball.isWaitForRemove = true 
-			
-			
-			let effectSpr = new sprite(2000)
-			effectSpr.pos = {x: ball.pos.x, y: ball.pos.y}
-			
-			effectSpr.msg = '+15---'
-			effectSpr.isUpMove = true 
-			gEffectSprites.push(effectSpr) 
-			
-		  }		  
-	  })
-	 	 
-}
-*/
-
 
 function probeContact(id){
 
@@ -1132,6 +1269,7 @@ function probeContact(id){
 	    return;
 	 }
 
+/*
 	  //rPeers가 포함된 contactInfo를 remove 
       removeContactInfo(rPeers)
 
@@ -1151,8 +1289,8 @@ function probeContact(id){
 		  effectSpr.isUpMove = true 
 		  gEffectSprites.push(effectSpr) 
 		}
-	  
-	 
+*/	  
+ 
 	
 }
 
@@ -1195,6 +1333,44 @@ function removeContactInfo(id_array){
 }
 
 
+function removeDistJoint(id_array){
+
+   let idxA, idxB
+  
+   for(let i=0; i < distJoint_array.length; i++){
+  
+      let joint = distJoint_array[i]
+	  
+	   idxA = id_array.indexOf(joint.A)
+	   idxB = id_array.indexOf(joint.B)
+	   
+	   if(idxA >= 0 ||  idxB >= 0){	   
+         distJoint_array.splice(i, 1)
+         i--		 	    
+	   }
+   }
+
+}
+
+function removeMatchBall(id_array){
+
+   let idxA, idxB
+  
+   for(let i=0; i < matchBall_array.length; i++){
+  
+      let joint = matchBall_array[i]
+	  
+	   idxA = id_array.indexOf(joint.A)
+	   idxB = id_array.indexOf(joint.B)
+	   
+	   if(idxA >= 0 &&  idxB >= 0){	   
+         matchBall_array.splice(i, 1)
+         i--		 	    
+	   }
+   }
+
+}
+
 
 
 function getContactPeer(id, oArray, called=0 ){
@@ -1223,7 +1399,7 @@ function getContactPeer(id, oArray, called=0 ){
 		   }
 		
            // idB의 contact를 구하기		  
-		    console.log('find peerContant: ' + cinfo.idB)		
+		   // console.log('find peerContant: ' + cinfo.idB)		
 		   //var index = arr3.findIndex(i => i.name == "강호동"); 	
  	       let  rIdx = oArray.indexOf(cinfo.idB)
 		   if(rIdx != -1){
@@ -1261,6 +1437,75 @@ function getContactPeer(id, oArray, called=0 ){
 	
     }
     
+}
+
+
+//가장 최근에 발사된 ball은 제외 
+function probeDrawBalls(){
+
+ for(let i=0; i< gBalls.length; i++){
+
+       let b = gBalls[i]  
+	   
+	   if(b.rscIdx == rscIdx_rock_01){
+	     
+		  continue
+	   }
+	  
+	   if(b.state !=  ballstate_anchored){
+	  
+	       continue;
+	    }
+		
+		if(b.isBeginDrawBall == true){
+		
+		   continue;
+		}
+		
+		if(b.id == gLatestBall_id){
+		  
+		  //방금 발사된 것은 drawee만 가능 drawer 불가
+		   continue;
+		}
+		
+	  
+	  //b가 끌어당길 targetBall구하기
+	   let targetBall = b.getDrawTarget()
+	  
+	  
+	  if(targetBall != null){
+	  
+	    console.log(b.id + '.find targetBallToDraw-->' + targetBall.id)
+	    
+		 b.isBeginDrawBall = true
+		 targetBall.isBeginDrawBall = true 
+		 targetBall.draw_ballA_id = b.id 
+		 targetBall.setState(ballstate_move_toDrawBall)
+		 
+		 return b
+	  
+	  }
+       
+  }
+  
+    return null 
+
+}
+
+function isWaitForDrawingBall(){
+
+
+gBalls.forEach( ball =>{
+
+           if(ball.state == ballstate_move_toDrawBall){
+		   
+		         return true;
+		    }
+
+        });
+
+ return false; 
+
 }
 
 
@@ -1302,32 +1547,125 @@ function postContactBall(probeBall){
 
 //연결된 ball을 없애줍니다 
 
+}
 
+//연결된 같은 그림의 ball들을 제거 등 
+function procMatchBalls(){
+
+  if(isWaitForDrawingBall()){
+  
+        return 
+  }
 
 
 }
 
-function getNearestBall(probeObj){
 
-   let obj
-   for(let i=0; i < gBalls.length; i++){
-   
-		obj = gBalls[i]
-		if(obj.id == probeObj.id){
-		
-		   continue 
-		}	
+function buildMatchList_m1(begin_id) {
+
+   console.log('buildMatchList_m1: ' + begin_id )
+
+    let matches = [] 
+	
+	build_peerMatch(begin_id, matches);
+
+    print_matchArray(matches)   		
+	
+	/*
+    let id, ball
+    for(let i=0; i < matches.length; i++){
       
-     	  
-	  
-   
-   
-   
-   }
+	     id = matches[i]
+		 
+		 ball = getBall(id)
+		 ball.isWaitForRemove = true 
+
+    }	
+    */
+	
+	if(matches.length < 3){
+	
+    	return;
+	}
+	
+      removeDistJoint(matches)
+	  removeMatchBall(matches)
+
+	  //rPeers에 있는 ball을 remove 	 
+	  removeBalls(matches)
+  
+	  for(let i=0; i < matches.length ; i++){
+  
+        let ball = getBall(matches[i])  
+  
+		  let effectSpr = new sprite(2000)
+		  effectSpr.pos = {x: ball.pos.x, y: ball.pos.y}
+		
+		  gUserScore += 15 
+		
+	  	  effectSpr.msg = '+15'
+		  effectSpr.isUpMove = true 
+		  gEffectSprites.push(effectSpr) 
+		}
+		
+	
+}
 
 
+//(3, 1), (3, 2)
+//연결된 ball과 다시 연결된 ball들을 등록 
+function build_peerMatch(id, oArray, called=0){
+
+   console.log('build_peerMatch: ' + id)
+   
+   oArray.push(id)
+   let idx
+  for(let i=0; i < matchBall_array.length; i++){
+	
+	    joint  = matchBall_array[i]  
+		//joint.A---joint.B 		
+				
+		if(joint.A == id){
+		
+		  //joint.B 찾아야 함	
+           idx = oArray.indexOf(joint.B)
+		   if(idx != -1){
+              //이미 등록된 상태 
+			  console.log('alread regged: ' + joint.B)
+			  return 
+            }		   
+		  
+		     build_peerMatch(joint.B, oArray, called + 1)
+		}
+	
+    	if(joint.B == id){
+		
+		   //joint.A 찾아야 함	
+           idx = oArray.indexOf(joint.A)
+		   if(idx != -1){
+              //이미 등록된 상태 
+		      console.log('alread regged: ' + joint.A)
+			  return 
+            }		   
+
+		     build_peerMatch(joint.A, oArray, called + 1)
+		
+		}
+	}	          
+}
+
+function print_matchArray(matchArray){
+
+
+    console.log('mathArray: ' + matchArray)
 
 }
+
+
+
+
+
+
 
 
 function drawBalls(){
@@ -1375,6 +1713,50 @@ function drawPlayInfo(ctx){
 
 }
 
+function printVec(label, iV){
+
+console.log(label + '-->' + iV.x + ',' + iV.y)
+
+
+}
+
+
+function updateFallingDown(curT){
+
+   if(gLastFallingDownT == 0){
+   
+      gLastFallingDownT = curT
+	  return
+   }
+   
+   let elapT = curT - gLastFallingDownT
+   
+   if(elapT >=  fallingdown_interval){
+        
+  	    moveDownBalls(30)
+        gLastFallingDownT = curT
+   }
+   
+}
+
+
+function moveDownBalls(y){
+
+// 위 빈 공간은 객체 아닌 이미지 rock을 추가 
+  console.log('moveDownBalls')
+  
+  let  b  
+  for(let i=0; i < gBalls.length ; i++){
+  
+     b = gBalls[i]
+	
+	 b.translate(0, y)  
+  
+  }
+
+
+
+}
 
 </script>
 
