@@ -10,8 +10,8 @@ tags: [App]
 
 
 ## petBall  
-<img src="https://ctamark.github.io/petBall/icon.png" width="150" border=0>    
----[support page](https://ctamark.github.io/petBall/){:target="_blank"}     
+<img src="https://ctamark.github.io/petBall/icon.png" width="150" border=0>      
+[support page](https://ctamark.github.io/petBall/){:target="_blank"}     
 [android](https://play.google.com/store/apps/details?id=com.planb.petBall){:target="_blank"}  
 
 
