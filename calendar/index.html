@@ -1164,7 +1164,9 @@ gCalendarBook.init()
  showCalendarBook(false)
  showTodoDiv(false)
 
- onResize();
+ window.addEventListener('resize', onResize, false);
+  
+// onResize();
   
  updateLayoutUI()
  
