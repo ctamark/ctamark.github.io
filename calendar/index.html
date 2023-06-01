@@ -10,11 +10,10 @@
 </head>
 
 <body>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1799596498506801"
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1799596498506801"
      crossorigin="anonymous"></script> 
-<!-- generic -->
-<ins class="adsbygoogle"
+	 
+ <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-1799596498506801"
      data-ad-slot="1024250559"
@@ -106,9 +105,8 @@
 사업소득 간이지급명세서 제출기한
 ---
 개별소비세(석유류, 담배) 신고납부기한
-
-
 </p>
+
 <span class='taxTag' onclick='onOpenDic("지급명세서")'>#지급명세서</span> 
 <span class='taxTag' onclick='onOpenDic("간이지급명세서")'>#간이지급명세서</span>
 <span class='taxTag' onclick='onOpenDic("개별소비세")'>#개별소비세</span>
@@ -346,9 +344,9 @@
 레저세 신고.납부기한
 4대보험 납부기한
 
-<span class='day-span'>7.15.</span>
+<span class='day-span'>7.15.(토)</span>
+<span class='day-span'>7.17.(월)</span>
 고용·산재보험 근로내용 확인신고
-
 
 <span class='day-span'>7.25.(화)</span>
 부가가치세(1기분) 확정신고납부기한
@@ -359,6 +357,8 @@
 -----
 일용근로소득 지급명세서제출기한
 사업소득 간이지급명세서 제출기한
+-----
+재산세(주택분1/2, 건축물, 선박, 항공기) 납부기한(7.16~)
 
 </p>
 
@@ -1163,11 +1163,13 @@ gCalendarBook.init()
 
  showCalendarBook(false)
  showTodoDiv(false)
-
+ 
  window.addEventListener('resize', onResize, false);
-  
-// onResize();
-  
+
+ //onResize();
+ 
+window.addEventListener("scroll" , scroll_handler)
+ 
  updateLayoutUI()
  
 // getPatchDateInfo()
