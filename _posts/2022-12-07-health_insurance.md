@@ -8,6 +8,9 @@ title: "건강보험 피부양자요건"
 (출처: https://www.nhis.or.kr/nhis/minwon/wbhaba04000m01.do)   
 (국민건강보험/개인민원안내/직장가입자피부양자취득상실신고/참고자료)   
 
+<img src="https://ctamark.github.io/health_insurance-01.png" width ='90%'>  
+(출처: SBS Biz)
+
 (개정 2022. 9. 1.)   
 <span class="bold size1">1.</span> 직장가입자의 피부양자가 되려는 사람은 다음 각 목에서 정하는 <span class="red">소득요건을 모두 충족</span>하여야 한다.   
 <b>가.</b> 소득의 합계액이 연간 2천만원 이하일 것   
