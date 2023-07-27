@@ -302,6 +302,16 @@ span.label_s , .label_1, .label-1 {
 	line-height: 1.5rem;
   }
 
+ span.b1 {
+
+      font-size: 1.2rem;
+      color: black;
+      background-color: white;
+      line-height: 2.0;
+      /*지정된 폰트 사이즈의 2.1배를 줄간격으로 지정합니다.*/
+  }
+
+
  span.hj-s{
 
     font-size: 1.8rem;
