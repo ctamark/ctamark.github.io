@@ -33,7 +33,7 @@ permalink: /life_study/
 [법령정보센터](https://www.law.go.kr/){:target="_blank"}   
 [종합법률정보](https://glaw.scourt.go.kr/wsjo/intesrch/sjo022.do/){:target="_blank"}   
 
-
+[회계기준](http://www.kasb.or.kr/){:target="_blank"}  
 
 **부동산세금 링크**   
 [우리집변호사](https://www.mylawstory.com/){:target="_blank"}   
