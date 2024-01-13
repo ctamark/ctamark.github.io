@@ -6,11 +6,10 @@
 </head>
 <body>
 <div class='notice'>
-<span class="bold size2">2024년 국세 주요개정</span>(계속 작업중)
+<span class="bold size2">2024년 국세 주요개정</span>
 ----
-<span id='nationalTax-head' onclick='onToggle_nationalTax()'>국기법 등(펼치기)</span>
-<div id='nationalTax-detail' style='display:none;'>
-<span class="bold size2">국기법</span>(출처 법제처)
+<span id='nationalTax-head'>국기법 등</span>
+<span class="bold size2">국기법</span>
 제81조의13<b>(비밀 유지)</b> 
 ②(24개정) 과세정보의 제공을 요구하는 자는 납세자의 인적사항, 과세정보의 사용목적, 요구하는 과세정보의 내용 및 기간 등을 기재한 문서로 해당 세무관서의 장에게 요구하여야 한다. 
 (문서에 기재해야하는 사항을 명확화함)
@@ -32,15 +31,6 @@
 3. 세무조사 결과 통지 및 과세예고통지를 하는 날부터 국세부과 제척기간의 만료일까지의 기간이 3개월 이하인 경우
   
 -----국기법 끝----- 
-
-=========
-<span class="bold size2">국징법</span>
-=========
-
-
-</div>
-
-</div>
 
 =====
 <span class="bold size2">소득세</span>
@@ -80,7 +70,6 @@
 <span class="bold size2">2024년 지방세 주요개정</span>
 ---
 <span id="localTax-headMsg" onclick="onToggle_localTax()">취득세 등(펼치기)</span>
-<div id="localTax-detail" style='display: none;'>
 <div class="keyword">지방세기본법</span>
 제55조<b>(납부지연가산세)</b>
 ④(24개정) 제1항을 적용할 때 납세고지서별ㆍ세목별 세액이 <u>45만원 미만</u>인 경우에는 같은 항 제4호의 가산세(납부기한이 지난 날부터 1개월이 지날 때마다 계산한 금액)를 적용하지 아니한다.
@@ -113,57 +102,9 @@
 법인지방소득세 분할납부 제도
 제103조의23(과세표준 및 세액의 확정신고와 납부)
 ④(24신설) 100만원을 초과하는 내국법인은 대통령령으로 정하는 바에 따라 그 납부할 세액의 일부를 납부기한이 지난 후 1개월(「조세특례제한법」에 따른 중소기업의 경우에는 2개월) 이내에 분할납부할 수 있다.
-  
+</div>  
+
 </div>
- <span onclick='onToggle_localTax()' style='color: blue'>---간략히---</span>
-</div>
-</div>
-
-<script>
-function onToggle_nationalTax(){
-
-	console.log('onToggle_nationalTax')
-	 
-    let headElmt = document.getElementById('nationalTax-head')
-    let  detailElmt = document.getElementById('nationalTax-detail')
-
-	if(detailElmt.style.display=='none'){
-	
-       detailElmt.style.display = 'block' 	 
-       headElmt.innerText = '국기법 등' 	
-
-	}
-	else {
-	
-	   detailElmt.style.display = 'none' 	 
-	   headElmt.innerText = '국기법 등(더보기)' 	
-
-	}
-	
-}
-
-function onToggle_localTax(){
-
-     console.log('onToggle_localTax')
-	 
-    let headMsgElmt = document.getElementById('localTax-headMsg')
-    let  detailElmt = document.getElementById('localTax-detail')
-
-	if(detailElmt.style.display=='none'){
-	
-       detailElmt.style.display = 'block' 	 
-       headMsgElmt.innerText = '취득세 등' 	
-
-	}
-	else {
-	
-	   detailElmt.style.display = 'none' 	 
-	   headMsgElmt.innerText = '취득세 등(더보기)' 	
-
-	}
-}
-
-</script>
 
 </body>
 </html>
