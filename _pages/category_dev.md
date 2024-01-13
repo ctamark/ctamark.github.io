@@ -7,6 +7,8 @@ taxonomy: dev
 ---
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
+
+<a href='https://www.the-qrcode-generator.com/ target = '_blank'>qrcode-generator</a>   
  
 AR(sceneform +kotlin)       
 <img src="https://ctamark.github.io/sceneform-02.jpg" width="40%">   
