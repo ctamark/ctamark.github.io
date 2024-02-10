@@ -9,8 +9,7 @@ tags: [App]
 <a href="https://ctamark.github.io/privacy.html" target='_blank'>개인정보처리방침</a>
 
 <b>contact information</b>   
-support email: dev.isangjin@gmail.com   
-
+support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.isangjin@gmail.com)</a>
 ======   
 ## petBall  
 <img src="https://ctamark.github.io/petBall/icon.png" width="150" border=0>      
