@@ -18,7 +18,8 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 [ios](https://apps.apple.com/app/id6447539176){:target="_blank"}  
 [android](https://play.google.com/store/apps/details?id=com.planb.petBall){:target="_blank"}  
 
-
+<b>contact information</b>   
+support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.isangjin@gmail.com)</a>  
 
 ## pomodoro+asmr  
 <img src="https://ctamark.github.io/pomodoro/icon.png" width="150" border=0>    
