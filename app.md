@@ -29,6 +29,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 </div>
 <br/>
 
+<div>
 ## 공무원 한국사  
 <img src="/img/icon_studyHistory_256.png" width="150" border=0>    
 [android](http://play.google.com/store/apps/details?id=com.planb.jobhistorystudy){:target="_blank"}| 
@@ -67,3 +68,4 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 
 [ios](https://apps.apple.com/kr/app/id1524740437){:target="_blank"} | 
 [_notice](http://ctamark.github.io/ios_tax_ver.html){:target="_blank"}  
+</div>
