@@ -13,17 +13,16 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 ======   
 ## petBall  
 <div>  
-<div style='float:left; width: 30%'>
+<div style='float:left; width: 30%; border: 1px dotted gray'>
 <img src="https://ctamark.github.io/img/icon_petBall.png" width="150" border=0>
 </div>
-<div style='float: left;'>  
-[support page](https://ctamark.github.io/petBall/){:target="_blank"}     
+<div style='float:left;'>  
+<a href="https://ctamark.github.io/petBall" target='_blank'>support page</a>     
 [ios](https://apps.apple.com/app/id6447539176){:target="_blank"}  
 [android](https://play.google.com/store/apps/details?id=com.planb.petBall){:target="_blank"}    
 </div>  
-</div>
+</div>  
       
-
 ## pomodoro+asmr  
 <img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0>    
 [ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}
