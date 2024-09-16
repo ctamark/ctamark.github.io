@@ -12,7 +12,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 
 ======   
 ## petBall  
-<img src="https://ctamark.github.io/petBall/icon.png" width="150" border=0>      
+<img src="https://ctamark.github.io/img/icon_petBall.png" width="150" border=0>      
 [support page](https://ctamark.github.io/petBall/){:target="_blank"}     
 [ios](https://apps.apple.com/app/id6447539176){:target="_blank"}  
 [android](https://play.google.com/store/apps/details?id=com.planb.petBall){:target="_blank"}  
@@ -21,7 +21,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.isangjin@gmail.com)</a>  
 
 ## pomodoro+asmr  
-<img src="https://ctamark.github.io/pomodoro/icon.png" width="150" border=0>    
+<img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0>    
 [ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}
 ---[support page](https://ctamark.github.io/pomodoro/){:target="_blank"}     
 [android](https://play.google.com/store/apps/details?id=com.planb.asmr){:target="_blank"}  
