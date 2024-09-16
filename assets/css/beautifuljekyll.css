@@ -121,12 +121,20 @@ img {
 }
 
 /* --- custom --- */
-.resp-wrapper {
+.r-wrapper {
   background: yellow;
 }
 
-.div-left {
-  float: left;
+.r-div {
+  background: blue;
+  border: 1px dotted green;
+}
+
+@media (min-width: 768px) {
+  .r-div {
+    float: left;
+    background: red;
+  }
 }
 
 .clearFix:after {
