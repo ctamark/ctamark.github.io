@@ -1,7 +1,6 @@
 ---
 permalink: /app/
 title: "App"
-excerpt: "app.md"
 layout: page
 tags: app
 ---
