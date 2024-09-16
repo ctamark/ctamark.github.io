@@ -1,0 +1,749 @@
+﻿ /*주석은 이렇게 달아요*/
+
+/*
+태그이름#아이디 { 속성1:속성값; 속성2:속성값; } 
+태그이름.클래스명1, .클래스명2 { 속성1:속성값; 속성2:속성값; }
+.클래스명#아이디 { 속성1:속성값; 속성2:속성값; }
+
+
+공백삽입: &nbsp;
+*/
+
+      div.a {
+	   color:#686868;
+        font-size: medium;
+        text-align: left;
+      }
+
+      div.b {
+
+        color:#787878;
+        font-size: medium;
+		line-height: 1.2;
+		text-align: left;
+		margin-left: 10;
+      }
+
+
+      @font-face {
+
+        font-family:'IropkeBatang';
+        src:url('./IropkeBatangM.woff');
+
+      }
+
+
+      body {
+
+               background-color: #E1E1E1;
+
+      }
+
+       div.answer , .keywordnote, .keyword-note, .question {
+
+              color:#686868;
+              font-size: 1.0rem;
+              text-align: left;
+
+              font-family: 'IropkeBatang';
+              white-space: pre-wrap; /* pre tag내에 word wrap */
+
+
+            }
+
+
+
+      div.notice {
+
+         background-color: #E1E1E1;
+
+          font-size: 1.0rem;
+          font-family: 'IropkeBatang';
+          padding: 5px;
+          white-space: pre-wrap; /* pre tag내에 word wrap */
+       }
+
+
+
+
+
+      div.book{
+       display:table;
+       background-color:#D9D9D9;
+       width: 100%;
+	   font-size: 0.95rem;
+
+/*
+	   font-weight:bold;
+       font-family: Courier;*/
+
+        color:black;
+      }
+
+      div.book_L {
+
+      display: table-cell;
+      padding:2px;
+
+
+
+      border-right : 1px solid black;
+      width: 46%;
+
+      }
+
+     div.book_R {
+
+      display: table-cell;
+      padding:2px;
+
+      color:black;
+
+      border-left : 1px solid black;
+
+
+     }
+
+     div.t_book , .t_book_LR, .Tbook{
+       display:table;
+
+       font-size: 0.90rem;
+       color:black;
+       background-color:#C9C9C9;
+       width: 90%;
+       vertical-align:top;
+
+    }
+
+      div.t_book_L, .Tbook_L {
+
+      display: table-cell;
+      padding:5px;
+      border-top   : 5px solid black;
+      border-right : 3px solid black;
+      width: 40%;
+
+      }
+
+     div.t_book_R, .Tbook_R {
+
+      display: table-cell;
+      padding:5px;
+
+      border-top : 5px solid black;
+      border-left : 3px solid black;
+
+      width: 40%;
+
+     }
+
+
+      pre {
+
+          font-size: 0.95rem;
+          font-family: 'IropkeBatang';
+		  padding:5px;
+
+		  line-height:1.4rem;
+
+		  overflow: auto;
+          white-space: pre-wrap; /* pre tag내에 word wrap */
+		  		  
+      }
+
+      pre.normal {
+
+          font-size: 0.95rem;
+          font-family: 'IropkeBatang';
+		  padding:5px;
+
+		  line-height:1.4rem;
+
+		  overflow: auto;
+          white-space: normal; /*  \n가 있어도 무시 , 자동줄바꿈만 적용하기 */
+		  		  
+      }
+
+
+
+    /*
+	 pre-wrap(자동 줄바꿈, 공백을 그대로 표시)
+  	 
+	*/
+
+
+
+    span.accent {
+     
+     padding:5px;
+     background-color:yellow;
+     font-weight:bold;
+    }
+
+
+
+ .heading {
+         font-size: 1.3rem;
+         margin:2px;
+         padding:0px;
+    	 line-height:1.4rem;
+         color: black;
+         font-weight: bold;
+    }
+
+    .accent0, .a0 {
+         font-size: 1.2rem;
+         margin:2px;
+         padding:0px;
+    	 line-height:1.4rem;
+         color: black;
+         font-weight: bold;
+    }
+
+
+    .accent1,.a1 {
+         font-size: 1.2rem;
+          font-weight: bold;
+         margin:2px;
+         padding:0px;
+    	 line-height:1.4rem;
+         color: #A50E53;
+         background-color: #FCE8E6;
+    }
+
+    .accent2,.a2 {
+         font-size: 1.2rem;
+          font-weight: bold;
+         margin:2px;
+         padding:0px;
+    	 line-height:1.4rem;
+         color:#185ABE;
+         background-color: #E8F0FE;
+    }
+
+    .accent3,.a3 {
+         font-size: 1.2rem;
+          font-weight: bold;
+         margin:2px;
+         padding:0px;
+    	 line-height:1.4rem;
+         color: #FFF;
+         background-color: #041796;
+    }
+
+   
+    span.green {
+     
+     margin:2px;
+     padding:0px;
+     color:black;
+	 line-height:1.5rem;
+     background-color:#D3FAD2
+    }
+
+ span.white {
+     
+	 font-size: 1.2rem;
+     margin:2px;
+     padding:0px;
+     color:white;
+	 line-height:1.4rem;
+     background-color:black
+    }
+
+/*em : 상위 요소기준 */
+/*rem : 최상위 요소기준 */
+
+
+ b {
+
+     
+     font-size: 1.0rem;
+	 line-height: 1.0rem;
+     color: black;
+	 font-weight: bold;
+  }
+
+
+ span.label_s , .label_1, .label-1{
+
+     margin:1px;
+     padding: 0;
+     font-size: 1.2rem;
+	 line-height: 1.5rem;
+     color: black;
+	 font-weight: bold;
+  }
+  
+  span.label_m , .label_2, .label-2 {
+
+   padding: 0;
+    font-size: 1.5rem;
+	line-height: 1.8rem;
+    color: black;
+	 font-weight: bold;
+  }
+
+  span.label_big , .label_3, .big{
+
+    font-size: 2.2rem;
+    color: black;
+	line-height: 1.5rem;
+	 font-weight: bold;
+  }
+
+  span.hanja , .hj{
+
+    font-size: 2.2rem;
+    color: black;
+	line-height: 1.5rem;
+  }
+
+
+
+  span.book {
+     
+	 line-height:1.5rem;
+     padding:1px;
+     color:black;
+	 font-size:1.0rem;
+     background-color: #E7E7E7;
+    }
+
+
+
+
+ span.e {
+
+         margin:2px;
+         padding:2px;
+
+         background-color:#FCF7EF;
+
+      }
+
+
+  span.bold {
+
+     margin:2px;
+     padding:0px;
+     color:black;
+	 line-height:1.5rem;
+     font-weight: bold;
+
+    }
+
+  span.size0 {
+
+     font-size: 0.92em;
+
+    }
+
+
+    span.size1 {
+
+     font-size: 1.2rem;
+	 line-height: 1.2rem;
+
+    }
+
+
+    span.size2 {
+
+     font-size: 1.4rem;
+	 line-height: 2.0;
+
+    }
+
+    span.size3, .size4 {
+
+     font-size: 1.8rem;
+	 line-height: 3.0rem;
+
+    }
+
+
+ span.small {
+
+  line-height:1.2rem;
+      padding:1px;
+      color:black;
+  	 font-size:0.9em;
+
+ }
+
+
+  span.blue {
+ 
+     font-size:1.2rem;
+	 line-height:1.2rem;
+     margin:2px;
+     padding:2px;
+     color:white;
+     background-color:#3390FF;
+    }
+ 
+
+
+   span.yellow , .y{
+
+     font-size:1.1rem;
+     margin:0px;
+     padding:0px;
+     color:black;
+	 line-height:1.4rem;
+     background-color:#FED651;
+    }
+
+   
+    span.gray {
+     
+     margin:2px;
+     padding:2px;
+     color:white;
+     background-color:gray;
+
+ 
+    }
+
+
+ span.number {
+     
+	 font-size:1.2rem;
+     margin:1px;
+     padding:0px;
+     color:blue;
+ 
+    }
+	
+    span.red, .r{
+
+     margin:1px;
+     padding:0px;
+     font-size: 1.1rem;
+	 line-height:1.5rem;
+     color:red;
+     background-color:#FFEBEB;
+ 
+    }
+
+
+ span.mid {
+
+     font-size: 1.5rem;
+     margin:0px;
+     padding:0px;
+	 line-height:2.0;
+     color:black;
+     background-color:white;
+     font-weight: bold;
+
+
+    }
+
+
+
+    span.b, .black{
+
+      margin:0px;
+     padding:0px;
+     font-size: 1.1rem;
+	 line-height:1.5rem;
+     color:black;
+     background-color:white;
+     font-weight: bold;
+
+
+    }
+
+
+
+
+  span.q{
+
+     font-size: 1.1rem;
+     color:black;
+     line-height:2.0rem;
+     background-color:#D1D1D1;
+ 
+    }
+
+  span.g{
+
+     font-size: 1.1rem;
+     color:black;
+     line-height:1.5rem;
+     background-color:#D1D1D1;
+
+    }
+
+
+
+    U {
+
+
+     margin:0px;
+     padding:2px;
+
+     color:black;
+     text-decoration : none;
+     border-bottom : 2px solid #FF0000;
+     padding-bottom : 0px;
+	 line-height: 1.5rem;
+   
+    }
+     
+
+    U.r {
+
+     text-decoration : none;
+     border-bottom : 2px solid #FF0000;
+
+     margin-top: 5px; 
+     padding-bottom : 0px; 
+   
+    }
+
+   U.cancel {
+
+     text-decoration: line-through;
+	  border-bottom : 2px solid #FFFFFF;
+     padding-bottom : 2px; 
+   }
+
+    ul.no_dot {
+   
+    list-style:none;
+
+   }
+   
+   ul.type1 {
+	      margin:0;
+   }
+
+   li.type1 {
+	   
+	   margin: 0;
+	   padding:0;
+   }
+   
+  /*   font-family: 'Nanum Gothic';	*/
+
+    P.p1 {
+		  	
+    margin-top:2px;
+    padding-top:0px;
+    padding-left:10px;
+    font-size:0.96em;
+	line-height:1.3rem;
+   }
+   
+
+
+     p.law {
+
+          margin-top:2px;
+          padding-top:0px;
+          padding-left:5px;
+          font-size:0.95em;
+          line-height:1.3rem;
+
+          white-space: normal; /* pre tag내에 word wrap */
+          color:black;
+          background-color:#FBEBEB;
+
+         }
+
+
+ p.law-line {
+
+          margin-top:2px;
+          padding-top:0px;
+          padding-left:5px;
+          font-size:0.95em;
+          line-height:1.2rem;
+
+          overflow:auto;
+          white-space: normal; /* pre tag내에 word wrap */
+          color:black;
+          background-color:#FBEBEB;
+
+         }
+
+p.keyword {
+
+          margin-top:2px;
+          padding-top:0px;
+          padding-left:5px;
+          font-size:0.95em;
+          line-height:1.2rem;
+
+          overflow:auto;
+          white-space: pre-wrap; /* pre tag내에 word wrap */
+          color:black;
+          background-color:#EBFBEB;
+
+         }
+
+
+ p.keyword-line {
+
+           margin-top:2px;
+           padding-top:0px;
+           padding-left:5px;
+           font-size:1.1rem;
+           line-height:1.3rem;
+
+           overflow:auto;
+           white-space: normal; /* pre tag내에 word wrap */
+           color:black;
+           background-color:#EBFBEB;
+
+          }
+
+p.answer-line {
+
+          margin-top:0px;
+          padding-top:0px;
+          padding-left:5px;
+          font-size:0.95rem;
+          line-height:1.0rem;
+
+          overflow:auto;
+          white-space: normal; /* pre tag내에 word wrap */
+          color:black;
+          background-color:#FBFBFB;
+
+         }
+
+
+
+p.question {
+
+          margin-top:2px;
+          padding-top:0px;
+          padding-left:5px;
+          font-size:1.1rem;
+          line-height:1.3rem;
+
+          overflow:auto;
+          white-space: pre-wrap;
+          color:black;
+          background-color:#DBDBDB;
+
+         }
+
+
+p.question-line , .q-line{
+
+          margin-top:2px;
+          padding:5px;
+          font-size:1.1rem;
+          line-height:1.3rem;
+
+          overflow:auto;
+          white-space: normal; /* pre tag내에 word wrap */
+          color:black;
+          background-color:#EBEBEB;
+
+         }
+
+
+
+
+
+
+   span.bold {
+     margin:2px;
+     padding:0px;
+     color:black;
+	 line-height:1.5rem;
+     font-weight: bold;
+
+    }
+
+   span.line{
+
+     white-space: normal;
+
+    }
+
+  span.size0 {
+
+     font-size: 0.92em;
+
+    }
+
+
+    span.size1 {
+
+     font-size: 1.1em;
+
+    }
+
+
+    span.size2 {
+
+     font-size: 1.3em;
+
+    }
+
+  
+ 
+
+    span.e, .acnt{
+
+      line-height:1.5rem;
+	  color: black;
+      margin:2px;
+      padding:2px;
+      background-color:#fef4bd;
+   }
+
+
+   .kwdlink {
+
+    color:black;
+    font-size: 1.5rem;
+    background-color:yellow;
+
+   }
+
+
+div.keyword-dot, .keyword {
+
+           border: 2px dotted black;
+
+		   background-color:#EcEcEc;
+
+		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:0.98em;
+
+           overflow:auto;
+           white-space: pre-wrap;
+
+          }
+
+
+  .bg-green {
+
+      background-color:#EBFBEB;
+
+  }
+
+  .bg-pink {
+
+      background-color:#FBEBEB;
+  }
+
+
+  .word-table {
+
+     padding: 5px;
+
+     border-top   : 2px solid black;
+     border-left : 2px solid black;
+
+  }

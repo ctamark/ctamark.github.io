@@ -1,0 +1,78 @@
+<html>
+<head>	
+	
+<script type="text/javascript">
+
+ function getVersion() {
+		
+		window.mobileApp.setVersion("2.28");
+ }
+		
+ </script>
+
+<link rel="stylesheet" href="style.css">	
+	
+<TITLE>업데이트 정보</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+</head>
+<body>
+	 
+<div class="notice">	  
+<span id="dday" style="color:white; background-color:black; font-size:2.0rem;"></span>
+-------------  
+<script  language = "javascript">
+function update_dday(){
+
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2023년 4월 8일
+// month는 0부터 시작
+var dday = new Date(2023, 6-1, 10); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  'D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨습니다';
+
+    }
+
+   counter.innerText = msg;
+}
+// update_dday();
+</script>		   	  
+----  
+●경제지표가 좋지 않습니다.
+(중산층 이하 경제적으로 어려움이 예상됩니다)  
+공무원 시험을 선택하신 여러분을 응원합니다. 
+
+<b>[공지.정오.오류]</b>
+[국9.18년] 17번 
+: omr번호 정답오류
+(4번이 답이지만 1번으로 잘못 표시)  
+
+
+<span class='red'>[ver:2.28]</span>(131)(230803)
+(심사대기중...)  
+: 구글 정책에 따라 API33을 타겟팅하도록 수정
+: 체크노트 등록/삭제에 버그가 있어 수정함
+        
+</div>
+</body> 
+</html>
