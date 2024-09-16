@@ -18,12 +18,10 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 </div>
 <div style='float:left; border: 1px dotted red' >  
 <a href="https://ctamark.github.io/petBall" target='_blank'>support page</a>     
+<a href="https://apps.apple.com/app/id6447539176" target="_blank">[ios]</a>  
+<a href="https://play.google.com/store/apps/details?id=com.planb.petBall" target="_blank">[android]</a>          
 </div>  
 </div>    
-
-[ios](https://apps.apple.com/app/id6447539176){:target="_blank"}  
-[android](https://play.google.com/store/apps/details?id=com.planb.petBall){:target="_blank"}    
-
       
 ## pomodoro+asmr  
 <img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0>    
