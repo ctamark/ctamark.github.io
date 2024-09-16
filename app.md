@@ -13,7 +13,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 ======   
 <div class='clearFix'>   
 <div style='float:left; border: 1px dotted gray'>
-## petBall 
+## petBall<br/> 
 <img src="https://ctamark.github.io/img/icon_petBall.png" width="150" border=0><br/>
 <a href="https://ctamark.github.io/petBall" target='_blank'>support page</a><br/>     
 <a href="https://apps.apple.com/app/id6447539176" target="_blank">[ios]</a><br/>  
