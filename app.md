@@ -20,13 +20,14 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 <a href="https://play.google.com/store/apps/details?id=com.planb.petBall" target="_blank">[android]</a>          
 </div>  
 <div style='float:left; border: 1px dotted green'> 
-## pomodoro+asmr  
-<img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0>    
-[ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}
----[support page](https://ctamark.github.io/pomodoro/){:target="_blank"}     
+## pomodoro+asmr<br/>  
+<img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0><br/>    
+[ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}<br/>
+[support page](https://ctamark.github.io/pomodoro/){:target="_blank"}<br/>     
 [android](https://play.google.com/store/apps/details?id=com.planb.asmr){:target="_blank"}  
 </div>    
 </div>
+<br/>
 
 ## 공무원 한국사  
 <img src="/img/icon_studyHistory_256.png" width="150" border=0>    
