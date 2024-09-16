@@ -24,7 +24,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 <img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0><br/>    
 <a href="https://apps.apple.com/us/app/pomodoro-asmr/id1661412132" target="_blank">[ios]</a><br/>
 <a href="https://ctamark.github.io/pomodoro/" target="_blank">[support page]</a><br/>     
-<a rhef="https://play.google.com/store/apps/details?id=com.planb.asmr" target="_blank">[android](</a>
+<a rhef="https://play.google.com/store/apps/details?id=com.planb.asmr" target="_blank">[android]</a>
 </div>    
 </div>
 <div style='clear:both'>---</div>
