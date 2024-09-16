@@ -121,9 +121,18 @@ img {
 }
 
 /* --- custom --- */
+.resp-wrapper {
+  background: yellow;
+}
+
+.div-left {
+  float: left;
+}
+
 .clearFix:after {
   clear: both;  
   content: " ";
+  display: table;
 }
 
 /* --- Navbar --- */
