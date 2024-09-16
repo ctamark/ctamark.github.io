@@ -28,14 +28,14 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 
 
 ## 공무원 한국사  
-<img src="/assets/img/icon_studyHistory_256.png" width="150" border=0>    
+<img src="/img/icon_studyHistory_256.png" width="150" border=0>    
 [android](http://play.google.com/store/apps/details?id=com.planb.jobhistorystudy){:target="_blank"}| 
 [_notice](http://ctamark.github.io/android_history_ver.html){:target="_blank"}    
 [ios](https://itunes.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%95%9C%EA%B5%AD%EC%82%AC-%EA%B8%B0%EC%B6%9C-lite-2019-%EB%8C%80%EB%B9%84/id1294010197){:target="_blank"} | 
 [_notice](http://ctamark.github.io/ios_history_ver.html){:target="_blank"}  
 
 ## 공무원 영어 기출(어휘,문법편+단어장)
-<img src="/assets/img/icon_studyEnglish_256.png" width=150 border=0>  
+<img src="/img/icon_studyEnglish_256.png" width=150 border=0>  
 [android](https://play.google.com/store/apps/details?id=com.planb.englishStudy){:target="_blank"} | 
 [__notice](http://ctamark.github.io/android_english_ver.html){:target="_blank"}  
 
@@ -43,7 +43,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 [__notice](http://ctamark.github.io/ios_english_ver.html){:target="_blank"}  
 
 ## 공무원 국어 기출(규범과 어휘편+단어장)
-<img src="/assets/img/icon_studyKorean_256.png" width=150 border=0>  
+<img src="/img/icon_studyKorean_256.png" width=150 border=0>  
 [android](https://play.google.com/store/apps/details?id=com.planb.koreanStudy){:target="_blank"} |
 [__notice](http://ctamark.github.io/android_korean_ver.html){:target="_blank"}  
 
