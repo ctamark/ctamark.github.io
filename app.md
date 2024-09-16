@@ -11,8 +11,8 @@ tags: app
 support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.isangjin@gmail.com)</a>  
 
 ======   
+<div class='clearFix'>  
 ## petBall  
-<div>  
 <div style='float:left; width: 30%; border: 1px dotted gray'>
 <img src="https://ctamark.github.io/img/icon_petBall.png" width="150" border=0>
 </div>
@@ -23,14 +23,13 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 </div>  
 </div><br/>    
   
-<div style='clear:both;'>
-<div> ## pomodoro+asmr  
+## pomodoro+asmr  
 <img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0>    
 </div>
 <div>[ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}
 ---[support page](https://ctamark.github.io/pomodoro/){:target="_blank"}     
 [android](https://play.google.com/store/apps/details?id=com.planb.asmr){:target="_blank"}  
-</div></div>
+
 
 ## 공무원 한국사  
 <img src="/img/icon_studyHistory_256.png" width="150" border=0>    
