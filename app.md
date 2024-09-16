@@ -28,6 +28,7 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 </div>    
 </div>
 <br/>
+<div style='clear:both'>---</div>
 
 <div style='background: green'>
 ## 공무원 한국사  
