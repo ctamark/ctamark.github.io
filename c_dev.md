@@ -1,7 +1,6 @@
 ---
 title: "개발"
 layout: category
-permalink: /categories/dev/
 author_profile: true
 taxonomy: dev
 ---
