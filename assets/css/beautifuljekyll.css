@@ -121,8 +121,9 @@ img {
 }
 
 /* --- custom --- */
-.clearDiv {
-clear: both;  
+.clearFix:after {
+  clear: both;  
+  content: " ";
 }
 
 /* --- Navbar --- */
