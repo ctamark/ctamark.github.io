@@ -20,9 +20,9 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 <a href="https://play.google.com/store/apps/details?id=com.planb.petBall" target="_blank">[android]</a>          
 </div>  
 <div style='float:left; width: 48%; border: 1px dotted green'> 
-## pomodoro+asmr<br/>  
+## <b>pomodoro+asmr</b><br/>  
 <img src="https://ctamark.github.io/img/icon_pomodoro.png" width="150" border=0><br/>    
-[ios](https://apps.apple.com/us/app/pomodoro-asmr/id1661412132){:target="_blank"}<br/>
+<a href="https://apps.apple.com/us/app/pomodoro-asmr/id1661412132" target="_blank">[ios]</a><br/>
 [support page](https://ctamark.github.io/pomodoro/){:target="_blank"}<br/>     
 [android](https://play.google.com/store/apps/details?id=com.planb.asmr){:target="_blank"}  
 </div>    
