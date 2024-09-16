@@ -16,7 +16,7 @@ author: Some Person
 navbar-links:
   About Me: "aboutme"
   App : "app"
-  Dev : "category_dev"
+  Dev : "/_pages/category_dev"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
