@@ -120,6 +120,11 @@ img {
   }
 }
 
+/* --- custom --- */
+.clearDiv {
+clear: both;  
+}
+
 /* --- Navbar --- */
 
 .navbar-custom {
