@@ -1,6 +1,6 @@
 ---
 title: "개발"
-layout: category
+layout: page
 author_profile: true
 taxonomy: dev
 ---
