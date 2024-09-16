@@ -2,8 +2,8 @@
 permalink: /app/
 title: "App"
 excerpt: "app.md"
-layout: single
-tags: [App]
+layout: page
+tags: app
 ---
 
 <a href="https://ctamark.github.io/privacy.html" target='_blank'>개인정보처리방침</a>
