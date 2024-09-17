@@ -133,7 +133,8 @@ img {
 @media (min-width: 768px) {
   .r-div {
     float: left;
-    background: red;
+    width: 45%;
+    background: lightgray;
   }
 }
 
