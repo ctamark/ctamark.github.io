@@ -30,10 +30,10 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 <div class='r-div'>  
 <b>공무원 한국사</b><br>  
 <img src="/img/icon_studyHistory_256.png" width="150" border=0><br/>    
-<a href="http://play.google.com/store/apps/details?id=com.planb.jobhistorystudy" target="_blank">[android]</a><br/>
-<a href="http://ctamark.github.io/android_history_ver.html" target="_blank">[_notice]</a><br/>    
-<a href="https://itunes.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%95%9C%EA%B5%AD%EC%82%AC-%EA%B8%B0%EC%B6%9C-lite-2019-%EB%8C%80%EB%B9%84/id1294010197" target="_blank">[ios]</a><br/>
-<a href="http://ctamark.github.io/ios_history_ver.html" target="_blank">[_notice]</a>  
+<a href="http://play.google.com/store/apps/details?id=com.planb.jobhistorystudy" target="_blank">[android]</a>
+,  <a href="http://ctamark.github.io/android_history_ver.html" target="_blank">[_notice]</a><br/>    
+<a href="https://itunes.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%ED%95%9C%EA%B5%AD%EC%82%AC-%EA%B8%B0%EC%B6%9C-lite-2019-%EB%8C%80%EB%B9%84/id1294010197" target="_blank">[ios]</a>
+, <a href="http://ctamark.github.io/ios_history_ver.html" target="_blank">[_notice]</a>  
 </div>  
 <div class='r-div'>  
 <b>공무원 영어 기출(어휘,문법편+단어장)</b><br>
