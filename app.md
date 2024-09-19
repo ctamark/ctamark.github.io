@@ -38,11 +38,10 @@ support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.is
 <div class='r-div'>  
 <b>공무원 영어 기출(어휘,문법편+단어장)</b><br>
 <img src="/img/icon_studyEnglish_256.png" width=150 border=0><br/>  
-<a href="https://play.google.com/store/apps/details?id=com.planb.englishStudy" target="_blank">[android]</a><br>
-<a href="http://ctamark.github.io/android_english_ver.html" target="_blank">[notice]</a><br><br>  
-   
-<a href="https://apps.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%EC%98%81%EC%96%B4-%EA%B8%B0%EC%B6%9C-%EC%96%B4%ED%9C%98-%EB%AC%B8%EB%B2%95%ED%8E%B8/id1466474291" target='_blank'>[ios]</a><br/>
-<a href="http://ctamark.github.io/ios_english_ver.html" target="_blank">[notice]</a>
+<a href="https://play.google.com/store/apps/details?id=com.planb.englishStudy" target="_blank">[android]</a>
+, <a href="http://ctamark.github.io/android_english_ver.html" target="_blank">[notice]</a><br>   
+<a href="https://apps.apple.com/kr/app/%EA%B3%B5%EB%AC%B4%EC%9B%90-%EC%98%81%EC%96%B4-%EA%B8%B0%EC%B6%9C-%EC%96%B4%ED%9C%98-%EB%AC%B8%EB%B2%95%ED%8E%B8/id1466474291" target='_blank'>[ios]</a>
+, <a href="http://ctamark.github.io/ios_english_ver.html" target="_blank">[notice]</a>
 </div>
 </div>
 
