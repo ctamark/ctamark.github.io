@@ -122,11 +122,11 @@ img {
 
 /* --- custom --- */
 .r-wrapper {
-  background: oldlace;
+  background: white;
 }
 
 .r-div {
-  background: blue;
+  background: oldlace;
   border: 1px dotted green;
 }
 
