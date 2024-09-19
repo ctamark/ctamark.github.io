@@ -122,7 +122,7 @@ img {
 
 /* --- custom --- */
 .r-wrapper {
-  background: yellow;
+  background: oldlace;
 }
 
 .r-div {
@@ -134,7 +134,6 @@ img {
   .r-div {
     float: left;
     width: 45%;
-    background: lightgray;
   }
 }
 
