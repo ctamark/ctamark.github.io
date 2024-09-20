@@ -16,7 +16,7 @@ title: Lee Sangjin
 navbar-links:
   About Me: "aboutme"
   App : "app"
-  Dev : "/dev/c_dev"
+  Dev : "c_dev"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
