@@ -1,5 +1,5 @@
 ---
-title: "개발"
+title: "Dev"
 layout: page
 author_profile: true
 taxonomy: dev
