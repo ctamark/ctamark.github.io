@@ -5,6 +5,14 @@ author_profile: true
 taxonomy: dev
 ---
 
+```javascript
+var foo = function(x) {
+  return(x + 5);
+}
+foo(3)
+```
+
+
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
 
 <a href='https://www.the-qrcode-generator.com/' target = '_blank'>qrcode-generator</a>   
