@@ -231,7 +231,18 @@
         background-color: #fdf5d4;
     }
 
-   
+    .box-note {
+      background-color: #eee;
+      padding: 10px;
+      font-size: 1.0rem;
+      line-height: 150%;
+      border-style: dotted dotted dotted solid;
+      border-color: black;
+      border-width: 1px 1px 1px 5px
+     /*위, 오른쪽, 아래, 왼쪽 */
+    }
+
+
     span.green {
      
      margin:2px;
