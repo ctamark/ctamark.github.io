@@ -54,7 +54,7 @@ taxonomy: dev
 
 
 <script>
-let divE = document.getElementById('testDiv'>
+let divE = document.getElementById('testDiv')
 divE.innerHTML = 'testDiv@'				  
 	
 </script>
