@@ -4,7 +4,7 @@ layout: page
 author_profile: true
 taxonomy: dev
 ---
-<div id='testDiv' style='background: yellow'>></div>
+<div id='testDiv' style='background: yellow'></div>
 
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
