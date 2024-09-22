@@ -4,7 +4,7 @@ layout: page
 author_profile: true
 taxonomy: dev
 ---
-<div id='testDiv' style='background: yellow'>testDiv</div>
+<div id='testDiv' style='background: yellow' onclick='onTest()'>testDiv</div>
 
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
@@ -55,6 +55,13 @@ taxonomy: dev
 
 <script>
 let divE = document.getElementById('testDiv')
-divE.innerHTML = 'testDiv@'				  
+divE.innerHTML = 'testDiv@'	
+
+function onTest(){
+console.log('onTest')
+divE.innerHTML = 'onTest()'	
+	
+
+}
 	
 </script>
