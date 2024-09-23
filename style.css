@@ -242,6 +242,13 @@
      /*위, 오른쪽, 아래, 왼쪽 */
     }
 
+   .box-note2 {
+      background-color: #eee;
+      padding: 5px;
+      font-size: 1.0rem;
+      line-height: 150%;
+      border: 1px dotted black;
+    }
 
     span.green {
      
