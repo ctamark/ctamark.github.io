@@ -242,13 +242,30 @@
      /*위, 오른쪽, 아래, 왼쪽 */
     }
 
-   .box-note2 {
+   .box-note1 {
       background-color: #eee;
       padding: 5px;
       font-size: 1.0rem;
       line-height: 150%;
       border: 1px dotted black;
     }
+
+   .box-note2 {
+      background-color: #E8F0FE;
+      padding: 5px;
+      font-size: 1.0rem;
+      line-height: 150%;
+      border: 1px dotted black;
+    }
+
+   .box-note3 {
+      background-color: #fdf5d4;
+      padding: 5px;
+      font-size: 1.0rem;
+      line-height: 150%;
+      border: 1px dotted black;
+    }
+
 
     span.green {
      
