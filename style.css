@@ -183,7 +183,7 @@
 
 
  .heading {
-         font-size: 1.3rem;
+         font-size: 1.2rem;
          margin:2px;
          padding:0px;
     	 line-height:1.4rem;
@@ -192,7 +192,7 @@
     }
 
     .accent0, .a0 {
-         font-size: 1.2rem;
+         font-size: 1.1rem;
          margin:2px;
          padding:0px;
     	 line-height:1.4rem;
@@ -202,7 +202,7 @@
 
 
     .accent1,.a1 {
-         font-size: 1.2rem;
+         font-size: 1.1rem;
           font-weight: bold;
          margin:2px;
          padding:0px;
@@ -212,7 +212,7 @@
     }
 
     .accent2,.a2 {
-         font-size: 1.2rem;
+         font-size: 1.1rem;
           font-weight: bold;
          margin:2px;
          padding:0px;
@@ -222,7 +222,7 @@
     }
 
     .accent3,.a3 {
-         font-size: 1.2rem;
+         font-size: 1.1rem;
           font-weight: bold;
          margin:2px;
          padding:0px;
