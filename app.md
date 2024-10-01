@@ -9,7 +9,7 @@ tags: app
 앱에서 개인 정보 및 민감한 사용자 데이터를 수집하지 않습니다.  
 <a href='https://ctamark.github.io/privacy.html' target='_blank'><span class='a0'>개인정보처리방침 보기</span></a>(https://ctamark.github.io/privacy.html)
 
-<b>contact information</b>  
+## contact information<    
 support email: <a href="mailto:﻿dev.isangjin@gmail.com">메일보내기(dev.isangjin@gmail.com)</a>    
    
 <div class='r-wrapper clearFix'>   
