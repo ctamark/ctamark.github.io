@@ -17,6 +17,7 @@ navbar-links:
   About Me: "aboutme"
   App : "app"
   Dev : "c_dev"
+  Tax : "tax"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
