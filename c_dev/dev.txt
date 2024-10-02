@@ -1,1 +1,262 @@
 
+
+<span id="dday"></span>
+<script  language = "javascript">
+function update_dday(){
+
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2021년 7월 6일
+// month는 0부터 시작
+var dday = new Date(2022, 6-1, 18); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  'D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨습니다';
+
+    }
+
+   counter.innerText = msg;
+}
+update_dday();
+</script>		
+
+
+
+https://zangboo.net/
+(간편장부)
+https://dusanbaek.tistory.com/14
+
+트랜스지방, 쇼트닝, 경화유, 부분경화유, 식물성 경화유 
+튀김음식, 
+오메가6기름 +트랜스지방 + 밀가루 + 설탕 
+---
+EV 올리브 오일
+EV 아보카도 오일
+EV 코코넛 오일
+(Extra Virgin)
+버터 , 라드 
+
+
+➡⬅⬇⬆
+
+
+https://seelotus.tistory.com/5394
+문장호응
+
+https://typecast.ai/service/policy
+----
+https://wodyios.tistory.com/8?category=899459
+https://jubakong.medium.com/ios-swift-swift%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC%EA%B8%B0%EB%B2%95-arc-9bbba5840628
+(메모리 관리, weak 참조)
+https://wodyios.tistory.com/10
+https://caution-dev.github.io/ios/2019/12/02/DarkMode-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0.html
+https://eunjin3786.tistory.com/303
+
+https://www.daleseo.com/css-prefers-color-scheme/
+https://velog.io/@yijaee/%EB%8B%A4%ED%81%AC%EB%AA%A8%EB%93%9C-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+
+●(계리.22)
+●(지7.18)
+
+
+(풀이단위:₩1,000)
+
+㎡
+
+"chapter" : "grammar",
+"chapter" : "조선",
+
+ "QArray": [
+           ]
+
+갑(甲) 을(乙)  병(丙) 정(丁)
+
+＜익산＞＜익不＞
+＜손산＞ 전기 대손충당금 한도초과 3 (△유보)
+＜손不＞ 대손충당금 한도초과 3(유보)
+ 
+<span class="bold size1"> </span>
+<span class="bold size2"> </span>
+<span class="bold size3"> </span>
+<span class="bold size4"> </span>
+
+<span class="bold size0"> </span>
+
+<span class="line"> </span>
+
+<span class="q"> </span>
+
+<div class="keyword-div"> </div>
+
+<!-- @<kwd># </kwd>@(＜---키워드 보려면 터치)-->
+
+@<kwd>{ }
+</kwd>@
+
+==========
+@<qna>
+@<question>
+</question>@
+
+@<answerVal>{o}
+@<answer>
+
+</answer>@
+</qna>@
+
+=============
+@<word>{ } 
+@<kind>{hanja}
+</word>@
+
+================
+h1: 2.0em
+h2: 1.5em
+h3: 1.17em
+h4: 1.0em
+h5: 0.83em
+h6: 0.67em
+
+orange 
+(236, 188, 83)
+
+
+＋ － ＜ ＝ ＞ ± × ÷ ≠ ≤ ≥ ∞
+
+@<b1>선지①</b1>@
+@<b1>선지②</b1>@
+@<b1>선지③</b1>@
+@<b1>선지④</b1>@
+
+<b>①</b>
+<b>②</b> 
+<b>③</b> 
+<b>④</b> 
+<b>⑤</b>
+<b>⑥</b> 
+<b>⑦</b> 
+<b>⑧</b>  
+
+@<b>①</b>@
+@<b>②</b>@
+@<b>③</b>@ 
+@<b>④</b>@ 
+@<b>⑤</b>@
+@<b>⑥</b>@ 
+@<b>⑦</b>@ 
+@<b>⑧</b>@
+
+ 
+@<b>㉠</b>@ 
+@<b>㉡</b>@ 
+@<b>㉢</b>@ 
+@<b>㉣</b>@ 
+@<b>㉤</b>@
+@<b>㉥</b>@ 
+@<b>㉦</b>@ 
+@<b>㉧</b>@
+ 
+<b>㉠</b>
+<b>㉡</b> 
+<b>㉢</b> 
+<b>㉣</b> 
+<b>㉤</b>
+<b>㉥</b> 
+<b>㉦</b> 
+<b>㉧</b> 
+ 
+
+
+@<u>옳지 않은 것</u>@
+@<u>옳은 것</u>@
+ 
+@<g></g>@
+@<e></e>@
+@<u></u>@
+
+ @<b1></b1>@ 
+ @<b2></b2>@
+ @<b3></b3>@ 
+
+
+@<r>  [X]➔ </r>@
+
+@<r> </r>@
+
+@<question-img>
+
+∙ ○ ◎ ● 
+① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮
+❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴
+㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭
+㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻
+㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍
+㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛
+ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ
+⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵
+
+<span class="big">❝</span>
+<span class="big">❞</span>
+
+@<big>❝</big>@
+@<big>❞</big>@
+
+"@<kwd>한 단어 대잔치</kwd>@(키워드 보려면 노란영역 터치)",
+
+
+"@<kwd>#공동사업_소득금액계산_특례</kwd>@(<---키워드를 보려면 터치)"
+
+"@<kwd>#도치(S+V➔V+S)</kwd>@(<--키워드 보려면 노란영역 터치)"
+---
+
+"@<kwd>#조선_문화</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#고려_문화</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#삼국_고분</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#고대_건축물_등</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#발해_주요문화재</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#유네스코_세계유산</kwd>@(<---키워드를 보려면 터치)"
+
+"@<kwd>#조선_영조</kwd>@(<---키워드를 보려면 터치)"
+"@<kwd>#고려_지눌</kwd>@(<---키워드를 보려면 터치)"
+
+"@<kwd>#서긍_고려도경</kwd>@(<--키워드 보려면 터치)",
+
+
+
+do {
+   let resultNumber = try object.func_xxx()
+} catch {
+   
+   print(error)
+}
+-------
+public enum Tax {
+    NONE(0), SALES(10), IMPORT(5);
+
+    private final int value;
+    private Tax(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
