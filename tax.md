@@ -1,6 +1,6 @@
 ---
 permalink: /tax/
-title: "Tax"
+title: "세금(稅金 / tax)"
 layout: page
 tags: tax
 ---
