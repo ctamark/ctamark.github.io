@@ -8,6 +8,8 @@ taxonomy: dev
 
 
 [github/ctamark](https://github.com/ctamark){:target="_blank"}   
+ios pomodoro intersAd 광고ID
+: ca-app-pub-1799596498506801/3931075602
 
 
 [ol tag 스타일링](https://wellcode.tistory.com/12){:target="_blank"}
