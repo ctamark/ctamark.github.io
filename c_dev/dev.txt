@@ -57,6 +57,9 @@ EV 코코넛 오일
 
 ➡⬅⬇⬆
 
+   //android.onUserAnswer_JS2App(sel_idx)
+       let cmd = "onUserAnswer_JS#" + sel_idx
+       webkit.messageHandlers.callbackJS.postMessage(cmd)
 
 https://seelotus.tistory.com/5394
 문장호응
