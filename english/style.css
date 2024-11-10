@@ -1,0 +1,382 @@
+ /*주석은 이렇게 달아요*/
+
+/*
+태그이름#아이디 { 속성1:속성값; 속성2:속성값; } 
+태그이름.클래스명1, .클래스명2 { 속성1:속성값; 속성2:속성값; }
+.클래스명#아이디 { 속성1:속성값; 속성2:속성값; }
+
+
+공백삽입: &nbsp;
+*/
+
+      div.a {
+        font-size: medium;
+        text-align: left;
+      }
+
+      div.b {
+        font-size: medium;
+      }
+
+   
+
+
+/*
+ white-space:
+ pre-wrap; 공백 그대로 표시, enter줄바꿈 O, 자동줄바꿈O
+ pre; 공백그대로 표시, enter줄바꿈 O, 자동줄바꿈 X
+ normal; 띄어쓰기 1칸, enter줄바꿈X, 자동줄바꿈O
+*/
+
+
+     @font-face {
+        font-family:'IropkeBatang';
+        src:url('./IropkeBatangM.woff');
+
+      }
+
+     body {
+
+	      background-color:#E1E1E1;
+      }
+
+
+     div.notice, .keywordnote, .answer {
+  
+        background-color:#E8E8E8;
+	color: #656565;
+
+	font-size: 0.95rem;
+        font-family: 'IropkeBatang';
+  	     
+        padding: 5px;
+	overflow: auto;
+	white-space: pre-wrap; /* pre tag내에 word wrap */
+      }
+
+
+    b {
+
+       padding:0px;
+       font-size: 1.0em;
+       line-height: 1.0rem;
+        color: black;
+       font-weight: bold;
+      }
+
+      pre {
+
+          font-size: 0.95rem;
+          font-family: 'IropkeBatang';
+		  padding:10px;
+		  
+		  overflow: auto;
+          white-space: pre-wrap; /* pre tag내에 word wrap */
+		  		  
+      }
+
+/* 폰트 이름에 작은 따움표 '' 꼭 붙여야 합니다*/
+ 
+
+     div.solve{
+       padding-left: 5px;
+       border-left : 3px solid gray;
+       text-align: top;
+	   font-size:0.95rem;
+     
+      }
+
+    span.q{
+
+     font-size: 1.1rem;
+     color:black;
+     line-height:1.5rem;
+     background-color:#d2d2d2;
+ 
+    }
+
+
+    span.accent {
+     
+     padding:5px;
+     background-color:yellow;
+     font-weight:bold;
+    }
+   
+    span.green {
+     
+     margin:2px;
+     padding:2px;
+     color:black;
+	 line-height:1.5rem;
+     background-color:#D3FAD2
+    }
+
+
+/*em : 상위 요소기준 */
+/*rem : 최상위 요소기준 */
+
+  
+  span.book {
+     
+	 line-height:1.3rem;
+     padding:2px;
+     color:white;
+	 font-size:0.95rem;
+     background-color:gray;
+    }
+ 
+
+  span.title  {
+     
+     margin:2px;
+     padding:2px;
+     color:black;
+	 font-size: 1.5rem;
+    }
+
+  span.blue {
+     
+     margin:2px;
+     padding:2px;
+     color:white;
+     background-color:#3390FF;
+    }
+ 
+
+
+   span.accent_yellow, .yellow {
+     
+     margin:2px;
+     padding:2px;
+     color:black;
+	 line-height:1.4rem;
+     background-color:yellow;
+    }
+
+    span.accent_black,.black {
+     
+     margin:2px;
+     padding:2px;
+
+     color:white;
+     background-color:black;
+	 line-height:1.3rem;
+ 
+    }
+
+    span.gray {
+     
+     margin:2px;
+     padding:2px;
+     color:black;
+     background-color:#e2e2e2;
+     font-weight:bold;
+ 
+    }
+
+    span.red{
+
+     margin:2px;
+     padding:0px;
+     font-size: 1.0rem;
+	 line-height:1.2rem;
+     color:red;
+     background-color:#FFEBEB;
+ 
+    }
+
+
+    U {
+
+     text-decoration : none;
+     border-bottom : 2px solid #FF0000;
+     padding-bottom : 1px; 
+	 line-height: 1.3rem;
+   
+    }
+     
+
+    U.r {
+
+     text-decoration : none;
+     border-bottom : 2px solid #FF0000;
+
+     margin-top: 5px; 
+     padding-bottom : 0px; 
+   
+    }
+
+   U.cancel {
+
+     text-decoration: line-through;
+     border-bottom : 0px solid #000000;
+     padding-bottom : 2px; 
+   }
+
+    ul.no_dot {
+   
+    list-style:none;
+
+   }
+   
+  /*   font-family: 'Nanum Gothic';	*/
+
+  
+  
+   div.keyword-dot, .keyword {
+
+           border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:0.98em;
+		   
+           overflow:auto;
+           white-space: pre-wrap;
+
+          }
+
+ div.reading {
+
+        border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:1.2em;
+		   
+           overflow:auto;
+           white-space: pre-wrap;
+
+          }
+
+div.reading-line {
+
+        border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:1.2em;
+		   
+           overflow:auto;
+           white-space:  normal;
+
+          }
+
+p.question-line {
+
+        border: 2px dotted black;
+
+		    background-color:#EcEcEc;
+
+    		  color: #606060;
+           margin-top:5px;
+           padding: 2px;
+           font-size:1.2em;
+		   
+           overflow:auto;
+           white-space:  normal;
+
+          }
+
+
+div.keyword-div {
+
+           margin-top:5px;
+           padding: 5px;
+           font-size:0.90rem;
+           line-height:1.3rem;
+
+           color:black;
+
+           overflow:auto;
+           white-space: pre-wrap;
+           background-color:#EBFBEB;
+
+          }
+
+
+   span.bold {
+     margin:2px;
+     padding:0px;
+     color:black;
+	 line-height:1.5rem;
+     font-weight: bold;
+
+    }
+
+   span.line{
+
+     white-space: normal;
+
+    }
+
+  span.size0 {
+
+     font-size: 0.95em;
+
+    }
+
+
+    span.size1 {
+
+     font-size: 1.2em;
+
+    }
+
+
+    span.size2 {
+
+     font-size: 1.5em;
+
+    }
+
+    span.size3 {
+
+     font-size: 1.8em;
+
+    }
+
+    span.size4 {
+
+     font-size: 2.0em;
+
+    }
+
+    span.e {
+
+      line-height:1.5rem;
+      margin:2px;
+      padding:2px;
+      background-color:#fef4bd;
+   }
+
+
+   .kwdlink {
+
+    color:black;
+    font-size: 1.5rem;
+    background-color:yellow;
+
+   }
+
+
+  .bg-green {
+
+      background-color:#EBFBEB;
+
+  }
+
+  .bg-pink {
+
+      background-color:#FBEBEB;
+  }
