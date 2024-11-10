@@ -1,5 +1,8 @@
 
 
+[swift read json from url] 
+https://calvinw.medium.com/using-urlsession-to-retrieve-json-in-swift-1-getting-started-d929f3a49c67
+======================
 <span id="dday"></span>
 <script  language = "javascript">
 function update_dday(){
