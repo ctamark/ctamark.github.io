@@ -37,8 +37,9 @@ build(240920_0920)
 : 키워드 노트 업데이트	
 	  
 </div>
-<script  language = "javascript">	
+<script  language = "javascript">
 function update_dday(){
+
 var counter = document.getElementById("dday");
 
 var today = new Date(); //현재 날짜 가져오기
@@ -59,7 +60,7 @@ const day = Math.ceil(totalSeconds/(60 * 60 * 24));
 var msg;
 if (day >=0){
 
-      msg =  '국가직9급D -' + day + '일';
+      msg =  '국가직9급 D -' + day + '일';
 
     }else {
 
@@ -69,7 +70,8 @@ if (day >=0){
 
    counter.innerText = msg;
 }
-</script>		   	
+ update_dday();
+</script>			   	
 	
 </BODY>
 </HTML>
