@@ -60,6 +60,13 @@ EV 코코넛 오일
 
 ➡⬅⬇⬆
 
+ //android.onStartQuiz_JS2App()
+      //---ios---
+      let cmd = "onStartQuiz_JS2App#"
+      webkit.messageHandlers.callbackJS.postMessage(cmd)
+
+
+
    //android.onUserAnswer_JS2App(sel_idx)
        let cmd = "onUserAnswer_JS#" + sel_idx
        webkit.messageHandlers.callbackJS.postMessage(cmd)
