@@ -41,6 +41,9 @@ ios pomodoro intersAd 광고ID
 
 
 ### 작업링크  
+
+[minimax](http://ai4school.org/?page_id=4059){:target="_blank"}
+
 [법제처](https://law.go.kr){:target="_blank"}
 
 [adfit](https://adfit.github.io){:target="_blank"}
