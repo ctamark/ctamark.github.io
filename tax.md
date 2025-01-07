@@ -27,3 +27,13 @@ In this world, nothing is certain except death and taxes.
 모든 국민은 법률이 정하는 바에 의하여 납세의 의무를 진다.
 대한민국 헌법 제38조
 
+<div class='r-wrapper clearfix'>
+<div class='r-div'>  
+재산관련 세금
+</div>  
+<div class='r-div'>  
+자영업자 세금   
+</div>
+</div>
+
+
