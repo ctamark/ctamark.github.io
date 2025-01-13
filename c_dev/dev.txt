@@ -4,7 +4,8 @@
 https://calvinw.medium.com/using-urlsession-to-retrieve-json-in-swift-1-getting-started-d929f3a49c67
 ===========
 ios
-회계 국9_24_18  numL 서식적용 안됨 
+-회계 국9_24_18  numL 서식적용 안됨 
+-한국사: html seoul9를 seoul로 변경
 
 ==========
 
