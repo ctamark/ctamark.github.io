@@ -1,0 +1,54 @@
+
+#calcDiv {
+    position: fixed;
+    display: none;
+    top:0;
+    left: 0;
+    background-color: white;
+    width: 98%;
+    height: 100%;  
+  
+    border: 2px solid blue;
+  
+    z-index: 20;
+  
+  }
+
+
+.avatarCell {
+
+  width: 200px;
+
+}
+  
+#inputDiv{
+
+    position: fixed;
+    display: none;
+    top:0;
+    left: 0;
+    background-color: white;
+    width: 80%;
+  
+    border: 2px solid blue;
+  
+    z-index: 20;
+
+}
+
+#addNodeDiv{
+
+  position: fixed;
+  top:0;
+  left: 100px;
+  width: 50px;
+  height: 50px;
+  line-height: 60px;
+  padding: 0px;
+  margin: 0px;
+
+  text-align: center;
+  z-index: 20;
+  background-color: black;
+
+}

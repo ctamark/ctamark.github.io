@@ -1,1 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
 
+@font-face {
+
+    font-family: 'jalnan';
+    src: url('Jalnan2.otf') format('opentype');
+    font-style: normal;
+}
+
+
+html {
+  width: 100%;
+  height: 100%;  
+
+}
+
+body {
+ 
+  width: 100%;
+  height: 100%;  
+  
+  margin: 0;
+  padding: 0;
+  background: #888888;
+  
+  /*
+  overflow: hidden;
+                         */
+   user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+
+}
+
+.label_01 {
+
+ background-color: #B3D6FF;
+
+}
+
+
+#iCanvas {  
+
+  /*width: 500px;
+   height: 500px;
+   */
+    background: #8F8F8F;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	
+	z-index: 10;	
+    padding: 0px;
+	/*auto 남은 여백을 균등하게 배분 */
+	
+
+}
+
+
+.actButton{
+
+  width: 50%;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  size: 1.1rem;
+  line-height: 2.0rem; 
+  border-radius: 10px; 
+ 
+}
+
+</style>
+
+<head>
+<link rel="stylesheet" href="style.css">	  
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+  
+</head>
+
+<body  oncontextmenu="return false">
+<canvas  id="iCanvas">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<div id="calcDiv">
+<div style="margin: auto; width: 100%; text-align: center;">
+<img src="./img/title_01.png" width="20%">  
+</div>
+
+<!-- table시작 -->  
+<div style="display:table; border: 1px dotted black;">
+
+<div style="display:table-row">
+<div style="display:table-cell">주택수</div>
+<div style="display:table-cell">
+<input type="radio" id="option1" name="option" value="1">1주택<br>
+<input type="radio" id="option2" name="option" value="1">2주택<br>
+<input type="radio" id="option3" name="option" value="1">3주택 이상
+</div>
+</div><!-- 주택수-->
+
+<div style="display:table-row">
+<div style="display:table-cell">주택특성</div>
+<div style="display:table-cell">
+<input type="checkbox" name='prop' value="inherit">상속주택<br> 
+<input type="checkbox" name='prop' value="co-ownership">지분주택<br> 
+<input type="checkbox" name='prop' value="co-ownership">조정지역역 
+</div>
+</div><!-- 주택특성-->
+
+<div style="display:table-row">
+<div style="display:table-cell">취득일</div>
+<div style="display:table-cell"><input type="date" id="date1" onchange="onChangeDate1(event);"></div>
+</div>
+
+<div style="display:table-row">
+  <div style="display:table-cell">취득금액</div>
+  <div style="display:table-cell">
+    <input type="text" id="price1" style="text-align: right;"></div>  
+</div>
+  
+<div style="display:table-row">
+  <div style="display:table-cell">양도일</div>
+  <div style="display:table-cell"><input type="date" id="date2" onchange="onChangeDate1(event);"></div>
+</div>
+
+ <div style="display:table-row">
+    <div style="display:table-cell">양도금액</div>
+    <div style="display:table-cell; padding: 5px;">
+    <input type="text" id="price2" style="text-align: right;"></div>    
+ </div>
+</div><!-- table끝 --> 
+<div id="calcTax" class='actButton' onclick="onCalcTax()">계산하기</div>
+
+</div><!-- div끝 -->
+
+<!--항상 표시 -->
+<div id="addNodeDiv">
+<span style='background-color: black;color: white; font-size: 1.1rem; '>✚</span>
+</div>
+ 
+<div id="inputDiv">
+<div id='closeInputDiv' style="position:absolute;  background-color: yellow; top:0px; right: 0px; width:60px; height:60px;">
+  닫기 </div>  
+<span id="inputHead">head</span> 
+<div id="propRegDiv">
+<select>
+<option>주택</option>
+<option>소유자 추가</option>
+</select>
+</div>
+
+<div id="avatarTable">  
+<div style="display: table-row; width: 200px">  
+<div class="avatarCell" id='face_01'><img src='img/face_m_01.png' width="80px">남자01</div>
+</div>
+<div style="display: table-row; width: 80px;">  
+<div class="avatarCell" id='face_02'><img src='img/face_w_01.png' width="80px">여자01</div>
+</div>
+<div style="display: table-row;">  
+<div class="avatarCell" id='face_03'><img src='img/face_m_01.png' width="80px">남자02</div>
+</div>
+<div style="display: table-row; width: 80px;">  
+<div class="avatarCell" id='face_04'><img src='img/face_w_01.png' width="80px">여자02</div>
+</div>  
+</div><!-- avatarTable끝 -->
+
+
+
+</div><!-- inputDiv-->
+  
+
+<!-- 아래처럼 하면 하나의 전역 스코프를 공유-->
+<script type="text/javascript" src='./tax.js'></script>
+
+<script>
+
+let _ctx 
+let _width, _height 
+
+let _focusPos = {x:0, y:0}
+
+let _selectedNode = null
+
+let canvas = document.getElementById('iCanvas')   
+_ctx  = canvas.getContext("2d");
+
+
+document.addEventListener('resize', onResize, false)
+
+window.onload = function(){
+
+  
+    onResize()
+
+
+    init()
+    initCalc()
+
+    let closeInputDiv = document.getElementById('closeInputDiv')
+    
+    if ('ontouchstart' in document.documentElement === true){
+   
+        console.log("add touchEvent");
+/*
+        canvas.addEventListener("touchstart",touchS, false);
+        canvas.addEventListener("touchmove",touchM, false);
+        // document.body.addEventListener("touchmove",touchM);
+        canvas.addEventListener("touchend",touchE, false);
+
+        canvas.addEventListener("touchcancel", touchCancel, false); 
+*/
+        canvas.addEventListener('click' , onclick)
+
+        closeInputDiv.addEventListener('click' ,(e)=>{ onCloseInputDiv(e)  })
+        
+
+   }
+   else{
+
+
+        canvas.addEventListener('mouseup' , onmouseup)
+        closeInputDiv.addEventListener('click' , (e)=>{onCloseInputDiv(e) })
+
+
+   }	 
+
+
+   let addNodeDiv = document.getElementById('addNodeDiv')
+   addNodeDiv.addEventListener('click', addNode)
+
+
+
+
+  const imgDivArr =  document.querySelectorAll(".avatarCell")
+
+  for( let div  of imgDivArr){
+
+    div.addEventListener('mouseup', 
+                   (e)=>{onclickAvatarDiv(e)} )
+
+  }
+
+
+  requestAnimationFrame(updateFrame);
+
+
+
+}
+
+function onCloseInputDiv(e){
+
+  console.log('onCloseInputDiv')
+
+  let div = document.getElementById('inputDiv')
+  div.style.display = 'none'
+
+}
+
+function onclickAvatarDiv(e){
+
+  //<button onclick='....'>  <span>..</>   </button> 
+
+    //event.currentTarget == the element to which the event handler has been attached.
+
+  //span click -- e.target(span) 
+  //e.currentTarget(button)
+
+    console.log('onclickAvatarDiv: ' + e.currentTarget.id) 
+
+}
+
+
+function onclick(e){
+
+console.log('onclick')
+
+let input = document.getElementById('inputDiv')
+input.style.display = 'block'
+
+}
+
+function onmouseup(e){
+
+console.log('onmouseup')
+
+let input = document.getElementById('inputDiv')
+input.style.display = 'block'
+
+}
+
+
+function initCalc(){
+
+  let input = document.getElementById('price1')
+  input.addEventListener('keyup', function(e) {
+
+    let value = e.target.value;                 
+    //value = Number(value.replaceAll(',', ''));  //[4]
+    //const formatValue = value.toLocaleString('ko-KR'); //[5]
+    //input.value = formatValue;         
+
+  })
+
+}
+
+
+function onResize(){
+
+    _width  = document.body.clientWidth 
+  	_height = document.body.clientHeight
+
+    //let log = 'onResize: ' + gClientWidth + ", " + gClientHeight
+    //addDevLog(log)
+
+    let canvas = document.getElementById('iCanvas')   
+    canvas.width  = _width 
+    canvas.height = _height    
+
+    updateLayout()
+
+}
+
+
+//tObj관련 위치등을 update합니다.
+function updateLayout(){
+
+  /*
+  //find position
+
+  //가운데에서 가장자리로 
+  //random후 collisionResponse하게 
+  let count = 0
+  let x, y
+
+  for(let tObj  of _taxObjArr){
+
+    if(count == 0){
+
+      x = _width*0.5 
+      y = _height*0.5
+
+      tObj.pos.x = x 
+      tObj.pos.y = y 
+
+    }
+    else {
+
+      tObj.pos.x =  getRandomNumber(0, _width)
+      tObj.pos.y =  getRandomNumber(0, _height)
+
+    }
+    
+
+    count++
+
+  }
+*/
+}
+
+function addNode(){
+
+  console.log('addNode')
+
+   const name = `node ${_nodeGenIdx}`    
+   let tObj = new taxObj(name)
+   tObj.id = _nodeGenIdx 
+   _nodeGenIdx++ 
+
+   tObj.pos.x = _focusPos.x 
+   tObj.pos.y = _focusPos.y 
+   
+   _taxObjArr.push(tObj)
+
+   _taxObjArr.forEach(element => {
+
+    console.log(`name ${element.name} pos ${element.pos.x} , ${element.pos.y}`)
+    
+   });
+
+}
+
+
+function addChildNode(parentN){
+
+
+
+
+
+}
+
+
+
+function saveNodeList(){
+
+
+
+
+}
+
+
+function updateFrame(){
+
+     //_taxObjArr
+     _ctx.clearRect(0, 0, _width, _height) 
+
+     drawTaxObj(_ctx)
+
+     requestAnimationFrame(updateFrame);
+}
+
+function onChangeDate1(){
+
+  console.log('onChangeDate1')
+
+  let date = document.getElementById("date1")
+
+   console.log('date ' + date.value) 
+
+
+}
+
+function onChangeDate2(){
+  console.log('onChangeDate2')
+
+  let date = document.getElementById("date2")
+  console.log('date ' + date.value) 
+}
+
+
+function onCalcTax(){
+
+/*
+  부동산 양도소득세 산출세액
+양도차익 = 실지양도가액 - 실지취득가액 - 기타필요경비
+양도소득금액 = 양도차익 - 장기보유특별공제액
+양도소득과세표준(tax base) = 양도소득금액 - 양도소득기본공제
+양도소득세산출세액 = 양도소득과세표준 × 양도소득세율
+
+*/
+
+}
+
+/*
+취득세: 
+주택상속: 2.8% +지방교육세 0.16% = 2.96%
+(국민규모주택 면적(*) 초과시: 농특세 0.2% 가산)
+- 무주택자의 상속인 경우 2%감면 -> 2.96% -2% = 0.96% 
+(*)국민주택은 85제곱미터를 기준
+*/
+//국민주택규모 여부 isPublicSize
+//주택수, 국민주택규모여부 
+//param = { numHouse:1 , isPublicSize: }
+//백만원 단위
+//세율(taxRate)
+//상속에 따른 취득세 
+function getAquisitionTaxByInherit(tBaseM, param){
+
+  let taxRate = 0.028
+  
+  if(param.numHouse >= 1 ){
+    //일반
+
+
+  }
+  else {
+    //무주택자 
+     taxRate -= 0.02 //2%
+
+  }
+
+
+  if(param.isPublicSize){
+    //국민주택 규모 
+
+  }
+  else {
+    //초과 0.2%(0.002)가산 
+    taxRate += 0.002
+
+  }
+
+
+
+}
+
+
+
+//단위: 1,000,000
+function getTax(tBaseM){
+
+  //1,000,000원 기준으로 
+
+   let resVal = 0
+
+  if(taxBase2 <= 14){
+
+    //1400만원 이하	6%	-
+    resVal = tBaseM*0.06
+ 
+  }
+  else if(tBaseM > 14 && tBaseM <= 50 ){
+    //1400만원 초과 5000만원 이하	15%	126만원
+    resVal = tBaseM*0.15 - 1.26
+
+  }
+  else if(tBase > 50 && tBase <= 88){
+    //5000만원 초과 8800만원 이하	24%	576만원
+
+    resVal = tBaseM*0.24 - 5.76
+
+  }
+  else if(tBase > 88 && tBaseM <= 150){
+    //8800만원 초과 1억5천만원 이하	35%	1,544만원
+
+    resVal = tBaseM*0.35 - 15.44
+
+  }
+  else if(tBaseM > 150 && tBaseM <= 300){
+   //1억5천만원 초과 3억원 이하	38%	1,994만원
+
+   resVal = tBaseM*0.38 - 19.94
+
+  }
+  else if(tBaseM >300 && tBaseM <= 500 ){
+    //3억원 초과 5억원 이하	40%	2,594만원
+
+    resVal = tBaseM*0.40 - 25.94
+
+  }
+  else if(tBaseM > 500 && tBaseM <=1000){
+    //5억원 초과	42%	3,594만원
+
+    resVal = tBaseM*0.42 - 35.94
+
+
+  }else if(tBaseM > 1000){
+
+    //10억원 초과	45%	6,594만원
+
+    resVal = tBaseM*0.45 - 65.94
+
+  }
+
+  return resVal
+
+}
+
+
+
+</script>
+
+</body>
+</html>
