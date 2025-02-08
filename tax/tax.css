@@ -52,3 +52,17 @@
   background-color: black;
 
 }
+
+.boxNote0 {
+    /*  background-color: #FCE3E3;*/
+      background-color: #efefef;
+      padding: 5px;
+	  color: black;
+      line-height: 140%;
+      border: 1px dotted gray;
+	  white-space: pre-wrap;
+}
+
+u {
+            text-decoration-color: red;
+}
