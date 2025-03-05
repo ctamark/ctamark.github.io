@@ -1083,7 +1083,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
     background-color:yellow;
     margin:2px;
     padding:0px;
-    line-height:1.4rem;
+    line-height:1.5;
 
     text-decoration: underline;
     text-decoration-color: red;
