@@ -453,7 +453,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
          font-size: 1.1rem;
          margin:2px;
          padding:0px;
-    	 line-height:1.4rem;
+    	 line-height:1.4;
          color: black;
          font-weight: bold;
     }
@@ -464,7 +464,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
           font-weight: bold;
          margin:2px;
          padding:0px;
-    	 line-height:1.4rem;
+    	 line-height:1.4;
          color: #A50E53;
          background-color: #FCE8E6;
     }
@@ -474,7 +474,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
           font-weight: bold;
          margin:2px;
          padding:0px;
-    	 line-height:1.4rem;
+    	 line-height:1.4;
          color:#185ABE;
          background-color: #E8F0FE;
     }
@@ -484,7 +484,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
           font-weight: bold;
          margin:2px;
          padding:0px;
-    	 line-height:1.4rem;
+    	 line-height:1.4;
          color: #000;
         background-color: #fdf5d4;
     }
