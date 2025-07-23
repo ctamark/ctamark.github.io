@@ -18,43 +18,8 @@
 ● 이미지로 된 문제가 표시되지 않는 버그가 있어요.
 </div>	
 <span class="a3">(ver:2.03)</span>
-(심사대기중...)    
 ● 이미지로 된 문제가 표시되지 않는 버그 수정 			
 </div>
-<script  language = "javascript">	
-function update_dday(){
-
-var counter = document.getElementById("dday");
-
-var today = new Date(); //현재 날짜 가져오기
-
-// Date(year, month, day, hour, min, sec) // 2023년 4월 8일
-// month는 0부터 시작
-var dday = new Date(2025, 6-1, 21); //디데이
-
-//날짜와 시간 사이에 'T',
-//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
-var gap = dday - today;
-
-var totalSeconds = gap/1000;
-
-const day = Math.ceil(totalSeconds/(60 * 60 * 24));
-//ceil 올림, floor 내림, round 반올림
-                      
-var msg;
-if (day >=0){
-
-      msg =  '지방직9급 D -' + day + '일';
-
-    }else {
-
-      msg =  '수고하셨습니다';
-
-    }
-
-   counter.innerText = msg;
-}
-update_dday();
-</script>		   				   	  	
+				   	  	
 </body> 
 </html>
