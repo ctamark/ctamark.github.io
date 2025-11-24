@@ -16,6 +16,18 @@ body{
 }
 
 
+/* ===== 1. 루트 기준 설정 ===== */
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    font-size: 17px !important;
+  }
+}
+
+
       div.b {
 
         color:#787878;
@@ -1161,3 +1173,4 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
 /*
 
 */
+
