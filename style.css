@@ -28,15 +28,6 @@ html {
 }
 
 
-      div.b {
-
-        color:#787878;
-        font-size: medium;
-		text-align: left;
-		margin-left: 10;
-      }
-
-
 
      @font-face {
         font-family:'IropkeBatang';
@@ -1185,5 +1176,6 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
 /*
 
 */
+
 
 
