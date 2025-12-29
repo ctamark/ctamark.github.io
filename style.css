@@ -139,6 +139,17 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
 }
 
 
+table.border {
+    border: 1px solid #333;
+    border-collapse: collapse; /* ★ 이게 핵심 */
+}
+
+table.border td {
+    border: 1px solid #333;
+}
+
+
+
 	   .math {
 
         font-family: Courier;
@@ -1176,6 +1187,7 @@ normal  : 연속된 공백을 하나로 처리하고 박스를 벗어나지 않�
 /*
 
 */
+
 
 
 
