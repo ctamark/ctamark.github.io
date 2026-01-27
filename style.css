@@ -155,6 +155,27 @@ white-space: pre-wrap;
 
 }
 
+
+/* custom의 자식 */
+ol.custom {
+ list-style-type: none;
+ list-style-position: outside; /* 기본값으로 복구 */
+
+ padding-left: 6px;
+ margin-left: 0;
+}
+
+ol.custom li {
+ display: flex;
+ align-items: flex-start;   /* ← 핵심 */
+ gap: 6px;
+}
+
+ol.custom .content {
+  flex: 1;          /* 나머지 영역 */
+}
+
+
 table.border {
     border: 1px solid #333;
     border-collapse: collapse; /* ★ 이게 핵심 */
@@ -1204,6 +1225,7 @@ table.border td {
 /*
 
 */
+
 
 
 
