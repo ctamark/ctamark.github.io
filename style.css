@@ -160,13 +160,13 @@ white-space: pre-wrap;
 ol.custom {
  list-style-type: none;
  list-style-position: outside; /* 기본값으로 복구 */
+ white-space: normal;	
  padding-left: 6px;
  margin-left: 0;
 }
 
 ol.custom li {
- display: flex;
- white-space: normal;		
+ display: flex;		
  align-items: flex-start;   /* ← 핵심 */
  gap: 6px;
 }
@@ -1225,6 +1225,7 @@ table.border td {
 /*
 
 */
+
 
 
 
