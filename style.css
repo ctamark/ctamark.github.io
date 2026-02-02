@@ -202,8 +202,8 @@ table.border td {
 
 }
 
-.bodytitle{
-  font-size: 1.1rem;
+span.bodytitle{
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -1247,6 +1247,7 @@ table.border td {
 /*
 
 */
+
 
 
 
