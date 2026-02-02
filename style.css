@@ -145,6 +145,16 @@ background: white;
 padding: 5px;	
 }
 
+/* 경계는 없니만 배경색 있는 박스 */
+div.box {
+    background-color: #FFF2F2;
+    padding: 5px;
+    font-size: 0.98em;
+    margin-left: 5px;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
 div.border{
   border: 1px dotted black;
 
@@ -1237,6 +1247,7 @@ table.border td {
 /*
 
 */
+
 
 
 
