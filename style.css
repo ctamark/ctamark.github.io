@@ -155,6 +155,13 @@ div.box {
     margin-bottom: 0.5rem;
 }
 
+div.subbox{
+  background: #f7f9fc;
+  padding: 5px 5px;
+  border-radius: 5px;
+  border: 1px dashed #ccc;
+}
+
 div.border{
   border: 1px dotted black;
 
@@ -1247,6 +1254,7 @@ span.bodytitle{
 /*
 
 */
+
 
 
 
