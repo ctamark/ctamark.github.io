@@ -20,13 +20,13 @@ body{
 html {
   font-size: 16px; /* 1rem = 16px */
 }
-
+/*
 @supports (-webkit-touch-callout: none) {
   html, body {
     font-size: 17px !important;
   }
 }
-
+*/
 
 
      @font-face {
@@ -1254,6 +1254,7 @@ span.bodytitle{
 /*
 
 */
+
 
 
 
