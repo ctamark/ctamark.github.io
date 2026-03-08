@@ -223,6 +223,31 @@ span.bodytitle{
 	 font-weight: 700;
   }
 
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle; /* 기본 정렬 */
+  align-items: center;
+  line-height: 1;
+  font-size: 0.9em; /* 분수는 보통 주변 글자보다 약간 작아야 자연스럽습니다 */
+  margin: 0 2px;
+  /* 아래 코드는 텍스트 줄바꿈 시 분수가 겹치지 않게 위치를 미세 조정합니다 */
+  position: relative;
+  top: -0.1em;
+}
+
+.fraction .top {
+  padding: 0 3px;
+   border-bottom: 1px solid #000;
+  display: block;
+}
+
+.fraction .bottom {
+  padding: 0 3px;
+  border-top: 1px solid #000;
+  display: block;
+}
+
 
 	   .math {
 
@@ -1261,6 +1286,7 @@ span.bodytitle{
 /*
 
 */
+
 
 
 
