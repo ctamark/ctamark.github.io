@@ -248,6 +248,11 @@ span.bodytitle{
   display: block;
 }
 
+span.mark {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
 
 	   .math {
 
@@ -1286,6 +1291,7 @@ span.bodytitle{
 /*
 
 */
+
 
 
 
