@@ -1220,6 +1220,11 @@ span.mark {
 
    }
 
+.bg-1 { background-color: #E1E1E1; } /* 가장 어두움 */
+.bg-2 { background-color: #ECECEC; }
+.bg-3 { background-color: #F3F3F3; }
+.bg-4 { background-color: #F9F9F9; }
+.bg-5 { background-color: #FFFFFF; } /* 가장 밝음 */
 
   .bg-green {
 
