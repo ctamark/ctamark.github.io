@@ -8,6 +8,8 @@
 </head>
 <body topmargin=3>
 <div class="notice">(-github-)		
+<span id='dday' class='a2'></span>(필기:27.3.27.)(접수:27.1.25.~1.29.)
+	
 <div class='box-note0'><span class='a3'>[공지.정오.오류]</span> 	<!-- 공지등 시작-->	   
 ●[공무원 ox문제]
 : 조만간 다시 추가할게용(늦어질 수 있음)(미리죄송)
@@ -56,6 +58,43 @@ dev.isangjin@gmail.com
 </div>	
     
 </div>	
+
+<script  language = "javascript">	
+function update_dday(){
+
+var counter = document.getElementById("dday");
+
+var today = new Date(); //현재 날짜 가져오기
+
+// Date(year, month, day, hour, min, sec) // 2023년 4월 8일
+// month는 0부터 시작
+var dday = new Date(2027, 3-1, 27); //디데이
+
+//날짜와 시간 사이에 'T',
+//var dday = new Date("2022/04/02T00:00:00+0900").getTime(); //디데이
+var gap = dday - today;
+
+var totalSeconds = gap/1000;
+
+const day = Math.ceil(totalSeconds/(60 * 60 * 24));
+//ceil 올림, floor 내림, round 반올림
+                      
+var msg;
+if (day >=0){
+
+      msg =  '국가직9급 D -' + day + '일';
+
+    }else {
+
+      msg =  '수고하셨습니다';
+
+    }
+
+   counter.innerText = msg;
+}
+update_dday();
+</script>		
+	
 </body> 
 </html>
 
